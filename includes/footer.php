@@ -17,7 +17,33 @@
              </div>
             <div class="row product_links">
                 <h2>Our Products:</h2>
+                <?php
+                $sql2 = "SELECT * FROM category_tbl WHERE cat_status = 1 ";
+                $query2 = mysqli_query($con, $sql2);
+                if (mysqli_num_rows($query2)) {
+                    foreach ($query2 as $result1) {
+                        $cat_id1 = $result1['cat_id'];
+                ?>
                 <div class="col-md-3">
+                    <ul>
+                        <li>
+                            <h4 class="m-0 p-0"><?=$result1['cat_name']?></h4>
+                        </li>
+                        <?php
+                         $sql3 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id1' limit 8 ";
+                         $pro_query1 = mysqli_query($con, $sql3);
+                         if (mysqli_num_rows($pro_query1)) {
+                             foreach ($pro_query1 as $pro_data1) {
+                        ?>
+                        <li><a href="#!"><?= $pro_data1['product_name']?> </a></li>
+                        <?php
+                             }
+                            }
+                        ?>
+                    </ul>
+                </div>
+                
+                <!-- <div class="col-md-3">
                     <ul>
                         <li>
                             <h4 class="m-0 p-0">Chipping Hammer</h4>
@@ -97,7 +123,11 @@
                         <li><a href="#!">Lubricator 4 </a></li>
                         <li><a href="#!">Lubricator 5 </a></li>
                     </ul>
-                </div>
+                </div> -->
+                <?php
+                    }
+                }
+                ?>
             </div>
             <div class="row contact_links">
                 <div class="col-md-12">

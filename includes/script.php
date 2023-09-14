@@ -13,6 +13,30 @@
 <script src="./assets/js/main.js"></script>
 <!-- <script src="js/fancybox.min.js"></script> -->
 
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script>
+$(document).ready(function() {
+    $('#product_category').on('change', function() {
+        var categoryId = $(this).val();
+
+        // Clear the product dropdown
+        $('#product').html('<option value="">Select Product</option>');
+
+        if (categoryId !== "") {
+            // Make an AJAX request to fetch products based on the selected category
+            $.ajax({
+                type: 'POST', // You can change this to 'GET' if your server-side script supports it
+                url: './admin/product_code.php', // Replace with the actual URL of your PHP script
+                data: { category_id: categoryId },
+                success: function(response) {
+                    // Populate the product dropdown with the received data
+                    $('#product').append(response);
+                }
+            });
+        }
+    });
+});
+</script>
 
 </body>
 

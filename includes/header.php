@@ -19,13 +19,15 @@
     <link rel="stylesheet" href="./assets/css/products.css">
     <link rel="stylesheet" href="./assets/css/blogs.css">
     <link rel="stylesheet" href="./assets/css/about.css">
+    <link rel="stylesheet" href="./assets/css/blog.css">
+    <link rel="stylesheet" href="./assets/css/blog_detail.css">
     <!-- <link rel="stylesheet" href="./css/fancybox.min.css"> -->
 </head>
 
 <body>
     <header class="header">
         <div class="header-inner">
-            <nav class="top_nav" id="top_nav">
+            <nav class="top_nav " id="top_nav">
                 <div class="container-fluid">
                     <div class="row d-flex align-items-center justify-content-between">
                         <div class="col-md-12 d-flex align-items-center justify-content-between flex-wrap">
@@ -56,18 +58,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-4 d-flex align-items-center justify-content-end">
-                            <div class="top_nav_social d-flex align-items-center justify-content-evenly gap-3">
-                               <a href="#"> <i class="fa-brands fa-facebook"></i></a>
-                               <a href="#">  <i class="fa-brands fa-instagram"></i></a>
-                               <a href="#">  <i class="fa-brands fa-twitter"></i></a>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </nav>
             <div class="container-fluid px-lg-5">
-                <nav class="navbar navbar-expand-lg my-navbar">
+                <nav class="navbar navbar-expand-lg border-bottom my-navbar">
                     <a class="navbar-brand" href="index.php">
                         <img src="./assets/images/logo_1.svg" class="img-fluid logo1">
                         <img src="./assets/images/logo_1.svg" class="img-fluid logo2">
@@ -95,7 +90,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="./blogs.php">Blogs</a>
+                                <a class="nav-link" href="./blog.php">Blogs</a>
                             </li>
 
                             <li class="nav-item">
@@ -104,8 +99,72 @@
                         </ul>
                     </div>
                 </nav>
-
+                <!-- <nav class="w-100">
+                    <div class="Sponsors_slider_area_1 text-center owl-carousel owl-theme">
+                        <ul class="drop-Down">
+                            <?php
+                            // $query = "SELECT * FROM sponsors_tbl where spo_cat_id = '1' And spo_status = '1'";
+                            // $query_run = mysqli_query($con, $query);
+                            // if (mysqli_num_rows($query_run)) {
+                            //     while ($data1 = mysqli_fetch_assoc($query_run)) {
+                            ?>
+                            <li class="drop-list">
+                                <p class="click-link">Link1</p>
+                                <ul class="drop_item">
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-list">
+                                <p class="click-link">Link1</p>
+                                <ul class="drop_item">
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-list">
+                                <p class="click-link">Link1</p>
+                                <ul class="drop_item">
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-list">
+                                <p class="click-link">Link1</p>
+                                <ul class="drop_item">
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-list">
+                                <p class="click-link">Link1</p>
+                                <ul class="drop_item">
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                    <li><a href="#!">link1</a></li>
+                                </ul>
+                            </li>
+                            <?php
+                            //     }
+                            // }
+                            ?>
+                        </ul>
+                    </div>
+                </nav> -->
             </div>
+
         </div>
     </header>
-  
+    <section class="sticky-icon">
+        <a href="#!"> <i class="fa-brands fa-whatsapp"></i></a>
+
+    </section>

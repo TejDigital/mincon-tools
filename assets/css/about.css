@@ -165,3 +165,69 @@
 .mincon_choose .bg-img img{
     width: 100%;
 }
+
+/* ----------------------------------mincon_sky---------------- */
+.mincon_sky{
+    position: relative;
+    /* padding: 4rem;
+    background-image: url('../images/mincon_hero_bg2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; */
+}
+.mincon_sky .text{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.mincon_sky  .img{
+    width: 100%;
+    position: relative;
+ }
+ .mincon_sky  .img img{
+    width: 100%;
+ }
+.mincon_sky .text{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    /* padding: 3rem 0; */
+}
+.mincon_sky .text h2{
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    /* line-height: 20px; */
+}
+.mincon_sky .text img{
+   width: 280px;
+}
+.mincon_end_text .end_text{
+    padding: 2rem 0;
+}
+.mincon_end_text .end_text p{
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 28px;
+    text-align: justify;
+}
+@media(max-width:770px){
+    .mincon_sky .text{
+        padding: 0.5rem;
+        left: 30%;
+    }
+    .mincon_sky .text h2{
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+}
+    .mincon_sky .text img{
+        width:100px;
+}
+}

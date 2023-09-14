@@ -1,4 +1,3 @@
-
 /* -------------------------top-hero---------------------- */
 .top_hero {
     position: relative;
@@ -6,17 +5,14 @@
 
 .top_hero .img {
     width: 100%;
-    height: 100%;
-    max-height: 500px;
-    min-height: 300px;
+
+
     position: relative;
 }
 
 .top_hero .img img {
-    max-height: 500px;
-    min-height: 300px;
     width: 100%;
-    height: 100%;
+
 }
 
 .top_hero .top_hero_text {
@@ -27,13 +23,13 @@
 }
 
 .top_hero .top_hero_text h1 {
-    font-size: 4vw;
+    font-size: 3.5vw;
     font-weight: 700;
     /* line-height: 58px; */
 }
 
 .top_hero .top_hero_text p {
-    font-size: 1.8vw;
+    font-size: 1.7vw;
     font-weight: 500;
     /* line-height: 28px; */
 }
@@ -49,11 +45,12 @@
 
 @media(max-width:768px) {
     .top_hero .top_hero_text h1 {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
+        margin: 0;
     }
 
     .top_hero .top_hero_text p {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
 
     /* .top_hero .img{
@@ -62,6 +59,56 @@
 }
 
 /* ----home-------start----------- */
+
+
+.nav-product{
+    position: relative;
+    border-bottom: 1.5PX solid #000000;
+    padding:0 2rem;
+}
+.nav-product .box{
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #282713;
+  border-left:1.5px solid #000000 ;
+}
+.nav-product:first-child{
+  border-left: 1.5px solid transparent ;
+}
+
+.nav-product .box:hover{
+  background-color: #EBAB56;
+  font-weight: 600;
+}
+.nav-product .box a{
+    text-decoration: none;
+    color: #000000;
+  margin: 0;
+  padding: 1.2rem 1REM;
+}
+
+.active-product {
+    width: 100%;
+    font-weight: bold;
+    background-color: #EBAB56;
+
+}
+.fix-nav{
+position: fixed;
+top: 60px;
+z-index: 999;
+background: #fff;
+}
+
+@media (max-width:998px){
+    .fix-nav{
+        top: 54px;
+    }
+}
+/* ------------------------------------------------------------------------ */
 
 .home_top {
     position: relative;
@@ -78,7 +125,7 @@
     position: relative;
 }
 
-.home_top .box .img img{
+.home_top .box .img img {
     width: 100%;
     /* max-height: 600px; */
     object-fit: cover;
@@ -86,7 +133,7 @@
     /* min-height: 400px; */
 }
 
-.home_top  .text {
+.home_top .text {
     width: 100%;
     z-index: 99;
     position: absolute;
@@ -96,23 +143,26 @@
     color: #fff;
 }
 
-.home_top  .text .main_box {
+.home_top .text .main_box {
     text-align: center;
 }
-.home_top  .text .main_box h1{
+
+.home_top .text .main_box h1 {
     font-size: 2.8rem;
     font-weight: 800;
     line-height: 57px;
     text-align: center;
     letter-spacing: 0.05rem;
 }
-.home_top  .text .main_box p{
+
+.home_top .text .main_box p {
     font-size: 1rem;
     font-weight: 300;
     line-height: 30px;
     text-align: center;
 }
-.home_top  .text .main_box  a{
+
+.home_top .text .main_box a {
     padding: 0.8rem 1rem;
     text-align: center;
     font-weight: 700;
@@ -120,123 +170,205 @@
     text-decoration: none;
     background-color: #EBAB56;
     border-radius: 1px;
-    border:1px solid transparent;
+    border: 1px solid transparent;
 }
 
-@media(max-width:998px){
-    .home_top  .text {
+@media(max-width:998px) {
+    .home_top .text {
         margin-top: 1.6rem;
     }
-    .home_top  .text .main_box h1{
+
+    .home_top .text .main_box h1 {
         font-size: 1.9rem;
         margin: 0;
         line-height: 36px;
     }
-    .home_top .box .text .main_box p{
+
+    .home_top .box .text .main_box p {
         line-height: 24px;
         font-size: 1rem;
         margin-bottom: 0.9rem;
     }
 
 }
-@media(max-width:768px){
+
+@media(max-width:768px) {
     .home_top .text {
         margin-top: 1.6rem;
     }
-    .home_top  .text .main_box h1{
+
+    .home_top .text .main_box h1 {
         font-size: 1.4rem;
         margin: 0;
         line-height: 24px;
     }
-    .home_top .text .main_box p{
+
+    .home_top .text .main_box p {
         line-height: 22px;
         font-size: 0.8rem;
         margin-bottom: 0.9rem;
     }
 
 }
+
 /* ---------------------------home_product---------------------------- */
 
-.home_product{
+.home_product {
     position: relative;
+    padding-top: 70px ;
 }
-.home_product .head{
+
+.home_product .head {
     position: relative;
     padding: 1rem 0;
 }
-.home_product .head h1{
-   font-size: 2.2rem;
-   font-weight: 700;
-   line-height: 50px;
-   color: #282713;
+
+.home_product .head h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 50px;
+    color: #282713;
 }
-.home_product .head p{
-   font-size: 1.1rem;
-   font-weight: 400;
-   line-height: 24px;
-   color: #282713;
+
+.home_product .head p {
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 24px;
+    color: #282713;
 }
-.home_product .boxes{
+
+.home_product .boxes {
     position: relative;
 }
-.home_product .boxes .box{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   margin-bottom: 1rem;
-   /* padding: 1rem; */
+
+.home_product .boxes .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    /* padding: 1rem; */
 }
-.home_product .boxes .box .img{
-   width: 240px;
-   height: 260px;
-   border: 2px solid #282713;
+
+.home_product .boxes .box .img {
+    width: 240px;
+    height: 260px;
+    border: 2px solid #282713;
 
 }
-.home_product .boxes .box .img img{
-   width: 100%;
-   height: 100%;
+
+.home_product .boxes .box .img img {
+    width: 100%;
+    height: 100%;
 }
-.home_product .boxes .box .text{
-display: flex;
-position: relative;
-align-items: center;
-margin-top: 0.5rem;
-width: 100%;
-justify-content: space-around;
+
+.home_product .boxes .box .text {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: space-around;
 }
-.home_product .boxes .box .text p{
-font-size: 0.8rem;
-line-height: 24px;
-margin: 0;
-font-weight: 600;
+
+.home_product .boxes .box .text p {
+    font-size: 0.8rem;
+    line-height: 24px;
+    margin: 0;
+    font-weight: 600;
 }
-.home_product .boxes .box .text a{
-text-decoration: none;
-color: #282713;
-font-size: 0.7rem;
-font-weight: 600;
-background: #EBAB56;
-padding: 0.3rem 0.2rem;
+
+.home_product .boxes .box .text a {
+    text-decoration: none;
+    color: #282713;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: #EBAB56;
+    padding: 0.3rem 0.2rem;
 }
-.home_product .product_btn{
-   text-align: center;
-   margin-bottom: 4rem;
-   margin-top: 2rem;
+
+.home_product .product_btn {
+    text-align: center;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
 }
-.home_product .product_btn a{
+
+.home_product .product_btn a {
     text-align: center;
     text-decoration: none;
     color: #282713;
     font-weight: 600;
     background-color: #EBAB56;
-    padding: 1rem ;
+    padding: 1rem;
     border-radius: 4px;
 }
-.home_product .product_foot_img{
+
+.home_product .product_foot_img {
     width: 100%;
     margin-top: 2rem;
 }
-.home_product .product_foot_img img{
+
+.home_product .product_foot_img img {
+    width: 100%;
+}
+
+
+/* -------------------------------mincon_contact----------------------- */
+
+.mincon_contact {
+    position: relative;
+    padding: 3rem 0;
+}
+
+.mincon_contact .head {
+    position: relative;
+}
+
+.mincon_contact .head h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    line-height: 40px;
+    margin: 0;
+}
+
+.mincon_contact .head p {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 20px;
+    color: #7E7E7E;
+}
+
+.mincon_contact .form-group {
+    padding: 0.8rem 0;
+
+}
+
+.mincon_contact .form-group .input-box {
+    padding: 1rem 0.5rem;
+    width: 100%;
+    border: 1.4px solid #282713;
+    background-color: #F9F9F9;
+}
+.mincon_contact .form-group .input-box::placeholder{
+    color: #7E7E7E;
+}
+.mincon_contact .form-group select{
+    color: #7E7E7E;
+}
+
+.mincon_contact .form-group .sub-btn {
+    padding: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #EBAB56;
+    border: 0;
+}
+
+.mincon_contact .img {
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.mincon_contact .img img {
     width: 100%;
 }

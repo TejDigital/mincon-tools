@@ -127,7 +127,36 @@ body {
 	margin: auto;
 	height: 10px;
 }
-
+@media(max-width:998px){
+	.nav-item .current {
+		padding: 0.8rem 0.5rem !important;
+		display: block;
+		line-height: 36px;
+		text-transform: capitalize;
+		font-size: 16px;
+		font-weight: 700;
+		/* padding: 5px 20px !important; */
+		/* color: #f9c108; */
+		color: #282713;
+		text-decoration: none;
+		position: relative;
+		transition: 0.15s ease;
+	}
+	
+	.nav-item .current::after {
+		content: '';
+		transition: 0.5s;
+		position: absolute;
+		left: 13%;
+		bottom: 7px;
+		transform: translate(-50%, -50%);
+		border-radius: 50%;
+		background-color: #EBAB56;
+		width: 10px;
+		margin: auto;
+		height: 10px;
+	}
+}
 .nav-item {
 	position: relative;
 	/* margin: 0 3px; */
@@ -180,8 +209,8 @@ body {
 	color: #100e37;
 } */
 .header .navbar .toggel_btn1 {
-	border: 1px solid #fff;
-	color: #fff;
+	/* border: 1px solid #fff;
+	color: #fff; */
 }
 
 .header .navbar .toggel_btn2 {
@@ -345,4 +374,60 @@ body {
 	.top_nav .top_nav_item p:nth-child(2) {
 		display: block;
 	}
+}
+
+
+/* -----------------------------------sticky-icon-------------- */
+.sticky-icon{
+	position: relative;
+}
+.sticky-icon a{ 
+	position: fixed;
+	text-decoration: none;
+	bottom: 10%;
+	right: 4%;
+	color: #36AE0C;
+	font-size: 2rem;
+	z-index: 999;
+	border: 3px solid #36AE0C;
+	border-radius: 50%;
+	padding: 0.1rem 0.6rem;
+	background-color: #fff;
+}
+
+/* ----------------header-link-------------------------------- */
+.border-bottom{
+	border-bottom: 2px solid #000000 !important;
+}
+.drop-Down{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width:100vw;
+}
+.drop-list{
+	list-style: none;
+	/* padding: 0 10px; */
+	position: relative;
+}
+
+.drop-list .click-link{
+	/* position: relative; */
+	cursor: pointer;
+	margin: 0;
+}
+.drop-list .click-link:hover ~ .drop_item{
+	visibility: visible;
+}
+.drop-list .drop_item li{
+	list-style: none;
+}
+.drop-list .drop_item{
+	position: absolute;
+	padding: 0;
+	top: 24px;
+	left: 0;
+	z-index: 100;
+	visibility: visible;
+	flex-direction: column;
 }
