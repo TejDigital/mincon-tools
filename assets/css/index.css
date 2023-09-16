@@ -63,8 +63,9 @@
 
 .nav-product{
     position: relative;
-    border-bottom: 1.5PX solid #000000;
-    padding:0 2rem;
+    border-bottom: 1.5PX solid #EBAB56;
+    border-top: 1.5PX solid #000000;
+    /* padding:0 2rem; */
 }
 .nav-product .box{
   display: flex;
@@ -278,9 +279,10 @@ background: #fff;
     font-weight: 600;
 }
 
-.home_product .boxes .box .text a {
+.home_product .boxes .box .text button {
     text-decoration: none;
     color: #282713;
+    border: 0;
     font-size: 0.7rem;
     font-weight: 600;
     background: #EBAB56;

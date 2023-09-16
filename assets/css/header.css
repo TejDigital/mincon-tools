@@ -380,11 +380,13 @@ body {
 /* -----------------------------------sticky-icon-------------- */
 .sticky-icon{
 	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 .sticky-icon a{ 
 	position: fixed;
 	text-decoration: none;
-	bottom: 10%;
+	bottom: 14%;
 	right: 4%;
 	color: #36AE0C;
 	font-size: 2rem;
@@ -393,6 +395,31 @@ body {
 	border-radius: 50%;
 	padding: 0.1rem 0.6rem;
 	background-color: #fff;
+}
+.sticky-icon img{ 
+	position: fixed;
+	text-decoration: none;
+	bottom: 5%;
+	width: 50px;
+	height: 50px;
+	right: 4%;
+	z-index: 999;
+	border: 4px solid #fff;
+	border-radius: 50%;
+	padding: 0.1rem 0.6rem;
+	background-color: #EBAB56;
+}
+.sticky-icon .count{
+	position: fixed;
+	bottom: 10%;
+	right: 4%;
+	background-color: #ffffff;
+	color: #EBAB56;
+	font-weight: 600;
+	border-radius: 40%;
+	z-index: 999;
+	padding: 0.1rem;
+	font-size: 0.6rem;
 }
 
 /* ----------------header-link-------------------------------- */

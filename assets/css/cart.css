@@ -1,0 +1,44 @@
+.cart{
+    position: relative;
+}
+.cart .box_area{
+   border-left:1px solid #000000 ;
+   padding-left: 2rem;
+}
+.cart .box{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.cart .box .img img{
+   height: 50px;
+}
+.cart .box .text{
+position: relative;
+padding: 0 1rem;
+}
+.cart .box .text p{
+ font-size: 0.9rem;
+ font-weight: 600;
+ margin: 0;
+}
+.cart .box .btn1 button{
+ border: none;
+ background-color: aqua;
+ color: blue;
+ padding: 0.5rem;
+}
+
+.cart .mincon_contact .head p {
+color: #282713;
+font-size: 1rem;
+font-weight: 700;
+}
+.cart .mincon_contact .form-group {
+padding: 0.3rem 0;
+}
+.cart .mincon_contact .input-box{
+    width: 80%;
+    padding: 0.5rem 0.3rem;
+
+}

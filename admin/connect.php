@@ -22,6 +22,7 @@ if(isset($_POST['submit'])){
         header('location:../contact.php');
     }
 }
+
 if(isset($_POST['submit2'])){
     $name = $_POST['name'];
     $mobile = $_POST['mobile'];

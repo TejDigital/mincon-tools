@@ -1,3 +1,6 @@
+<?php require('./admin/config/dbcon.php');
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,10 +20,10 @@
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/css/contact.css">
     <link rel="stylesheet" href="./assets/css/products.css">
-    <link rel="stylesheet" href="./assets/css/blogs.css">
     <link rel="stylesheet" href="./assets/css/about.css">
     <link rel="stylesheet" href="./assets/css/blog.css">
     <link rel="stylesheet" href="./assets/css/blog_detail.css">
+    <link rel="stylesheet" href="./assets/css/cart.css">
     <!-- <link rel="stylesheet" href="./css/fancybox.min.css"> -->
 </head>
 
@@ -99,7 +102,7 @@
                         </ul>
                     </div>
                 </nav>
-                <!-- <nav class="w-100">
+                <nav class="w-100">
                     <div class="Sponsors_slider_area_1 text-center owl-carousel owl-theme">
                         <ul class="drop-Down">
                             <?php
@@ -159,12 +162,129 @@
                             ?>
                         </ul>
                     </div>
-                </nav> -->
+                </nav>
             </div>
 
         </div>
     </header>
     <section class="sticky-icon">
-        <a href="#!"> <i class="fa-brands fa-whatsapp"></i></a>
-
+        <a href="#!"><i class="fa-brands fa-whatsapp"></i></a>
+        <img src="./assets/images/cart.svg" alt="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <span class="count" id="count">0</span>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-body cart">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 ">
+                                <div>
+                                    <h6>CART( <b>3 ITEMS</b>)</h6>
+
+                                    <?php
+                                    if(isset($_SESSION['cart'])){
+                                        $cart = $_SESSION['cart'];
+                                        foreach($cart as $key =>$product){
+                                             $id = $product['p_name'] ;
+                                             $img = $product['p_image'];
+                                    ?>
+                                   <div class='box mb-2' >
+                                      <div class='img'>
+                                         <?php   
+                                            $sql = "SELECT * FROM products_tbl WHERE product_name ='$id'";
+                                            $query = mysqli_query($con,$sql);
+                                            if(mysqli_num_rows($query)){
+                                                $row = mysqli_fetch_assoc($query);
+                                            if($row['product_image']==$img)
+                                            {
+                                                ?>
+                                            <img src="./admin/products_images/<?=$product['p_image']?>" alt="">
+                                            <?php
+                                        }
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="text">
+                                            <p><?=$product['p_name']?></p>
+                                            <p><?=$product['cat_name']?></p>
+                                        </div>
+                                        <div class="btn1">
+                                            <button class=".delete"  data-product-name="<?php echo $product['p_name']; ?>">Delete</button>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    }}
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-md-8 box_area">
+                                <section class="mincon_contact p-0">
+                                    <!-- <div class="col-md-6"> -->
+                                    <div class="head pb-5">
+                                        <p class="float-start"> Submit your Enquiry Below, and We'll be in Touch.</p>
+                                        <button type="button" class="btn text-dark me-5 float-end" data-bs-dismiss="modal" aria-label="Close">Close X</button>
+
+                                    </div>
+                                    <form action="./admin/connect.php" method="POST">
+                                        <div class="form-group">
+                                            <input type="text" class="input-box " name="name" placeholder="Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="input-box" name="email" placeholder="Email Address">
+                                        </div>
+                                        <div class="form-group">
+                                            <span id="msg_alert2" style="color:red;"></span>
+                                            <input type="text" class="input-box" onkeyup="validateNumber(this,'msg_alert2')" name="mobile" placeholder="Contact Number">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="input-box" name="company" placeholder="Company Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="input-box" name="country" placeholder="Country Name">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <select name="product_category" id="product_category" class="input-box">
+                                                        <option value="">Select Category</option>
+                                                        <?php
+                                                        $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 ";
+                                                        $query = mysqli_query($con, $sql);
+
+                                                        if (mysqli_num_rows($query)) {
+                                                            foreach ($query as $result) {
+                                                                $_SESSION['id'] =  $result['cat_id'];
+                                                        ?>
+                                                                <option value="<?= $result['cat_id'] ?>"><?= $result['cat_name'] ?></option>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <select name="product" id="product" class="input-box">
+                                                        <option value="">Select Product</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="sub-btn" name="submit2">Submit</button>
+                                        </div>
+                                    </form>
+                                    <!-- </div> -->
+
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

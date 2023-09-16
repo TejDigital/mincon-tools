@@ -1,5 +1,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/a1abbb321b.js" crossorigin="anonymous"></script>
@@ -11,31 +11,38 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="./assets/js/main.js"></script>
+<script src="./assets/js/ajax.js"></script>
 <!-- <script src="js/fancybox.min.js"></script> -->
 
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script>
-$(document).ready(function() {
-    $('#product_category').on('change', function() {
-        var categoryId = $(this).val();
+    $(document).ready(function() {
+        $('#product_category').on('change', function(e) {
+            e.preventDefault();
+            var categoryId = $(this).val();
 
-        // Clear the product dropdown
-        $('#product').html('<option value="">Select Product</option>');
+            // Clear the product dropdown
+            $('#product').html('<option value="">Select Product</option>');
 
-        if (categoryId !== "") {
-            // Make an AJAX request to fetch products based on the selected category
-            $.ajax({
-                type: 'POST', // You can change this to 'GET' if your server-side script supports it
-                url: './admin/product_code.php', // Replace with the actual URL of your PHP script
-                data: { category_id: categoryId },
-                success: function(response) {
-                    // Populate the product dropdown with the received data
-                    $('#product').append(response);
-                }
-            });
-        }
+            if (categoryId !== "") {
+                // Make an AJAX request to fetch products based on the selected category
+                $.ajax({
+                    type: 'POST', // You can change this to 'GET' if your server-side script supports it
+                    url: './admin/product_code_ajax.php', // Replace with the actual URL of your PHP script
+                    data: {
+                        category_id: categoryId
+                    },
+                    success: function(response) {
+                        // Populate the product dropdown with the received data
+                        $('#product').append(response);
+                    }
+                });
+            }
+        });
     });
-});
+</script>
+<script>
+
 </script>
 
 </body>
