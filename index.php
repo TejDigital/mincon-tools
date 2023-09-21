@@ -62,7 +62,7 @@ if (mysqli_num_rows($query)) {
                     <p><?= $result['cat_description'] ?></p>
                 </div>
                 <div class="boxes">
-                    <div class="row form-click" >
+                    <div class="row form-click">
                         <?php
                         $sql1 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id' limit 8 ";
                         $pro_query = mysqli_query($con, $sql1);
@@ -71,13 +71,16 @@ if (mysqli_num_rows($query)) {
                         ?>
                                 <div class="col-md-3 p-3">
                                     <form class="form_ID">
+                                        <input type="hidden" value="<?= $pro_data['product_id'] ?>" class="product_id" name="p_id">
                                         <input type="hidden" value="<?= $pro_data['product_name'] ?>" class="product_name" name="p_name">
                                         <input type="hidden" value="<?= $pro_data['product_image'] ?>" name="image">
                                         <input type="hidden" value="<?= $result['cat_name'] ?>" name="cat_name">
                                         <div class="box">
-                                            <div class="img">
-                                                <img src="./admin/products_images/<?= $pro_data['product_image'] ?>" alt="">
-                                            </div>
+                                            <a href="./cart_detail.php?id=<?=$pro_data['product_id']?>">
+                                                <div class="img">
+                                                    <img src="./admin/products_images/<?= $pro_data['product_image'] ?>" alt="">
+                                                </div>
+                                            </a>
                                             <div class="text">
                                                 <p><?= $pro_data['product_name'] ?></p>
                                                 <button type="submit" class="add" name="add">Add to Enquire</button>
@@ -92,7 +95,7 @@ if (mysqli_num_rows($query)) {
                     </div>
                 </div>
                 <div class="product_btn">
-                    <a href="./products.php?=#Chipping">See More</a>
+                    <a href="./products.php?=#<?=$result['cat_name']?>">See More</a>
                 </div>
             </div>
             <div class="product_foot_img">
@@ -172,3 +175,37 @@ if (mysqli_num_rows($query)) {
 </section>
 <?php require('./includes/footer.php') ?>
 <?php require('./includes/script.php') ?>
+<script>
+    const productSections = document.querySelectorAll(".home_product");
+const navbarLinks = document.querySelectorAll(".nav-product a");
+
+function highlightProduct() {
+  productSections.forEach((section, index) => {
+    const position = section.getBoundingClientRect();
+
+    if (position.top <= 100 && position.bottom >= 100) {
+      navbarLinks.forEach((link) => link.classList.remove("active-product"));
+      navbarLinks[index].classList.add("active-product");
+    }
+  });
+}
+
+function scrollToSection(e) {
+  e.preventDefault();
+  const targetId = e.target.getAttribute("href").substring(1); // Remove the # from the href
+  const targetSection = document.getElementById(targetId);
+
+  if (targetSection) {
+    window.scrollTo({
+      top: targetSection.offsetTop - 65, // Account for navbar height
+      behavior: "smooth",
+    });
+  }
+}
+
+window.addEventListener("scroll", highlightProduct);
+
+navbarLinks.forEach((link) => {
+  link.addEventListener("click", scrollToSection);
+});
+</script>

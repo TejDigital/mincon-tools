@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2023 at 04:08 PM
+-- Generation Time: Sep 21, 2023 at 03:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,7 +40,8 @@ CREATE TABLE `blog_category_tbl` (
 
 INSERT INTO `blog_category_tbl` (`blog_cat_id`, `blog_cat_name`, `blog_cat_status`, `created_at`) VALUES
 (3, 'hammer 3', 1, '2023-09-14 07:02:43'),
-(4, 'hammer 2', 1, '2023-09-14 07:02:47');
+(4, 'hammer 2', 1, '2023-09-14 07:02:47'),
+(5, 'hammer ', 1, '2023-09-15 11:16:30');
 
 -- --------------------------------------------------------
 
@@ -68,6 +69,36 @@ CREATE TABLE `blog_tbl` (
 INSERT INTO `blog_tbl` (`blog_id`, `A_name`, `category`, `image`, `title`, `b_des_mini`, `b_des_full`, `date`, `blog_status`, `created_at`) VALUES
 (1, 'mincon', '3', '1694675472.png', 'col-mine', 'kjdnajksdnjsndks', 'c sdjcjsndncsjkcnskc', '2023-08-30', 1, '2023-09-14 07:11:12'),
 (2, 'mincon', '4', '1694686226.png', 'heading 32', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis fugit reprehenderit commodi doloremque cupiditate nisi culpa, quae reiciendis perspiciatis possimus eaque repellat dolores, rem non? Alias minus totam pariatur repudiandae voluptas fugiat eaque necessitatibus amet debitis. Beatae qui ', '<div>\r\n<h1 style=\"text-align: center;\"><strong>Lorem ipsum</strong></h1>\r\n<div style=\"text-align: justify;\">&nbsp;dolor sit amet consectetur adipisicing elit. Vitae quia, consectetur deserunt soluta blanditiis eos. Esse illum, incidunt beatae quo fuga amet itaque quos iste aliquam praesentium consequuntur facere. Eveniet dicta autem dolorem, perferendis reiciendis, sunt obcaecati incidunt eaque quis soluta deserunt. Dolorem ab nam, incidunt hic similique doloremque deserunt laborum, ut placeat minus error fuga, dicta quia labore modi. Alias doloremque debitis tenetur ex saepe optio possimus quo iste quam exercitationem obcaecati non voluptatem eos at, tempora, laudantium, sed facilis aut labore suscipit eius aperiam! Molestias, possimus sequi</div>\r\n<div style=\"text-align: justify;\">&nbsp;</div>\r\n<div>&nbsp;</div>\r\n</div>', '2023-09-15', 1, '2023-09-14 10:10:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_tbl`
+--
+
+CREATE TABLE `cart_tbl` (
+  `cart_id` int(11) NOT NULL,
+  `p_name` varchar(50) NOT NULL,
+  `p_img` varchar(60) NOT NULL,
+  `p_cat_name` varchar(50) NOT NULL,
+  `user_name` varchar(50) NOT NULL,
+  `user_mobile` varchar(15) NOT NULL,
+  `user_email` varchar(50) NOT NULL,
+  `user_company_name` varchar(60) NOT NULL,
+  `user_country_name` varchar(50) NOT NULL,
+  `cart_created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `p_status` tinyint(4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart_tbl`
+--
+
+INSERT INTO `cart_tbl` (`cart_id`, `p_name`, `p_img`, `p_cat_name`, `user_name`, `user_mobile`, `user_email`, `user_company_name`, `user_country_name`, `cart_created_at`, `p_status`, `created_at`) VALUES
+(11, 'Product 1', 'mincon_product_img_1.png', 'Category 1', 'Bhoj', '1234567890', 'bhoj.digitalshakha@gmail.com', 'tcs', 'india', '2023-09-21 13:45:27', 0, '2023-09-21 13:45:27'),
+(12, 'Product 3', 'mincon_product_img_1.png', 'Category 2', 'Bhoj', '1234567890', 'bhoj.digitalshakha@gmail.com', 'tcs', 'india', '2023-09-21 13:45:32', 0, '2023-09-21 13:45:32'),
+(13, 'Product 4', 'mincon_product_img_1.png', 'Category 3', 'Bhoj', '1234567890', 'bhoj.digitalshakha@gmail.com', 'tcs', 'india', '2023-09-21 13:45:37', 0, '2023-09-21 13:45:37');
 
 -- --------------------------------------------------------
 
@@ -131,7 +162,27 @@ CREATE TABLE `contact_tbl` (
 INSERT INTO `contact_tbl` (`id`, `name`, `email`, `mobile`, `company_name`, `country`, `contact_product_category`, `contact_product`, `created_at`) VALUES
 (1, 'Rohan', 'rohan@gmail.com', '1234567890', 'App', 'india', '2', '3', '2023-09-13 10:21:59'),
 (3, 'Bhoj', 'bhoj@gmail.com', '0987654321', 'App', 'india', '4', '5', '2023-09-13 10:41:06'),
-(4, 'ashu', 'ashu@gmail.com', '0987654321', 'tcs', 'india', '3', '4', '2023-09-13 10:42:13');
+(4, 'ashu', 'ashu@gmail.com', '0987654321', 'tcs', 'india', '3', '4', '2023-09-13 10:42:13'),
+(5, 'category 5', 'abc@gmail.com', '0987654321', 'tcs', 'india', '2', '2', '2023-09-15 11:59:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `enquire_tbl`
+--
+
+CREATE TABLE `enquire_tbl` (
+  `en_id` int(11) NOT NULL,
+  `en_product_name` varchar(50) NOT NULL,
+  `en_product_cat_name` varchar(50) NOT NULL,
+  `en_product_image` varchar(50) NOT NULL,
+  `en_user_name` varchar(50) NOT NULL,
+  `en_user_mobile` varchar(15) NOT NULL,
+  `en_user_email` varchar(40) NOT NULL,
+  `en_user_company` varchar(50) NOT NULL,
+  `en_user_country` varchar(50) NOT NULL,
+  `en_created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -143,8 +194,15 @@ CREATE TABLE `products_tbl` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(50) NOT NULL,
   `product_image` varchar(100) NOT NULL,
+  `product_image1` varchar(50) NOT NULL,
+  `product_image2` varchar(50) NOT NULL,
+  `product_image3` varchar(50) NOT NULL,
+  `product_image4` varchar(50) NOT NULL,
+  `product_image5` varchar(50) NOT NULL,
+  `product_video_url` varchar(100) NOT NULL,
   `product_status` tinyint(4) NOT NULL,
   `product_category` tinyint(4) NOT NULL,
+  `product_description` text NOT NULL,
   `product_created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -152,12 +210,40 @@ CREATE TABLE `products_tbl` (
 -- Dumping data for table `products_tbl`
 --
 
-INSERT INTO `products_tbl` (`product_id`, `product_name`, `product_image`, `product_status`, `product_category`, `product_created_at`) VALUES
-(2, 'Product 1', 'mincon_product_img_1.png', 1, 2, '2023-09-12 11:19:23'),
-(3, 'Product 2', 'mincon_product_img_1.png', 1, 2, '2023-09-12 11:25:04'),
-(4, 'Product 3', 'mincon_product_img_1.png', 1, 3, '2023-09-12 11:46:03'),
-(5, 'Product 4', 'mincon_product_img_1.png', 1, 4, '2023-09-12 12:40:40'),
-(6, 'Product 5', 'mincon_product_img_1.png', 1, 5, '2023-09-12 12:42:00');
+INSERT INTO `products_tbl` (`product_id`, `product_name`, `product_image`, `product_image1`, `product_image2`, `product_image3`, `product_image4`, `product_image5`, `product_video_url`, `product_status`, `product_category`, `product_description`, `product_created_at`) VALUES
+(2, 'Product 1', 'mincon_product_img_1.png', '', '', '', '', '', '', 1, 2, '', '2023-09-12 11:19:23'),
+(3, 'Product 2', 'mincon_product_img_1.png', '', '', '', '', '', '', 1, 2, '', '2023-09-12 11:25:04'),
+(4, 'Product 3', 'mincon_product_img_1.png', '', '', '', '', '', '', 1, 3, '', '2023-09-12 11:46:03'),
+(5, 'Product 4', 'mincon_product_img_1.png', '', '', '', '', '', '', 1, 4, '', '2023-09-12 12:40:40'),
+(6, 'Product 5', 'mincon_product_img_1.png', '', '', '', '', '', '', 1, 5, '', '2023-09-12 12:42:00'),
+(8, 'Product_7', 'mincon_product_img_1.png', 'mincon_about_bg2.png', '', '', '', '', '', 1, 3, '', '2023-09-19 16:30:24'),
+(9, 'Product_9', 'mincon_product_img_1.png', 'mincon_contact_bg2.png', 'mincon_about_bg2.png', '', '', '', '', 1, 2, 'dsdlkddsldcdcds', '2023-09-19 17:28:37'),
+(10, 'Product_10', 'mincon_about_bg3.png', '', '', '', '', '', '', 1, 2, 'psum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur ', '2023-09-19 18:19:14'),
+(11, 'Product_11', 'mincon_about_bg2.png', 'mincon_about_bg3.png', 'mincon_contact_bg1.png', 'mincon_hero_bg1.png', 'mincon_hero_bg2.png', 'mincon_home_bg1.png', 'https://www.youtube.com/watch?v=ax1h-YOyPJc', 1, 2, 'psum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur a', '2023-09-19 18:35:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tem_tbl_for_cart`
+--
+
+CREATE TABLE `tem_tbl_for_cart` (
+  `cart_product_id` int(11) NOT NULL,
+  `cart_product_name` varchar(50) NOT NULL,
+  `cart_product_image` varchar(60) NOT NULL,
+  `cart_product_cat_name` varchar(50) NOT NULL,
+  `mac_id` varchar(50) NOT NULL,
+  `cart_created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tem_tbl_for_cart`
+--
+
+INSERT INTO `tem_tbl_for_cart` (`cart_product_id`, `cart_product_name`, `cart_product_image`, `cart_product_cat_name`, `mac_id`, `cart_created_at`) VALUES
+(24, 'Product 1', 'mincon_product_img_1.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-21 13:49:06'),
+(25, 'Product 2', 'mincon_product_img_1.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-21 13:49:08'),
+(26, 'Product_9', 'mincon_product_img_1.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-21 13:49:10');
 
 -- --------------------------------------------------------
 
@@ -199,6 +285,12 @@ ALTER TABLE `blog_tbl`
   ADD PRIMARY KEY (`blog_id`);
 
 --
+-- Indexes for table `cart_tbl`
+--
+ALTER TABLE `cart_tbl`
+  ADD PRIMARY KEY (`cart_id`);
+
+--
 -- Indexes for table `category_tbl`
 --
 ALTER TABLE `category_tbl`
@@ -217,10 +309,22 @@ ALTER TABLE `contact_tbl`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `enquire_tbl`
+--
+ALTER TABLE `enquire_tbl`
+  ADD PRIMARY KEY (`en_id`);
+
+--
 -- Indexes for table `products_tbl`
 --
 ALTER TABLE `products_tbl`
   ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `tem_tbl_for_cart`
+--
+ALTER TABLE `tem_tbl_for_cart`
+  ADD PRIMARY KEY (`cart_product_id`);
 
 --
 -- Indexes for table `users`
@@ -236,13 +340,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `blog_category_tbl`
 --
 ALTER TABLE `blog_category_tbl`
-  MODIFY `blog_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `blog_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `blog_tbl`
 --
 ALTER TABLE `blog_tbl`
   MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `cart_tbl`
+--
+ALTER TABLE `cart_tbl`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `category_tbl`
@@ -260,13 +370,25 @@ ALTER TABLE `confirm_ticket_tbl`
 -- AUTO_INCREMENT for table `contact_tbl`
 --
 ALTER TABLE `contact_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `enquire_tbl`
+--
+ALTER TABLE `enquire_tbl`
+  MODIFY `en_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products_tbl`
 --
 ALTER TABLE `products_tbl`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `tem_tbl_for_cart`
+--
+ALTER TABLE `tem_tbl_for_cart`
+  MODIFY `cart_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `users`

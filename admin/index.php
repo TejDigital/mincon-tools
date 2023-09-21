@@ -5,6 +5,32 @@
 <?php require('./includes/sidebar.php') ?>
 <!-- Recent Sales Start -->
 <?php
+    if (isset($_SESSION['alert_msg'])) {
+    ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Hey!</strong> <?php echo $_SESSION['alert_msg'] ?>
+            <button type="button" class="btn close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php
+        unset($_SESSION['alert_msg']);
+    }
+    ?>
+    <?php
+    if (isset($_SESSION['auth_msg'])) {
+    ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Hey!</strong> <?php echo $_SESSION['auth_msg'] ?>
+            <button type="button" class="btn close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php
+        unset($_SESSION['auth_msg']);
+    }
+    ?>
+<?php
 if (isset($_SESSION['cons_msg'])) {
     echo "<script>alert('" . $_SESSION['cons_msg'] . "')</script>";
     unset($_SESSION['cons_msg']);
@@ -25,8 +51,8 @@ if (isset($_SESSION['min_msg'])) {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Message</h5>
+                        <button type="button" class="btn close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>

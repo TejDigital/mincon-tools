@@ -10,6 +10,7 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
 <script src="./assets/js/main.js"></script>
 <script src="./assets/js/ajax.js"></script>
 <!-- <script src="js/fancybox.min.js"></script> -->
@@ -42,7 +43,41 @@
     });
 </script>
 <script>
+  const change = src => {
+	document.getElementById('main').src = src
+}
 
+</script>
+<script>
+        $(function() {
+        $('.popup').magnificPopup({
+            // disableOn: 700,
+            type: 'iframe',
+            // mainClass: 'mfp-fade',
+            // removalDelay: 160,
+            // preloader: false,
+            // fixedContentPos: false
+        });
+    });
+</script>
+<script>
+ function fetchData() {
+            $.ajax({
+                type: "GET",
+                url: "./admin/cart_count.php",
+                dataType: "json",
+                success: function (response) {
+                    $("#count_item").text(response.count);
+                },
+                error: function () {
+                    console.error("Error fetching data");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            fetchData();
+        });
 </script>
 
 </body>

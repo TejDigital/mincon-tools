@@ -1,0 +1,210 @@
+.cart_details1_1 {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.cart_details1_1 .image_gallery {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cart_details1_1 .image_gallery {
+    display: flex;
+}
+@media (max-width:768px){
+    .cart_details1_1 .image_gallery .side_img {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-top: 2rem;
+        padding: 0 0.2rem;
+    }
+    .cart_details1_1 .image_gallery .side_img .sm_img {
+        
+    }
+}
+
+.cart_details1_1 .image_gallery .side_img .sm_img {
+    height: 70px;
+    width: 70px;
+    border: 1px solid #000000;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EBAB56;
+}
+.cart_details1_1 .image_gallery .side_img .sm_img a{
+   text-align: center;
+   text-decoration: none;
+   color: #fff;
+   font-weight: 600;
+}
+
+.cart_details1_1 .image_gallery .side_img .sm_img img {
+    height: 100%;
+    width: 100%;
+}
+
+.cart_details1_1 .image_gallery .main_img .img {
+    border: 1px solid #000000;
+    height: 100%;
+    margin: 0 1rem;
+}
+
+.cart_details1_1 .image_gallery .main_img .img img {
+    height: 100%;
+    width: 100%;
+}
+
+.cart_details1_1 .main_img {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cart_details1_1  .btn_area {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.cart_details1_1 .btn_area .btn1 {
+    text-align: center;
+    border: 0;
+    color: #282713;
+    background-color: #EBAB56;
+    padding: 0.9rem;
+    width: 65%;
+    margin-bottom: 2rem;
+    margin: auto;
+}
+
+.cart_details1_1 .text_head {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.cart_details1_1 .text_head h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.cart_details1_1 .des p:nth-child(1) {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #7E7E7E;
+}
+.cart_details1_1 .des p:nth-child(2) {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #282713;
+    line-height: 20px;
+}
+.cart_details1_1 .specs {
+    position: relative;
+}
+.cart_details1_1 .specs .head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cart_details1_1 .specs .head p{
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #7E7E7E;
+}
+.cart_details1_1 .specs .head .btn1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #EBAB56;
+}
+.cart_details1_1 .specs .head .btn1 button{ 
+    text-align: center;
+    border: 1px solid #EBAB56;
+    background-color: transparent;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.3rem;
+    color: #282713;
+}
+.cart_details1_1 .specs .head .btn1 button:active{ 
+    background-color: #EBAB56;
+    color: #000000;
+}
+.cart_details1_1 .specs .head .btn1 button:hover{ 
+    background-color: #EBAB56;
+    color: #000000;
+}
+.cart_details1_1 .specs .table td{ 
+    padding: 0.3rem;
+}
+
+.cart_detail_2 {
+    position: relative;
+}
+
+.cart_detail_2 h1{
+    font-size: 1.9rem;
+    font-weight: 600;
+    line-height: 28px;
+}
+.cart_detail_2  {
+    position: relative;
+}
+
+.cart_detail_2  .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    /* padding: 1rem; */
+}
+
+.cart_detail_2  .box .img {
+    width: 240px;
+    height: 260px;
+    border: 2px solid #282713;
+
+}
+
+.cart_detail_2  .box .img img {
+    width: 100%;
+    height: 100%;
+}
+
+.cart_detail_2  .box .text {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.cart_detail_2  .box .text p {
+    font-size: 0.8rem;
+    line-height: 18px;
+    margin: 0;
+    font-weight: 600;
+}
+.cart_detail_2  .box .text .head{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.cart_detail_2  .box .text button {
+    text-decoration: none;
+    color: #282713;
+    border: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: #EBAB56;
+    padding: 0.3rem 0.2rem;
+}

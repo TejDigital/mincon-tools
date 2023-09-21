@@ -1,5 +1,5 @@
 <?php require('./admin/config/dbcon.php');
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +9,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mincon Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -24,6 +26,7 @@
     <link rel="stylesheet" href="./assets/css/blog.css">
     <link rel="stylesheet" href="./assets/css/blog_detail.css">
     <link rel="stylesheet" href="./assets/css/cart.css">
+    <link rel="stylesheet" href="./assets/css/cart_detail.css">
     <!-- <link rel="stylesheet" href="./css/fancybox.min.css"> -->
 </head>
 
@@ -169,66 +172,33 @@
     </header>
     <section class="sticky-icon">
         <a href="#!"><i class="fa-brands fa-whatsapp"></i></a>
-        <img src="./assets/images/cart.svg" alt="" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <span class="count" id="count">0</span>
+        <img src="./assets/images/cart.svg" alt="" onclick="getDATA();"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <span class="count"><b class="count_item" id="count_item">0</b></span>
     </section>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <div class="modal-body cart">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 ">
-                                <div>
-                                    <h6>CART( <b>3 ITEMS</b>)</h6>
-
-                                    <?php
-                                    if(isset($_SESSION['cart'])){
-                                        $cart = $_SESSION['cart'];
-                                        foreach($cart as $key =>$product){
-                                             $id = $product['p_name'] ;
-                                             $img = $product['p_image'];
-                                    ?>
-                                   <div class='box mb-2' >
-                                      <div class='img'>
-                                         <?php   
-                                            $sql = "SELECT * FROM products_tbl WHERE product_name ='$id'";
-                                            $query = mysqli_query($con,$sql);
-                                            if(mysqli_num_rows($query)){
-                                                $row = mysqli_fetch_assoc($query);
-                                            if($row['product_image']==$img)
-                                            {
-                                                ?>
-                                            <img src="./admin/products_images/<?=$product['p_image']?>" alt="">
-                                            <?php
-                                        }
-                                            }
-                                            ?>
-                                        </div>
-                                        <div class="text">
-                                            <p><?=$product['p_name']?></p>
-                                            <p><?=$product['cat_name']?></p>
-                                        </div>
-                                        <div class="btn1">
-                                            <button class=".delete"  data-product-name="<?php echo $product['p_name']; ?>">Delete</button>
-                                        </div>
+                <div class="modal-header">
+                    <p>&nbsp;</p>
+                    <button type="button" class="btn text-dark me-5 float-end" data-bs-dismiss="modal" aria-label="Close">Close X</button>
+                </div>
+                <div class="modal-body cart form_data_cart">
+                    <form action="./admin/enquire_code.php" method="post" id="form_cart">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h6>CART( <b id="count_cart">0</b> items)</h6> 
+                                    <div id="added">
+                                      
                                     </div>
-                                    <?php
-                                    }}
-                                    ?>
                                 </div>
-                            </div>
-                            <div class="col-md-8 box_area">
-                                <section class="mincon_contact p-0">
-                                    <!-- <div class="col-md-6"> -->
-                                    <div class="head pb-5">
-                                        <p class="float-start"> Submit your Enquiry Below, and We'll be in Touch.</p>
-                                        <button type="button" class="btn text-dark me-5 float-end" data-bs-dismiss="modal" aria-label="Close">Close X</button>
-
-                                    </div>
-                                    <form action="./admin/connect.php" method="POST">
+                                <div class="col-md-8 box_area">
+                                    <section class="mincon_contact p-0">
+                                        <div class="head pb-5">
+                                            <p class="float-start"> Submit your Enquiry Below, and We'll be in Touch.</p>
+                                        </div>
                                         <div class="form-group">
                                             <input type="text" class="input-box " name="name" placeholder="Name">
                                         </div>
@@ -245,45 +215,16 @@
                                         <div class="form-group">
                                             <input type="text" class="input-box" name="country" placeholder="Country Name">
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <select name="product_category" id="product_category" class="input-box">
-                                                        <option value="">Select Category</option>
-                                                        <?php
-                                                        $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 ";
-                                                        $query = mysqli_query($con, $sql);
-
-                                                        if (mysqli_num_rows($query)) {
-                                                            foreach ($query as $result) {
-                                                                $_SESSION['id'] =  $result['cat_id'];
-                                                        ?>
-                                                                <option value="<?= $result['cat_id'] ?>"><?= $result['cat_name'] ?></option>
-                                                        <?php
-                                                            }
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <select name="product" id="product" class="input-box">
-                                                        <option value="">Select Product</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <input type="hidden" class="referrer" id="referrer" name="referrer" value="">
+                                        <input type="hidden" id="cart_count" name="cart_count" value="">
                                         <div class="form-group">
-                                            <button class="sub-btn" name="submit2">Submit</button>
+                                            <button class="sub-btn" name="cart_add">Submit</button>
                                         </div>
-                                    </form>
-                                    <!-- </div> -->
-
-                                </section>
+                                    </section>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

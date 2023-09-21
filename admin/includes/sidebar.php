@@ -23,14 +23,19 @@
         </div>
         <div class="navbar-nav w-100">
             <a href="index.php" class="nav-item nav-link my-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-<h4 class="ms-3 my-2">Master</h4>
+            <h4 class="ms-3 my-2">Master</h4>
 
-            <a href="./product_category.php" class="nav-link my-link " ><i class="fa fa-laptop me-2"></i>Category</a>
-            <a href="./products.php" class="nav-link my-link " ><i class="fa fa-laptop me-2"></i>Product</a>
-            <h6 class="ms-3 my-2">BLog</h6>
-            <a href="./blog_des.php" class="nav-link my-link " ><i class="fa fa-laptop me-2"></i>Blog</a>
-            <a href="./blog_category.php" class="nav-link my-link " ><i class="fa fa-laptop me-2"></i>Blog Category</a>
+            <a href="./product_category.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Category</a>
+            <a href="./products.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Product</a>
             
+            <h6 class="ms-3 my-2">Enquires</h6>
+            <a href="./enquire.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Enquire Table</a>
+            
+
+            <h6 class="ms-3 my-2">BLog</h6>
+            <a href="./blog_des.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Blog</a>
+            <a href="./blog_category.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Blog Category</a>
+
             <!-- <div class="nav-item dropdown">
                 <a href="#" class="nav-link my-link  dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
                 <div class="dropdown-menu bg-transparent border-0">
@@ -54,4 +59,4 @@
         </div>
     </nav>
 </div>
-<div class="content-start h-75">
+<div class="content-start">

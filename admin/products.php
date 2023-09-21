@@ -14,7 +14,7 @@ if (isset($_SESSION['min_msg'])) {
     <div class="row">
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
@@ -24,43 +24,97 @@ if (isset($_SESSION['min_msg'])) {
                     </div>
                     <form action="product_code.php" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
-                        <div class="form-group">
-                                <label for="">Select Category</label>
-                                <select name="product_category" id="" class="form-select">
-                               <?php
-                               $sql ="SELECT * FROM category_tbl";
-                               $query = mysqli_query($con,$sql);
-                               if(mysqli_num_rows($query)){
-                                foreach($query as $data){
-                                ?>
-                                    <option value="<?=$data['cat_id']?>"><?=$data['cat_name']?></option>
-                                    <?php
-                                }
-                            }
-                            ?>
-                            </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Product Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Product Image</label>
-                                <input type="file" name="img" class="form-control" >
-                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group my-1">
+                                                <label for="">Product Main Image</label>
+                                                <input type="file" name="img" class="form-control" required> 
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group my-1">
+                                                <label for="">Product Image1</label>
+                                                <input type="file" name="img1" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group my-1">
+                                                <label for="">Product Image2</label>
+                                                <input type="file" name="img2" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group my-1">
+                                                <label for="">Product Image3</label>
+                                                <input type="file" name="img3" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group my-1">
+                                                <label for="">Product Image4</label>
+                                                <input type="file" name="img4" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group my-1">
+                                                <label for="">Product Image5</label>
+                                                <input type="file" name="img5" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 my-5">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group my-1">
+                                                <label for="">Select Category</label>
+                                                <select name="product_category" id="" class="form-select">
+                                                    <?php
+                                                    $sql = "SELECT * FROM category_tbl";
+                                                    $query = mysqli_query($con, $sql);
+                                                    if (mysqli_num_rows($query)) {
+                                                        foreach ($query as $data) {
+                                                    ?>
+                                                            <option value="<?= $data['cat_id'] ?>"><?= $data['cat_name'] ?></option>
+                                                    <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group my-1">
+                                                <label for="">Product Name</label>
+                                                <input type="text" name="name" class="form-control" placeholder="name">
+                                            </div>
+                                            <div class="form-group my-1">
+                                                <label for="">Product Status</label>
+                                                <select name="status" class="form-select mb-3" id="">
+                                                    <option value="1">Active</option>
+                                                    <option value="0">Inactive</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group my-1">
+                                                <label for="">Product Video Url</label>
+                                                <input type="url" name="video_url" class="form-control" placeholder="Add Url ">
+                                            </div>
+                                            <div class="form-group my-1">
+                                                <label for="">Product Description</label>
+                                                <textarea name="product_description" cols="30" rows="7" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="">Product Status</label>
-                                <select name="status" class="form-select mb-3" id="">
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                            </div>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="add-product" class="btn btn-primary">Save</button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" name="add-product" class="btn btn-primary">ADD</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -119,10 +173,10 @@ if (isset($_SESSION['min_msg'])) {
                             ?>
                                     <tr>
                                         <td><?= $count++ ?></td>
-                                        
-                                        <td><?php if($data['product_category'] == $data['cat_id']){
-                                            echo $data['cat_name'];
-                                        } ?></td>
+
+                                        <td><?php if ($data['product_category'] == $data['cat_id']) {
+                                                echo $data['cat_name'];
+                                            } ?></td>
                                         <td><?= $data['product_name'] ?></td>
 
                                         <td><?php if ($data['product_status'] == 1) {

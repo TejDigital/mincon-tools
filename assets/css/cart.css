@@ -5,24 +5,24 @@
    border-left:1px solid #000000 ;
    padding-left: 2rem;
 }
-.cart .box{
+.cart .cart_box{
    display: flex;
    align-items: center;
    justify-content: space-between;
 }
-.cart .box .img img{
+.cart .cart_box .img img{
    height: 50px;
 }
-.cart .box .text{
+.cart .cart_box .text{
 position: relative;
 padding: 0 1rem;
 }
-.cart .box .text p{
+.cart .cart_box .text p{
  font-size: 0.9rem;
  font-weight: 600;
  margin: 0;
 }
-.cart .box .btn1 button{
+.cart .cart_box .btn1 p{
  border: none;
  background-color: aqua;
  color: blue;

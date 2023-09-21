@@ -266,41 +266,6 @@ $(".Sponsors_slider_area_2").owlCarousel({
 //     $('[data-fancybox],[data-fancybox="gallery"]').fancybox({});
 //   }
 
-const productSections = document.querySelectorAll(".home_product");
-const navbarLinks = document.querySelectorAll(".nav-product a");
-
-function highlightProduct() {
-  productSections.forEach((section, index) => {
-    const position = section.getBoundingClientRect();
-
-    if (position.top <= 100 && position.bottom >= 100) {
-      navbarLinks.forEach((link) => link.classList.remove("active-product"));
-      navbarLinks[index].classList.add("active-product");
-    }
-  });
-}
-
-function scrollToSection(e) {
-  e.preventDefault();
-  const targetId = e.target.getAttribute("href").substring(1); // Remove the # from the href
-  const targetSection = document.getElementById(targetId);
-
-  if (targetSection) {
-    window.scrollTo({
-      top: targetSection.offsetTop - 65, // Account for navbar height
-      behavior: "smooth",
-    });
-  }
-}
-
-window.addEventListener("scroll", highlightProduct);
-
-navbarLinks.forEach((link) => {
-  link.addEventListener("click", scrollToSection);
-});
-
-
-
 
 
 // const productSections = document.querySelectorAll('.home_product');
@@ -365,4 +330,3 @@ navbarLinks.forEach((link) => {
 // navbarLinks.forEach((link) => {
 //     link.addEventListener("click", scrollToSection);
 // });
-

@@ -1,4 +1,6 @@
-<?php require('./includes/header.php'); ?>
+<?php
+session_start();
+ require('./includes/header.php'); ?>
 <?php require('./admin/config/dbcon.php'); ?>
 
 <section class="top_hero">
@@ -12,19 +14,25 @@
     </div>
 </section>
 <?php
+if (isset($_SESSION['min_msg'])) {
+    echo "<script>alert('" . $_SESSION['min_msg'] . "')</script>";
+    unset($_SESSION['min_msg']);
+}
+?>
+<?php
 $sql = "SELECT * FROM category_tbl WHERE cat_status = 1";
 $query = mysqli_query($con, $sql);
 if (mysqli_num_rows($query)) {
     foreach ($query as $result) {
 ?>
-        <section class="home_product product_line" id="Chipping">
+        <section class="home_product product_line" id="<?= $result['cat_name'] ?>">
             <div class="container">
                 <div class="head">
-                <h1><?= $result['cat_name'] ?></h1>
+                    <h1><?= $result['cat_name'] ?></h1>
                     <p><?= $result['cat_description'] ?></p>
                 </div>
                 <div class="boxes">
-                    <div class="row">
+                    <div class="row form-click">
                         <?php
                         $sql1 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '" . $result['cat_id'] . "' ";
                         $pro_query = mysqli_query($con, $sql1);
@@ -32,108 +40,29 @@ if (mysqli_num_rows($query)) {
                             foreach ($pro_query as $pro_data) {
                         ?>
                                 <div class="col-md-3 p-3">
-                                    <div class="box">
-                                        <div class="img">
-                                            <img src="./admin/products_images/<?= $pro_data['product_image'] ?>" alt="">
+                                    <form class="form_ID">
+                                        <input type="hidden" value="<?= $pro_data['product_id'] ?>" class="product_id" name="p_id">
+                                        <input type="hidden" value="<?= $pro_data['product_name'] ?>" class="product_name" name="p_name">
+                                        <input type="hidden" value="<?= $pro_data['product_image'] ?>" name="image">
+                                        <input type="hidden" value="<?= $result['cat_name'] ?>" name="cat_name">
+                                        <div class="box">
+                                            <a href="./cart_detail.php?id=<?=$pro_data['product_id']?>">
+                                                <div class="img">
+                                                    <img src="./admin/products_images/<?= $pro_data['product_image'] ?>" alt="">
+                                                </div>
+                                            </a>
+                                            <div class="text">
+                                                <p><?= $pro_data['product_name'] ?></p>
+                                                <button type="submit" class="add" name="add">Add to Enquire</button>
+                                            </div>
                                         </div>
-                                        <div class="text">
-                                            <p><?= $pro_data['product_name'] ?></p>
-                                            <a href="#!">Add to Enquire</a>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                         <?php
                             }
                         }
                         ?>
-                        <!-- <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div> -->
+
                     </div>
                 </div>
 
@@ -144,509 +73,7 @@ if (mysqli_num_rows($query)) {
     }
 }
 ?>
-<!-- <section class="home_product product_line" id="Chipping">
-    <div class="container">
-        <div class="head">
-            <h1>Chipping Hammer</h1>
-            <p>Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.</p>
-        </div>
-        <div class="boxes">
-            <div class="row">
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Chipping Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-    </div>
-   
-</section> -->
-<!-- <section class="home_product product_line" id="Rock">
-    <div class="container">
-        <div class="head">
-            <h1>Rock Drills</h1>
-            <p>Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.</p>
-        </div>
-        <div class="boxes">
-            <div class="row">
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Rock Drills 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Rock Drills 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Rock Drills 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Rock Drills 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Rock Drills 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Rock Drills 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Rock Drills 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Rock Drills 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  
-</section>
-<section class="home_product product_line" id="Breaker">
-    <div class="container">
-        <div class="head">
-            <h1>Breaker</h1>
-            <p>Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.</p>
-        </div>
-        <div class="boxes">
-            <div class="row">
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Breaker 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Breaker 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Breaker 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Breaker 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Breaker 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Breaker 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Breaker 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Breaker 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="home_product product_line" id="Pick">
-    <div class="container">
-        <div class="head">
-            <h1>Pick Hammer</h1>
-            <p>Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.</p>
-        </div>
-        <div class="boxes">
-            <div class="row">
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Pick Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Pick Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Pick Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Pick Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Pick Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Pick Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Pick Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Pick Hammer 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="home_product" id="Lubricator">
-    <div class="container">
-        <div class="head">
-            <h1>Lubricator</h1>
-            <p>Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.</p>
-        </div>
-        <div class="boxes">
-            <div class="row">
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Lubricator 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Lubricator 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Lubricator 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Lubricator 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Lubricator 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Lubricator 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Lubricator 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 p-3">
-                    <div class="box">
-                        <div class="img">
-                            <img src="./assets/images/mincon_product_img_1.png" alt="">
-                        </div>
-                        <div class="text">
-                            <p>Lubricator 1</p>
-                            <a href="#!">Add to Enquire</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
+
 
 <section class="mincon_sky">
     <div class="container-fluid p-0">

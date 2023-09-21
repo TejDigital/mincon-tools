@@ -35,7 +35,7 @@
                          if (mysqli_num_rows($pro_query1)) {
                              foreach ($pro_query1 as $pro_data1) {
                         ?>
-                        <li><a href="#!"><?= $pro_data1['product_name']?> </a></li>
+                        <li><a href="./cart_detail.php?id=<?=$pro_data1['product_id']?>"><?= $pro_data1['product_name']?> </a></li>
                         <?php
                              }
                             }
