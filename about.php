@@ -44,7 +44,7 @@ if (isset($_SESSION['min_msg'])) {
                 <div class="text">
                     <p>In an industry where established competitors flaunt feature-rich websites, we acknowledge that our website might be in its early stages. However, our products are a testament to our dedication. Our focus has been set on creating mining tools of unparalleled quality and longevity. Our diligent team has poured their efforts into developing pioneering solutions that impeccably address the requirements of contemporary mining professionals. While we are actively working on enhancing our online presence, rest assured that our commitment to upholding quality and ensuring customer satisfaction remains steadfast.</p>
                     <div class="btn1">
-                        <a href="#!">Contact Us Now</a>
+                        <a href="./contact.php">Contact Us Now</a>
                     </div>
                 </div>
             </div>

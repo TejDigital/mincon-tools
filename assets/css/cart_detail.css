@@ -141,6 +141,16 @@
 .cart_details1_1 .specs .table td{ 
     padding: 0.3rem;
 }
+.cart_details1_1 .specs .table_box{ 
+    display: none;
+}
+.cart_details1_1 .specs .active-tab{ 
+    display: table;
+}
+.cart_details1_1 .specs .active-link{ 
+    background-color: #EBAB56 !important;
+
+}
 
 .cart_detail_2 {
     position: relative;

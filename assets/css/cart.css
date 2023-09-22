@@ -23,9 +23,10 @@ padding: 0 1rem;
  margin: 0;
 }
 .cart .cart_box .btn1 p{
+cursor: pointer;
  border: none;
- background-color: aqua;
- color: blue;
+ background-color: #EBAB56;
+ color: #fff;
  padding: 0.5rem;
 }
 

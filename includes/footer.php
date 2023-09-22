@@ -141,11 +141,11 @@
                 <div class="col-md-12 nav_links">
                     <div class="links">
                         <h4>Quick Links:</h4>
-                        <a href="#!" cla>Home</a>
-                        <a href="#!">About Us</a>
-                        <a href="#!">Product</a>
-                        <a href="#!">Blogs</a>
-                        <a href="#!">Contact</a>
+                        <a href="./index.php" cla>Home</a>
+                        <a href="./about.php">About Us</a>
+                        <a href="./products.php">Product</a>
+                        <a href="./blog.php">Blogs</a>
+                        <a href="./contact.php">Contact</a>
                     </div>
                     <div class="social_icons">
                          <a href="#!"> <i class="fa-brands fa-facebook"></i></a>

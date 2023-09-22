@@ -66,6 +66,56 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="row rounded mt-3" style="background-color:#d7d7d7;">
+                        <div class="col-md-6 p-2">
+                            <h5>For MG</h5>
+                            <div class="form-group my-1">
+                                <label for="" class="text-dark">Product Weight</label><span style="color: red; font-size:0.8rem"> ( Only in MG )</span>
+                                <input type="text" name="en_weight" class="form-control" placeholder="eg: 100kg" value="<?=$data['en_weight']?>">
+                            </div>
+                            <div class="form-group my-1">
+                                <label for="" class="text-dark">Product Length</label>
+                                <input type="text" name="en_length" class="form-control" placeholder="eg: 100mm" value="<?=$data['en_length']?>">
+                            </div>
+                            <div class="form-group my-1">
+                                <label for="" class="text-dark">Product Air Consumption</label>
+                                <input type="text" name="en_air_consumption" class="form-control" placeholder="Air Consumption" value="<?=$data['en_air_consumption']?>">
+                            </div>
+                            <div class="form-group my-1">
+                                <label for="" class="text-dark">Product Strokes x mins</label>
+                                <input type="text" name="en_strokes_x_mins" class="form-control" placeholder="Strokes x mins" value="<?=$data['en_strokes_x_mins']?>">
+                            </div>
+                            <div class="form-group my-1">
+                                <label for="" class="text-dark">Product Rod Size</label>
+                                <input type="text" name="en_rod_size" class="form-control" placeholder="Rod Size" value="<?=$data['en_rod_size']?>">
+                            </div>
+                        </div>
+                        <div class="col-md-6 p-2">
+                            <h5>For KG</h5>
+                            <div class="form-group my-1">
+                                <label for="" class="text-dark">Product Weight</label><span style="color: red; font-size:0.8rem"> ( Only in KG )</span>
+                                <input type="text" name="spn_weight" class="form-control" placeholder="eg: 100kg" value="<?=$data['spn_weight']?>">
+                            </div>
+                            <div class="form-group my-1">
+                                <label for="" class="text-dark">Product Length</label>
+                                <input type="text" name="spn_length" class="form-control" placeholder="eg: 100mm" value="<?=$data['spn_length']?>">
+                            </div>
+                            <div class="form-group my-1">
+                                <label for="" class="text-dark">Product Air Consumption</label>
+                                <input type="text" name="spn_air_consumption" class="form-control" placeholder="Air Consumption" value="<?=$data['spn_air_consumption']?>">
+                            </div>
+                            <div class="form-group my-1">
+                                <label for="" class="text-dark">Product Strokes x mins</label>
+                                <input type="text" name="spn_strokes_x_mins" class="form-control" placeholder="Strokes x mins" value="<?=$data['spn_strokes_x_mins']?>">
+                            </div>
+                            <div class="form-group my-1">
+                                <label for="" class="text-dark">Product Rod Size</label>
+                                <input type="text" name="spn_rod_size" class="form-control" placeholder="Rod Size" value="<?=$data['spn_rod_size']?>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12 px-3 my-5">
                     <input type="hidden" name="id" value="<?= $data['product_id'] ?>">
                     <label for="">Product Description</label>
@@ -117,8 +167,10 @@ if (isset($_GET['id'])) {
                                     ?> value="0">Inactive</option>
                         </select>
                     </div>
-                    <button type="submit" name="update-product" class="btn btn-primary">Update</button>
                 </div>
+             
+                <button type="submit" name="update-product" class="btn btn-primary my-3">Update</button>
+
             </form>
         </div>
     </div>

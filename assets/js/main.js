@@ -61,26 +61,11 @@ function validateNumber(elem, alertId) {
   }
 }
 
-// -------------------Change-language------
-document.addEventListener("DOMContentLoaded", function () {
-  const languageSelect = document.getElementById("languageSelect");
 
-  languageSelect.addEventListener("change", function () {
-    const selectedLanguage = languageSelect.value;
 
-    // Save the selected language in localStorage or a cookie
-    localStorage.setItem("selectedLanguage", selectedLanguage);
 
-    // Reload the page to apply the language change
-    window.location.reload();
-  });
 
-  // Check if a language is already selected and apply it on page load
-  const storedLanguage = localStorage.getItem("selectedLanguage");
-  if (storedLanguage) {
-    languageSelect.value = storedLanguage;
-  }
-});
+
 
 //   //----------------------------gallery---------------------
 //   if ($.isFunction($.fn.owlCarousel)) {

@@ -12,6 +12,9 @@
 body {
 	font-family: 'Montserrat', sans-serif;
 }
+.custom-icon-color{
+	color: #fff;
+}
 
 @media only screen and (min-width:1200px) {
 	.nav-item>.nav-link {

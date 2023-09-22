@@ -19,6 +19,7 @@ if (isset($_SESSION['min_msg'])) {
     unset($_SESSION['min_msg']);
 }
 ?>
+
 <?php
 $sql = "SELECT * FROM category_tbl WHERE cat_status = 1";
 $query = mysqli_query($con, $sql);
@@ -47,7 +48,8 @@ if (mysqli_num_rows($query)) {
                                         <input type="hidden" value="<?= $result['cat_name'] ?>" name="cat_name">
                                         <div class="box">
                                             <a href="./cart_detail.php?id=<?=$pro_data['product_id']?>">
-                                                <div class="img">
+                                                <div class="img item_detail">
+                                                    <!-- <input type="hidden" class="item_id" name="item_id" value="<?=$pro_data['product_id']?>"> -->
                                                     <img src="./admin/products_images/<?= $pro_data['product_image'] ?>" alt="">
                                                 </div>
                                             </a>

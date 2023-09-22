@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2023 at 03:51 PM
+-- Generation Time: Sep 22, 2023 at 03:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -96,9 +96,9 @@ CREATE TABLE `cart_tbl` (
 --
 
 INSERT INTO `cart_tbl` (`cart_id`, `p_name`, `p_img`, `p_cat_name`, `user_name`, `user_mobile`, `user_email`, `user_company_name`, `user_country_name`, `cart_created_at`, `p_status`, `created_at`) VALUES
-(11, 'Product 1', 'mincon_product_img_1.png', 'Category 1', 'Bhoj', '1234567890', 'bhoj.digitalshakha@gmail.com', 'tcs', 'india', '2023-09-21 13:45:27', 0, '2023-09-21 13:45:27'),
-(12, 'Product 3', 'mincon_product_img_1.png', 'Category 2', 'Bhoj', '1234567890', 'bhoj.digitalshakha@gmail.com', 'tcs', 'india', '2023-09-21 13:45:32', 0, '2023-09-21 13:45:32'),
-(13, 'Product 4', 'mincon_product_img_1.png', 'Category 3', 'Bhoj', '1234567890', 'bhoj.digitalshakha@gmail.com', 'tcs', 'india', '2023-09-21 13:45:37', 0, '2023-09-21 13:45:37');
+(21, 'Product 2', 'mincon_product_img_1.png', 'Category 1', 'Tejpratap Sahu', '1234567890', 'tejpratapsahu00@gmail.com', 'App', 'india', '2023-09-22 07:23:53', 0, '2023-09-22 07:23:53'),
+(22, 'Product_9', 'mincon_product_img_1.png', 'Category 1', 'Tejpratap Sahu', '1234567890', 'tejpratapsahu00@gmail.com', 'App', 'india', '2023-09-22 07:23:57', 0, '2023-09-22 07:23:57'),
+(23, 'Product_10', 'mincon_about_bg3.png', 'Category 1', 'Tejpratap Sahu', '1234567890', 'tejpratapsahu00@gmail.com', 'App', 'india', '2023-09-22 07:24:02', 0, '2023-09-22 07:24:02');
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,8 @@ INSERT INTO `contact_tbl` (`id`, `name`, `email`, `mobile`, `company_name`, `cou
 (1, 'Rohan', 'rohan@gmail.com', '1234567890', 'App', 'india', '2', '3', '2023-09-13 10:21:59'),
 (3, 'Bhoj', 'bhoj@gmail.com', '0987654321', 'App', 'india', '4', '5', '2023-09-13 10:41:06'),
 (4, 'ashu', 'ashu@gmail.com', '0987654321', 'tcs', 'india', '3', '4', '2023-09-13 10:42:13'),
-(5, 'category 5', 'abc@gmail.com', '0987654321', 'tcs', 'india', '2', '2', '2023-09-15 11:59:29');
+(5, 'category 5', 'abc@gmail.com', '0987654321', 'tcs', 'india', '2', '2', '2023-09-15 11:59:29'),
+(6, 'ABC Kumar', 'abc@gmail.com', '9644477950', 'amazon', 'india', '2', '9', '2023-09-22 07:22:54');
 
 -- --------------------------------------------------------
 
@@ -200,6 +201,16 @@ CREATE TABLE `products_tbl` (
   `product_image4` varchar(50) NOT NULL,
   `product_image5` varchar(50) NOT NULL,
   `product_video_url` varchar(100) NOT NULL,
+  `en_weight` varchar(50) NOT NULL,
+  `en_length` varchar(50) NOT NULL,
+  `en_air_consumption` varchar(50) NOT NULL,
+  `en_strokes_x_mins` varchar(50) NOT NULL,
+  `en_rod_size` varchar(50) NOT NULL,
+  `spn_weight` varchar(50) NOT NULL,
+  `spn_length` varchar(50) NOT NULL,
+  `spn_air_consumption` varchar(50) NOT NULL,
+  `spn_strokes_x_mins` varchar(50) NOT NULL,
+  `spn_rod_size` varchar(50) NOT NULL,
   `product_status` tinyint(4) NOT NULL,
   `product_category` tinyint(4) NOT NULL,
   `product_description` text NOT NULL,
@@ -210,16 +221,17 @@ CREATE TABLE `products_tbl` (
 -- Dumping data for table `products_tbl`
 --
 
-INSERT INTO `products_tbl` (`product_id`, `product_name`, `product_image`, `product_image1`, `product_image2`, `product_image3`, `product_image4`, `product_image5`, `product_video_url`, `product_status`, `product_category`, `product_description`, `product_created_at`) VALUES
-(2, 'Product 1', 'mincon_product_img_1.png', '', '', '', '', '', '', 1, 2, '', '2023-09-12 11:19:23'),
-(3, 'Product 2', 'mincon_product_img_1.png', '', '', '', '', '', '', 1, 2, '', '2023-09-12 11:25:04'),
-(4, 'Product 3', 'mincon_product_img_1.png', '', '', '', '', '', '', 1, 3, '', '2023-09-12 11:46:03'),
-(5, 'Product 4', 'mincon_product_img_1.png', '', '', '', '', '', '', 1, 4, '', '2023-09-12 12:40:40'),
-(6, 'Product 5', 'mincon_product_img_1.png', '', '', '', '', '', '', 1, 5, '', '2023-09-12 12:42:00'),
-(8, 'Product_7', 'mincon_product_img_1.png', 'mincon_about_bg2.png', '', '', '', '', '', 1, 3, '', '2023-09-19 16:30:24'),
-(9, 'Product_9', 'mincon_product_img_1.png', 'mincon_contact_bg2.png', 'mincon_about_bg2.png', '', '', '', '', 1, 2, 'dsdlkddsldcdcds', '2023-09-19 17:28:37'),
-(10, 'Product_10', 'mincon_about_bg3.png', '', '', '', '', '', '', 1, 2, 'psum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur ', '2023-09-19 18:19:14'),
-(11, 'Product_11', 'mincon_about_bg2.png', 'mincon_about_bg3.png', 'mincon_contact_bg1.png', 'mincon_hero_bg1.png', 'mincon_hero_bg2.png', 'mincon_home_bg1.png', 'https://www.youtube.com/watch?v=ax1h-YOyPJc', 1, 2, 'psum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur a', '2023-09-19 18:35:15');
+INSERT INTO `products_tbl` (`product_id`, `product_name`, `product_image`, `product_image1`, `product_image2`, `product_image3`, `product_image4`, `product_image5`, `product_video_url`, `en_weight`, `en_length`, `en_air_consumption`, `en_strokes_x_mins`, `en_rod_size`, `spn_weight`, `spn_length`, `spn_air_consumption`, `spn_strokes_x_mins`, `spn_rod_size`, `product_status`, `product_category`, `product_description`, `product_created_at`) VALUES
+(2, 'Product 1', 'mincon_product_img_1.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 2, '', '2023-09-12 11:19:23'),
+(3, 'Product 2', 'mincon_product_img_1.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 2, '', '2023-09-12 11:25:04'),
+(4, 'Product 3', 'mincon_product_img_1.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 3, '', '2023-09-12 11:46:03'),
+(5, 'Product 4', 'mincon_product_img_1.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 4, '', '2023-09-12 12:40:40'),
+(6, 'Product 5', 'mincon_product_img_1.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 5, '', '2023-09-12 12:42:00'),
+(8, 'Product_7', 'mincon_product_img_1.png', 'mincon_about_bg2.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 3, '', '2023-09-19 16:30:24'),
+(9, 'Product_9', 'mincon_product_img_1.png', 'mincon_contact_bg2.png', 'mincon_about_bg2.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 2, 'dsdlkddsldcdcds', '2023-09-19 17:28:37'),
+(10, 'Product_10', 'mincon_about_bg3.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 2, 'psum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur ', '2023-09-19 18:19:14'),
+(11, 'Product_11', 'mincon_about_bg2.png', 'mincon_about_bg3.png', 'mincon_contact_bg1.png', 'mincon_hero_bg1.png', 'mincon_hero_bg2.png', 'mincon_home_bg1.png', 'https://www.youtube.com/watch?v=ax1h-YOyPJc', '100kg', '19.5mm', '18.33 l/s', '23mm x 14mm', '2650', '300kg', '21.8mm', '40.33 l/s', '53mm x 10mm', '500', 1, 2, 'psum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur a', '2023-09-19 18:35:15'),
+(12, 'Product_13', 'mincon_product_img_1.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=lp6OMS-6sd0', '300kg', '20.8mm', '90.5 l/s', '300mm X 200mm', '2000', '200kg', '32.6mm', '65.7 l/s', '233mm X 432mm', '4000', 1, 3, 'It looks like there aren\'t many great matches for your search\r\nTry using words that might appear on the page that you’re looking for. For example, \'cake recipes\' instead of \'how to make a cake\'.\r\nNeed help? Take a look at other tips for searching on Google\r\nIt looks like there aren\'t many great matches for your search\r\nTry using words that might appear on the page that you’re looking for. For example, \'cake recipes\' instead of \'how to make a cake\'.\r\nNeed help? Take a look at other tips for searching on Google', '2023-09-22 13:39:33');
 
 -- --------------------------------------------------------
 
@@ -241,9 +253,10 @@ CREATE TABLE `tem_tbl_for_cart` (
 --
 
 INSERT INTO `tem_tbl_for_cart` (`cart_product_id`, `cart_product_name`, `cart_product_image`, `cart_product_cat_name`, `mac_id`, `cart_created_at`) VALUES
-(24, 'Product 1', 'mincon_product_img_1.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-21 13:49:06'),
-(25, 'Product 2', 'mincon_product_img_1.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-21 13:49:08'),
-(26, 'Product_9', 'mincon_product_img_1.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-21 13:49:10');
+(42, 'Product_9', 'mincon_product_img_1.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-22 08:41:41'),
+(44, 'Product_10', 'mincon_about_bg3.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-22 08:54:34'),
+(47, 'Product 2', 'mincon_product_img_1.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-22 09:05:12'),
+(48, 'Product 3', 'mincon_product_img_1.png', 'Category 2', 'F0-9E-4A-4E-DA-7D', '2023-09-22 09:07:17');
 
 -- --------------------------------------------------------
 
@@ -352,7 +365,7 @@ ALTER TABLE `blog_tbl`
 -- AUTO_INCREMENT for table `cart_tbl`
 --
 ALTER TABLE `cart_tbl`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `category_tbl`
@@ -370,7 +383,7 @@ ALTER TABLE `confirm_ticket_tbl`
 -- AUTO_INCREMENT for table `contact_tbl`
 --
 ALTER TABLE `contact_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `enquire_tbl`
@@ -382,13 +395,13 @@ ALTER TABLE `enquire_tbl`
 -- AUTO_INCREMENT for table `products_tbl`
 --
 ALTER TABLE `products_tbl`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tem_tbl_for_cart`
 --
 ALTER TABLE `tem_tbl_for_cart`
-  MODIFY `cart_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `cart_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -60,6 +60,17 @@ if (isset($_POST['add-product'])) {
     $img4 = $_FILES['img4']['name'];
     $img5 = $_FILES['img5']['name'];
 
+    $en_weight= $_POST['en_weight'];
+    $en_length= $_POST['en_length'];
+    $en_air_consumption= $_POST['en_air_consumption'];
+    $en_strokes_x_mins= $_POST['en_strokes_x_mins'];
+    $en_rod_size= $_POST['en_rod_size'];
+
+    $spn_weight= $_POST['spn_weight'];
+    $spn_length= $_POST['spn_length'];
+    $spn_air_consumption= $_POST['spn_air_consumption'];
+    $spn_strokes_x_mins= $_POST['spn_strokes_x_mins'];
+    $spn_rod_size= $_POST['spn_rod_size'];
 
 
     if (
@@ -101,7 +112,8 @@ if (isset($_POST['add-product'])) {
         echo "no file";
     }
     if ($data == true) {
-        $sql = "INSERT INTO products_tbl(product_image,product_image1, product_image2, product_image3, product_image4, product_image5,product_name, product_category, product_status, product_description,product_video_url	)VALUES('$img','$img1','$img2','$img3','$img4','$img5','$name','$category','$status','$des','$video_url')";
+        $sql = "INSERT INTO products_tbl(product_image,product_image1, product_image2, product_image3, product_image4, product_image5,product_name, product_category, product_status, product_description,product_video_url,en_weight,en_length,en_air_consumption,en_strokes_x_mins,en_rod_size,spn_weight,spn_length,spn_air_consumption,spn_strokes_x_mins,spn_rod_size)
+        VALUES('$img','$img1','$img2','$img3','$img4','$img5','$name','$category','$status','$des','$video_url','$en_weight','$en_length','$en_air_consumption','$en_strokes_x_mins','$en_rod_size','$spn_weight','$spn_length','$spn_air_consumption','$spn_strokes_x_mins','$spn_rod_size')";
 
         $connect_db = mysqli_query($con, $sql);
         if ($connect_db) {
@@ -162,6 +174,19 @@ if (isset($_POST['update-product'])) {
     $new_img3 = $_FILES['new_img3']['name'];
     $new_img4 = $_FILES['new_img4']['name'];
     $new_img5 = $_FILES['new_img5']['name'];
+
+    $en_weight= $_POST['en_weight'];
+    $en_length= $_POST['en_length'];
+    $en_air_consumption= $_POST['en_air_consumption'];
+    $en_strokes_x_mins= $_POST['en_strokes_x_mins'];
+    $en_rod_size= $_POST['en_rod_size'];
+
+    $spn_weight= $_POST['spn_weight'];
+    $spn_length= $_POST['spn_length'];
+    $spn_air_consumption= $_POST['spn_air_consumption'];
+    $spn_strokes_x_mins= $_POST['spn_strokes_x_mins'];
+    $spn_rod_size= $_POST['spn_rod_size'];
+
 
 
     if (
@@ -241,7 +266,8 @@ if (isset($_POST['update-product'])) {
             }
             if ($data == true) {
                 $sql = "UPDATE products_tbl SET product_name='$name',product_description='$des',product_category='$category',product_status='$status', product_video_url='$video_url',
-                product_image = '$updated_img_main', product_image1 = '$updated_img1',product_image2 = '$updated_img2',product_image3 = '$updated_img3' ,product_image4= '$updated_img4',product_image5 = '$updated_img5' WHERE product_id='$id'";
+                product_image = '$updated_img_main', product_image1 = '$updated_img1',product_image2 = '$updated_img2',product_image3 = '$updated_img3' ,product_image4= '$updated_img4',product_image5 = '$updated_img5',en_wight='$en_weight',en_length='$en_length',en_air_consumption='$en_air_consumption',en_strokes_x_mins='$en_strokes_x_mins',en_rod_size='$en_rod_size',spn_weight='$spn_weight',spn_length='$spn_length',spn_air_consumption='$spn_air_consumption',spn_strokes_x_mins='$spn_strokes_x_mins',spn_rod_size='$spn_rod_size'
+                 WHERE product_id='$id'";
 
                 $connect_db = mysqli_query($con, $sql);
 
@@ -259,7 +285,7 @@ if (isset($_POST['update-product'])) {
             }
         }
     } else {
-        $sql2 = "UPDATE products_tbl SET product_name='$name',product_description='$des',product_video_url='$video_url',product_category='$category',product_status='$status' WHERE product_id='$id'";
+        $sql2 = "UPDATE products_tbl SET product_name='$name',product_description='$des',product_video_url='$video_url',product_category='$category',product_status='$status',en_wight='$en_weight',en_length='$en_length',en_air_consumption='$en_air_consumption',en_strokes_x_mins='$en_strokes_x_mins',en_rod_size='$en_rod_size',spn_weight='$spn_weight',spn_length='$spn_length',spn_air_consumption='$spn_air_consumption',spn_strokes_x_mins='$spn_strokes_x_mins',spn_rod_size='$spn_rod_size' WHERE product_id='$id'";
 
         $connect_db2 = mysqli_query($con, $sql2);
 

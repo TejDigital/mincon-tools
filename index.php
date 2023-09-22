@@ -21,7 +21,7 @@ if (isset($_SESSION['min_msg'])) {
                 <div class="col-md-12 main_box">
                     <h1>Building Progress, Mining Success</h1>
                     <p>Your Partner in Tools for Mining and Construction Excellence."</p>
-                    <a href="#!">Explore our Products</a>
+                    <a href="./products.php">Explore our Products</a>
                 </div>
             </div>
         </div>

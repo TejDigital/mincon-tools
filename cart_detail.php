@@ -1,6 +1,7 @@
+<?php require('./admin/config/dbcon.php'); ?>
+<!-- <section id="remove_sec"> -->
 <?php
 require('./includes/header.php'); ?>
-<?php require('./admin/config/dbcon.php'); ?>
 <?php
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -11,6 +12,8 @@ if (isset($_GET['id'])) {
     }
 }
 ?>
+
+
 <section class="cart_details1_1">
     <div class="container">
         <div class="row">
@@ -72,7 +75,7 @@ if (isset($_GET['id'])) {
                         if ($data['product_video_url'] != "") {
                         ?>
                             <div class="sm_img">
-                                <a  href="<?= $data['product_video_url'] ?>" class="popup">Watch <i class="fa-solid fa-video"></i></a>
+                                <a href="<?= $data['product_video_url'] ?>" class="popup">Watch <i class="fa-solid fa-video"></i></a>
                             </div>
                         <?php
                         }
@@ -118,31 +121,55 @@ if (isset($_GET['id'])) {
                     <div class="head">
                         <p>Specification</p>
                         <div class="btn1">
-                            <button>MG</button>
-                            <button>KG</button>
+                            <button class="tab-link active-link" onclick="on_tab_link('box1')">MG</button>
+                            <button class="tab-link " onclick="on_tab_link('box2')">KG</button>
                         </div>
                     </div>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table_box active-tab" id="box1">
                         <tbody>
                             <tr>
                                 <td>Weight</td>
-                                <td>8.5kg</td>
+                                <td><?=$data['en_weight']?></td>
                             </tr>
                             <tr>
                                 <td>Length</td>
-                                <td>640mm</td>
+                                <td><?=$data['en_length']?></td>
                             </tr>
                             <tr>
                                 <td>Air Consumption</td>
-                                <td>18.33 l/s</td>
+                                <td><?=$data['en_air_consumption']?></td>
                             </tr>
                             <tr>
                                 <td>Rod Size</td>
-                                <td>23mm x 14mm</td>
+                                <td><?=$data['en_rod_size']?></td>
                             </tr>
                             <tr>
                                 <td>Strokes x mins</td>
-                                <td>2650</td>
+                                <td><?=$data['en_strokes_x_mins']?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered  table_box" id="box2">
+                        <tbody>
+                            <tr>
+                                <td>Weight</td>
+                                <td><?=$data['spn_weight']?></td>
+                            </tr>
+                            <tr>
+                                <td>Length</td>
+                                <td><?=$data['spn_length']?></td>
+                            </tr>
+                            <tr>
+                                <td>Air Consumption</td>
+                                <td><?=$data['spn_air_consumption']?></td>
+                            </tr>
+                            <tr>
+                                <td>Rod Size</td>
+                                <td><?=$data['spn_rod_size']?></td>
+                            </tr>
+                            <tr>
+                                <td>Strokes x mins</td>
+                                <td><?=$data['spn_strokes_x_mins']?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -152,51 +179,76 @@ if (isset($_GET['id'])) {
     </div>
 </section>
 <section class="cart_detail_2">
-    <div class="container">
-        <h1>Related Products</h1>
-        <div class="row">
-            <?php
-            $sql = "SELECT * FROM products_tbl ORDER BY product_created_at DESC limit 4";
-            $query = mysqli_query($con, $sql);
-            if (mysqli_num_rows($query)) {
-                foreach ($query as $result) {
-            ?>
-                    <div class="col-md-3 p-3">
-                        <div class="box">
-                            <div class="img">
-                                <img src="./admin/products_images/<?= $result['product_image'] ?>" alt="">
-                            </div>
-                            <div class="text">
-                                <div class="head">
-                                    <p><?= $result['product_name'] ?></p>
-                                    <?php
-                                    $sql3 = "SELECT * FROM category_tbl ";
-                                    $query3 = mysqli_query($con, $sql3);
-                                    if (mysqli_num_rows($query3)) {
-                                        foreach ($query3 as $row) {
-                                            $cat_id  = $row['cat_id'];
-                                    ?>
-                                            <p><?php
-                                                if ($result['product_category'] == $cat_id) {
-                                                    echo $row['cat_name'];
-                                                }
-                                                ?></p>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
+    <!-- <div class="container">
+            <h1>Related Products</h1>
+            <div class="row">
+                <?php
+                $sql = "SELECT * FROM products_tbl ORDER BY product_created_at DESC limit 4";
+                $query = mysqli_query($con, $sql);
+                if (mysqli_num_rows($query)) {
+                    foreach ($query as $result) {
+                ?>
+                        <div class="col-md-3 p-3">
+                            <div class="box">
+                                <div class="img">
+                                    <a href="#" class="view-details" data-product-id="<?= $result['product_id'] ?>">
+                                        <img src="./admin/products_images/<?= $result['product_image'] ?>" alt="">
+                                    </a>
                                 </div>
-                                <button type="submit" class="add" name="add">Add to Enquire</button>
+                                <div class="text">
+                                    <div class="head">
+                                        <p><?= $result['product_name'] ?></p>
+                                        <?php
+                                        $sql3 = "SELECT * FROM category_tbl ";
+                                        $query3 = mysqli_query($con, $sql3);
+                                        if (mysqli_num_rows($query3)) {
+                                            foreach ($query3 as $row) {
+                                                $cat_id  = $row['cat_id'];
+                                        ?>
+                                                <p><?php
+                                                    if ($result['product_category'] == $cat_id) {
+                                                        echo $row['cat_name'];
+                                                    }
+                                                    ?></p>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                    <button type="submit" class="add" name="add">Add to Enquire</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-            <?php
+                <?php
 
+                    }
                 }
-            }
-            ?>
-        </div>
-    </div>
+                ?>
+            </div>
+        </div> -->
 </section>
 <?php require('./includes/footer.php'); ?>
 <?php require('./includes/script.php'); ?>
+<script>
+    let tab_links = document.getElementsByClassName("tab-link");
+    let tab_contents = document.getElementsByClassName("table_box");
+
+    function on_tab_link(tab_name) {
+        for (tab_link of tab_links) {
+            tab_link.classList.remove("active-link");
+            tab_link.style.background = ""; 
+        }
+        for (tab_content of tab_contents) {
+            tab_content.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tab_name).classList.add("active-tab");
+
+        event.currentTarget.style.background = "#EBAB56";
+
+    };
+</script>
+<!-- </section> -->
+
+<section id="product-details-container">
+</section>

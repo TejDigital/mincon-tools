@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
   $(".form-click").on("submit", "form.form_ID", function (e) {
     e.preventDefault();
@@ -11,9 +10,56 @@ $(document).ready(function () {
       success: function (response) {
         console.log(response);
         if (response == "Product added to the cart") {
-          $("#count").text(parseInt($("#count").text()) + 1);
+          // $("#count").text(parseInt($("#count").text()) + 1);
+          Swal.fire({
+            position: "top-center",
+            icon: 'success',
+            text: response,
+            showConfirmButton: false,
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+            customClass: {
+              icon: 'custom-icon-color', 
+            },
+            width: 600,
+            color: "#fff",
+            background: "#EBAB56",
+            backdrop: `  
+                        rgba(40, 39, 19,0.4)
+                        left top
+                        no-repeat`,
+            timer: 2500,
+
+          });
+
         }
-        alert(response);
+        if(response == "Product already in the cart"){
+          Swal.fire({
+            position: "top-center",
+            icon: 'warning',
+            text: response,
+            showConfirmButton: false,
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+            width: 600,
+            color: "#fff",
+            background: "#EBAB56",
+            backdrop: `  
+                        rgba(40, 39, 19,0.4)
+                        left top
+                        no-repeat`,
+            timer: 2500,
+          });
+        }
+        
       },
       error: function (response) {
         alert("Something went wrong");
@@ -78,18 +124,64 @@ $(document).on("click", ".delete_cart", function () {
         $clickedButton.closest(".cart_box").remove();
         $("#count_cart").text(parseInt($("#count_cart").text()) - 1);
       }
-      alert(response);
+      Swal.fire({
+        position: "top-center",
+        icon: 'success',
+        text: response,
+        showConfirmButton: false,
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+        customClass: {
+          icon: 'custom-icon-color', 
+        },
+        width: 600,
+        color: "#fff",
+        background: "#EBAB56",
+        backdrop: `  
+                    rgba(40, 39, 19,0.4)
+                    left top
+                    no-repeat`,
+        timer: 2500,
+
+      });
     },
   });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Get the input element by its ID
   var referrerInput = document.getElementById("referrer");
 
   // Set the value of the input field to the current location
   referrerInput.value = window.location.href;
 });
+
+// $(document).ready(function () {
+//   $(".view-details").on("click", function (e) {
+//       e.preventDefault();
+
+//       var productId = $(this).data("product-id");
+
+//       // Send an AJAX request to fetch product details
+//       $.ajax({
+//           type: "GET",
+//           url: "./cart_detail.php", // This page
+//           data: { id: productId },
+//           success: function (response) {
+//               // Display the product details on the page
+//               $('#remove_sec').remove();
+//               $("#product-details-container").html(response);
+//           },
+//           error: function (xhr, status, error) {
+//               console.error(xhr.responseText);
+//           }
+//       });
+//   });
+// });
 
 // $(document).ready(function () {
 //   $('.form_data_cart').on("submit", "form#form_cart", function (e) {
