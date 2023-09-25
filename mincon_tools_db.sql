@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2023 at 03:46 PM
+-- Generation Time: Sep 25, 2023 at 09:36 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -236,6 +236,27 @@ INSERT INTO `products_tbl` (`product_id`, `product_name`, `product_image`, `prod
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `product_specification`
+--
+
+CREATE TABLE `product_specification` (
+  `s_id` int(11) NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `s_name` varchar(60) NOT NULL,
+  `s_value` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_specification`
+--
+
+INSERT INTO `product_specification` (`s_id`, `product_name`, `s_name`, `s_value`) VALUES
+(1, 'Product 1', 'Weight', '100kg'),
+(2, 'Product 2', 'length', '130mm');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tem_tbl_for_cart`
 --
 
@@ -247,16 +268,6 @@ CREATE TABLE `tem_tbl_for_cart` (
   `mac_id` varchar(50) NOT NULL,
   `cart_created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tem_tbl_for_cart`
---
-
-INSERT INTO `tem_tbl_for_cart` (`cart_product_id`, `cart_product_name`, `cart_product_image`, `cart_product_cat_name`, `mac_id`, `cart_created_at`) VALUES
-(42, 'Product_9', 'mincon_product_img_1.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-22 08:41:41'),
-(44, 'Product_10', 'mincon_about_bg3.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-22 08:54:34'),
-(47, 'Product 2', 'mincon_product_img_1.png', 'Category 1', 'F0-9E-4A-4E-DA-7D', '2023-09-22 09:05:12'),
-(48, 'Product 3', 'mincon_product_img_1.png', 'Category 2', 'F0-9E-4A-4E-DA-7D', '2023-09-22 09:07:17');
 
 -- --------------------------------------------------------
 
@@ -334,6 +345,12 @@ ALTER TABLE `products_tbl`
   ADD PRIMARY KEY (`product_id`);
 
 --
+-- Indexes for table `product_specification`
+--
+ALTER TABLE `product_specification`
+  ADD PRIMARY KEY (`s_id`);
+
+--
 -- Indexes for table `tem_tbl_for_cart`
 --
 ALTER TABLE `tem_tbl_for_cart`
@@ -398,10 +415,16 @@ ALTER TABLE `products_tbl`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `product_specification`
+--
+ALTER TABLE `product_specification`
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tem_tbl_for_cart`
 --
 ALTER TABLE `tem_tbl_for_cart`
-  MODIFY `cart_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `cart_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `users`

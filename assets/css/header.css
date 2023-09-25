@@ -12,7 +12,8 @@
 body {
 	font-family: 'Montserrat', sans-serif;
 }
-.custom-icon-color{
+
+.custom-icon-color {
 	color: #fff;
 }
 
@@ -94,7 +95,7 @@ body {
 	text-transform: capitalize;
 	font-size: 16px;
 	font-weight: 600;
-	color:	#282713;
+	color: #282713;
 	transition: 0.15s ease;
 	padding: 0.8rem 1rem !important;
 }
@@ -130,7 +131,8 @@ body {
 	margin: auto;
 	height: 10px;
 }
-@media(max-width:998px){
+
+@media(max-width:998px) {
 	.nav-item .current {
 		padding: 0.8rem 0.5rem !important;
 		display: block;
@@ -145,7 +147,7 @@ body {
 		position: relative;
 		transition: 0.15s ease;
 	}
-	
+
 	.nav-item .current::after {
 		content: '';
 		transition: 0.5s;
@@ -160,6 +162,7 @@ body {
 		height: 10px;
 	}
 }
+
 .nav-item {
 	position: relative;
 	/* margin: 0 3px; */
@@ -299,46 +302,55 @@ body {
 	color: #EBAB56;
 	/* padding: 0.5rem 0; */
 }
-.top_nav .head_end{
+
+.top_nav .head_end {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.top_nav .head_end .dropdown-area{
+
+.top_nav .head_end .dropdown-area {
 	padding-right: 1rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.top_nav .head_end .dropdown-area p{
+
+.top_nav .head_end .dropdown-area p {
 	color: #fff;
 	font-weight: 400;
 }
-.top_nav .head_end .dropdown-area select{
+
+.top_nav .head_end .dropdown-area select {
 	background: transparent;
 	border: 1px solid #EBAB56;
 	color: #EBAB56;
-	
+
 }
-.top_nav .head_end .dropdown-area select option{
+
+.top_nav .head_end .dropdown-area select option {
 	color: #EBAB56;
 }
-.top_nav .head_end .dropdown-area select:focus{
+
+.top_nav .head_end .dropdown-area select:focus {
 	border: 1px solid #EBAB56;
 	box-shadow: 0;
 }
-.top_nav .head_end .dropdown-area select:active{
+
+.top_nav .head_end .dropdown-area select:active {
 	border: 1px solid #EBAB56;
 }
-.top_nav .head_end .dropdown-area select{
+
+.top_nav .head_end .dropdown-area select {
 	background: transparent;
 }
 
 .top_nav .top_nav_item p:nth-child(2) {
 	display: none;
 }
+
 .top_nav .top_nav_item p a i {
-	
+
 	color: #EBAB56;
 }
 
@@ -351,8 +363,8 @@ body {
 	display: none;
 }
 
-.top_nav_social{
-	border-left:2px solid #EBAB56 ;
+.top_nav_social {
+	border-left: 2px solid #EBAB56;
 	padding-left: 1rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
@@ -381,12 +393,13 @@ body {
 
 
 /* -----------------------------------sticky-icon-------------- */
-.sticky-icon{
+.sticky-icon {
 	position: relative;
 	display: flex;
 	flex-direction: column;
 }
-.sticky-icon a{ 
+
+.sticky-icon a {
 	position: fixed;
 	text-decoration: none;
 	bottom: 14%;
@@ -399,7 +412,8 @@ body {
 	padding: 0.1rem 0.6rem;
 	background-color: #fff;
 }
-.sticky-icon img{ 
+
+.sticky-icon img {
 	position: fixed;
 	text-decoration: none;
 	bottom: 5%;
@@ -412,7 +426,8 @@ body {
 	padding: 0.1rem 0.6rem;
 	background-color: #EBAB56;
 }
-.sticky-icon .count{
+
+.sticky-icon .count {
 	position: fixed;
 	bottom: 10%;
 	right: 4%;
@@ -426,38 +441,71 @@ body {
 }
 
 /* ----------------header-link-------------------------------- */
-.border-bottom{
+.border-bottom {
 	border-bottom: 2px solid #000000 !important;
 }
-.drop-Down{
+
+.drop-Down {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width:100vw;
+	width: 90vw;
+	padding: 0;
 }
-.drop-list{
+
+.drop-list {
 	list-style: none;
-	/* padding: 0 10px; */
+	display: inline-block;
 	position: relative;
 }
 
-.drop-list .click-link{
-	/* position: relative; */
+.drop-list .click-link {
 	cursor: pointer;
 	margin: 0;
 }
-.drop-list .click-link:hover ~ .drop_item{
-	visibility: visible;
+
+.drop-list:hover .drop_item {
+	display: block;
 }
-.drop-list .drop_item li{
+
+.drop-list .drop_item {
+	border-radius: 4px;
+}
+
+.drop-list .drop_item li {
 	list-style: none;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
 }
-.drop-list .drop_item{
+
+.drop-list .drop_item li:hover {
+	background-color: #EBAB56;
+}
+
+.drop-list .drop_item li:hover a {
+	font-weight: 600;
+	color: #fff;
+}
+
+.drop-list .drop_item li a {
+	color: #EBAB56;
+	padding: 1rem;
+	text-decoration: none;
+}
+
+.drop-list .drop_item {
 	position: absolute;
 	padding: 0;
-	top: 24px;
-	left: 0;
+	top: 30px;
+	right: -20px;
 	z-index: 100;
-	visibility: visible;
+	display: none;
+	background-color: #fff;
 	flex-direction: column;
+	color: #EBAB56;
+}
+
+
+.owl-carousel .owl-stage-outer {
+	overflow: visible !important;
 }

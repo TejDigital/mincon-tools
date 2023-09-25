@@ -30,7 +30,7 @@
                             <h4 class="m-0 p-0"><?=$result1['cat_name']?></h4>
                         </li>
                         <?php
-                         $sql3 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id1' limit 8 ";
+                         $sql3 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id1' ";
                          $pro_query1 = mysqli_query($con, $sql3);
                          if (mysqli_num_rows($pro_query1)) {
                              foreach ($pro_query1 as $pro_data1) {

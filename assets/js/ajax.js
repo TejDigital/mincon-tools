@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  fetchData();
   $(".form-click").on("submit", "form.form_ID", function (e) {
     e.preventDefault();
     var form = $(this);
@@ -10,10 +11,11 @@ $(document).ready(function () {
       success: function (response) {
         console.log(response);
         if (response == "Product added to the cart") {
+          fetchData();
           // $("#count").text(parseInt($("#count").text()) + 1);
           Swal.fire({
             position: "top-center",
-            icon: 'success',
+            icon: "success",
             text: response,
             showConfirmButton: false,
             showClass: {
@@ -23,24 +25,23 @@ $(document).ready(function () {
               popup: "animate__animated animate__fadeOutUp",
             },
             customClass: {
-              icon: 'custom-icon-color', 
+              icon: "custom-icon-color",
             },
             width: 600,
-            color: "#fff",
-            background: "#EBAB56",
+            color: "#EBAB56",
+            background: "#fff",
+            border: "1px solid #EBAB56",
             backdrop: `  
                         rgba(40, 39, 19,0.4)
                         left top
                         no-repeat`,
             timer: 2500,
-
           });
-
         }
-        if(response == "Product already in the cart"){
+        if (response == "Product already in the cart") {
           Swal.fire({
             position: "top-center",
-            icon: 'warning',
+            icon: "warning",
             text: response,
             showConfirmButton: false,
             showClass: {
@@ -50,8 +51,9 @@ $(document).ready(function () {
               popup: "animate__animated animate__fadeOutUp",
             },
             width: 600,
-            color: "#fff",
-            background: "#EBAB56",
+            color: "#EBAB56",
+            background: "#fff",
+            border: '3px solid #EBAB56',
             backdrop: `  
                         rgba(40, 39, 19,0.4)
                         left top
@@ -59,7 +61,6 @@ $(document).ready(function () {
             timer: 2500,
           });
         }
-        
       },
       error: function (response) {
         alert("Something went wrong");
@@ -68,6 +69,20 @@ $(document).ready(function () {
     });
   });
 });
+
+function fetchData() {
+  $.ajax({
+    type: "GET",
+    url: "./admin/cart_count.php",
+    dataType: "json",
+    success: function (response) {
+      $("#count_item").text(response.count);
+    },
+    error: function () {
+      console.error("Error fetching data");
+    },
+  });
+}
 
 function getDATA() {
   $("#added").html("");
@@ -109,6 +124,7 @@ function getDATA() {
 }
 
 $(document).on("click", ".delete_cart", function () {
+  fetchData();
   var id = $(this).closest(".cart_box").find(".cart_id").val();
   var $clickedButton = $(this);
   $.ajax({
@@ -118,6 +134,7 @@ $(document).on("click", ".delete_cart", function () {
     success: function (response) {
       console.log(response);
       if (response === "Cart item deleted") {
+        fetchData();
         if ($("#count").text() > 0) {
           $("#count").text(parseInt($("#count").text()) - 1);
         }
@@ -126,7 +143,7 @@ $(document).on("click", ".delete_cart", function () {
       }
       Swal.fire({
         position: "top-center",
-        icon: 'success',
+        icon: "success",
         text: response,
         showConfirmButton: false,
         showClass: {
@@ -136,17 +153,17 @@ $(document).on("click", ".delete_cart", function () {
           popup: "animate__animated animate__fadeOutUp",
         },
         customClass: {
-          icon: 'custom-icon-color', 
+          icon: "custom-icon-color",
         },
         width: 600,
-        color: "#fff",
-        background: "#EBAB56",
+        color: "#EBAB56",
+        background: "#fff",
+        border: "3px solid #EBAB56",
         backdrop: `  
                     rgba(40, 39, 19,0.4)
                     left top
                     no-repeat`,
         timer: 2500,
-
       });
     },
   });

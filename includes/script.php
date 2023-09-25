@@ -89,23 +89,19 @@
     });
 </script>
 <script>
- function fetchData() {
-            $.ajax({
-                type: "GET",
-                url: "./admin/cart_count.php",
-                dataType: "json",
-                success: function (response) {
-                    $("#count_item").text(response.count);
-                },
-                error: function () {
-                    console.error("Error fetching data");
-                }
-            });
-        }
-
-        $(document).ready(function () {
-            fetchData();
-        });
+//  function fetchData() {
+//             $.ajax({
+//                 type: "GET",
+//                 url: "./admin/cart_count.php",
+//                 dataType: "json",
+//                 success: function (response) {
+//                     $("#count_item").text(response.count);
+//                 },
+//                 error: function () {
+//                     console.error("Error fetching data");
+//                 }
+//             });
+//         }
 </script>
 
 </body>

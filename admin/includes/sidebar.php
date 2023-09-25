@@ -28,6 +28,7 @@
 
             <a href="./product_category.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Category</a>
             <a href="./products.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Product</a>
+            <a href="./product_specs.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Product Spec</a>
             
             <h6 class="ms-3 my-2">Enquires</h6>
             <a href="./enquire.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Enquire Table</a>

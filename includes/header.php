@@ -97,69 +97,79 @@
 
                             <li class="nav-item">
                                 <a class="nav-link" href="./blog.php">Blogs</a>
+
                             </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="./contact.php">Contact </a>
                             </li>
                         </ul>
                     </div>
                 </nav>
-                <nav class="w-100">
-                    <div class="Sponsors_slider_area_1 text-center owl-carousel owl-theme">
+                <nav class="">
+                    <div class="Sponsors_slider_area_1 owl-carousel owl-theme">
                         <ul class="drop-Down">
                             <?php
-                            // $query = "SELECT * FROM sponsors_tbl where spo_cat_id = '1' And spo_status = '1'";
-                            // $query_run = mysqli_query($con, $query);
-                            // if (mysqli_num_rows($query_run)) {
-                            //     while ($data1 = mysqli_fetch_assoc($query_run)) {
+                            $sql2 = "SELECT * FROM category_tbl WHERE cat_status = 1 ";
+                            $query2 = mysqli_query($con, $sql2);
+                            if (mysqli_num_rows($query2)) {
+                                foreach ($query2 as $result1) {
+                                    $cat_id1 = $result1['cat_id'];
                             ?>
-                            <li class="drop-list">
-                                <p class="click-link">Link1</p>
-                                <ul class="drop_item">
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                </ul>
-                            </li>
-                            <li class="drop-list">
-                                <p class="click-link">Link1</p>
-                                <ul class="drop_item">
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                </ul>
-                            </li>
-                            <li class="drop-list">
-                                <p class="click-link">Link1</p>
-                                <ul class="drop_item">
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                </ul>
-                            </li>
-                            <li class="drop-list">
-                                <p class="click-link">Link1</p>
-                                <ul class="drop_item">
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                </ul>
-                            </li>
-                            <li class="drop-list">
-                                <p class="click-link">Link1</p>
-                                <ul class="drop_item">
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                    <li><a href="#!">link1</a></li>
-                                </ul>
-                            </li>
+                                    <li class="drop-list">
+                                        <p class="click-link"><?= $result1['cat_name'] ?></p>
+                                        <ul class="drop_item">
+                                            <?php
+                                            $sql3 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id1'";
+                                            $pro_query1 = mysqli_query($con, $sql3);
+                                            if (mysqli_num_rows($pro_query1)) {
+                                                foreach ($pro_query1 as $pro_data1) {
+                                            ?>
+                                                    <li><a href="./cart_detail.php?id=<?=$pro_data1['product_id']?>"><?= $pro_data1['product_name']?></a></li>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </ul>
+                                    </li>
+                                    <!-- <li class="drop-list">
+                            <p class="click-link">Link1</p>
+                            <ul class="drop_item">
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                            </ul>
+                        </li> 
+                         <li class="drop-list">
+                            <p class="click-link">Link1</p>
+                            <ul class="drop_item">
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop-list">
+                            <p class="click-link">Link1</p>
+                            <ul class="drop_item">
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop-list">
+                            <p class="click-link">Link1</p>
+                            <ul class="drop_item">
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                                <li><a href="#!">link1</a></li>
+                            </ul>
+                        </li> -->
                             <?php
-                            //     }
-                            // }
+                                }
+                            }
                             ?>
                         </ul>
                     </div>
@@ -170,7 +180,7 @@
     </header>
     <section class="sticky-icon">
         <a href="#!"><i class="fa-brands fa-whatsapp"></i></a>
-        <img src="./assets/images/cart.svg" alt="" onclick="getDATA();"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <img src="./assets/images/cart.svg" alt="" onclick="getDATA();" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <span class="count"><b class="count_item" id="count_item">0</b></span>
     </section>
 
@@ -187,9 +197,9 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <h6>CART( <b id="count_cart">0</b> items)</h6> 
+                                    <h6>CART( <b id="count_cart">0</b> items)</h6>
                                     <div id="added">
-                                      
+
                                     </div>
                                 </div>
                                 <div class="col-md-8 box_area">
