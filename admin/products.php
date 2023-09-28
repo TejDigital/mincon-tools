@@ -94,7 +94,7 @@ if (isset($_SESSION['min_msg'])) {
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h4 class="mb-0">Product</h4>
                     <div>
-                        <a href="./add_product.php" class="btn btn-info">Add</a>
+                        <a href="./add_product.php" class="btn btn-info">Add Product</a>
                         <a href="#!" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Add Product Specification </a>
                     </div>
                     <!-- <a href="">Show All</a> -->
@@ -105,6 +105,7 @@ if (isset($_SESSION['min_msg'])) {
                             <tr class="text-dark">
                                 <th scope="col">S No</th>
                                 <th scope="col">Product Category</th>
+                                <th scope="col">Product Language</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Status</th>
                                 <th scope="col" colspan="3" class="text-center">Action</th>
@@ -125,6 +126,7 @@ if (isset($_SESSION['min_msg'])) {
                                         <td><?php if ($data['product_category'] == $data['cat_id']) {
                                                 echo $data['cat_name'];
                                             } ?></td>
+                                        <td><?=$data['lang_id'] ==1 ?'English ':'Spanish'  ?></td>
                                         <td><?= $data['product_name'] ?></td>
 
                                         <td><?php if ($data['product_status'] == 1) {

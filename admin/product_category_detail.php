@@ -28,6 +28,10 @@ if (isset($_GET['id'])) {
                 <div class="row mt-5">
 
                     <div class="col-md-3">
+                        <label for="" class="label">category language</label>
+                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $data['lang_id'] == 1 ?'English' :'Spanish' ?></p>
+                    </div>
+                    <div class="col-md-3">
                         <label for="" class="label">category Name</label>
                         <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $data['cat_name'] ?></p>
                     </div>

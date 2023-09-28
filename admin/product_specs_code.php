@@ -5,8 +5,9 @@ if(isset($_POST['add-specs'])){
     $name = $_POST['spec_name'];
     $value = $_POST['spec_value'];
     $product = $_POST['p_name'];
+    $lan = $_POST['lan'];
 
-    $sql ="INSERT INTO product_specification (product_name,s_name,s_value)VALUE('$product','$name','$value')";
+    $sql ="INSERT INTO product_specification (lang_id,product_name,s_name,s_value)VALUE('$lan','$product','$name','$value')";
     $query = mysqli_query($con,$sql);
     if($query){
         $_SESSION['min_msg'] = "$product Specs Added";
@@ -14,6 +15,23 @@ if(isset($_POST['add-specs'])){
     }else{
         $_SESSION['min_msg'] = "Something went wrong";
         header('location:./products.php');
+    }
+}
+
+if(isset($_POST['add-specs-modal'])){
+    $name = $_POST['spec_name'];
+    $value = $_POST['spec_value'];
+    $product = $_POST['p_name'];
+    $lan = $_POST['lan'];
+
+    $sql ="INSERT INTO product_specification (lang_id,product_name,s_name,s_value)VALUE('$lan','$product','$name','$value')";
+    $query = mysqli_query($con,$sql);
+    if($query){
+        $_SESSION['min_msg'] = "$product Specs Added";
+        header('location:./product_specs.php');
+    }else{
+        $_SESSION['min_msg'] = "Something went wrong";
+        header('location:./product_specs.php');
     }
 }
 

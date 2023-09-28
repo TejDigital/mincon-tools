@@ -96,13 +96,14 @@ if (isset($_POST['p_id'])) {
     $p_name = $_POST['p_name'];
     $p_img = $_POST['image'];
     $cat_name = $_POST['cat_name'];
+    $lan = $_POST['lan_id'];
     $address = $mac ;
 
     $sql1 = "SELECT * FROM tem_tbl_for_cart WHERE cart_product_name = '$p_name'";
     $query1 = mysqli_query($con, $sql1);
 
     if (mysqli_num_rows($query1) == 0) {
-        $sql = "INSERT INTO tem_tbl_for_cart (cart_product_name,cart_product_image,cart_product_cat_name,mac_id) VALUES('$p_name','$p_img','$cat_name','$address')";
+        $sql = "INSERT INTO tem_tbl_for_cart (lang_id,cart_product_name,cart_product_image,cart_product_cat_name,mac_id) VALUES('$lan','$p_name','$p_img','$cat_name','$address')";
         $query = mysqli_query($con, $sql);
         if ($query) {
             echo "Product added to the cart";

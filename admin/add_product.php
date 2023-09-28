@@ -18,15 +18,21 @@ if (isset($_SESSION['min_msg'])) {
                     <h4 class="mb-0">Product</h4>
                     <a href="./products.php" class="btn btn-light">Home</a>
                 </div>
-                <form action="product_code.php" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
+                <label for="">Choose Language</label>
+                <div>
+                    <button class="btn btn-info btn-sm tab-link1 active-link1" onclick="on_tab_link('box1')">english</button>
+                    <button class="btn btn-danger btn-sm tab-link" onclick="on_tab_link('box2')">spanish</button>
+                </div>
+                <div class="modal-body tab_box active-tab" id="box1">
+                    <form action="product_code.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12">
+                                <input type="hidden" value="1" name="lan">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group my-1">
                                             <label for="" class="text-dark">Product Main Image</label>
-                                            <input type="file" name="img" class="form-control" required>
+                                            <input type="file" name="img" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -70,7 +76,101 @@ if (isset($_SESSION['min_msg'])) {
                                                     <label for="" class="text-dark">Select Category</label>
                                                     <select name="product_category" id="" class="form-select">
                                                         <?php
-                                                        $sql = "SELECT * FROM category_tbl";
+                                                        $sql = "SELECT * FROM category_tbl WHERE lang_id = 1";
+                                                        $query = mysqli_query($con, $sql);
+                                                        if (mysqli_num_rows($query)) {
+                                                            foreach ($query as $data) {
+                                                        ?>
+                                                                <option value="<?= $data['cat_id'] ?>"><?= $data['cat_name'] ?></option>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-1">
+                                                    <label for="" class="text-dark">Product Name</label>
+                                                    <input type="text" name="name" class="form-control" placeholder="product name">
+                                                </div>
+                                                <div class="form-group my-1">
+                                                    <label for="" class="text-dark">Product Status</label>
+                                                    <select name="status" class="form-select" id="">
+                                                        <option value="1">Active</option>
+                                                        <option value="0">Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group my-1">
+                                            <label for="" class="text-dark">Product Description</label>
+                                            <textarea name="product_description" cols="30" rows="7" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" name="add-product" class="btn btn-primary">ADD Product</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-body tab_box" id="box2">
+                    <form action="product_code.php" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <h4>Product adding in a Spanish Language</h4>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <input type="hidden" value="2" name="lan">
+                                    <div class="col-md-4">
+                                        <div class="form-group my-1">
+                                            <label for="" class="text-dark">Product Main Image</label>
+                                            <input type="file" name="img" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group my-1">
+                                            <label for="" class="text-dark">Product Image1</label>
+                                            <input type="file" name="img1" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group my-1">
+                                            <label for="" class="text-dark">Product Image2</label>
+                                            <input type="file" name="img2" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group my-1">
+                                            <label for="" class="text-dark">Product Image3</label>
+                                            <input type="file" name="img3" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group my-1">
+                                            <label for="" class="text-dark">Product Image4</label>
+                                            <input type="file" name="img4" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group my-1">
+                                            <label for="" class="text-dark">Product Video Url</label>
+                                            <input type="url" name="video_url" class="form-control" placeholder="Add Url ">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 my-5">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group my-1">
+                                                    <label for="" class="text-dark">Select Category</label>
+                                                    <select name="product_category" id="" class="form-select">
+                                                        <?php
+                                                        $sql = "SELECT * FROM category_tbl WHERE lang_id = 2";
                                                         $query = mysqli_query($con, $sql);
                                                         if (mysqli_num_rows($query)) {
                                                             foreach ($query as $data) {
@@ -105,63 +205,13 @@ if (isset($_SESSION['min_msg'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="row rounded mt-3" style="background-color:#d7d7d7;">
-                                        <div class="col-md-6 p-2">
-                                            <h5>For MG</h5>
-                                            <div class="form-group my-1">
-                                                <label for="" class="text-dark">Product Weight</label><span style="color: red; font-size:0.8rem"> ( Only in MG )</span>
-                                                <input type="text" name="en_weight" class="form-control" placeholder="eg: 100kg">
-                                            </div>
-                                            <div class="form-group my-1">
-                                                <label for="" class="text-dark">Product Length</label>
-                                                <input type="text" name="en_length" class="form-control" placeholder="eg: 100mm">
-                                            </div>
-                                            <div class="form-group my-1">
-                                                <label for="" class="text-dark">Product Air Consumption</label>
-                                                <input type="text" name="en_air_consumption" class="form-control" placeholder="Air Consumption">
-                                            </div>
-                                            <div class="form-group my-1">
-                                                <label for="" class="text-dark">Product Strokes x mins</label>
-                                                <input type="text" name="en_strokes_x_mins" class="form-control" placeholder="Strokes x mins">
-                                            </div>
-                                            <div class="form-group my-1">
-                                                <label for="" class="text-dark">Product Rod Size</label>
-                                                <input type="text" name="en_rod_size" class="form-control" placeholder="Rod Size">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 p-2">
-                                            <h5>For KG</h5>
-                                            <div class="form-group my-1">
-                                                <label for="" class="text-dark">Product Weight</label><span style="color: red; font-size:0.8rem"> ( Only in KG )</span>
-                                                <input type="text" name="spn_weight" class="form-control" placeholder="eg: 100kg">
-                                            </div>
-                                            <div class="form-group my-1">
-                                                <label for="" class="text-dark">Product Length</label>
-                                                <input type="text" name="spn_length" class="form-control" placeholder="eg: 100mm">
-                                            </div>
-                                            <div class="form-group my-1">
-                                                <label for="" class="text-dark">Product Air Consumption</label>
-                                                <input type="text" name="spn_air_consumption" class="form-control" placeholder="Air Consumption">
-                                            </div>
-                                            <div class="form-group my-1">
-                                                <label for="" class="text-dark">Product Strokes x mins</label>
-                                                <input type="text" name="spn_strokes_x_mins" class="form-control" placeholder="Strokes x mins">
-                                            </div>
-                                            <div class="form-group my-1">
-                                                <label for="" class="text-dark">Product Rod Size</label>
-                                                <input type="text" name="spn_rod_size" class="form-control" placeholder="Rod Size">
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="submit" name="add-product" class="btn btn-primary">ADD Product</button>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="submit" name="add-product" class="btn btn-primary">ADD Product</button>
-                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -169,3 +219,19 @@ if (isset($_SESSION['min_msg'])) {
 </div>
 <?php require('./includes/footer.php') ?>
 <?php require('./includes/script.php') ?>
+<script>
+    let tab_links = document.getElementsByClassName("tab-link");
+    let tab_contents = document.getElementsByClassName("tab_box");
+
+    function on_tab_link(tab_name) {
+        for (tab_link of tab_links) {
+            tab_link.classList.remove("active-link");
+        }
+        for (tab_content of tab_contents) {
+            tab_content.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tab_name).classList.add("active-tab");
+
+    };
+</script>

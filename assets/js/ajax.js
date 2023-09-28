@@ -14,7 +14,7 @@ $(document).ready(function () {
           fetchData();
           // $("#count").text(parseInt($("#count").text()) + 1);
           Swal.fire({
-            position: "top-center",
+            position: "center",
             icon: "success",
             text: response,
             showConfirmButton: false,
@@ -26,11 +26,11 @@ $(document).ready(function () {
             },
             customClass: {
               icon: "custom-icon-color",
+              modal: "custom-border",
             },
             width: 600,
             color: "#EBAB56",
             background: "#fff",
-            border: "1px solid #EBAB56",
             backdrop: `  
                         rgba(40, 39, 19,0.4)
                         left top
@@ -40,7 +40,7 @@ $(document).ready(function () {
         }
         if (response == "Product already in the cart") {
           Swal.fire({
-            position: "top-center",
+            position: "center",
             icon: "warning",
             text: response,
             showConfirmButton: false,
@@ -53,7 +53,6 @@ $(document).ready(function () {
             width: 600,
             color: "#EBAB56",
             background: "#fff",
-            border: '3px solid #EBAB56',
             backdrop: `  
                         rgba(40, 39, 19,0.4)
                         left top
@@ -142,7 +141,7 @@ $(document).on("click", ".delete_cart", function () {
         $("#count_cart").text(parseInt($("#count_cart").text()) - 1);
       }
       Swal.fire({
-        position: "top-center",
+        position: "center",
         icon: "success",
         text: response,
         showConfirmButton: false,
@@ -158,7 +157,6 @@ $(document).on("click", ".delete_cart", function () {
         width: 600,
         color: "#EBAB56",
         background: "#fff",
-        border: "3px solid #EBAB56",
         backdrop: `  
                     rgba(40, 39, 19,0.4)
                     left top

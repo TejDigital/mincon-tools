@@ -45,6 +45,7 @@ if (isset($_SESSION['min_msg'])) {
                             <tr class="text-dark">
                                 <th scope="col">S No</th>
                                 <th scope="col">Category</th>
+                                <th scope="col">Language</th>
                                 <th scope="col">Status</th>
                                 <th scope="col" colspan="3" class="text-center">Action</th>
                             </tr>
@@ -60,8 +61,10 @@ if (isset($_SESSION['min_msg'])) {
                             ?>
                                     <tr>
                                         <td><?= $count++ ?></td>
-                                        
+
                                         <td><?= $data['cat_name'] ?></td>
+                                        <td><?= $data['lang_id'] == '1'? 'English' : 'Spanish'?></td>
+                                        <!-- <td><?php if($data['lang_id'] == 1){echo "English";}else{echo "Spanish";}?></td> -->
 
                                         <td><?php if ($data['cat_status'] == 1) {
                                                 echo "Active";
@@ -89,19 +92,40 @@ if (isset($_SESSION['min_msg'])) {
             </div>
         </div>
         <div class="col-md-4">
-        <div class="bg-light  rounded p-4">
-            <h4>ADD Category</h4>
-            <form action="product_category_code.php" method="post">
-                <input type="text" name="name" class="my-2 form-control" placeholder="Category Name" required>
-                <textarea name="des" id="" class="form-control my-3" cols="30" rows="5" placeholder="Category Description" required></textarea>
-                <select name="status" id="" class="form-select my-2" required>
-                    <option value="" >Select Status</option>
-                    <option value="1">Active</option>
-                    <option value="0">Inactive</option>
-                </select>
-                <button type="submit" name="cat_add" class="btn btn-info my-2">Add</button>
-            </form>
-        </div>
+            <div class="bg-light  rounded p-4">
+                <div class="mb-3">
+                    <button class="btn btn-info btn-sm tab-link active-link" onclick="on_tab_link('box1')">english</button>
+                    <button class="btn btn-danger btn-sm tab-link" onclick="on_tab_link('box2')">spanish</button>
+                </div>
+                <div class="tab_box active-tab" id="box1">
+                    <h4>ADD Category</h4>
+                    <form action="product_category_code.php" method="post">
+                    <input type="hidden" value="1" name="lan"> 
+                        <input type="text" name="name" class="my-2 form-control" placeholder="Category Name" required>
+                        <textarea name="des" id="" class="form-control my-3" cols="30" rows="5" placeholder="Category Description" required></textarea>
+                        <select name="status" id="" class="form-select my-2" required>
+                            <option value="">Select Status</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                        <button type="submit" name="cat_add" class="btn btn-info my-2">Add</button>
+                    </form>
+                </div>
+                <div class="tab_box" id="box2">
+                    <h4>ADD Category <span style="font-size: 0.9rem;">In Spanish</span></h4>
+                    <form action="product_category_code.php" method="post">
+                        <input type="hidden" value="2" name="lan"> 
+                        <input type="text" name="name" class="my-2 form-control" placeholder="Category Name" required>
+                        <textarea name="des" id="" class="form-control my-3" cols="30" rows="5" placeholder="Category Description" required></textarea>
+                        <select name="status" id="" class="form-select my-2" required>
+                            <option value="">Select Status</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                        <button type="submit" name="cat_add" class="btn btn-info my-2">Add</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -121,4 +145,20 @@ if (isset($_SESSION['min_msg'])) {
             $('#delete_cat_modal').modal('show');
         });
     });
+</script>
+<script>
+    let tab_links = document.getElementsByClassName("tab-link");
+    let tab_contents = document.getElementsByClassName("tab_box");
+
+    function on_tab_link(tab_name) {
+        for (tab_link of tab_links) {
+            tab_link.classList.remove("active-link");
+        }
+        for (tab_content of tab_contents) {
+            tab_content.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tab_name).classList.add("active-tab");
+
+    };
 </script>

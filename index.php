@@ -8,7 +8,6 @@ if (isset($_SESSION['min_msg'])) {
     unset($_SESSION['min_msg']);
 }
 ?>
-
 <section class="home_top">
     <div class="box">
         <div class="img">
@@ -19,9 +18,26 @@ if (isset($_SESSION['min_msg'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12 main_box">
-                    <h1>Building Progress, Mining Success</h1>
-                    <p>Your Partner in Tools for Mining and Construction Excellence."</p>
-                    <a href="./products.php">Explore our Products</a>
+                    <h1  id="home_hero_content">   <?php
+                    if (isset($content_array['home_hero_content'])) {
+                        echo $content_array['home_hero_content'] ;
+                    }
+                    ?>
+                    </h1>
+
+                    <p  id="home_hero_sub_content">   <?php
+                    if (isset($content_array['home_hero_sub_content'])) {
+                        echo $content_array['home_hero_sub_content'] ;
+                    }
+                    ?>
+                    </p>
+                    <a href="./products.php" id="home_hero_btn">
+                        <?php
+                          if (isset($content_array['home_hero_btn'])) {
+                            echo $content_array['home_hero_btn'] ;
+                        }
+                        ?>
+                    </a>
                 </div>
             </div>
         </div>
@@ -32,7 +48,7 @@ if (isset($_SESSION['min_msg'])) {
     <div class="container-fluid p-0">
         <div class="Sponsors_slider_area_2 text-center owl-carousel owl-theme" id="category-bar">
             <?php
-            $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 ";
+            $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 and lang_id = '$lan' ";
             $query = mysqli_query($con, $sql);
             if (mysqli_num_rows($query)) {
                 foreach ($query as $result) {
@@ -49,7 +65,7 @@ if (isset($_SESSION['min_msg'])) {
     </div>
 </section>
 <?php
-$sql = "SELECT * FROM category_tbl WHERE cat_status = 1 ";
+$sql = "SELECT * FROM category_tbl WHERE cat_status = 1 and lang_id = '$lan' ";
 $query = mysqli_query($con, $sql);
 if (mysqli_num_rows($query)) {
     foreach ($query as $result) {
@@ -64,7 +80,7 @@ if (mysqli_num_rows($query)) {
                 <div class="boxes">
                     <div class="row form-click">
                         <?php
-                        $sql1 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id' limit 8 ";
+                        $sql1 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id' AND lang_id = '$lan' limit 8 ";
                         $pro_query = mysqli_query($con, $sql1);
                         if (mysqli_num_rows($pro_query)) {
                             foreach ($pro_query as $pro_data) {
@@ -72,11 +88,12 @@ if (mysqli_num_rows($query)) {
                                 <div class="col-md-3 p-3">
                                     <form class="form_ID">
                                         <input type="hidden" value="<?= $pro_data['product_id'] ?>" class="product_id" name="p_id">
+                                        <input type="hidden" value="<?= $pro_data['lang_id'] ?>" class="lan_id" name="lan_id">
                                         <input type="hidden" value="<?= $pro_data['product_name'] ?>" class="product_name" name="p_name">
                                         <input type="hidden" value="<?= $pro_data['product_image'] ?>" name="image">
                                         <input type="hidden" value="<?= $result['cat_name'] ?>" name="cat_name">
                                         <div class="box">
-                                            <a href="./cart_detail.php?id=<?=$pro_data['product_id']?>">
+                                            <a href="./cart_detail.php?id=<?= $pro_data['product_id'] ?>&lang=<?= $lan ?>">
                                                 <div class="img">
                                                     <img src="./admin/products_images/<?= $pro_data['product_image'] ?>" alt="">
                                                 </div>
@@ -95,7 +112,7 @@ if (mysqli_num_rows($query)) {
                     </div>
                 </div>
                 <div class="product_btn">
-                    <a href="./products.php?=#<?=$result['cat_name']?>">See More</a>
+                    <a href="./products.php?=#<?= $result['cat_name'] ?>">See More</a>
                 </div>
             </div>
             <div class="product_foot_img">
@@ -137,7 +154,7 @@ if (mysqli_num_rows($query)) {
                                 <select name="product_category" id="product_category" class="input-box">
                                     <option value="">Select Category</option>
                                     <?php
-                                    $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 ";
+                                    $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 AND lang_id = '$lan'";
                                     $query = mysqli_query($con, $sql);
 
                                     if (mysqli_num_rows($query)) {
@@ -177,35 +194,35 @@ if (mysqli_num_rows($query)) {
 <?php require('./includes/script.php') ?>
 <script>
     const productSections = document.querySelectorAll(".home_product");
-const navbarLinks = document.querySelectorAll(".nav-product a");
+    const navbarLinks = document.querySelectorAll(".nav-product a");
 
-function highlightProduct() {
-  productSections.forEach((section, index) => {
-    const position = section.getBoundingClientRect();
+    function highlightProduct() {
+        productSections.forEach((section, index) => {
+            const position = section.getBoundingClientRect();
 
-    if (position.top <= 100 && position.bottom >= 100) {
-      navbarLinks.forEach((link) => link.classList.remove("active-product"));
-      navbarLinks[index].classList.add("active-product");
+            if (position.top <= 100 && position.bottom >= 100) {
+                navbarLinks.forEach((link) => link.classList.remove("active-product"));
+                navbarLinks[index].classList.add("active-product");
+            }
+        });
     }
-  });
-}
 
-function scrollToSection(e) {
-  e.preventDefault();
-  const targetId = e.target.getAttribute("href").substring(1); // Remove the # from the href
-  const targetSection = document.getElementById(targetId);
+    function scrollToSection(e) {
+        e.preventDefault();
+        const targetId = e.target.getAttribute("href").substring(1); // Remove the # from the href
+        const targetSection = document.getElementById(targetId);
 
-  if (targetSection) {
-    window.scrollTo({
-      top: targetSection.offsetTop - 65, // Account for navbar height
-      behavior: "smooth",
+        if (targetSection) {
+            window.scrollTo({
+                top: targetSection.offsetTop - 65, // Account for navbar height
+                behavior: "smooth",
+            });
+        }
+    }
+
+    window.addEventListener("scroll", highlightProduct);
+
+    navbarLinks.forEach((link) => {
+        link.addEventListener("click", scrollToSection);
     });
-  }
-}
-
-window.addEventListener("scroll", highlightProduct);
-
-navbarLinks.forEach((link) => {
-  link.addEventListener("click", scrollToSection);
-});
 </script>

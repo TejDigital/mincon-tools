@@ -23,6 +23,7 @@ if (isset($_GET['id'])) {
    
         <div class="col-md-12">
         <div class="bg-light  rounded p-4">
+            <h6>For Language : <?= $data['lang_id'] == 1 ?'English' : 'Spanish' ?></h6>
             <h4>ADD Category</h4>
             <form action="product_category_code.php" method="post">
                 <input type="hidden" name="id" value="<?=$data['cat_id']?>">

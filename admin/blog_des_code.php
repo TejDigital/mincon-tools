@@ -24,6 +24,7 @@ if (isset($_POST['add_des'])) {
 
     $heading = $_POST['heading'];
     $date = $_POST['date'];
+    $lan = $_POST['lan'];
     $A_name = $_POST['name'];
     $des_msg = $_POST['des_msg'];
     $des_msg = str_replace("'","\'","$des_msg");
@@ -52,8 +53,7 @@ if (isset($_POST['add_des'])) {
         header('location:blog_des.php');
     } else {
 
-        $sql = "INSERT INTO blog_tbl(title,category,A_name,b_des_mini,b_des_full,date,blog_status,image)VALUES('$heading','$category','$A_name','$sm_blog','$des_msg','$date','$status','$img_name')";
-        // echo $sql;
+        $sql = "INSERT INTO blog_tbl(blog_lang_id,title,category,A_name,b_des_mini,b_des_full,date,blog_status,image)VALUES('$lan','$heading','$category','$A_name','$sm_blog','$des_msg','$date','$status','$img_name')";
         $connect_db = mysqli_query($con, $sql);
         if ($connect_db) {
             move_uploaded_file($_FILES['img']['tmp_name'], 'blog_des_files/' . $img_name);
@@ -62,7 +62,7 @@ if (isset($_POST['add_des'])) {
             header('location:blog_des.php');
         } else {
 
-            $_SESSION['min_msg'] = "Somthing went wrong";
+            $_SESSION['min_msg'] = "Something went wrong";
             header('location:blog_des.php');
         }
     }
@@ -95,6 +95,7 @@ if (isset($_POST['upd_blog'])) {
     $id = $_POST['id'];
     $heading = $_POST['heading'];
     $date = $_POST['date'];
+    $lan = $_POST['lan'];
     $A_name = $_POST['name'];
     $des_msg = $_POST['des_msg'];
     $des_msg = str_replace("'","\'","$des_msg");

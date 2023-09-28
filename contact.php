@@ -12,9 +12,20 @@ if (isset($_SESSION['min_msg'])) {
         <img src="./assets/images/mincon_hero_bg1.png" alt="">
     </div>
     <div class="top_hero_text">
-        <h1>Contact</h1>
-        <p><span><a href="./index.php">Home</a></span>
-            << Contact </p>
+        <h1 id="contact_hero_heading">
+            <?php
+            if (isset($content_array['contact_hero_heading'])) {
+                echo $content_array['contact_hero_heading'];
+            }
+            ?>
+        </h1>
+        <p id="contact_hero_sub_heading">
+            <?php
+            if (isset($content_array['contact_hero_sub_heading'])) {
+                echo $content_array['contact_hero_sub_heading'];
+            }
+            ?>
+        </p>
     </div>
 </section>
 <section class="contact_1">
@@ -25,7 +36,13 @@ if (isset($_SESSION['min_msg'])) {
                     <div class="img">
                         <img src="./assets/images/phone.svg" alt="">
                     </div>
-                    <h3>Phone Number</h3>
+                    <h3 id="contact_phone">
+                        <?php
+                        if (isset($content_array['contact_phone'])) {
+                            echo $content_array['contact_phone'];
+                        }
+                        ?>
+                    </h3>
                     <p><a href="#!">954-372-5520</a></p>
                 </div>
             </div>
@@ -34,7 +51,13 @@ if (isset($_SESSION['min_msg'])) {
                     <div class="img">
                         <img src="./assets/images/mail.svg" alt="">
                     </div>
-                    <h3>Email Address</h3>
+                    <h3 id="contact_email">
+                        <?php
+                        if (isset($content_array['contact_email'])) {
+                            echo $content_array['contact_email'];
+                        }
+                        ?>
+                    </h3>
                     <p><a href="#!">mincontools@gmail.com</a></p>
                 </div>
             </div>
@@ -43,7 +66,13 @@ if (isset($_SESSION['min_msg'])) {
                     <div class="img">
                         <img src="./assets/images/map.svg" alt="">
                     </div>
-                    <h3>Office Address</h3>
+                    <h3 id="contact_address">
+                        <?php
+                        if (isset($content_array['contact_address'])) {
+                            echo $content_array['contact_address'];
+                        }
+                        ?>
+                    </h3>
                     <p><a href="#!">2234 N Federal Hwy Boca Raton, FL 33431</a></p>
                 </div>
             </div>
@@ -62,33 +91,69 @@ if (isset($_SESSION['min_msg'])) {
         <div class="row flex-change">
             <div class="col-md-6">
                 <div class="head">
-                    <h1>Contact US</h1>
-                    <p>Feel Free to reach out to us!</p>
+                    <h1 id="contact_contact_us_name">
+                        <?php
+                        if (isset($content_array['contact_contact_us_name'])) {
+                            echo $content_array['contact_contact_us_name'];
+                        }
+                        ?>
+                    </h1>
+                    <p id="contact_us_sub_description">
+                        <?php
+                        if (isset($content_array['contact_us_sub_description'])) {
+                            echo $content_array['contact_us_sub_description'];
+                        }
+                        ?>
+                        !</p>
                 </div>
                 <form action="./admin/connect.php" method="POST">
                     <div class="form-group">
-                        <input type="text" class="input-box" name="name" placeholder="Name">
+                        <input type="text" class="input-box" id="contact_input_name_placeholder" name="name" placeholder="<?php
+                                                                                                                            if (isset($content_array['contact_input_name_placeholder'])) {
+                                                                                                                                echo $content_array['contact_input_name_placeholder'];
+                                                                                                                            }
+                                                                                                                            ?>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="input-box" name="email" placeholder="Email Address">
+                        <input type="text" class="input-box" id="contact_input_email_placeholder" name="email" placeholder="<?php
+                                                                                                                            if (isset($content_array['contact_input_email_placeholder'])) {
+                                                                                                                                echo $content_array['contact_input_email_placeholder'];
+                                                                                                                            }
+                                                                                                                            ?>">
                     </div>
                     <div class="form-group">
-                    <span id="msg_alert1" style="color:red;"></span>
-                        <input type="tel" maxlength="10" class="input-box" onkeyup="validateNumber(this,'msg_alert1')" name="mobile" placeholder="Contact Number">
+                        <span id="msg_alert1" style="color:red;"></span>
+                        <input type="tel" maxlength="10" class="input-box" id="contact_input_phone_placeholder" onkeyup="validateNumber(this,'msg_alert1')" name="mobile" placeholder="<?php
+                                                                                                                                                                                        if (isset($content_array['contact_input_phone_placeholder'])) {
+                                                                                                                                                                                            echo $content_array['contact_input_phone_placeholder'];
+                                                                                                                                                                                        }
+                                                                                                                                                                                        ?>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="input-box" name="company" placeholder="Company Name">
+                        <input type="text" class="input-box" name="company" id="contact_input_company_placeholder" placeholder="<?php
+                                                                                                                                if (isset($content_array['contact_input_company_placeholder'])) {
+                                                                                                                                    echo $content_array['contact_input_company_placeholder'];
+                                                                                                                                }
+                                                                                                                                ?>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="input-box" name="country" placeholder="Country Name">
+                        <input type="text" class="input-box" name="country" id="contact_input_country_placeholder" placeholder="<?php
+                                                                                                                                if (isset($content_array['contact_input_country_placeholder'])) {
+                                                                                                                                    echo $content_array['contact_input_country_placeholder'];
+                                                                                                                                }
+                                                                                                                                ?>">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <select name="product_category"  id="product_category" class="input-box">
-                                    <option value="">Select Category</option>
+                                <select name="product_category" id="product_category" class="input-box">
+                                    <option value="" id="contact_input_category_placeholder"><?php
+                                                                                                if (isset($content_array['contact_input_category_placeholder'])) {
+                                                                                                    echo $content_array['contact_input_category_placeholder'];
+                                                                                                }
+                                                                                                ?></option>
                                     <?php
-                                    $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 ";
+                                    $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 AND lang_id = '$lan'";
                                     $query = mysqli_query($con, $sql);
 
                                     if (mysqli_num_rows($query)) {
@@ -106,7 +171,11 @@ if (isset($_SESSION['min_msg'])) {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <select name="product" id="product" class="input-box">
-                                    <option value="">Select Product</option>
+                                    <option value="" id="contact_input_product_placeholder"><?php
+                                                                                            if (isset($content_array['contact_input_product_placeholder'])) {
+                                                                                                echo $content_array['contact_input_product_placeholder'];
+                                                                                            }
+                                                                                            ?></option>
                                 </select>
                             </div>
                         </div>
@@ -130,8 +199,20 @@ if (isset($_SESSION['min_msg'])) {
             <div class="container">
                 <div class="col-md-12">
                     <div class="text">
-                        <h1>Our Promise to You</h1>
-                        <p>If you seek mining tools that stand head and shoulders above the rest, Mincon Tools LLC is your answer. Our products speak volumes about the excellence we bring to the table. Whether you're a mining veteran or a newcomer to the field, our offerings are designed to exceed your expectations. We have tirelessly pursued innovation to cater to the evolving demands of the industry, and our commitment to enhancing your experience remains unwavering.</p>
+                        <h1 id="about_3_heading">
+                            <?php
+                            if (isset($content_array['about_3_heading'])) {
+                                echo $content_array['about_3_heading'];
+                            }
+                            ?>
+                        </h1>
+                        <p id="about_3_description">
+                            <?php
+                            if (isset($content_array['about_3_description'])) {
+                                echo $content_array['about_3_description'];
+                            }
+                            ?>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -141,7 +222,12 @@ if (isset($_SESSION['min_msg'])) {
 <section class="mincon_choose">
     <div class="container">
         <div class="row">
-            <h1>Why Choose Mincon Tools ?</h1>
+            <h1 id="about_heading_choose_content_heading">
+                <?php
+                if (isset($content_array['about_heading_choose_content_heading'])) {
+                    echo $content_array['about_heading_choose_content_heading'];
+                }
+                ?> ?</h1>
             <div class="col-md-6">
                 <div class="text">
                     <div class="text-box">
@@ -149,8 +235,19 @@ if (isset($_SESSION['min_msg'])) {
                             <img src="./assets/images/right-tic.svg" alt="">
                         </div>
                         <div class="des">
-                            <h2>Quality Assurance</h2>
-                            <p>Our tools are crafted with precision, durability, and performance in mind. Each tool is a testament to our commitment to quality.</p>
+                            <h2 id="about_heading_choose_sub_heading_1">
+                                <?php
+                                if (isset($content_array['about_heading_choose_sub_heading_1'])) {
+                                    echo $content_array['about_heading_choose_sub_heading_1'];
+                                }
+                                ?> </h2>
+                            <p id="about_heading_choose_description_1">
+                                <?php
+                                if (isset($content_array['about_heading_choose_description_1'])) {
+                                    echo $content_array['about_heading_choose_description_1'];
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                     <div class="text-box">
@@ -158,8 +255,19 @@ if (isset($_SESSION['min_msg'])) {
                             <img src="./assets/images/right-tic.svg" alt="">
                         </div>
                         <div class="des">
-                            <h2>Innovation at Heart</h2>
-                            <p>We continuously challenge the status quo to equip you with tools that outpace industry norms.</p>
+                            <h2 id="about_heading_choose_sub_heading_2">
+                                <?php
+                                if (isset($content_array['about_heading_choose_sub_heading_2'])) {
+                                    echo $content_array['about_heading_choose_sub_heading_2'];
+                                }
+                                ?></h2>
+                            <p class="about_heading_choose_description_2">
+                                <?php
+                                if (isset($content_array['about_heading_choose_description_2'])) {
+                                    echo $content_array['about_heading_choose_description_2'];
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                     <div class="text-box">
@@ -167,8 +275,19 @@ if (isset($_SESSION['min_msg'])) {
                             <img src="./assets/images/right-tic.svg" alt="">
                         </div>
                         <div class="des">
-                            <h2>Cost-Effective Excellence</h2>
-                            <p>Recognizing your investment's worth, we engineer tools that not only ensure reliability but also offer exceptional value for your investment.</p>
+                            <h2 id="about_heading_choose_sub_heading_3">
+                                <?php
+                                if (isset($content_array['about_heading_choose_sub_heading_3'])) {
+                                    echo $content_array['about_heading_choose_sub_heading_3'];
+                                }
+                                ?></h2>
+                            <p class="about_heading_choose_description_3">
+                                <?php
+                                if (isset($content_array['about_heading_choose_description_3'])) {
+                                    echo $content_array['about_heading_choose_description_3'];
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                     <div class="text-box">
@@ -176,8 +295,19 @@ if (isset($_SESSION['min_msg'])) {
                             <img src="./assets/images/right-tic.svg" alt="">
                         </div>
                         <div class="des">
-                            <h2>Customer-Centric Focus</h2>
-                            <p>You're our core concern. Your satisfaction fuels our endeavors, and we stand by your side at every juncture.</p>
+                            <h2 id="about_heading_choose_sub_heading_4">
+                                <?php
+                                if (isset($content_array['about_heading_choose_sub_heading_4'])) {
+                                    echo $content_array['about_heading_choose_sub_heading_4'];
+                                }
+                                ?></h2>
+                            <p id="about_heading_choose_description_4">
+                                <?php
+                                if (isset($content_array['about_heading_choose_description_4'])) {
+                                    echo $content_array['about_heading_choose_description_4'];
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                     <div class="text-box">
@@ -185,8 +315,20 @@ if (isset($_SESSION['min_msg'])) {
                             <img src="./assets/images/right-tic.svg" alt="">
                         </div>
                         <div class="des">
-                            <h2>Steadfast Dedication</h2>
-                            <p>Amidst our evolving online presence, our dedication to furnishing impactful tools remains constant, promising you tools that truly matter.</p>
+                            <h2 id="about_heading_choose_sub_heading_5">
+                                <?php
+                                if (isset($content_array['about_heading_choose_sub_heading_5'])) {
+                                    echo $content_array['about_heading_choose_sub_heading_5'];
+                                }
+                                ?>
+                            </h2>
+                            <p id="about_heading_choose_description_5">
+                                <?php
+                                if (isset($content_array['about_heading_choose_description_5'])) {
+                                    echo $content_array['about_heading_choose_description_5'];
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -207,7 +349,13 @@ if (isset($_SESSION['min_msg'])) {
                     <img src="./assets/images/mincon_hero_bg2.png" alt="">
                 </div>
                 <div class="text">
-                    <h2>Elevating Mining and <br> Construction Excellence <br> Through Innovative Tools.</h2>
+                    <h2 id="about_sky_content_heading">
+                        <?php
+                        if (isset($content_array['about_sky_content_heading'])) {
+                            echo $content_array['about_sky_content_heading'];
+                        }
+                        ?>
+                    </h2> 
                     <img src="./assets/images/logo_1.svg" alt="">
                 </div>
             </div>

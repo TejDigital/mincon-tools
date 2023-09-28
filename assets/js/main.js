@@ -107,7 +107,7 @@ function validateNumber(elem, alertId) {
 $(".Sponsors_slider_area_1").owlCarousel({
   autoplay: false,
   autoplayHoverPause: false,
-  items: 5,
+  items: 4,
   loop: false,
   mouseDrag: true,
 
@@ -119,17 +119,17 @@ $(".Sponsors_slider_area_1").owlCarousel({
   dots: false,
   responsive: {
     320: {
-      items: 5,
+      items: 3,
     },
     600: {
-      items: 5,
+      items: 3,
     },
     767: {
-      items: 5,
+      items: 4,
     },
 
     1000: {
-      items: 5,
+      items: 4,
     },
   },
 });

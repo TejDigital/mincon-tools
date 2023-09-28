@@ -5,9 +5,10 @@ require('config/dbcon.php');
 if (isset($_POST['add'])) {
 
     $cat1 = $_POST['cat_upl'];
+    $lan = $_POST['lan'];
     if (!empty($cat1)) {
 
-        $sql1 = "SELECT * FROM blog_category_tbl WHERE blog_cat_name='{$cat1}'";
+        $sql1 = "SELECT * FROM blog_category_tbl WHERE blog_cat_name='{$cat1}' and lang_id = '{$lan}'";
 
         $query1 = mysqli_query($con, $sql1);
 
@@ -21,7 +22,7 @@ if (isset($_POST['add'])) {
             $cat = $_POST['cat_upl'];
             $status = $_POST['status'];
 
-            $query = "INSERT INTO blog_category_tbl(blog_cat_name,blog_cat_status)VALUES('$cat','$status')";
+            $query = "INSERT INTO blog_category_tbl(lang_id,blog_cat_name,blog_cat_status)VALUES('$lan','$cat','$status')";
             $sql = mysqli_query($con, $query);
 
             if ($sql) {

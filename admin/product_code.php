@@ -48,6 +48,7 @@ require('./config/dbcon.php');
 if (isset($_POST['add-product'])) {
 
     $name = $_POST['name'];
+    $lan = $_POST['lan'];
     $video_url = $_POST['video_url'];
     $status =  $_POST['status'];
     $category = $_POST['product_category'];
@@ -58,19 +59,6 @@ if (isset($_POST['add-product'])) {
     $img2 = $_FILES['img2']['name'];
     $img3 = $_FILES['img3']['name'];
     $img4 = $_FILES['img4']['name'];
-    $img5 = $_FILES['img5']['name'];
-
-    $en_weight= $_POST['en_weight'];
-    $en_length= $_POST['en_length'];
-    $en_air_consumption= $_POST['en_air_consumption'];
-    $en_strokes_x_mins= $_POST['en_strokes_x_mins'];
-    $en_rod_size= $_POST['en_rod_size'];
-
-    $spn_weight= $_POST['spn_weight'];
-    $spn_length= $_POST['spn_length'];
-    $spn_air_consumption= $_POST['spn_air_consumption'];
-    $spn_strokes_x_mins= $_POST['spn_strokes_x_mins'];
-    $spn_rod_size= $_POST['spn_rod_size'];
 
 
     if (
@@ -78,8 +66,7 @@ if (isset($_POST['add-product'])) {
         $_FILES['img1']["size"] > 700000 ||
         $_FILES['img2']["size"] > 700000 ||
         $_FILES['img3']["size"] > 700000 ||
-        $_FILES['img4']["size"] > 700000 ||
-        $_FILES['img5']["size"] > 700000 
+        $_FILES['img4']["size"] > 700000 
     ) {
         $_SESSION['min_msg'] = " image size is to Big";
         header('location:products.php');
@@ -88,7 +75,7 @@ if (isset($_POST['add-product'])) {
     $upload_folder = 'products_images/';
 
     $data = false;
-    if ( !empty($img )|| !empty($img1) || !empty($img2) || !empty($img3) || !empty($img4) || !empty($img5 )) {
+    if ( !empty($img )|| !empty($img1) || !empty($img2) || !empty($img3) || !empty($img4) ) {
         if (!empty($img)) {
             move_uploaded_file($_FILES['img']['tmp_name'], $upload_folder . $img);
         }
@@ -104,16 +91,14 @@ if (isset($_POST['add-product'])) {
         if (!empty($img4)) {
             move_uploaded_file($_FILES['img4']['tmp_name'], $upload_folder . $img4);
         }
-        if (!empty($img5)) {
-            move_uploaded_file($_FILES['img4']['tmp_name'], $upload_folder . $img5);
-        }
+    
         $data = true;
     } else {
         echo "no file";
     }
     if ($data == true) {
-        $sql = "INSERT INTO products_tbl(product_image,product_image1, product_image2, product_image3, product_image4, product_image5,product_name, product_category, product_status, product_description,product_video_url,en_weight,en_length,en_air_consumption,en_strokes_x_mins,en_rod_size,spn_weight,spn_length,spn_air_consumption,spn_strokes_x_mins,spn_rod_size)
-        VALUES('$img','$img1','$img2','$img3','$img4','$img5','$name','$category','$status','$des','$video_url','$en_weight','$en_length','$en_air_consumption','$en_strokes_x_mins','$en_rod_size','$spn_weight','$spn_length','$spn_air_consumption','$spn_strokes_x_mins','$spn_rod_size')";
+        $sql = "INSERT INTO products_tbl(lang_id,product_image,product_image1, product_image2, product_image3, product_image4,product_name, product_category, product_status, product_description,product_video_url)
+        VALUES('$lan','$img','$img1','$img2','$img3','$img4','$name','$category','$status','$des','$video_url')";
 
         $connect_db = mysqli_query($con, $sql);
         if ($connect_db) {

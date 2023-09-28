@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require('./includes/header.php'); ?>
 <?php require('./admin/config/dbcon.php'); ?>
@@ -13,9 +13,20 @@ if (isset($_SESSION['min_msg'])) {
         <img src="./assets/images/mincon_hero_bg1.png" alt="">
     </div>
     <div class="top_hero_text">
-        <h1>About Us</h1>
-        <p><span><a href="./index.php">Home</a></span>
-            << About us </p>
+        <h1 id="about_hero_main_heading">
+            <?php
+            if (isset($content_array['about_hero_main_heading'])) {
+                echo $content_array['about_hero_main_heading'];
+            }
+            ?>
+        </h1>
+        <p id="about_hero_nav_heading">
+            <?php
+            if (isset($content_array['about_hero_nav_heading'])) {
+                echo $content_array['about_hero_nav_heading'];
+            }
+            ?>
+        </p>
     </div>
 </section>
 <section class="about_2">
@@ -23,9 +34,27 @@ if (isset($_SESSION['min_msg'])) {
         <div class="row flex-change">
             <div class="col-md-6">
                 <div class="text">
-                    <h1>About Mincon Tools</h1>
-                    <p>Welcome to Mincon Tools - Your Partner in Precision Drilling Solutions!</p>
-                    <p>At Mincon Tools LLC, we have a legacy of being a trusted provider of top-notch tools for numerous years. We are excited to take our commitment a step further by directly engaging with our customers and sharing the resulting savings with them. We recognize the significance of equipping professionals with the right tools, enabling them to carry out their tasks safely and efficiently. Our team of experts dedicates themselves to crafting and producing innovative mining tools that embody reliability and cost-effectiveness.</p>
+                    <h1 id="about_heading">
+                        <?php
+                        if (isset($content_array['about_heading'])) {
+                            echo $content_array['about_heading'];
+                        }
+                        ?>
+                    </h1>
+                    <p id="about_sub_heading">
+                        <?php
+                        if (isset($content_array['about_sub_heading'])) {
+                            echo $content_array['about_sub_heading'];
+                        }
+                        ?>
+                        !</p>
+                    <p id="about_description_1">
+                        <?php
+                        if (isset($content_array['about_description_1'])) {
+                            echo $content_array['about_description_1'];
+                        }
+                        ?>
+                    </p>
                 </div>
             </div>
             <div class="col-md-6">
@@ -42,9 +71,21 @@ if (isset($_SESSION['min_msg'])) {
             </div>
             <div class="col-md-6">
                 <div class="text">
-                    <p>In an industry where established competitors flaunt feature-rich websites, we acknowledge that our website might be in its early stages. However, our products are a testament to our dedication. Our focus has been set on creating mining tools of unparalleled quality and longevity. Our diligent team has poured their efforts into developing pioneering solutions that impeccably address the requirements of contemporary mining professionals. While we are actively working on enhancing our online presence, rest assured that our commitment to upholding quality and ensuring customer satisfaction remains steadfast.</p>
+                    <p id="about_description_2">
+                        <?php
+                        if (isset($content_array['about_description_2'])) {
+                            echo $content_array['about_description_2'];
+                        }
+                        ?>
+                    </p>
                     <div class="btn1">
-                        <a href="./contact.php">Contact Us Now</a>
+                        <a href="./contact.php" id="about_btn1">
+                            <?php
+                            if (isset($content_array['about_btn1'])) {
+                                echo $content_array['about_btn1'];
+                            }
+                            ?>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -57,8 +98,20 @@ if (isset($_SESSION['min_msg'])) {
             <div class="container">
                 <div class="col-md-12">
                     <div class="text">
-                        <h1>Our Promise to You</h1>
-                        <p>If you seek mining tools that stand head and shoulders above the rest, Mincon Tools LLC is your answer. Our products speak volumes about the excellence we bring to the table. Whether you're a mining veteran or a newcomer to the field, our offerings are designed to exceed your expectations. We have tirelessly pursued innovation to cater to the evolving demands of the industry, and our commitment to enhancing your experience remains unwavering.</p>
+                        <h1 id="about_3_heading">
+                            <?php
+                            if (isset($content_array['about_3_heading'])) {
+                                echo $content_array['about_3_heading'];
+                            }
+                            ?>
+                        </h1>
+                        <p id="about_3_description">
+                            <?php
+                            if (isset($content_array['about_3_description'])) {
+                                echo $content_array['about_3_description'];
+                            }
+                            ?>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -68,7 +121,12 @@ if (isset($_SESSION['min_msg'])) {
 <section class="mincon_choose">
     <div class="container">
         <div class="row">
-            <h1>Why Choose Mincon Tools ?</h1>
+            <h1 id="about_heading_choose_content_heading">
+                <?php
+                if (isset($content_array['about_heading_choose_content_heading'])) {
+                    echo $content_array['about_heading_choose_content_heading'];
+                }
+                ?> ?</h1>
             <div class="col-md-6">
                 <div class="text">
                     <div class="text-box">
@@ -76,8 +134,19 @@ if (isset($_SESSION['min_msg'])) {
                             <img src="./assets/images/right-tic.svg" alt="">
                         </div>
                         <div class="des">
-                            <h2>Quality Assurance</h2>
-                            <p>Our tools are crafted with precision, durability, and performance in mind. Each tool is a testament to our commitment to quality.</p>
+                            <h2 id="about_heading_choose_sub_heading_1">
+                                <?php
+                                if (isset($content_array['about_heading_choose_sub_heading_1'])) {
+                                    echo $content_array['about_heading_choose_sub_heading_1'];
+                                }
+                                ?> </h2>
+                            <p id="about_heading_choose_description_1">
+                                <?php
+                                if (isset($content_array['about_heading_choose_description_1'])) {
+                                    echo $content_array['about_heading_choose_description_1'];
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                     <div class="text-box">
@@ -85,8 +154,19 @@ if (isset($_SESSION['min_msg'])) {
                             <img src="./assets/images/right-tic.svg" alt="">
                         </div>
                         <div class="des">
-                            <h2>Innovation at Heart</h2>
-                            <p>We continuously challenge the status quo to equip you with tools that outpace industry norms.</p>
+                            <h2 id="about_heading_choose_sub_heading_2">
+                                <?php
+                                if (isset($content_array['about_heading_choose_sub_heading_2'])) {
+                                    echo $content_array['about_heading_choose_sub_heading_2'];
+                                }
+                                ?></h2>
+                            <p class="about_heading_choose_description_2">
+                                <?php
+                                if (isset($content_array['about_heading_choose_description_2'])) {
+                                    echo $content_array['about_heading_choose_description_2'];
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                     <div class="text-box">
@@ -94,8 +174,19 @@ if (isset($_SESSION['min_msg'])) {
                             <img src="./assets/images/right-tic.svg" alt="">
                         </div>
                         <div class="des">
-                            <h2>Cost-Effective Excellence</h2>
-                            <p>Recognizing your investment's worth, we engineer tools that not only ensure reliability but also offer exceptional value for your investment.</p>
+                            <h2 id="about_heading_choose_sub_heading_3">
+                                <?php
+                                if (isset($content_array['about_heading_choose_sub_heading_3'])) {
+                                    echo $content_array['about_heading_choose_sub_heading_3'];
+                                }
+                                ?></h2>
+                            <p class="about_heading_choose_description_3">
+                                <?php
+                                if (isset($content_array['about_heading_choose_description_3'])) {
+                                    echo $content_array['about_heading_choose_description_3'];
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                     <div class="text-box">
@@ -103,8 +194,19 @@ if (isset($_SESSION['min_msg'])) {
                             <img src="./assets/images/right-tic.svg" alt="">
                         </div>
                         <div class="des">
-                            <h2>Customer-Centric Focus</h2>
-                            <p>You're our core concern. Your satisfaction fuels our endeavors, and we stand by your side at every juncture.</p>
+                            <h2 id="about_heading_choose_sub_heading_4">
+                                <?php
+                                if (isset($content_array['about_heading_choose_sub_heading_4'])) {
+                                    echo $content_array['about_heading_choose_sub_heading_4'];
+                                }
+                                ?></h2>
+                            <p id="about_heading_choose_description_4">
+                                <?php
+                                if (isset($content_array['about_heading_choose_description_4'])) {
+                                    echo $content_array['about_heading_choose_description_4'];
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                     <div class="text-box">
@@ -112,8 +214,20 @@ if (isset($_SESSION['min_msg'])) {
                             <img src="./assets/images/right-tic.svg" alt="">
                         </div>
                         <div class="des">
-                            <h2>Steadfast Dedication</h2>
-                            <p>Amidst our evolving online presence, our dedication to furnishing impactful tools remains constant, promising you tools that truly matter.</p>
+                            <h2 id="about_heading_choose_sub_heading_5">
+                                <?php
+                                if (isset($content_array['about_heading_choose_sub_heading_5'])) {
+                                    echo $content_array['about_heading_choose_sub_heading_5'];
+                                }
+                                ?>
+                            </h2>
+                            <p id="about_heading_choose_description_5">
+                                <?php
+                                if (isset($content_array['about_heading_choose_description_5'])) {
+                                    echo $content_array['about_heading_choose_description_5'];
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -134,7 +248,13 @@ if (isset($_SESSION['min_msg'])) {
                     <img src="./assets/images/mincon_hero_bg2.png" alt="">
                 </div>
                 <div class="text">
-                    <h2>Elevating Mining and <br> Construction Excellence <br> Through Innovative Tools.</h2>
+                    <h2 id="about_sky_content_heading">
+                        <?php
+                        if (isset($content_array['about_sky_content_heading'])) {
+                            echo $content_array['about_sky_content_heading'];
+                        }
+                        ?>
+                    </h2>
                     <img src="./assets/images/logo_1.svg" alt="">
                 </div>
             </div>
@@ -142,9 +262,15 @@ if (isset($_SESSION['min_msg'])) {
     </div>
 </section>
 <section class="mincon_end_text">
-       <div class="container">
+    <div class="container">
         <div class="end_text">
-            <p>Mincon Tools: Where Compromise Has No Place. Join forces with Mincon Tools LLC to secure the tools that drive your success in mining and construction. Explore our product spectrum, embrace innovation, and witness the metamorphosis of your mining operations.</p>
+            <p id="about_end_text_content">
+                <?php
+                if (isset($content_array['about_end_text_content'])) {
+                    echo $content_array['about_end_text_content'];
+                }
+                ?>
+            </p>
         </div>
     </div>
 </section>

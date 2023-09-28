@@ -28,6 +28,7 @@ if (isset($_GET['id'])) {
             <form action="product_code.php" method="POST" enctype="multipart/form-data">
                 <div class="col-md-12">
                     <div class="row">
+                        <h6>Product Language : <?=$data['lang_id'] == 1 ?'English':'Spanish'?></h6>
                         <div class="col-md-4">
                             <p>Old Main Image</p>
                             <img src="./products_images/<?= $data['product_image'] ?>" height="50%" width="100%" alt="">
@@ -66,7 +67,7 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <div class="row rounded mt-3" style="background-color:#d7d7d7;">
                         <div class="col-md-6 p-2">
                             <h5>For MG</h5>
@@ -115,7 +116,7 @@ if (isset($_GET['id'])) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-12 px-3 my-5">
                     <input type="hidden" name="id" value="<?= $data['product_id'] ?>">
                     <label for="">Product Description</label>

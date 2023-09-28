@@ -1,5 +1,34 @@
 <?php require('./admin/config/dbcon.php');
+
+$lan = 1;
+if (isset($_GET['lang'])) {
+    $lan = $_GET['lang'];
+    
+}
+$url_product_id = "";
+if (isset($_GET['product_id'])) {
+    $url_product_id = $_GET['product_id'];
+    
+}
+$url_blog_id = "";
+if (isset($_GET['blog_id'])) {
+    $url_blog_id = $_GET['blog_id'];
+    
+}
+$url_cat_id = "";
+if (isset($_GET['cat_id'])) {
+    $url_blog_id = $_GET['cat_id'];
+}
+
+$ul_sql = "SELECT * FROM ui_table WHERE  lang_id = '$lan'";
+$ul_query = mysqli_query($con, $ul_sql);
+
+$content_array = [];
+while ($content = mysqli_fetch_assoc($ul_query)) {
+    $content_array[$content['content_id']] = $content['content'];
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,24 +68,22 @@
                         <div class="col-md-12 d-flex align-items-center justify-content-between flex-wrap">
                             <div class="address d-flex align-items-center justify-content-between flex-wrap">
                                 <div class="div top_nav_item px-2">
-                                    <p class="m-0 view_display"><a href="tel:9876543210 "> <span class="pe-1"> <i class="fa-solid fa-phone-volume"></i></span>+91 98765 43210 </a></p>
-                                    <p class="m-0 none_display"><a href="tel:9876543210 "> <span class="pe-1"> <i class="fa-solid fa-phone-volume"></i></span></a></p>
+                                    <p class="m-0 view_display"><a href="tel:+919543725520"> <span class="pe-1"> <i class="fa-solid fa-phone-volume"></i></span>+91 954 372 5520</a></p>
+                                    <p class="m-0 none_display"><a href="tel:+919543725520"> <span class="pe-1"> <i class="fa-solid fa-phone-volume"></i></span></a></p>
                                 </div>
                                 <div class="div top_nav_item px-2">
-                                    <p class="m-0 view_display"> <a href="mailto:info.theemanager@gmail.com "> <span class="pe-1"> <i class="fa-regular fa-envelope"></i></span> info.theemanager@gmail.com </a></p>
-                                    <p class="m-0 none_display"> <a href="mailto:info.theemanager@gmail.com "> <span class="pe-1"> <i class="fa-regular fa-envelope"></i></span> </a></p>
+                                    <p class="m-0 view_display"> <a href="mailto:info@mincontools.com "> <span class="pe-1"> <i class="fa-regular fa-envelope"></i></span> info@mincontools.com </a></p>
+                                    <p class="m-0 none_display"> <a href="mailto:info@mincontools.com "> <span class="pe-1"> <i class="fa-regular fa-envelope"></i></span> </a></p>
                                 </div>
                             </div>
                             <div class="head_end">
-                                <div class="dropdown-area">
+                                <!-- <div class="dropdown-area">
                                     <p class="m-0 p-0 pe-2">Language:</p>
-                                    <select name="" id="languageSelect">
-                                        <option value="en">English</option>
-                                        <option value="hi">Hindi</option>
-                                        <option value="ur">Urdu</option>
+                                    <select name="" id="languageSelect" onchange="changeLanguage()">
+                                        <option value="1" >English</option>
+                                        <option value="2" >Spanish</option>
                                     </select>
-                                    <!-- <div id="google_translate_element"></div> -->
-                                </div>
+                                </div> -->
                                 <div class="top_nav_social d-flex align-items-center justify-content-evenly gap-4">
                                     <a href="#"> <i class="fa-brands fa-facebook"></i></a>
                                     <a href="#"> <i class="fa-brands fa-instagram"></i></a>
@@ -85,31 +112,77 @@
                     <div class="collapse navbar-collapse navbar_mobile" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto px-5">
                             <li class="nav-item">
-                                <a class="nav-link" href="./index.php">Home </a>
+                                <a class="nav-link" href="./index.php?lang=<?= $lan ?>" id="header_link_home">
+                                <?php
+                                  if (isset($content_array['header_link_home'])) {
+                                    echo $content_array['header_link_home'] ;
+                                }
+                                ?>
+                            </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./about.php">About Us</a>
+                                <a class="nav-link" href="./about.php?lang=<?= $lan ?>" id="">
+                                <?php
+                                  if (isset($content_array['header_link_about'])) {
+                                    echo $content_array['header_link_about'] ;
+                                }
+                                ?>
+                            </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="./products.php">Products</a>
+                                <a class="nav-link" href="./products.php?lang=<?= $lan ?>" id="header_link_product">
+                                      <?php
+                                  if (isset($content_array['header_link_product'])) {
+                                    echo $content_array['header_link_product'] ;
+                                }
+                                ?></a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="./blog.php">Blogs</a>
+                                <a class="nav-link" href="./blog.php?lang=<?= $lan ?>" id="header_link_blog">      <?php
+                                  if (isset($content_array['header_link_blog'])) {
+                                    echo $content_array['header_link_blog'] ;
+                                }
+                                ?></a>
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./contact.php">Contact </a>
+                                <a class="nav-link" href="./contact.php?lang=<?= $lan ?>" id="header_link_contact"> <?php
+                                  if (isset($content_array['header_link_contact'])) {
+                                    echo $content_array['header_link_contact'] ;
+                                }
+                                ?> </a>
+                            </li>
+                            <input type="hidden" value="<?=$url_product_id?>" id="url_product_id"> 
+                            <input type="hidden" value="<?=$url_blog_id?>" id="url_blog_id"> 
+                            <input type="hidden" value="<?=$url_cat_id?>" id="url_cat_id"> 
+                            <li class="nav-item">
+                                <div class="dropdown-area">
+                                    <p class="p-0 m-0" id="header_link_language"> <?php
+                                  if (isset($content_array['header_link_language'])) {
+                                    echo $content_array['header_link_language'] ;
+                                }
+                                ?></p>
+                                    <select name="" id="languageSelect" onchange="changeLanguage()">
+
+                                        <option value="1" <?php if ($lan == 1) {
+                                                                echo "selected";
+                                                            } ?>>English</option>
+                                        <option value="2" <?php if ($lan == 2) {
+                                                                echo "selected";
+                                                            } ?>>Spanish</option>
+                                    </select>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
                 <nav class="">
-                    <div class="Sponsors_slider_area_1 owl-carousel owl-theme">
+                    <div class="Sponsors_slider_area_1 owl-carousel owl-theme" id="nav_drop">
                         <ul class="drop-Down">
                             <?php
-                            $sql2 = "SELECT * FROM category_tbl WHERE cat_status = 1 ";
+                            $sql2 = "SELECT * FROM category_tbl WHERE cat_status = 1 AND lang_id = '$lan'";
                             $query2 = mysqli_query($con, $sql2);
                             if (mysqli_num_rows($query2)) {
                                 foreach ($query2 as $result1) {
@@ -119,54 +192,18 @@
                                         <p class="click-link"><?= $result1['cat_name'] ?></p>
                                         <ul class="drop_item">
                                             <?php
-                                            $sql3 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id1'";
+                                            $sql3 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id1' AND lang_id = '$lan' ";
                                             $pro_query1 = mysqli_query($con, $sql3);
                                             if (mysqli_num_rows($pro_query1)) {
                                                 foreach ($pro_query1 as $pro_data1) {
                                             ?>
-                                                    <li><a href="./cart_detail.php?id=<?=$pro_data1['product_id']?>"><?= $pro_data1['product_name']?></a></li>
+                                                    <li> <a href="./cart_detail.php?id=<?= $pro_data1['product_id'] ?>&lang=<?= $lan ?>"><?= $pro_data1['product_name'] ?></a></li>
                                             <?php
                                                 }
                                             }
                                             ?>
                                         </ul>
                                     </li>
-                                    <!-- <li class="drop-list">
-                            <p class="click-link">Link1</p>
-                            <ul class="drop_item">
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                            </ul>
-                        </li> 
-                         <li class="drop-list">
-                            <p class="click-link">Link1</p>
-                            <ul class="drop_item">
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                            </ul>
-                        </li>
-                        <li class="drop-list">
-                            <p class="click-link">Link1</p>
-                            <ul class="drop_item">
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                            </ul>
-                        </li>
-                        <li class="drop-list">
-                            <p class="click-link">Link1</p>
-                            <ul class="drop_item">
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                                <li><a href="#!">link1</a></li>
-                            </ul>
-                        </li> -->
                             <?php
                                 }
                             }
@@ -214,8 +251,8 @@
                                             <input type="text" class="input-box" name="email" placeholder="Email Address">
                                         </div>
                                         <div class="form-group">
-                                            <span id="msg_alert2" style="color:red;"></span>
-                                            <input type="text" class="input-box" onkeyup="validateNumber(this,'msg_alert2')" name="mobile" placeholder="Contact Number">
+                                            <span id="msg_alert3" style="color:red;"></span>
+                                            <input type="text" class="input-box" onkeyup="validateNumber(this,'msg_alert3')" name="mobile" placeholder="Contact Number">
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="input-box" name="company" placeholder="Company Name">

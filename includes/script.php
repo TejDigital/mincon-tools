@@ -104,6 +104,17 @@
 //         }
 </script>
 
+<script>
+    function changeLanguage(){
+        var languageSelect = $('#languageSelect').val();
+        var url_product_id = $('#url_product_id').val();
+        var url_blog_id = $('#url_blog_id').val();
+        var url_cat_id = $('#url_cat_id').val();
+       var newURL = window.location.pathname + '?lang=' + languageSelect +'&product_id='+ url_product_id + '&blog_id=' + url_blog_id + '$cat_id=' + url_cat_id;
+        alert(newURL);
+        window.location.href = newURL;
+    }
+</script>
 </body>
 
 </html>

@@ -12,6 +12,7 @@
 }
 .cart .cart_box .img img{
    height: 50px;
+   width: 80%;
 }
 .cart .cart_box .text{
 position: relative;
@@ -26,7 +27,16 @@ padding: 0 1rem;
 cursor: pointer;
  border: none;
  background-color: #EBAB56;
+ border: 1.5px solid transparent;
  color: #fff;
+ padding: 0.5rem;
+}
+.cart .cart_box .btn1 p:hover{
+cursor: pointer;
+ border: none;
+ color: #EBAB56;
+ background-color: #fff;
+ border: 1.5px solid #EBAB56;
  padding: 0.5rem;
 }
 

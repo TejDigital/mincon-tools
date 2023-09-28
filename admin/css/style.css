@@ -314,3 +314,17 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+
+
+.tab_box1{
+    display: none;
+}
+.active-tab1{
+    display: block;
+}
+.tab_box{
+    display: none;
+}
+.active-tab{
+    display: block;
+}

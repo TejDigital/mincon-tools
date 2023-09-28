@@ -62,6 +62,11 @@ if (isset($_GET['id'])) {
                         } ?></p>
                     </div>
                     <div class="col-md-3">
+                        <label for="" class="label">Product language</label>
+                        <p class="text-dark" style="font-size: 1rem; font-weight:700;">
+                         <?= $data['lang_id'] == 1 ? 'English':'Spanish'?></p>
+                    </div>
+                    <div class="col-md-3">
                         <label for="" class="label">Product status</label>
                         <p class="text-dark" style="font-size: 1rem; font-weight:700;">
                         <?php if ($data['product_status'] == 1) {
