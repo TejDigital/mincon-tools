@@ -87,7 +87,8 @@ require('config/dbcon.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id ORDER BY blog_tbl.created_at DESC ";
+                                    $query = "SELECT * FROM blog_tbl  ORDER BY created_at DESC ";
+                                    // $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id ORDER BY blog_tbl.created_at DESC ";
                                     $db_query_connect = mysqli_query($con, $query);
                                     $count = 1;
                                     if (mysqli_num_rows($db_query_connect) > 0) {
@@ -95,7 +96,16 @@ require('config/dbcon.php');
                                     ?>
                                         </tr>
                                             <td><?= $count ++?></td>
-                                            <td><?= $filds['blog_cat_name']?></td>
+                                            <td><?php
+                                                $sql = "SELECT * FROM blog_category_tbl";
+                                                $query2 = mysqli_query($con,$sql);
+                                                $data = mysqli_fetch_assoc($query2);
+                                                $cat_name = $data['blog_cat_id'];
+                                                if($cat_name == $filds['category']){
+                                                    echo $data['blog_cat_name'];
+                                                }
+                                             ?>
+                                             </td>
                                             <td><?= $filds['A_name']?></td>
                                             <td><?= $filds['title'] ?></td>
                                             <td><?= $filds['blog_lang_id'] == 1 ? 'English':'Spanish' ?></td>
@@ -107,16 +117,13 @@ require('config/dbcon.php');
                                                 else{
                                                     echo "Inactive";
                                                 }
-                                                // } else {
-                                                //     echo "invailid";
-                                                // }
                                                 ?>
                                             </td>
                                             <td>
-                                                <a href=view_blog.php?id=<?php echo $filds['blog_id']; ?> class='btn btn-info btn-sm'> View</a>
+                                                <a href="view_blog.php?blog_id=<?=$filds['blog_id']?>&lang=<?=$filds['blog_lang_id']?>" class='btn btn-info btn-sm'> View</a>
                                             </td>
                                             <td>
-                                                <a href=Edit_des.php?id=<?php echo $filds['blog_id']; ?> class='btn btn-info btn-sm '>Edit</a>
+                                                <a href="Edit_des.php?blog_id=<?=$filds['blog_id']?>&lang=<?=$filds['blog_lang_id']?>" class='btn btn-info btn-sm '>Edit</a>
                                             </td>
                                             <td>
                                                 <button type='button' value=<?php echo $filds['blog_id']; ?> class='btn btn-danger delete_des_btn btn-sm '>Delete</button>

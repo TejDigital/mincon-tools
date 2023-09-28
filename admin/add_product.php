@@ -29,6 +29,10 @@ if (isset($_SESSION['min_msg'])) {
                             <div class="col-md-12">
                                 <input type="hidden" value="1" name="lan">
                                 <div class="row">
+                                    <div class="form-group my-1">
+                                        <label for="" class="text-dark">ADD Product Number</label>
+                                        <input type="number" name="product_num" class="form-control w-25">
+                                    </div>
                                     <div class="col-md-4">
                                         <div class="form-group my-1">
                                             <label for="" class="text-dark">Product Main Image</label>
@@ -123,6 +127,10 @@ if (isset($_SESSION['min_msg'])) {
                             <div class="col-md-12">
                                 <div class="row">
                                     <input type="hidden" value="2" name="lan">
+                                    <div class="form-group my-1">
+                                        <label for="" class="text-dark">ADD Product Number</label>
+                                        <input type="number" name="product_num" class="form-control w-25">
+                                    </div>
                                     <div class="col-md-4">
                                         <div class="form-group my-1">
                                             <label for="" class="text-dark">Product Main Image</label>

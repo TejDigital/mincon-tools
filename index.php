@@ -93,14 +93,20 @@ if (mysqli_num_rows($query)) {
                                         <input type="hidden" value="<?= $pro_data['product_image'] ?>" name="image">
                                         <input type="hidden" value="<?= $result['cat_name'] ?>" name="cat_name">
                                         <div class="box">
-                                            <a href="./cart_detail.php?id=<?= $pro_data['product_id'] ?>&lang=<?= $lan ?>">
+                                            <a href="./cart_detail.php?product_id=<?= $pro_data['product_id'] ?>&lang=<?= $lan ?>">
                                                 <div class="img">
                                                     <img src="./admin/products_images/<?= $pro_data['product_image'] ?>" alt="">
                                                 </div>
                                             </a>
                                             <div class="text">
                                                 <p><?= $pro_data['product_name'] ?></p>
-                                                <button type="submit" class="add" name="add">Add to Enquire</button>
+                                                <button type="submit" class="add" name="add" id="home_add_to_enquire">
+                                                <?php
+                    if (isset($content_array['home_add_to_enquire'])) {
+                        echo $content_array['home_add_to_enquire'] ;
+                    }
+                    ?>
+                                                </button>
                                             </div>
                                         </div>
                                     </form>

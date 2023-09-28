@@ -49,7 +49,7 @@ require('includes/header.php');
                                     ?>
                                 <ul>
                                     <li class="d-flex align-items-center justify-content-between">
-                                        <a href="category_blog.php?cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>">
+                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>">
                                             <?= $result['blog_cat_name'] ?>
                                         </a>
                                         <?php
@@ -90,7 +90,7 @@ require('includes/header.php');
                                 while ($result = mysqli_fetch_assoc($query)) {
                                 ?>
                                     <li class="as_product p-0">
-                                        <a href="category_blog.php?cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>">
+                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>">
                                             <div class="as_productimg">
                                                 <!-- <img src="admin/blog_des_files/<?= $result['image'] ?>" alt=""> -->
                                             </div>
@@ -118,12 +118,14 @@ require('includes/header.php');
                     ?>
                     <form action="" method="get">
                         <?php
-                        if (isset($_GET['cat_id'])) {
-                            $cat_id = $_GET['cat_id'];
+                        if (isset($_GET['blog_cat_id']) && isset($_GET['blog_id'])) {
+                            $cat_id = $_GET['blog_cat_id'];
+                            $blog_id = $_GET['blog_id'];
+                            $lang_id = $_GET['lang'];
                             if (empty($id)) {
                                 header('location:blog.php');
                             }
-                            $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE blog_cat_id='$cat_id' AND blog_lang_id= '$lan' ORDER BY blog_tbl.created_at DESC ";
+                            $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE blog_cat_id='$cat_id' AND blog_id = '$blog_id' AND blog_lang_id= '$lang_id' AND lang_id = '$lang_id' ORDER BY blog_tbl.created_at DESC ";
                             $query_run = mysqli_query($con, $query);
                             $num = mysqli_num_rows($query_run) > 0;
 
@@ -142,13 +144,13 @@ require('includes/header.php');
                                                 <div class="as_blog_detail">
                                                     <ul>
                                                         <li><a href="javascript:;" style="pointer-events:none;"><i class="fa-solid fa-user"></i>By -<?= $des['A_name'] ?></a></li>
-                                                        <li><a href="category_blog.php?cat_id=<?= $des['blog_cat_id'] ?>&lang=<?= $lang_id ?>"><?= $des['blog_cat_name'] ?></a></li>
+                                                        <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id'] ?>&lang=<?= $lan ?>"><?= $des['blog_cat_name'] ?></a></li>
                                                     </ul>
                                                     <h4 class="as_subheading"><span> <?php echo $des['title'] ?></span></h4>
                                                     <p class="as_font14 as_margin0" style="font-size: 0.9rem; font-weight:500;"><?php echo strip_tags(substr($des['b_des_mini'], 0, 300)) ?>...</p>
 
                                                     <div class=" btn1">
-                                                        <a href="blog-detail.php?id=<?php echo  $des['blog_id'] ?>&lang=<?= $lang_id ?>" class="as_btn mt-2">Read More</a>
+                                                        <a href="blog-detail.php?blog_id=<?php echo  $des['blog_id'] ?>&lang=<?= $lan ?>" class="as_btn mt-2">Read More</a>
                                                     </div>
                                                 </div>
                                             </div>

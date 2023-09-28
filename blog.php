@@ -38,18 +38,19 @@
                                 ?>
                             </h3>
                             <?php
-                            $select = "SELECT * FROM blog_category_tbl where lang_id = '$lan'";
+                            $select = "SELECT * FROM blog_category_tbl LEFT JOIN blog_tbl ON  blog_category_tbl.blog_cat_id  = blog_tbl.category where lang_id = '$lan' AND blog_lang_id = '$lan'";
                             $query = mysqli_query($con, $select);
-                            $rows = mysqli_num_rows($query);
+                            if(mysqli_num_rows($query)){
+                            // $rows = mysqli_num_rows($query);
                             while ($result = mysqli_fetch_assoc($query)) {
                             ?>
                                 <ul>
-                                    <li class="d-flex align-items-center justify-content-between"><a href="category_blog.php?cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>">
+                                    <li class="d-flex align-items-center justify-content-between"><a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>&blog_id=<?=$result['blog_id']?>">
                                             <?= $result['blog_cat_name'] ?>
                                         </a>
                                         <?php
                                         $id = $result['blog_cat_id'];
-                                        $sql1 = "SELECT * FROM blog_tbl where category='$id'";
+                                        $sql1 = "SELECT * FROM blog_tbl where category='$id' And blog_lang_id = '$lan'";
                                         $query1 = mysqli_query($con, $sql1);
                                         $rows = mysqli_num_rows($query1);
                                         if ($rows) {
@@ -61,6 +62,7 @@
                                     </li>
                                 </ul>
                             <?php
+                            }
                             }
                             ?>
                         </div>
@@ -82,7 +84,7 @@
                                 while ($result = mysqli_fetch_assoc($query)) {
                                 ?>
                                     <li class="as_product p-0">
-                                        <a href="category_blog.php?cat_id=<?= $result['blog_cat_id'] ?>">
+                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>">
                                             <div class="as_productimg">
                                                 <!-- <img src="admin/blog_des_files/<?= $result['image'] ?>" alt=""> -->
                                             </div>
@@ -138,7 +140,7 @@
                                         <div class="as_blog_detail">
                                             <ul>
                                                 <li><a href="javascript:;" style="pointer-events:none;"><i class="fa-solid fa-user"></i>By -<?= $des['A_name'] ?></a></li>
-                                                <li><a href="category_blog.php?cat_id=<?= $des['blog_cat_id'] ?>"><?= $des['blog_cat_name'] ?></a></li>
+                                                <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id']?>&lang=<?=$lan?>"><?= $des['blog_cat_name'] ?></a></li>
                                             </ul>
                                             <h4 class="as_subheading"><span> <?php echo $des['title'] ?></span></h4>
                                             <p class="as_font14 as_margin0" style="font-size: 0.9rem; font-weight:500;"><?php echo strip_tags(substr($des['b_des_mini'], 0, 300)) ?>...</p>

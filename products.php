@@ -1,6 +1,6 @@
 <?php
 session_start();
- require('./includes/header.php'); ?>
+require('./includes/header.php'); ?>
 <?php require('./admin/config/dbcon.php'); ?>
 
 <section class="top_hero">
@@ -9,19 +9,19 @@ session_start();
     </div>
     <div class="top_hero_text">
         <h1 id="product_hero_heading">
-        <?php
+            <?php
             if (isset($content_array['product_hero_heading'])) {
                 echo $content_array['product_hero_heading'];
             }
             ?>
         </h1>
         <p id="product_hero_sub_heading">
-        <?php
+            <?php
             if (isset($content_array['product_hero_sub_heading'])) {
                 echo $content_array['product_hero_sub_heading'];
             }
             ?>
-         </p>
+        </p>
     </div>
 </section>
 <?php
@@ -36,7 +36,7 @@ $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 and lang_id = '$lan'";
 $query = mysqli_query($con, $sql);
 if (mysqli_num_rows($query)) {
     foreach ($query as $result) {
-        $id = $result['cat_id'] ;
+        $id = $result['cat_id'];
 ?>
         <section class="home_product product_line" id="<?= $result['cat_name'] ?>">
             <div class="container">
@@ -60,15 +60,22 @@ if (mysqli_num_rows($query)) {
                                         <input type="hidden" value="<?= $pro_data['lang_id'] ?>" name="lan_id">
                                         <input type="hidden" value="<?= $result['cat_name'] ?>" name="cat_name">
                                         <div class="box">
-                                            <a href="./cart_detail.php?id=<?=$pro_data['product_id']?>&lang=<?=$lan?>">
+                                            <a href="./cart_detail.php?product_id=<?= $pro_data['product_id'] ?>&lang=<?= $lan ?>">
                                                 <div class="img item_detail">
-                                                    <!-- <input type="hidden" class="item_id" name="item_id" value="<?=$pro_data['product_id']?>"> -->
+                                                    <!-- <input type="hidden" class="item_id" name="item_id" value="<?= $pro_data['product_id'] ?>"> -->
                                                     <img src="./admin/products_images/<?= $pro_data['product_image'] ?>" alt="">
                                                 </div>
                                             </a>
                                             <div class="text">
                                                 <p><?= $pro_data['product_name'] ?></p>
-                                                <button type="submit" class="add" name="add">Add to Enquire</button>
+                                                <button type="submit" class="add" name="add" id="home_add_to_enquire">
+                                                    <?php
+                                                    if (isset($content_array['home_add_to_enquire'])) {
+                                                        echo $content_array['home_add_to_enquire'];
+                                                    }
+                                                    ?>
+
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -98,13 +105,13 @@ if (mysqli_num_rows($query)) {
                     <img src="./assets/images/mincon_hero_bg2.png" alt="">
                 </div>
                 <div class="text">
-                <h2 id="about_sky_content_heading">
+                    <h2 id="about_sky_content_heading">
                         <?php
                         if (isset($content_array['about_sky_content_heading'])) {
                             echo $content_array['about_sky_content_heading'];
                         }
                         ?>
-                    </h2>                    <img src="./assets/images/logo_1.svg" alt="">
+                    </h2> <img src="./assets/images/logo_1.svg" alt="">
                 </div>
             </div>
         </div>

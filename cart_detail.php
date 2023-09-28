@@ -4,8 +4,8 @@
 require('./includes/header.php'); ?>
 <?php
 $data = [];
-if (isset($_GET['id']) && isset($_GET['lang'])) {
-    $product_id = $_GET['id'];
+if (isset($_GET['product_id']) && isset($_GET['lang'])) {
+    $product_id = $_GET['product_id'];
     $lang_id = $_GET['lang'];
     $sql2 = "SELECT * FROM products_tbl WHERE product_id = '$product_id' AND lang_id = '$lang_id'";
     $query2 = mysqli_query($con, $sql2);
@@ -83,7 +83,13 @@ $data2 = mysqli_fetch_assoc($query3);
                         if ($data['product_video_url'] != "") {
                         ?>
                             <div class="sm_img">
-                                <a href="<?= $data['product_video_url'] ?>" class="popup">Watch <i class="fa-solid fa-video"></i></a>
+                                <a href="<?= $data['product_video_url'] ?>" class="popup" id="cart_details_product_video_watch">
+                                    <?php
+                                    if (isset($content_array['cart_details_product_video_watch'])) {
+                                        echo $content_array['cart_details_product_video_watch'];
+                                    }
+                                    ?>
+                                    <i class="fa-solid fa-video"></i></a>
                             </div>
                         <?php
                         }
@@ -109,7 +115,13 @@ $data2 = mysqli_fetch_assoc($query3);
                                                     } ?>" placeholder="<?php if ($data2['cat_id'] == $data['product_category']) {
                                                                             echo $data2['cat_name'];
                                                                         } ?>" name="cat_name">
-                        <button type="submit" class="btn1">Add to Enquire</button>
+                        <button type="submit" class="btn1" id="home_add_to_enquire">
+                            <?php
+                            if (isset($content_array['home_add_to_enquire'])) {
+                                echo $content_array['home_add_to_enquire'];
+                            }
+                            ?>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -117,7 +129,7 @@ $data2 = mysqli_fetch_assoc($query3);
                 <div class="text_head">
                     <h1><?= $data['product_name'] ?></h1>
                     <?php
-                    $sql3 = "SELECT * FROM category_tbl";
+                    $sql3 = "SELECT * FROM category_tbl WHERE lang_id = '$lan'";
                     $query3 = mysqli_query($con, $sql3);
                     if (mysqli_num_rows($query3)) {
                         foreach ($query3 as $row) {
@@ -134,12 +146,24 @@ $data2 = mysqli_fetch_assoc($query3);
                     ?>
                 </div>
                 <div class="des">
-                    <p>Description</p>
+                    <p id="cart_details_description_name">
+                        <?php
+                        if (isset($content_array['cart_details_description_name'])) {
+                            echo $content_array['cart_details_description_name'];
+                        }
+                        ?>
+                    </p>
                     <p><?= $data['product_description'] ?></p>
                 </div>
                 <div class="specs">
                     <div class="head">
-                        <p>Specification</p>
+                        <p id="cart_details_specification_name">
+                            <?php
+                            if (isset($content_array['cart_details_specification_name'])) {
+                                echo $content_array['cart_details_specification_name'];
+                            }
+                            ?>
+                        </p>
                         <!-- <div class="btn1">
                             <button class="tab-link active-link" onclick="on_tab_link('box1')">MG</button>
                             <button class="tab-link " onclick="on_tab_link('box2')">KG</button>
@@ -171,52 +195,58 @@ $data2 = mysqli_fetch_assoc($query3);
 </section>
 <section class="cart_detail_2">
     <div class="container">
-            <h1>Related Products</h1>
-            <div class="row">
-                <?php
-                $sql = "SELECT * FROM products_tbl WHERE lang_id = '$lang_id' ORDER BY product_created_at DESC limit 4";
-                $query = mysqli_query($con, $sql);
-                if (mysqli_num_rows($query)) {
-                    foreach ($query as $result) {
-                ?>
-                        <div class="col-md-3 p-3">
-                            <div class="box">
-                                <div class="img">
-                                    <a href="./cart_detail.php?id=<?=$result['product_id']?>&lang=<?=$lang_id?>" class="view-details" >
-                                        <img src="./admin/products_images/<?= $result['product_image'] ?>" alt="">
-                                    </a>
-                                </div>
-                                <div class="text">
-                                    <div class="head">
-                                        <p><?= $result['product_name'] ?></p>
-                                        <?php
-                                        $sql3 = "SELECT * FROM category_tbl where lang_id = '$lang_id'";
-                                        $query3 = mysqli_query($con, $sql3);
-                                        if (mysqli_num_rows($query3)) {
-                                            foreach ($query3 as $row) {
-                                                $cat_id  = $row['cat_id'];
-                                        ?>
-                                                <p><?php
-                                                    if ($result['product_category'] == $cat_id) {
-                                                        echo $row['cat_name'];
-                                                    }
-                                                    ?></p>
-                                        <?php
-                                            }
+        <h1>Related Products</h1>
+        <div class="row">
+            <?php
+            $sql = "SELECT * FROM products_tbl WHERE lang_id = '$lang_id' ORDER BY product_created_at DESC limit 4";
+            $query = mysqli_query($con, $sql);
+            if (mysqli_num_rows($query)) {
+                foreach ($query as $result) {
+            ?>
+                    <div class="col-md-3 p-3">
+                        <div class="box">
+                            <div class="img">
+                                <a href="./cart_detail.php?id=<?= $result['product_id'] ?>&lang=<?= $lang_id ?>" class="view-details">
+                                    <img src="./admin/products_images/<?= $result['product_image'] ?>" alt="">
+                                </a>
+                            </div>
+                            <div class="text">
+                                <div class="head">
+                                    <p><?= $result['product_name'] ?></p>
+                                    <?php
+                                    $sql3 = "SELECT * FROM category_tbl where lang_id = '$lang_id'";
+                                    $query3 = mysqli_query($con, $sql3);
+                                    if (mysqli_num_rows($query3)) {
+                                        foreach ($query3 as $row) {
+                                            $cat_id  = $row['cat_id'];
+                                    ?>
+                                            <p><?php
+                                                if ($result['product_category'] == $cat_id) {
+                                                    echo $row['cat_name'];
+                                                }
+                                                ?></p>
+                                    <?php
                                         }
-                                        ?>
-                                    </div>
-                                    <button type="submit" class="add" name="add">Add to Enquire</button>
+                                    }
+                                    ?>
                                 </div>
+                                <button type="submit" class="add" name="add" id="home_add_to_enquire">
+                                <?php
+                            if (isset($content_array['home_add_to_enquire'])) {
+                                echo $content_array['home_add_to_enquire'];
+                            }
+                            ?>
+                                </button>
                             </div>
                         </div>
-                <?php
+                    </div>
+            <?php
 
-                    }
                 }
-                ?>
-            </div>
+            }
+            ?>
         </div>
+    </div>
 </section>
 <?php require('./includes/footer.php'); ?>
 <?php require('./includes/script.php'); ?>

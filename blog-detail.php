@@ -38,7 +38,7 @@
                             <ul>
                                 <li><a href="javascript:;" style="pointer-events: none;"><i class="fa-solid fa-user"></i>By -<?= $des['A_name'] ?>
                                     </a></li>
-                                <li><a href="category_blog.php?cat_id<?= $des['blog_cat_id'] ?>"><?= $des['blog_cat_name'] ?></a></li>
+                                <li><a href="category_blog.php?blog_cat_id<?= $des['blog_cat_id']?>&lang=<?=$lan?>"><?= $des['blog_cat_name'] ?></a></li>
 
                                 <li><a href="#" class="whatsapp_btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
                                 <li><a href="#" class="facebook_btn" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
@@ -83,7 +83,7 @@
                                     while ($result = mysqli_fetch_assoc($query)) {
                                     ?>
                                 <ul>
-                                    <li class="d-flex align-items-center justify-content-between"><a href="category_blog.php?cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lang_id ?>">
+                                    <li class="d-flex align-items-center justify-content-between"><a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lang_id ?>">
                                             <?= $result['blog_cat_name'] ?>
                                         </a>
                                         <?php
@@ -121,7 +121,7 @@
                                 while ($result = mysqli_fetch_assoc($query)) {
                                 ?>
                                     <li class="as_product">
-                                        <a href="category_blog.php?cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $id ?>">
+                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $id ?>">
                                             <div class="as_productimg">
                                                 <!-- <img src="admin/blog_des_files/<?= $result['image'] ?>" alt=""> -->
                                             </div>

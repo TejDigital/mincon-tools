@@ -15,9 +15,10 @@ if (isset($_GET['blog_id'])) {
     $url_blog_id = $_GET['blog_id'];
     
 }
+
 $url_cat_id = "";
-if (isset($_GET['cat_id'])) {
-    $url_blog_id = $_GET['cat_id'];
+if (isset($_GET['blog_cat_id'])) {
+    $url_cat_id = $_GET['blog_cat_id'];
 }
 
 $ul_sql = "SELECT * FROM ui_table WHERE  lang_id = '$lan'";

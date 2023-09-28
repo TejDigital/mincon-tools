@@ -2,52 +2,10 @@
 require('authentication.php');
 require('./config/dbcon.php');
 
-// if (isset($_POST['add-product'])) {
-
-//     $name = $_POST['name'];
-//     $img = $_FILES['img']['name'];
-//     $status =  $_POST['status'];
-//     $category = $_POST['product_category'];
-//     $des = $_POST['product_description'];
-//     $des =  str_replace("'", "\'", "$des");
-
-//     // print_r($_POST);
-
-//     if ($_FILES['img']["size"] > 700000) {
-//         $_SESSION['min_msg'] = " image size is to Big";
-//         header('location:products.php');
-//     }
-//     $img_ext = ['png', 'jpg', 'jpeg'];
-
-//     $file_ext = pathinfo($img, PATHINFO_EXTENSION);
-
-//     $img_name = $img;
-
-//     if (!in_array($file_ext, $img_ext)) {
-
-//         $_SESSION['min_msg'] = "img only in jpg ,png or jpeg ext";
-//         header('location:products.php');
-//     } else {
-
-//         $sql = "INSERT INTO products_tbl (product_image,product_name,product_category,product_status,product_description) VALUES('$img_name','$name','$category','$status','$des')";
-
-//         $connect_db = mysqli_query($con, $sql);
-
-//         if ($connect_db) {
-//             move_uploaded_file($_FILES['img']['tmp_name'], 'products_images/' . $img_name);
-//             $_SESSION['min_msg'] = "Product  added successfully.";
-//             header('location:products.php');
-//         } else {
-
-//             $_SESSION['min_msg'] = "Something went wrong";
-//             header('location:products.php');
-//         }
-//     }
-// }
-
 if (isset($_POST['add-product'])) {
 
     $name = $_POST['name'];
+    $product_number = $_POST['product_num'];
     $lan = $_POST['lan'];
     $video_url = $_POST['video_url'];
     $status =  $_POST['status'];
@@ -97,8 +55,8 @@ if (isset($_POST['add-product'])) {
         echo "no file";
     }
     if ($data == true) {
-        $sql = "INSERT INTO products_tbl(lang_id,product_image,product_image1, product_image2, product_image3, product_image4,product_name, product_category, product_status, product_description,product_video_url)
-        VALUES('$lan','$img','$img1','$img2','$img3','$img4','$name','$category','$status','$des','$video_url')";
+        $sql = "INSERT INTO products_tbl(product_id,lang_id,product_image,product_image1, product_image2, product_image3, product_image4,product_name, product_category, product_status, product_description,product_video_url)
+        VALUES('$product_number','$lan','$img','$img1','$img2','$img3','$img4','$name','$category','$status','$des','$video_url')";
 
         $connect_db = mysqli_query($con, $sql);
         if ($connect_db) {
@@ -140,6 +98,7 @@ if (isset($_POST['update-product'])) {
 
     $id = $_POST['id'];
     $status = $_POST['status'];
+    $product_number = $_POST['product_num'];
     $video_url = $_POST['video_url'];
     $name = $_POST['name'];
     $category = $_POST['product_category'];
@@ -151,26 +110,12 @@ if (isset($_POST['update-product'])) {
     $img2 = $_POST['img2'];
     $img3 = $_POST['img3'];
     $img4 = $_POST['img4'];
-    $img5 = $_POST['img5'];
 
     $new_img_main  = $_FILES['new_img_main']['name'];
     $new_img1 = $_FILES['new_img1']['name'];
     $new_img2 = $_FILES['new_img2']['name'];
     $new_img3 = $_FILES['new_img3']['name'];
     $new_img4 = $_FILES['new_img4']['name'];
-    $new_img5 = $_FILES['new_img5']['name'];
-
-    $en_weight= $_POST['en_weight'];
-    $en_length= $_POST['en_length'];
-    $en_air_consumption= $_POST['en_air_consumption'];
-    $en_strokes_x_mins= $_POST['en_strokes_x_mins'];
-    $en_rod_size= $_POST['en_rod_size'];
-
-    $spn_weight= $_POST['spn_weight'];
-    $spn_length= $_POST['spn_length'];
-    $spn_air_consumption= $_POST['spn_air_consumption'];
-    $spn_strokes_x_mins= $_POST['spn_strokes_x_mins'];
-    $spn_rod_size= $_POST['spn_rod_size'];
 
 
 
@@ -179,8 +124,7 @@ if (isset($_POST['update-product'])) {
         $new_img1 != '' ||
         $new_img2 != '' ||
         $new_img3 != '' ||
-        $new_img4 != '' ||
-        $new_img5 != ''
+        $new_img4 != '' 
     ) {
         $valid = 1;
         if (
@@ -188,8 +132,7 @@ if (isset($_POST['update-product'])) {
             $_FILES['new_img1']["size"] > 700000 ||
             $_FILES['new_img2']["size"] > 700000 ||
             $_FILES['new_img3']["size"] > 700000 ||
-            $_FILES['new_img4']["size"] > 700000 ||
-            $_FILES['new_img5']["size"] > 700000    
+            $_FILES['new_img4']["size"] > 700000 
         ) {
             $_SESSION['min_msg'] = " image size is to Big";
             header('location:product_edit.php');
@@ -201,7 +144,7 @@ if (isset($_POST['update-product'])) {
             $data = false;
             $upload_folder = 'products_images/';
 
-            if (!empty($new_img_main) || !empty($new_img1) || !empty($new_img2)  || !empty($new_img3) || !empty($new_img4) || !empty($new_img5)) {
+            if (!empty($new_img_main) || !empty($new_img1) || !empty($new_img2)  || !empty($new_img3) || !empty($new_img4)) {
                 if (!empty($new_img_main)) {
                     $updated_img_main = $new_img_main;
                     move_uploaded_file($_FILES['new_img_main']['tmp_name'], $upload_folder . $new_img_main);
@@ -237,21 +180,14 @@ if (isset($_POST['update-product'])) {
                 } else {
                     $updated_img4 = $img4;
                 }
-                if (!empty($new_img5)) {
-                    $updated_img5 = $new_img5;
-                    move_uploaded_file($_FILES['new_img5']['tmp_name'], $upload_folder . $new_img5);
-                    unlink('products_images/' . $img5);
-                } else {
-                    $updated_img5 = $img5;
-                }
                 $data = true;
             } else {
                 $_SESSION['min_msg'] = " No file selected";
                 header('location:product_edit.php');
             }
             if ($data == true) {
-                $sql = "UPDATE products_tbl SET product_name='$name',product_description='$des',product_category='$category',product_status='$status', product_video_url='$video_url',
-                product_image = '$updated_img_main', product_image1 = '$updated_img1',product_image2 = '$updated_img2',product_image3 = '$updated_img3' ,product_image4= '$updated_img4',product_image5 = '$updated_img5',en_wight='$en_weight',en_length='$en_length',en_air_consumption='$en_air_consumption',en_strokes_x_mins='$en_strokes_x_mins',en_rod_size='$en_rod_size',spn_weight='$spn_weight',spn_length='$spn_length',spn_air_consumption='$spn_air_consumption',spn_strokes_x_mins='$spn_strokes_x_mins',spn_rod_size='$spn_rod_size'
+                $sql = "UPDATE products_tbl SET product_id ='$product_number',  product_name='$name',product_description='$des',product_category='$category',product_status='$status', product_video_url='$video_url',
+                product_image = '$updated_img_main', product_image1 = '$updated_img1',product_image2 = '$updated_img2',product_image3 = '$updated_img3' ,product_image4= '$updated_img4',product_image5 = '$updated_img5'
                  WHERE product_id='$id'";
 
                 $connect_db = mysqli_query($con, $sql);
@@ -270,7 +206,7 @@ if (isset($_POST['update-product'])) {
             }
         }
     } else {
-        $sql2 = "UPDATE products_tbl SET product_name='$name',product_description='$des',product_video_url='$video_url',product_category='$category',product_status='$status',en_wight='$en_weight',en_length='$en_length',en_air_consumption='$en_air_consumption',en_strokes_x_mins='$en_strokes_x_mins',en_rod_size='$en_rod_size',spn_weight='$spn_weight',spn_length='$spn_length',spn_air_consumption='$spn_air_consumption',spn_strokes_x_mins='$spn_strokes_x_mins',spn_rod_size='$spn_rod_size' WHERE product_id='$id'";
+        $sql2 = "UPDATE products_tbl SET product_id ='$product_number', product_name='$name',product_description='$des',product_video_url='$video_url',product_category='$category',product_status='$status' WHERE product_id='$id'";
 
         $connect_db2 = mysqli_query($con, $sql2);
 

@@ -2,24 +2,7 @@
 include('authentication.php');
 require('config/dbcon.php');
 
-// if(isset($_POST['send'])){
 
-//     $comment = $_POST['comment'];
-
-//     $sql = "INSERT INTO blog_comment_tbl(comments) VALUES('$comment')";
-
-//     $sql_run = mysqli_query($con,$sql);
-
-//     if($sql_run){
-//         $_SESSION['min_msg'] ="Thankyou";
-//         header('location:../blog_view.php');
-//     }
-//     else{
-//         $_SESSION['min_msg'] ="Somthing went roung";
-//         header('location:../blog_view.php');
-//     }
-
-// }
 if (isset($_POST['add_des'])) {
 
     $heading = $_POST['heading'];

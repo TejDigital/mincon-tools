@@ -21,14 +21,18 @@ require('config/dbcon.php');
         </div>
         <div class="card-body">
             <?php
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-                $query = "SELECT * FROM blog_tbl WHERE blog_id ='$id'LIMIT 1";
+            if (isset($_GET['blog_id']) && isset($_GET['lang'])) {
+                $id = $_GET['blog_id'];
+                $lan = $_GET['lang'];
+                $query = "SELECT * FROM blog_tbl WHERE blog_id ='$id' AND blog_lang_id = '$lan' LIMIT 1";
                 $qurey_run = mysqli_query($con, $query);
                 if (mysqli_num_rows($qurey_run) > 0) {
                     foreach ($qurey_run as $row) {
             ?>
                         <form action="blog_des_code.php" method="post" enctype="multipart/form-data">
+
+                            <h5>BLog Language <span style="color: red;"> <?=$lan == 1 ? 'English' : 'Spanish'?></span></h5>
+
                             <div class="form-group">
                                 <div class="row">
                                     <input type="hidden" name="id" value="<?php echo $row['blog_id'] ?>">
@@ -72,7 +76,7 @@ require('config/dbcon.php');
                                         <select class="form-select" name="category" class="py-2">
 
                                             <?php
-                                            $sql1 = "SELECT * FROM blog_category_tbl";
+                                            $sql1 = "SELECT * FROM blog_category_tbl WHERE lang_id = '$lan'";
                                             $query2 = mysqli_query($con, $sql1);
                                             if (mysqli_num_rows($query2)) {
                                                 while ($result = mysqli_fetch_assoc($query2)) {
