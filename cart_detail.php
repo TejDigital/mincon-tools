@@ -195,7 +195,13 @@ $data2 = mysqli_fetch_assoc($query3);
 </section>
 <section class="cart_detail_2">
     <div class="container">
-        <h1>Related Products</h1>
+        <h1 id="cart_details_related_product">
+            <?php
+            if (isset($content_array['cart_details_related_product'])) {
+                echo $content_array['cart_details_related_product'];
+            }
+            ?>
+        </h1>
         <div class="row">
             <?php
             $sql = "SELECT * FROM products_tbl WHERE lang_id = '$lang_id' ORDER BY product_created_at DESC limit 4";
@@ -206,7 +212,7 @@ $data2 = mysqli_fetch_assoc($query3);
                     <div class="col-md-3 p-3">
                         <div class="box">
                             <div class="img">
-                                <a href="./cart_detail.php?id=<?= $result['product_id'] ?>&lang=<?= $lang_id ?>" class="view-details">
+                                <a href="./cart_detail.php?product_id=<?= $result['product_id'] ?>&lang=<?= $lang_id ?>" class="view-details">
                                     <img src="./admin/products_images/<?= $result['product_image'] ?>" alt="">
                                 </a>
                             </div>
@@ -231,11 +237,11 @@ $data2 = mysqli_fetch_assoc($query3);
                                     ?>
                                 </div>
                                 <button type="submit" class="add" name="add" id="home_add_to_enquire">
-                                <?php
-                            if (isset($content_array['home_add_to_enquire'])) {
-                                echo $content_array['home_add_to_enquire'];
-                            }
-                            ?>
+                                    <?php
+                                    if (isset($content_array['home_add_to_enquire'])) {
+                                        echo $content_array['home_add_to_enquire'];
+                                    }
+                                    ?>
                                 </button>
                             </div>
                         </div>

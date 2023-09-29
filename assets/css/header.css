@@ -474,7 +474,7 @@ outline:  1px solid #EBAB56;
 }
 
 .drop-Down {
-	display: flex;
+	/* display: flex; */
 	align-items: center;
 	justify-content: space-between;
 	/* width: 90vw; */
@@ -493,7 +493,8 @@ outline:  1px solid #EBAB56;
 }
 
 .drop-list:hover .drop_item {
-	display: block;
+	display: flex;
+	/* visibility: visible; */
 }
 
 .drop-list .drop_item {
@@ -528,6 +529,7 @@ outline:  1px solid #EBAB56;
 	right: -20px;
 	z-index: 100;
 	display: none;
+	/* visibility: hidden; */
 	background-color: #fff;
 	flex-direction: column;
 	color: #EBAB56;
@@ -535,13 +537,13 @@ outline:  1px solid #EBAB56;
 
 
 .Sponsors_slider_area_1 .owl-stage-outer {
-	overflow: visible !important;
+	overflow: visible !important;	
 	/* overflow-x: hidden !important; */
 }
 .Sponsors_slider_area_1 .owl-stage {
-	width: 100% !important;
+	/* width: 100% !important; */
 }
 .Sponsors_slider_area_1 .owl-stage-outer .owl-stage .owl-item.active {
-	width: 100% !important;
+	/* width: 100% !important; */
 
 }

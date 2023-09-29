@@ -118,7 +118,13 @@ if (mysqli_num_rows($query)) {
                     </div>
                 </div>
                 <div class="product_btn">
-                    <a href="./products.php?=#<?= $result['cat_name'] ?>">See More</a>
+                    <a href="./products.php?=#<?= $result['cat_name'] ?>" id="home_content_see_more">
+                    <?php
+                    if (isset($content_array['home_content_see_more'])) {
+                        echo $content_array['home_content_see_more'] ;
+                    }
+                    ?>
+                </a>
                 </div>
             </div>
             <div class="product_foot_img">
@@ -134,31 +140,67 @@ if (mysqli_num_rows($query)) {
         <div class="row flex-change">
             <div class="col-md-6">
                 <div class="head">
-                    <h1>Contact US</h1>
-                    <p>Feel Free to reach out to us!</p>
+                    <h1 id="contact_contact_us_name">
+                        <?php
+                        if (isset($content_array['contact_contact_us_name'])) {
+                            echo $content_array['contact_contact_us_name'];
+                        }
+                        ?>
+                    </h1>
+                    <p id="contact_us_sub_description">
+                        <?php
+                        if (isset($content_array['contact_us_sub_description'])) {
+                            echo $content_array['contact_us_sub_description'];
+                        }
+                        ?>
+                        !</p>
                 </div>
                 <form action="./admin/connect.php" method="POST">
                     <div class="form-group">
-                        <input type="text" class="input-box" name="name" placeholder="Name">
+                        <input type="text" class="input-box" id="contact_input_name_placeholder" name="name" placeholder="<?php
+                                                                                                                            if (isset($content_array['contact_input_name_placeholder'])) {
+                                                                                                                                echo $content_array['contact_input_name_placeholder'];
+                                                                                                                            }
+                                                                                                                            ?>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="input-box" name="email" placeholder="Email Address">
+                        <input type="text" class="input-box" id="contact_input_email_placeholder" name="email" placeholder="<?php
+                                                                                                                            if (isset($content_array['contact_input_email_placeholder'])) {
+                                                                                                                                echo $content_array['contact_input_email_placeholder'];
+                                                                                                                            }
+                                                                                                                            ?>">
                     </div>
                     <div class="form-group">
-                        <span id="msg_alert2" style="color:red;"></span>
-                        <input type="text" class="input-box" onkeyup="validateNumber(this,'msg_alert2')" name="mobile" placeholder="Contact Number">
+                        <span id="msg_alert1" style="color:red;"></span>
+                        <input type="tel" maxlength="10" class="input-box" id="contact_input_phone_placeholder" onkeyup="validateNumber(this,'msg_alert1')" name="mobile" placeholder="<?php
+                                                                                                                                                                                        if (isset($content_array['contact_input_phone_placeholder'])) {
+                                                                                                                                                                                            echo $content_array['contact_input_phone_placeholder'];
+                                                                                                                                                                                        }
+                                                                                                                                                                                        ?>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="input-box" name="company" placeholder="Company Name">
+                        <input type="text" class="input-box" name="company" id="contact_input_company_placeholder" placeholder="<?php
+                                                                                                                                if (isset($content_array['contact_input_company_placeholder'])) {
+                                                                                                                                    echo $content_array['contact_input_company_placeholder'];
+                                                                                                                                }
+                                                                                                                                ?>">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="input-box" name="country" placeholder="Country Name">
+                        <input type="text" class="input-box" name="country" id="contact_input_country_placeholder" placeholder="<?php
+                                                                                                                                if (isset($content_array['contact_input_country_placeholder'])) {
+                                                                                                                                    echo $content_array['contact_input_country_placeholder'];
+                                                                                                                                }
+                                                                                                                                ?>">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <select name="product_category" id="product_category" class="input-box">
-                                    <option value="">Select Category</option>
+                                    <option value="" id="contact_input_category_placeholder"><?php
+                                                                                                if (isset($content_array['contact_input_category_placeholder'])) {
+                                                                                                    echo $content_array['contact_input_category_placeholder'];
+                                                                                                }
+                                                                                                ?></option>
                                     <?php
                                     $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 AND lang_id = '$lan'";
                                     $query = mysqli_query($con, $sql);
@@ -178,19 +220,29 @@ if (mysqli_num_rows($query)) {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <select name="product" id="product" class="input-box">
-                                    <option value="">Select Product</option>
+                                    <option value="" id="contact_input_product_placeholder"><?php
+                                                                                            if (isset($content_array['contact_input_product_placeholder'])) {
+                                                                                                echo $content_array['contact_input_product_placeholder'];
+                                                                                            }
+                                                                                            ?></option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="sub-btn" name="submit2">Submit</button>
+                        <button class="sub-btn" id="contact_submit_button_name" name="submit">
+                        <?php
+                                                                                            if (isset($content_array['contact_submit_button_name'])) {
+                                                                                                echo $content_array['contact_submit_button_name'];
+                                                                                            }
+                                                                                            ?>
+                        </button>
                     </div>
                 </form>
             </div>
             <div class="col-md-6">
                 <div class="img">
-                    <img src="./assets/images/mincon_contact_bg1.png" alt="">
+                    <img src="./assets/images/mincon_contact_bg2.png" alt="">
                 </div>
             </div>
         </div>

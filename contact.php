@@ -122,8 +122,8 @@ if (isset($_SESSION['min_msg'])) {
                                                                                                                             ?>">
                     </div>
                     <div class="form-group">
-                        <span id="msg_alert1" style="color:red;"></span>
-                        <input type="tel" maxlength="10" class="input-box" id="contact_input_phone_placeholder" onkeyup="validateNumber(this,'msg_alert1')" name="mobile" placeholder="<?php
+                        <span id="msg_alert2" style="color:red;"></span>
+                        <input type="tel" maxlength="10" class="input-box" id="contact_input_phone_placeholder" onkeyup="validateNumber(this,'msg_alert2')" name="mobile" placeholder="<?php
                                                                                                                                                                                         if (isset($content_array['contact_input_phone_placeholder'])) {
                                                                                                                                                                                             echo $content_array['contact_input_phone_placeholder'];
                                                                                                                                                                                         }
@@ -181,7 +181,13 @@ if (isset($_SESSION['min_msg'])) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="sub-btn" name="submit">Submit</button>
+                        <button class="sub-btn" id="contact_submit_button_name" name="submit">
+                        <?php
+                                                                                            if (isset($content_array['contact_submit_button_name'])) {
+                                                                                                echo $content_array['contact_submit_button_name'];
+                                                                                            }
+                                                                                            ?>
+                        </button>
                     </div>
                 </form>
             </div>

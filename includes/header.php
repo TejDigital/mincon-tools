@@ -181,7 +181,7 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                 </nav>
                 <nav class="">
                     <div class="Sponsors_slider_area_1 owl-carousel owl-theme" id="nav_drop">
-                        <ul class="drop-Down">
+                        <!-- <ul class="drop-Down"> -->
                             <?php
                             $sql2 = "SELECT * FROM category_tbl WHERE cat_status = 1 AND lang_id = '$lan'";
                             $query2 = mysqli_query($con, $sql2);
@@ -198,7 +198,7 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                                             if (mysqli_num_rows($pro_query1)) {
                                                 foreach ($pro_query1 as $pro_data1) {
                                             ?>
-                                                    <li> <a href="./cart_detail.php?id=<?= $pro_data1['product_id'] ?>&lang=<?= $lan ?>"><?= $pro_data1['product_name'] ?></a></li>
+                                                    <li> <a href="./cart_detail.php?product_id=<?= $pro_data1['product_id'] ?>&lang=<?= $lan ?>"><?= $pro_data1['product_name'] ?></a></li>
                                             <?php
                                                 }
                                             }
@@ -209,7 +209,7 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                                 }
                             }
                             ?>
-                        </ul>
+                        <!-- </ul> -->
                     </div>
                 </nav>
             </div>
