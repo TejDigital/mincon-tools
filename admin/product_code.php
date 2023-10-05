@@ -55,7 +55,7 @@ if (isset($_POST['add-product'])) {
     for ($i = 0; $i < count($product_spec_names); $i++) {
         $product_spec_name = mysqli_real_escape_string($con, $product_spec_names[$i]);
         $product_spec_value = mysqli_real_escape_string($con, $product_spec_values[$i]);
-        $sql = "INSERT INTO product_specification (product_id,lang_id,spec_name, s_value) VALUES ('$product_number','$lan','$product_spec_name', '$product_spec_value')";
+        $sql = "INSERT INTO product_specification (product_id,lang_id,spec_name, s_value,status) VALUES ('$product_number','$lan','$product_spec_name', '$product_spec_value','$status')";
         $query = mysqli_query($con, $sql);
         if($query){
             $_SESSION['min_msg'] = "Product specification Added";
@@ -189,7 +189,7 @@ if (isset($_POST['update-product'])) {
     for ($i = 0; $i < count($product_spec_names); $i++) {
         $product_spec_name = mysqli_real_escape_string($con, $product_spec_names[$i]);
         $product_spec_value = mysqli_real_escape_string($con, $product_spec_values[$i]);
-        $sql = "INSERT INTO product_specification (product_id,lang_id,spec_name, s_value) VALUES ('$id','$lang_id','$product_spec_name', '$product_spec_value')";
+        $sql = "INSERT INTO product_specification (product_id,lang_id,spec_name,s_value,status) VALUES ('$id','$lang_id','$product_spec_name', '$product_spec_value','$status')";
         $query = mysqli_query($con, $sql);
         if($query){
             $_SESSION['min_msg'] = "Product specification Added";
