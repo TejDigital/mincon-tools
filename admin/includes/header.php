@@ -1,4 +1,11 @@
+<?php
+$lan = 1;
+if (isset($_GET['lang'])) {
+    $lan = $_GET['lang'];
+    
+}?>
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>

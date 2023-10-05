@@ -7,7 +7,7 @@ $data = [];
 if (isset($_GET['product_id']) && isset($_GET['lang'])) {
     $product_id = $_GET['product_id'];
     $lang_id = $_GET['lang'];
-    $sql2 = "SELECT * FROM products_tbl WHERE product_id = '$product_id' AND lang_id = '$lang_id'";
+    $sql2 = "SELECT * FROM lang_products_tbl WHERE product_id = '$product_id' AND lang_id = '$lang_id'";
     $query2 = mysqli_query($con, $sql2);
     if (mysqli_num_rows($query2)) {
         $data = mysqli_fetch_assoc($query2);
@@ -169,17 +169,23 @@ $data2 = mysqli_fetch_assoc($query3);
                             <button class="tab-link " onclick="on_tab_link('box2')">KG</button>
                         </div> -->
                     </div>
-                    <table class="table table-bordered table_box active-tab" id="box1">
+                    <table class="table table-bordered ">
                         <tbody>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
                             <?php
-                            $p_name = $data['product_name'];
-                            $sql4 = "SELECT * FROM product_specification WHERE product_name = '$p_name' and lang_id = '$lang_id'";
+                            $p_id = $data['product_id'];
+                            $sql4 = "SELECT * FROM product_specification WHERE product_id = '$p_id' and lang_id = '$lang_id'";
                             $query4 = mysqli_query($con, $sql4);
                             if (mysqli_num_rows($query4)) {
                                 foreach ($query4 as $specs) {
                             ?>
                                     <tr>
-                                        <td><?= $specs['s_name'] ?></td>
+                                        <td><?= $specs['spec_name'] ?></td>
                                         <td><?= $specs['s_value'] ?></td>
                                     </tr>
                             <?php
@@ -204,7 +210,7 @@ $data2 = mysqli_fetch_assoc($query3);
         </h1>
         <div class="row">
             <?php
-            $sql = "SELECT * FROM products_tbl WHERE lang_id = '$lang_id' ORDER BY product_created_at DESC limit 4";
+            $sql = "SELECT * FROM lang_products_tbl WHERE lang_id = '$lang_id' ORDER BY product_created_at DESC limit 4";
             $query = mysqli_query($con, $sql);
             if (mysqli_num_rows($query)) {
                 foreach ($query as $result) {

@@ -152,7 +152,7 @@ if (isset($_POST['cart_add'])) {
         foreach ($productInfo as $info) {
             $mac_id = $info['mac_id'];
             if ($mac == $mac_id) {
-                $sql3 = "DELETE FROM tem_tbl_for_cart WHERE cart_product_id ='$c_id' ";
+                $sql3 = "DELETE FROM tem_tbl_for_cart WHERE mac_id ='$mac_id' AND lang_id ='$lan'";
                 $query3 = mysqli_query($con, $sql3);
                 if ($query3) {
                     $_SESSION['min_msg'] = "Thank you for your Enquire! We will get back to you soon.";

@@ -38,7 +38,7 @@
                                 ?>
                             </h3>
                             <?php
-                            $select = "SELECT * FROM blog_category_tbl LEFT JOIN blog_tbl ON  blog_category_tbl.blog_cat_id  = blog_tbl.category where lang_id = '$lan' AND blog_lang_id = '$lan'";
+                            $select = "SELECT * FROM blog_category_tbl LEFT JOIN blog_tbl ON  blog_category_tbl.blog_cat_id  = blog_tbl.category ";
                             $query = mysqli_query($con, $select);
                             if(mysqli_num_rows($query)){
                             // $rows = mysqli_num_rows($query);
@@ -50,7 +50,7 @@
                                         </a>
                                         <?php
                                         $id = $result['blog_cat_id'];
-                                        $sql1 = "SELECT * FROM blog_tbl where category='$id' And blog_lang_id = '$lan'";
+                                        $sql1 = "SELECT * FROM blog_tbl where category='$id'";
                                         $query1 = mysqli_query($con, $sql1);
                                         $rows = mysqli_num_rows($query1);
                                         if ($rows) {
@@ -78,7 +78,7 @@
                             </h3>
                             <ul>
                                 <?php
-                                $select = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id where lang_id = '$lan' And blog_lang_id = '$lan'   ORDER BY blog_tbl.created_at DESC LIMIT 4";
+                                $select = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id   ORDER BY blog_tbl.created_at DESC LIMIT 4";
                                 $query = mysqli_query($con, $select);
                                 $rows = mysqli_num_rows($query);
                                 while ($result = mysqli_fetch_assoc($query)) {
@@ -121,7 +121,7 @@
                     $limit = 3;
                     $offset = ($page - 1) * $limit;
 
-                    $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id where lang_id = '$lan' And blog_lang_id = '$lan'  ORDER BY blog_tbl.created_at DESC  limit $offset ,$limit";
+                    $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id   ORDER BY blog_tbl.created_at DESC  limit $offset ,$limit";
                     $query_run = mysqli_query($con, $query);
                     $num = mysqli_num_rows($query_run) > 0;
 

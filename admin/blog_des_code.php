@@ -10,14 +10,12 @@ if (isset($_POST['add_des'])) {
     $lan = $_POST['lan'];
     $A_name = $_POST['name'];
     $des_msg = $_POST['des_msg'];
-    $des_msg = str_replace("'","\'","$des_msg");
+    $des_msg = str_replace("'", "\'", "$des_msg");
     $sm_blog = $_POST['sm_blog'];
-    $sm_blog = str_replace("'","\'",$sm_blog);
+    $sm_blog = str_replace("'", "\'", $sm_blog);
     $status = $_POST['status'];
     $category = $_POST['category'];
     $img = $_FILES['img']['name'];
-
-
 
     if ($_FILES['img']["size"] > 500000) {
         $_SESSION['min_msg'] = " image size is to Big";
@@ -50,13 +48,15 @@ if (isset($_POST['add_des'])) {
         }
     }
 };
+
 // --------------------------------------------delete-description---------------------------------
 
 if (isset($_POST['delete_des'])) {
 
     $des_id = $_POST['delete_des_id'];
+    $lang_id = $_POST['delete_lang_id'];
 
-    $query_delete = " DELETE FROM blog_tbl WHERE  blog_id ='$des_id'";
+    $query_delete = " DELETE FROM blog_tbl WHERE  blog_id ='$des_id' AND blog_lang_id = '$lang_id'";
 
     $query_delete_run = mysqli_query($con, $query_delete);
 
@@ -76,14 +76,15 @@ if (isset($_POST['delete_des'])) {
 if (isset($_POST['upd_blog'])) {
 
     $id = $_POST['id'];
+    $lang_id = $_POST['lang_id'];
     $heading = $_POST['heading'];
     $date = $_POST['date'];
-    $lan = $_POST['lan'];
+    // $lan = $_POST['lan'];
     $A_name = $_POST['name'];
     $des_msg = $_POST['des_msg'];
-    $des_msg = str_replace("'","\'","$des_msg");
+    $des_msg = str_replace("'", "\'", "$des_msg");
     $sm_blog = $_POST['sm_blog'];
-    $sm_blog = str_replace("'","\'",$sm_blog);
+    $sm_blog = str_replace("'", "\'", $sm_blog);
     $status = $_POST['status'];
     $category = $_POST['category'];
     $new_img = $_FILES['new_img']['name'];
@@ -96,37 +97,35 @@ if (isset($_POST['upd_blog'])) {
             header('location:blog_des.php');
         }
         $img_ext = ['png', 'jpg', 'jpeg'];
-    
+
         $file_ext = pathinfo($updated_img, PATHINFO_EXTENSION);
-    
+
         $img_name = time() . '.' . $file_ext;
-    
-    
+
+
         if (!in_array($file_ext, $img_ext)) {
-    
+
             $_SESSION['min_msg'] = "img only in jpg ,png or jpeg ext";
             header('location:blog_des.php');
-        } 
+        }
         $updated_img = $img_name;
-
     } else {
         $updated_img = $old_img;
     }
 
-        $sql = "UPDATE blog_tbl SET title='$heading',b_des_mini='$sm_blog',b_des_full='$des_msg',date='$date',category='$category',A_name='$A_name',blog_status='$status',image='$updated_img' WHERE blog_id='$id'";
+    $sql = "UPDATE blog_tbl SET  title='$heading',b_des_mini='$sm_blog',b_des_full='$des_msg',date='$date',category='$category',A_name='$A_name',blog_status='$status',image='$updated_img' WHERE blog_id='$id' AND blog_lang_id ='$lang_id'";
 
-        $connect_db = mysqli_query($con, $sql);
+    $connect_db = mysqli_query($con, $sql);
 
-        if ($connect_db) {
-            if($new_img != ''){
+    if ($connect_db) {
+        if ($new_img != '') {
             move_uploaded_file($_FILES['new_img']['tmp_name'], 'blog_des_files/' . $img_name);
-            }
-            $_SESSION['min_msg'] = "Blog Updated";
-            header('location:blog_des.php');
-        } else {
-
-            $_SESSION['min_msg'] = "Somthing went wrong";
-            header('location:blog_des.php');
         }
-    
+        $_SESSION['min_msg'] = "Blog Updated";
+        header('location:blog_des.php');
+    } else {
+
+        $_SESSION['min_msg'] = "Something went wrong";
+        header('location:blog_des.php');
+    }
 };

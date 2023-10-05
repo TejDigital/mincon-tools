@@ -11,9 +11,10 @@ if (isset($_SESSION['min_msg'])) {
 }
 ?>
 <?php
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && isset($_GET['lang_id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM products_tbl LEFT JOIN category_tbl ON products_tbl.product_category = category_tbl.cat_id WHERE product_id = '$id'";
+    $lang_id = $_GET['lang_id'];
+    $sql = "SELECT * FROM lang_products_tbl LEFT JOIN category_tbl ON lang_products_tbl.product_category = category_tbl.cat_id WHERE product_id = '$id' And lang_products_tbl.lang_id ='$lang_id' AND category_tbl.lang_id = '$lang_id'";
     $query = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($query);
 }
@@ -26,31 +27,7 @@ if (isset($_GET['id'])) {
                 <h3 class="float-start">Product Details</h3>
                 <a href="./products.php" class="btn btn-danger float-end">Back</a>
                 <div class="row mt-5">
-                    <div class="col-md-4 mb-4">
-                        <p for="" class="label">Product Main Image</p>
-                        <img src="./products_images/<?= $data['product_image'] ?>" width="200px" alt="">
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <p for="" class="label">Product Image1</p>
-                        <img src="./products_images/<?= $data['product_image1'] ?>" width="200px" alt="">
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <p for="" class="label">Product Image2</p>
-                        <img src="./products_images/<?= $data['product_image2'] ?>" width="200px" alt="">
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <p for="" class="label">Product Image3</p>
-                        <img src="./products_images/<?= $data['product_image3'] ?>" width="200px" alt="">
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <p for="" class="label">Product Image4</p>
-                        <img src="./products_images/<?= $data['product_image4'] ?>" width="200px" alt="">
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <p for="" class="label">Product Image5</p>
-                        <img src="./products_images/<?= $data['product_image5'] ?>" width="200px" alt="">
-                    </div>
-                    <div class="col-md-3">
+                <div class="col-md-3">
                         <label for="" class="label">Product Name</label>
                         <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $data['product_name'] ?></p>
                     </div>
@@ -78,6 +55,30 @@ if (isset($_GET['id'])) {
                     <div class="col-md-12">
                         <label for="" class="label">Product Description</label>
                         <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?=$data['product_description']?></p>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label for="">Video Url</label>
+                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?=$data['product_video_url']?></p>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <p for="" class="label">Product Main Image</p>
+                        <img src="./products_images/<?= $data['product_image'] ?>" width="200px" alt="">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <p for="" class="label">Product Image1</p>
+                        <img src="./products_images/<?= $data['product_image1'] ?>" width="200px" alt="">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <p for="" class="label">Product Image2</p>
+                        <img src="./products_images/<?= $data['product_image2'] ?>" width="200px" alt="">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <p for="" class="label">Product Image3</p>
+                        <img src="./products_images/<?= $data['product_image3'] ?>" width="200px" alt="">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <p for="" class="label">Product Image4</p>
+                        <img src="./products_images/<?= $data['product_image4'] ?>" width="200px" alt="">
                     </div>
                 </div>
             </div>

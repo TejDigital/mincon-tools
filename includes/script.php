@@ -48,18 +48,24 @@
     $(document).ready(function() {
         $('#product_category').on('change', function(e) {
             e.preventDefault();
-            var categoryId = $(this).val();
+            var values = $(this).val().split(',');
+            var categoryId = values[0];
+            var lang_id = values[1];
+
+            // console.log(category_id)
+            // console.log(lang_id)
 
             // Clear the product dropdown
             $('#product').html('<option value="">Select Product</option>');
 
-            if (categoryId !== "") {
+            if (categoryId !== "" && lang_id !== "") {
                 // Make an AJAX request to fetch products based on the selected category
                 $.ajax({
                     type: 'POST', // You can change this to 'GET' if your server-side script supports it
                     url: './admin/product_code_ajax.php', // Replace with the actual URL of your PHP script
                     data: {
-                        category_id: categoryId
+                        category_id: categoryId,
+                        lang_id: lang_id
                     },
                     success: function(response) {
                         // Populate the product dropdown with the received data
@@ -110,8 +116,8 @@
         var url_product_id = $('#url_product_id').val();
         var url_blog_id = $('#url_blog_id').val();
         var url_cat_id = $('#url_cat_id').val();
-       var newURL = window.location.pathname + '?lang=' + languageSelect +'&product_id='+ url_product_id + '&blog_id=' + url_blog_id + '$blog_cat_id=' + url_cat_id;
-        alert(newURL);
+       var newURL = window.location.pathname + '?lang=' + languageSelect +'&product_id='+ url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id;
+        // alert(newURL);
         window.location.href = newURL;
     }
 </script>

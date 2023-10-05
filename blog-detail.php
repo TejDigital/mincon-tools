@@ -23,7 +23,7 @@
                         $blog_id = $_GET['blog_id'];
                         $lang_id = $_GET['lang'];
 
-                        $sql = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id  WHERE blog_id ='$blog_id' AND blog_lang_id = '$lang_id'";
+                        $sql = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id ";
                         $query = mysqli_query($con, $sql);
                         $des = mysqli_fetch_assoc($query);
                     }
@@ -77,7 +77,7 @@
                                 }
                                 ?>
                             </h3> <?php
-                                    $select = "SELECT * FROM blog_category_tbl WHERE lang_id = '$lang_id'";
+                                    $select = "SELECT * FROM blog_category_tbl";
                                     $query = mysqli_query($con, $select);
                                     $rows = mysqli_num_rows($query);
                                     while ($result = mysqli_fetch_assoc($query)) {
@@ -115,7 +115,7 @@
                             </h3>
                             <ul>
                                 <?php
-                                $select = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE blog_lang_id = '$lang_id' ORDER BY blog_tbl.created_at DESC LIMIT 4 ";
+                                $select = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id ORDER BY blog_tbl.created_at DESC LIMIT 4 ";
                                 $query = mysqli_query($con, $select);
                                 $rows = mysqli_num_rows($query);
                                 while ($result = mysqli_fetch_assoc($query)) {

@@ -35,7 +35,7 @@
                                      <h4 class="m-0 p-0"><?= $result1['cat_name'] ?></h4>
                                  </li>
                                  <?php
-                                    $sql3 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id1' AND lang_id = '$lan'";
+                                    $sql3 = "SELECT * FROM lang_products_tbl where product_status = '1' AND product_category = '$cat_id1' AND lang_id = '$lan'";
                                     $pro_query1 = mysqli_query($con, $sql3);
                                     if (mysqli_num_rows($pro_query1)) {
                                         foreach ($pro_query1 as $pro_data1) {
@@ -56,8 +56,8 @@
              <div class="row contact_links">
                  <div class="col-md-12">
                      <div class="contact">
-                         <a href="#!"><i class="fa-brands fa-whatsapp"></i>+91 954 372 5520</a>
-                         <a href="#!"> <i class="fa-regular fa-envelope"></i>info@mincontools.com</a>
+                         <a href="tel:+1954372 5520"><i class="fa-brands fa-whatsapp"></i> +1 (954) 372 5520</a>
+                         <a href="info@mincontools.com"> <i class="fa-regular fa-envelope"></i>info@mincontools.com</a>
                      </div>
                  </div>
              </div>

@@ -79,7 +79,6 @@ require('config/dbcon.php');
                                         <th>Category</th>
                                         <th>Author</th>
                                         <th>Heading</th>
-                                        <th>Blog Language</th>
                                         <th>Status</th>
                                         
                                         <th colspan="3" class="text-center">Action</th>
@@ -108,7 +107,6 @@ require('config/dbcon.php');
                                              </td>
                                             <td><?= $filds['A_name']?></td>
                                             <td><?= $filds['title'] ?></td>
-                                            <td><?= $filds['blog_lang_id'] == 1 ? 'English':'Spanish' ?></td>
                                             <td>
                                                 <?php
                                                 if ($filds['blog_status'] == 1) {
@@ -156,4 +154,3 @@ require('config/dbcon.php');
         });
     });
 </script>
-

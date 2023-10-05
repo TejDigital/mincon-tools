@@ -211,7 +211,5 @@ for (let i = 0; i < menuitems.length; i++) {
     //         responsive: true
     //     }
     // });
-
-    
 })(jQuery);
 

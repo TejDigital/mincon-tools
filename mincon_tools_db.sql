@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 03:50 PM
+-- Generation Time: Oct 05, 2023 at 02:13 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -28,10 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `blog_category_tbl` (
-  `blog_category_sNo` int(11) NOT NULL,
   `blog_cat_id` int(11) NOT NULL,
   `lang_id` tinyint(4) NOT NULL,
-  `blog_cat_name` varchar(50) NOT NULL,
+  `blog_cat_name` varchar(100) NOT NULL,
   `blog_cat_status` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -40,9 +39,8 @@ CREATE TABLE `blog_category_tbl` (
 -- Dumping data for table `blog_category_tbl`
 --
 
-INSERT INTO `blog_category_tbl` (`blog_category_sNo`, `blog_cat_id`, `lang_id`, `blog_cat_name`, `blog_cat_status`, `created_at`) VALUES
-(1, 1, 1, 'hammer', 1, '2023-09-26 09:48:49'),
-(2, 1, 2, 'hammer Span', 1, '2023-09-26 09:51:56');
+INSERT INTO `blog_category_tbl` (`blog_cat_id`, `lang_id`, `blog_cat_name`, `blog_cat_status`, `created_at`) VALUES
+(3, 1, 'hammer', 1, '2023-10-05 11:49:55');
 
 -- --------------------------------------------------------
 
@@ -70,8 +68,7 @@ CREATE TABLE `blog_tbl` (
 --
 
 INSERT INTO `blog_tbl` (`s_no`, `blog_id`, `blog_lang_id`, `A_name`, `category`, `image`, `title`, `b_des_mini`, `b_des_full`, `date`, `blog_status`, `created_at`) VALUES
-(1, 1, 1, 'mincon', '1', '1695723129.png', 'col-mine', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit', '<h1 style=\"text-align: center;\"><strong>Heading</strong></h1>\r\n<p style=\"text-align: justify;\">Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"blob:http://localhost/84a1a830-58ef-45bc-8ebe-c607d34a2145\" alt=\"\" width=\"962\" height=\"348\"></p>\r\n<p style=\"text-align: justify;\">&nbsp;integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.</p>', '2023-09-26', 1, '2023-09-26 10:08:05'),
-(2, 1, 2, 'mincon', '1', '1695723129.png', 'col-mine_span', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit', '<h1 style=\"text-align: center;\"><strong>Heading</strong></h1>\r\n<p style=\"text-align: justify;\">Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"blob:http://localhost/84a1a830-58ef-45bc-8ebe-c607d34a2145\" alt=\"\" width=\"962\" height=\"348\"></p>\r\n<p style=\"text-align: justify;\">&nbsp;integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.</p>', '2023-09-26', 1, '2023-09-26 10:12:09');
+(1, 0, 0, 'mincon', '3', '1696506663.png', 'col-mine', 'In your specific code, it seems like you\'re trying to use count() on a variable that contains a string instead of an array. You should check the code around line 186 in your product_code.php file and make sure that you are passing the correct type of variable to count(). If you need more specific as', '<p>In your specific code, it seems like you\'re trying to use <code>count()</code> on a variable that contains a string instead of an array. You should check the code around line 186 in your <code>product_code.php</code> file and make sure that you are passing the correct type of variable to <code>count()</code>. If you need more specific assistance, please provide the relevant code around line 186, and I can help you identify the issue.In your specific code, it seems like you\'re trying to use <code>count()</code> on a variable that contains a string instead of an array. You should check the code around line 186 in your <code>product_code.php</code> file and make sure that you are passing the correct type of variable to <code>count()</code>. If you need more specific assistance, please provide the relevant code around line 186, and I can help you identify the issue.In your specific code, it seems like you\'re trying to use <code>count()</code> on a variable that contains a string instead of an array. You should check the code around line 186 in your <code>product_code.php</code> file and make sure that you are passing the correct type of variable to <code>count()</code>. If you need more specific assistance, please provide the relevant code around line 186, and I can help you identify the issue.</p>', '2023-10-06', 1, '2023-10-05 11:51:03');
 
 -- --------------------------------------------------------
 
@@ -95,6 +92,19 @@ CREATE TABLE `cart_tbl` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `cart_tbl`
+--
+
+INSERT INTO `cart_tbl` (`cart_id`, `lang_id`, `p_name`, `p_img`, `p_cat_name`, `user_name`, `user_mobile`, `user_email`, `user_company_name`, `user_country_name`, `cart_created_at`, `p_status`, `created_at`) VALUES
+(1, 1, 'Product_1', 'mincon_product_img_1.png', 'category_1', 'Rohan', '6260131392', 'tejpratapsahu00@gmail.com', 'IBM', 'india', '2023-10-04 06:52:51', 0, '2023-10-04 06:52:51'),
+(2, 2, 'Product_1_spanish', 'mincon_product_img_1.png', 'category_1_span', 'Rohan', '6260131392', 'tejpratapsahu00@gmail.com', 'IBM', 'india', '2023-10-04 06:52:51', 0, '2023-10-04 06:52:51'),
+(3, 2, 'Product_1_spanish', 'mincon_product_img_1.png', 'category_1_span', 'Rohan', '1234567890', 'tejpratapsahu00@gmail.com', 'tcs', 'india', '2023-10-04 06:56:27', 0, '2023-10-04 06:56:27'),
+(4, 2, 'Product_2_spanish', 'mincon_product_img_1.png', 'category_2_span', 'Rohan', '1234567890', 'tejpratapsahu00@gmail.com', 'tcs', 'india', '2023-10-04 06:56:27', 0, '2023-10-04 06:56:27'),
+(5, 2, 'Product_1_spanish', 'mincon_product_img_1.png', 'category_1_span', 'ABC Kumar', '0987654321', 'tejpratapsahu00@gmail.com', 'App', 'india', '2023-10-04 06:58:32', 0, '2023-10-04 06:58:32'),
+(6, 2, 'Product_2_spanish', 'mincon_product_img_1.png', 'category_2_span', 'ABC Kumar', '0987654321', 'tejpratapsahu00@gmail.com', 'App', 'india', '2023-10-04 06:58:32', 0, '2023-10-04 06:58:32'),
+(7, 2, 'Product_3_spanish', 'mincon_product_img_1.png', 'category_3_span', 'ABC Kumar', '0987654321', 'tejpratapsahu00@gmail.com', 'App', 'india', '2023-10-04 06:58:32', 0, '2023-10-04 06:58:32');
+
 -- --------------------------------------------------------
 
 --
@@ -116,16 +126,14 @@ CREATE TABLE `category_tbl` (
 --
 
 INSERT INTO `category_tbl` (`s_no`, `cat_id`, `lang_id`, `cat_name`, `cat_description`, `cat_status`, `created_at`) VALUES
-(1, 1, 1, 'category 1', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', 1, '2023-09-26 06:42:23'),
-(2, 1, 2, 'category 1', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', 1, '2023-09-26 06:42:36'),
-(3, 2, 1, 'category 2', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', 1, '2023-09-26 06:42:49'),
-(4, 2, 2, 'category 2', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', 1, '2023-09-26 06:43:25'),
-(5, 3, 1, 'category 3', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', 1, '2023-09-26 06:56:46'),
-(6, 3, 2, 'category 3', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', 1, '2023-09-26 06:56:55'),
-(7, 4, 1, 'category 4', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', 1, '2023-09-26 06:57:09'),
-(8, 4, 2, 'category 4', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', 1, '2023-09-26 06:57:24'),
-(9, 5, 1, 'category 5', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', 1, '2023-09-26 06:57:33'),
-(10, 5, 2, 'category 5', 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', 1, '2023-09-26 06:57:42');
+(1, 1, 1, 'category_1', 'our customers and sharing the resulting savings with them. We recognize the significance of equipping professionals with the right tools, enabling them to carry out their tasks safely and efficiently. Our team of experts dedicates themselves to crafting and producing innovative mining tools that embody reliability and cost-effectiveness.', 1, '2023-10-04 05:50:52'),
+(2, 1, 2, 'category_1_span', ' Reconocemos la importancia de equipar a los profesionales con las herramientas adecuadas, que les permitan realizar sus tareas de forma segura y eficiente. Nuestro equipo de expertos se dedica a diseñar y producir herramientas de minería innovadoras que incorporan confiabilidad y rentabilidad.', 1, '2023-10-04 05:51:25'),
+(3, 2, 1, 'category_2', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:01:56'),
+(4, 2, 2, 'category_2_span', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:02:26'),
+(5, 3, 1, 'category_3', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:02:45'),
+(6, 3, 2, 'category_3_span', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:03:05'),
+(7, 4, 1, 'category_4', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:03:56'),
+(8, 4, 2, 'category_4_span', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:04:21');
 
 -- --------------------------------------------------------
 
@@ -183,8 +191,7 @@ CREATE TABLE `enquire_tbl` (
 
 CREATE TABLE `language_tbl` (
   `lan_id` int(11) NOT NULL,
-  `en_lan` tinyint(4) NOT NULL DEFAULT 1,
-  `span_lan` tinyint(4) NOT NULL DEFAULT 1,
+  `lang_name` varchar(100) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -192,16 +199,30 @@ CREATE TABLE `language_tbl` (
 -- Dumping data for table `language_tbl`
 --
 
-INSERT INTO `language_tbl` (`lan_id`, `en_lan`, `span_lan`, `created_at`) VALUES
-(1, 1, 2, '2023-09-25 07:53:20');
+INSERT INTO `language_tbl` (`lan_id`, `lang_name`, `created_at`) VALUES
+(1, 'English', '2023-09-25 07:53:20'),
+(2, 'Spanish', '2023-10-02 07:01:26');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products_tbl`
+-- Table structure for table `lang_blog_tbl`
 --
 
-CREATE TABLE `products_tbl` (
+CREATE TABLE `lang_blog_tbl` (
+  `blog_id` int(11) NOT NULL,
+  `blog_name_lang_1` varchar(500) NOT NULL,
+  `blog_name_lang_2` varchar(500) NOT NULL,
+  `status` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lang_products_tbl`
+--
+
+CREATE TABLE `lang_products_tbl` (
   `s_no` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `lang_id` tinyint(4) NOT NULL,
@@ -230,14 +251,49 @@ CREATE TABLE `products_tbl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `products_tbl`
+-- Dumping data for table `lang_products_tbl`
 --
 
-INSERT INTO `products_tbl` (`s_no`, `product_id`, `lang_id`, `product_name`, `product_image`, `product_image1`, `product_image2`, `product_image3`, `product_image4`, `product_image5`, `product_video_url`, `en_weight`, `en_length`, `en_air_consumption`, `en_strokes_x_mins`, `en_rod_size`, `spn_weight`, `spn_length`, `spn_air_consumption`, `spn_strokes_x_mins`, `spn_rod_size`, `product_status`, `product_category`, `product_description`, `product_created_at`) VALUES
-(1, 2, 1, 'Product_1', 'mincon_product_bg1.png', 'mincon_about_bg3.png', '', '', '', '', 'https://www.youtube.com/watch?v=lp6OMS-6sd0', '', '', '', '', '', '', '', '', '', '', 1, 1, 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', '2023-09-26 07:29:46'),
-(2, 2, 2, 'Product_1', 'mincon_product_img_1.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=lp6OMS-6sd0', '', '', '', '', '', '', '', '', '', '', 1, 1, 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras quam id. Viverra in lorem quisque viverra integer elementum eget. Etiam orci id mattis nisl consectetur augue quis convallis.', '2023-09-26 07:31:46'),
-(3, 1, 1, 'Product_2', 'mincon_contact_bg2.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 2, 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras qua', '2023-09-26 12:07:00'),
-(4, 1, 2, 'Product_2', 'mincon_home_bg1.png', 'mincon_about_bg2.png', 'mincon_contact_bg2.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 2, 'Lorem ipsum dolor sit amet consectetur. Lectus mus sagittis id quis imperdiet sollicitudin. Et tempus pulvinar fames ut in vestibulum gravida risus. Sodales duis consequat enim mauris. Maecenas tellus sagittis egestas velit sit egestas. Adipiscing vitae blandit venenatis tincidunt ultricies pulvinar. Leo amet metus sit leo. Viverra felis volutpat cras qua', '2023-09-26 12:07:48');
+INSERT INTO `lang_products_tbl` (`s_no`, `product_id`, `lang_id`, `product_name`, `product_image`, `product_image1`, `product_image2`, `product_image3`, `product_image4`, `product_image5`, `product_video_url`, `en_weight`, `en_length`, `en_air_consumption`, `en_strokes_x_mins`, `en_rod_size`, `spn_weight`, `spn_length`, `spn_air_consumption`, `spn_strokes_x_mins`, `spn_rod_size`, `product_status`, `product_category`, `product_description`, `product_created_at`) VALUES
+(1, 1, 1, 'Product_1', 'mincon_product_img_1.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=lp6OMS-6sd0', '', '', '', '', '', '', '', '', '', '', 1, 1, 'our customers and sharing the resulting savings with them. We recognize the significance of equipping professionals with the right tools, enabling them to carry out their tasks safely and efficiently. Our team of experts dedicates themselves to crafting and producing innovative mining tools that embody reliability and cost-effectiveness.', '2023-10-04 05:58:14'),
+(2, 1, 2, 'Product_1_spanish', 'mincon_product_img_1.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 1, ' Reconocemos la importancia de equipar a los profesionales con las herramientas adecuadas, que les permitan realizar sus tareas de forma segura y eficiente. Nuestro equipo de expertos se dedica a diseñar y producir herramientas de minería innovadoras que incorporan confiabilidad y rentabilidad.', '2023-10-04 05:58:47'),
+(3, 2, 1, 'Product_2', 'mincon_product_img_1.png', 'mincon_about_bg2.png', '', '', '', '', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', '', '', '', '', '', '', '', '', '', '', 1, 2, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:06:06'),
+(4, 2, 2, 'Product_2_spanish', 'mincon_product_img_1.png', 'mincon_contact_bg1.png', '', '', '', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 2, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:06:39'),
+(5, 3, 1, 'Product_3', 'mincon_product_img_1.png', '', '', '', 'mincon_contact_bg2.png', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 3, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:08:32'),
+(6, 3, 2, 'Product_3_spanish', 'mincon_product_img_1.png', '', '', 'mincon_about_bg3.png', '', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 3, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:09:05'),
+(7, 4, 1, 'Product_4_en', 'mincon_product_img_1.png', 'mincon_about_bg2.png', '', '', 'mincon_contact_bg2.png', '', 'https://www.youtube.com/watch?v=ax1h-YOyPJc', '', '', '', '', '', '', '', '', '', '', 1, 4, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:10:30'),
+(8, 4, 2, 'Product_4_spanish', 'mincon_product_img_1.png', '', '', '', 'mincon_about_bg2.png', '', 'https://www.youtube.com/watch?v=ax1h-YOyPJc', '', '', '', '', '', '', '', '', '', '', 1, 4, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:10:55'),
+(11, 5, 2, 'Product_5_spanish', 'mincon_product_img_1.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=ax1h-YOyPJc', '', '', '', '', '', '', '', '', '', '', 1, 1, 'and sharing the resulting savings with them. We recognize the significance of equipping professionals with the right tools, enabling them to carry out their tasks safely and efficiently. Our team of experts dedicates themselves to crafting and producing innovative mining tools that embody reliability and cost-effectiveness.', '2023-10-04 11:43:43'),
+(12, 5, 1, 'Product_5', 'mincon_product_img_1.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 1, 'and sharing the resulting savings with them. We recognize the significance of equipping professionals with the right tools, enabling them to carry out their tasks safely and efficiently. Our team of experts dedicates themselves to crafting and producing innovative mining tools that embody reliability and cost-effectiveness.', '2023-10-04 11:44:27'),
+(14, 7, 1, 'Product_6', 'mincon_product_img_1.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 3, ' Meet is a video communication service developed by Google. It is one of two apps that constitute the replacement for Google Hangouts, the other being Google Chat. It replaced the consumer-facing Google Duo in late 2022, with the Duo mobile app being renamed Meet and the original Meet app ', '2023-10-05 09:13:06'),
+(15, 7, 2, 'Product_6_spanish', 'mincon_product_img_1.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 3, ' Meet is a video communication service developed by Google. It is one of two apps that constitute the replacement for Google Hangouts, the other being Google Chat. It replaced the consumer-facing Google Duo in late 2022, with the Duo mobile app being renamed Meet and the original Meet app ', '2023-10-05 09:14:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_category_tbl`
+--
+
+CREATE TABLE `product_category_tbl` (
+  `cat_id` int(11) NOT NULL,
+  `category_name_lang_1` varchar(500) NOT NULL,
+  `category_name_lang_2` varchar(500) NOT NULL,
+  `category_description_lang_1` mediumtext NOT NULL,
+  `category_description_lang_2` mediumtext NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_category_tbl`
+--
+
+INSERT INTO `product_category_tbl` (`cat_id`, `category_name_lang_1`, `category_name_lang_2`, `category_description_lang_1`, `category_description_lang_2`, `status`, `created_at`) VALUES
+(1, 'category_1_en', 'category_1_span', 'emnkdf k f fm fmd fkd fk dfk sdfc ds md d fm,d fm,sd fm,ds m,fsd m sdm msd f,msdm fm,sm fsm,d fm,sd ,ms fm,s fm,d ,mf m,sd ,s f,fsm, loremnkdf k f fm fmd fkd fk dfk sdfc ds md d fm,d fm,sd fm,ds m,fsd m sdm msd f,msdm fm,sm fsm,d fm,sd ,ms fm,s fm,d ,mf m,sd ,s f,fsm, loremnkdf k f fm fmd fkd fk dfk sdfc ds md d fm,d fm,sd fm,ds m,fsd m sdm msd f,msdm fm,sm fsm,d fm,sd ,ms fm,s fm,d ,mf m,sd ,s f,fsm, loremnkdf k f fm fmd fkd fk dfk sdfc ds md d fm,d fm,sd fm,ds m,fsd m sdm msd f,msdm fm,sm fsm,d fm,sd ,ms fm,s fm,d ,mf m,sd ,s f,fsm, loremnkdf k f fm fmd fkd fk dfk sdfc ds md d fm,d fm,sd fm,ds m,fsd m sdm msd f,msdm fm,sm fsm,d fm,sd ,ms fm,s fm,d ,mf m,sd ,s f,fsm, loremnkd', '', 1, '2023-10-04 09:17:11'),
+(2, 'category_2', 'category_2_span', '', '', 1, '2023-10-04 09:17:11'),
+(3, 'category_3', 'category_3_span', '', '', 1, '2023-10-04 09:17:11'),
+(4, 'category_4_span', 'category_4_span', '', '', 1, '2023-10-04 09:17:11'),
+(6, 'category 5', 'category 5_span', 'pposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, s', 'pposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, s', 1, '2023-10-04 12:28:34');
 
 -- --------------------------------------------------------
 
@@ -248,18 +304,47 @@ INSERT INTO `products_tbl` (`s_no`, `product_id`, `lang_id`, `product_name`, `pr
 CREATE TABLE `product_specification` (
   `s_id` int(11) NOT NULL,
   `lang_id` tinyint(4) NOT NULL,
-  `product_name` varchar(50) NOT NULL,
-  `s_name` varchar(60) NOT NULL,
-  `s_value` varchar(50) NOT NULL
+  `product_id` int(15) NOT NULL,
+  `spec_name` varchar(100) NOT NULL,
+  `s_value` varchar(50) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_specification`
 --
 
-INSERT INTO `product_specification` (`s_id`, `lang_id`, `product_name`, `s_name`, `s_value`) VALUES
-(1, 1, 'Product_1', 'Weight', '100kg'),
-(2, 2, 'Product_1', 'Weight', '100 lb');
+INSERT INTO `product_specification` (`s_id`, `lang_id`, `product_id`, `spec_name`, `s_value`, `status`, `created_at`) VALUES
+(1, 1, 7, 'weight', '100kg', 0, '2023-10-05 09:13:06'),
+(2, 1, 7, 'lenght', '100mm', 0, '2023-10-05 09:13:06'),
+(3, 2, 7, 'weight', '20kg', 0, '2023-10-05 09:14:21'),
+(4, 2, 7, 'length', '90mm', 0, '2023-10-05 09:14:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_tbl`
+--
+
+CREATE TABLE `product_tbl` (
+  `product_id` int(11) NOT NULL,
+  `product_name_lang_1` varchar(500) DEFAULT NULL,
+  `product_name_lang_2` varchar(500) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_tbl`
+--
+
+INSERT INTO `product_tbl` (`product_id`, `product_name_lang_1`, `product_name_lang_2`, `status`) VALUES
+(1, 'Product_1', 'Product_1_spanish', 1),
+(2, 'Product_2', 'Product_2_spanish', 1),
+(3, 'Product_3', 'Product_3_spanish', 1),
+(4, 'Product_4_en', 'Product_4_spanish', 1),
+(5, 'Product_5', 'Product_5_spanish', 0),
+(7, 'Product_6_spanish', 'Product_6_spanish', 1);
 
 -- --------------------------------------------------------
 
@@ -467,7 +552,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `mobile`, `password`, `status`, `cre
 -- Indexes for table `blog_category_tbl`
 --
 ALTER TABLE `blog_category_tbl`
-  ADD PRIMARY KEY (`blog_category_sNo`);
+  ADD PRIMARY KEY (`blog_cat_id`);
 
 --
 -- Indexes for table `blog_tbl`
@@ -506,16 +591,34 @@ ALTER TABLE `language_tbl`
   ADD PRIMARY KEY (`lan_id`);
 
 --
--- Indexes for table `products_tbl`
+-- Indexes for table `lang_blog_tbl`
 --
-ALTER TABLE `products_tbl`
+ALTER TABLE `lang_blog_tbl`
+  ADD PRIMARY KEY (`blog_id`);
+
+--
+-- Indexes for table `lang_products_tbl`
+--
+ALTER TABLE `lang_products_tbl`
   ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `product_category_tbl`
+--
+ALTER TABLE `product_category_tbl`
+  ADD PRIMARY KEY (`cat_id`);
 
 --
 -- Indexes for table `product_specification`
 --
 ALTER TABLE `product_specification`
   ADD PRIMARY KEY (`s_id`);
+
+--
+-- Indexes for table `product_tbl`
+--
+ALTER TABLE `product_tbl`
+  ADD PRIMARY KEY (`product_id`);
 
 --
 -- Indexes for table `tem_tbl_for_cart`
@@ -543,25 +646,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `blog_category_tbl`
 --
 ALTER TABLE `blog_category_tbl`
-  MODIFY `blog_category_sNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `blog_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `blog_tbl`
 --
 ALTER TABLE `blog_tbl`
-  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cart_tbl`
 --
 ALTER TABLE `cart_tbl`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `category_tbl`
 --
 ALTER TABLE `category_tbl`
-  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `contact_tbl`
@@ -579,25 +682,43 @@ ALTER TABLE `enquire_tbl`
 -- AUTO_INCREMENT for table `language_tbl`
 --
 ALTER TABLE `language_tbl`
-  MODIFY `lan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `lan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `products_tbl`
+-- AUTO_INCREMENT for table `lang_blog_tbl`
 --
-ALTER TABLE `products_tbl`
-  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `lang_blog_tbl`
+  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `lang_products_tbl`
+--
+ALTER TABLE `lang_products_tbl`
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `product_category_tbl`
+--
+ALTER TABLE `product_category_tbl`
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `product_specification`
 --
 ALTER TABLE `product_specification`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `product_tbl`
+--
+ALTER TABLE `product_tbl`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tem_tbl_for_cart`
 --
 ALTER TABLE `tem_tbl_for_cart`
-  MODIFY `cart_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cart_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ui_table`

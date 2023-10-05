@@ -11,9 +11,11 @@ if (isset($_SESSION['min_msg'])) {
 }
 ?>
 <?php
-if (isset($_GET['id'])) {
+
+if (isset($_GET['id']) && isset($_GET['lang_id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM category_tbl  WHERE cat_id = '$id'";
+    $lang_id = $_GET['lang_id'];
+    $sql = "SELECT * FROM product_category_tbl  WHERE cat_id = '$id' ";
     $query = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($query);
 }
@@ -23,23 +25,27 @@ if (isset($_GET['id'])) {
    
         <div class="col-md-12">
         <div class="bg-light  rounded p-4">
-            <h6>For Language : <?= $data['lang_id'] == 1 ?'English' : 'Spanish' ?></h6>
+            <h6>For Language : <?= $lang_id == 1 ?'English' : 'Spanish' ?></h6>
             <h4>ADD Category</h4>
             <form action="product_category_code.php" method="post">
                 <input type="hidden" name="id" value="<?=$data['cat_id']?>">
-                <input type="text" name="name" class="my-2 form-control" value="<?=$data['cat_name']?>" placeholder="Category Name">
-                <textarea name="des" id="" class="form-control my-3" cols="30" rows="10"><?=$data['cat_description']?></textarea>
+                <input type="hidden" name="lang_id" value="<?=$lang_id?>">
+
+                <input type="text" name="name" class="my-2 form-control" value="<?= $lang_id == 1 ? $data['category_name_lang_1'] : $data['category_name_lang_2']?>" placeholder="Category Name">
+
+                <textarea name="des" id="" class="form-control my-3" cols="30" rows="10"><?= $lang_id == 1 ? $data['category_description_lang_1'] : $data['category_description_lang_2']?></textarea>
+
                 <select name="status" id="" class="form-select my-2">
                     <option
                     <?php
-                    if($data['cat_status'] == 1){
+                    if($data['status'] == 1){
                         echo "selected";
                     }
                     ?>
                      value="1">Active</option>
                     <option
                     <?php
-                    if($data['cat_status'] == 2){
+                    if($data['status'] == 0){
                         echo "selected";
                     }
                     ?>

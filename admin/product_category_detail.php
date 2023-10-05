@@ -11,9 +11,10 @@ if (isset($_SESSION['min_msg'])) {
 }
 ?>
 <?php
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && isset($_GET['lang_id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM  category_tbl  WHERE cat_id = '$id'";
+    $lang_id = $_GET['lang_id'];
+    $sql = "SELECT * FROM  product_category_tbl  WHERE cat_id = '$id'";
     $query = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($query);
 }
@@ -26,18 +27,17 @@ if (isset($_GET['id'])) {
                 <h3 class="float-start">Category Details</h3>
                 <a href="./product_category.php" class="btn btn-danger float-end">Back</a>
                 <div class="row mt-5">
-
                     <div class="col-md-3">
                         <label for="" class="label">category language</label>
-                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $data['lang_id'] == 1 ?'English' :'Spanish' ?></p>
+                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $lang_id == 1 ?'English' :'Spanish' ?></p>
                     </div>
                     <div class="col-md-3">
                         <label for="" class="label">category Name</label>
-                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $data['cat_name'] ?></p>
+                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $lang_id == 1 ? $data['category_name_lang_1'] : $data['category_name_lang_2']?></p>
                     </div>
                     <div class="col-md-12">
                         <label for="" class="label">category Description</label>
-                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $data['cat_description'] ?></p>
+                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $lang_id == 1 ? $data['category_description_lang_1'] : $data['category_description_lang_2']?>    </p>
                     </div>
                 </div>
             </div>

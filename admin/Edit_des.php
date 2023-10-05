@@ -36,6 +36,7 @@ require('config/dbcon.php');
                             <div class="form-group">
                                 <div class="row">
                                     <input type="hidden" name="id" value="<?php echo $row['blog_id'] ?>">
+                                    <input type="hidden" name="lang_id" value="<?php echo $row['blog_lang_id'] ?>">
                                     <div class="col-md-12">
                                         <img src="./blog_des_files/<?php echo $row['image'] ?>" alt="" width="200px" height="150px">
                                         <br>

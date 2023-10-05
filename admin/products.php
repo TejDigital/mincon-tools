@@ -12,61 +12,6 @@ if (isset($_SESSION['min_msg'])) {
 ?>
 <div class="container-fluid pt-4 px-4">
     <div class="row">
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog " role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">ADD Specification Of Product </h5>
-                        <button type="button" class="close btn  btn-sm-square btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="product_specs_code.php" method="POST" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="">Choose Product</label>
-                                                <select name="p_name" id="" class="form-select">
-                                                    <?php
-                                                    $sql = "SELECT * FROM products_tbl";
-                                                    $query = mysqli_query($con, $sql);
-                                                    if (mysqli_num_rows($query)) {
-                                                        foreach ($query as $result) {
-                                                    ?>
-                                                            <option value="<?= $result['product_name'] ?>"><?= $result['product_name'] ?></option>
-                                                    <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Add Specification Name</label>
-                                                <input type="text" name="spec_name" class="form-control">
-                                            </div>
-                                            <div class="form-group my-2">
-                                                <label for="">Add Specification Value</label>
-                                                <input type="text" name="spec_value" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" name="add-specs" class="btn btn-primary">ADD</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
         <div class="modal fade" id="delete_pro_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -79,6 +24,7 @@ if (isset($_SESSION['min_msg'])) {
                     <form action="product_code.php" method="POST">
                         <div class="modal-body">
                             <input type="hidden" name="delete_pro_id" class="delete_pro_id">
+                            <input type="hidden" name="delete_lang_id" class="delete_lang_id">
                             <p>Are you sure , you want to delete this data ?</p>
                         </div>
                         <div class="modal-footer">
@@ -90,12 +36,24 @@ if (isset($_SESSION['min_msg'])) {
             </div>
         </div>
         <div class="col-md-12">
-            <div class="bg-light text-center rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h4 class="mb-0">Product</h4>
-                    <div>
-                        <a href="./add_product.php" class="btn btn-info">Add Product</a>
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Add Product Specification </a>
+            <div class="bg-light rounded p-4">
+                <h4 class="mb-0">Product</h4>
+                <div class="d-flex align-items-start justify-content-between mb-4 mx-auto">
+                    <p></p>
+                    <div class="d-flex align-items-center justify-content-even  w-25">
+                        <!-- <a href="./product_specs.php" class="btn btn-primary mx-3">Add_Specification </a> -->
+                        <a href="./add_product.php" class="btn btn-info my-2">Add</a>
+                        <div class="w-75 ms-auto">
+                        <label for="">Choose Language</label>
+                        <select name="lan" class="form-select lanChange"  onchange="changeLang()">
+                            <option value="1" <?php if ($lan == 1) {
+                                                    echo "selected";
+                                                } ?>>English</option>
+                            <option value="2" <?php if ($lan == 2) {
+                                                    echo "selected";
+                                                } ?>>Spanish</option>
+                        </select>
+                        </div>
                     </div>
                     <!-- <a href="">Show All</a> -->
                 </div>
@@ -105,29 +63,49 @@ if (isset($_SESSION['min_msg'])) {
                             <tr class="text-dark">
                                 <th scope="col">S No</th>
                                 <th scope="col">Product Category</th>
-                                <th scope="col">Product Language</th>
+                                <!-- <th scope="col">Product ID</th> -->
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Status</th>
+                                <!-- <th scope="col">Product Language</th> -->
                                 <th scope="col" colspan="3" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT * FROM products_tbl LEFT JOIN category_tbl ON products_tbl.product_category = category_tbl.cat_id ORDER BY product_created_at DESC";
+                            $sql = "SELECT * FROM product_tbl INNER JOIN lang_products_tbl ON product_tbl.product_id = lang_products_tbl.product_id Where lang_products_tbl.lang_id = '$lan' ORDER BY product_created_at DESC";
+                            // $sql = "SELECT * FROM lang_products_tbl LEFT JOIN category_tbl ON lang_products_tbl.product_category = category_tbl.cat_id ORDER BY product_created_at DESC";
                             $query = mysqli_query($con, $sql);
                             $count = 1;
                             if (mysqli_num_rows($query)) {
                                 foreach ($query as $data) {
-
+                                    $lang_id =  $data['lang_id'];
                             ?>
                                     <tr>
                                         <td><?= $count++ ?></td>
 
-                                        <td><?php if ($data['product_category'] == $data['cat_id']) {
-                                                echo $data['cat_name'];
-                                            } ?></td>
-                                        <td><?=$data['lang_id'] ==1 ?'English ':'Spanish'  ?></td>
-                                        <td><?= $data['product_name'] ?></td>
+                                        <td><?php
+                                            $sql2 = "SELECT * FROM category_tbl WHERE lang_id = '$lang_id'";
+                                            $query2 = mysqli_query($con, $sql2);
+                                            if (mysqli_num_rows($query2) > 0) {
+                                                foreach ($query2 as $row) {
+                                                    if ($data['product_category'] == $row['cat_id']) {
+                                                        echo $row['cat_name'];
+                                                    }
+                                                    // echo $row['cat_id'];
+                                                }
+                                                $row = mysqli_fetch_assoc($query2);
+                                            }
+                                            ?>
+                                        </td>
+                                        <!-- <td><?= $data['product_id'] ?></td> -->
+                                        <td> <?php
+                                                $product_name_lang = $data['product_name_lang_1'];
+                                                if ($data['product_name_lang_2'] != "") {
+                                                    $product_name_lang .= " (" . $data['product_name_lang_2'] . ")";
+                                                }
+                                                ?>
+                                            <?= $product_name_lang ?>
+                                        </td>
 
                                         <td><?php if ($data['product_status'] == 1) {
                                                 echo "Active";
@@ -135,14 +113,15 @@ if (isset($_SESSION['min_msg'])) {
                                                 echo "Inactive";
                                             }
                                             ?></td>
+                                        <!-- <td><?= $data['lang_id'] == 1 ? 'English ' : 'Spanish'  ?></td> -->
                                         <td>
-                                            <button type='button' value=<?php echo $data['product_id']; ?> class='btn btn-square btn-outline-danger delete_pro btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
+                                            <button type='button' value='<?= $data['product_id'] ?>,<?= $data['lang_id'] ?>' class='btn btn-square btn-outline-danger delete_pro btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
                                         </td>
                                         <td>
-                                            <a href="./product_edit.php?id=<?= $data['product_id'] ?>" class='btn btn-square btn-outline-primary  btn-sm my-1'><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <a href="./product_edit.php?id=<?= $data['product_id'] ?>&lang_id=<?= $data['lang_id'] ?>" class='btn btn-square btn-outline-primary  btn-sm my-1'><i class="fa-regular fa-pen-to-square"></i></a>
                                         </td>
                                         <td>
-                                            <a href="./product_detail.php?id=<?= $data['product_id'] ?>" class='btn btn-square btn-outline-dark  btn-sm my-1'><i class="fa-solid fa-eye"></i></a>
+                                            <a href="./product_detail.php?id=<?= $data['product_id'] ?>&lang_id=<?= $data['lang_id'] ?>" class='btn btn-square btn-outline-dark  btn-sm my-1'><i class="fa-solid fa-eye"></i></a>
                                         </td>
                                     </tr>
                             <?php
@@ -166,10 +145,13 @@ if (isset($_SESSION['min_msg'])) {
     $(document).ready(function() {
         $('.delete_pro').click(function(e) {
             e.preventDefault();
-            var user_id = $(this).val();
-            // console.log(user_id);
-            $('.delete_pro_id').val(user_id);
+            var values = $(this).val().split(',');
+            var cart_id = values[0];
+            var lang_id = values[1];
+            $('.delete_pro_id').val(cart_id);
+            $('.delete_lang_id').val(lang_id);
             $('#delete_pro_modal').modal('show');
+
         });
     });
 </script>

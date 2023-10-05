@@ -80,7 +80,7 @@ if (mysqli_num_rows($query)) {
                 <div class="boxes">
                     <div class="row form-click">
                         <?php
-                        $sql1 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id' AND lang_id = '$lan' limit 8 ";
+                        $sql1 = "SELECT * FROM lang_products_tbl where product_status = '1' AND product_category = '$cat_id' AND lang_id = '$lan' limit 8 ";
                         $pro_query = mysqli_query($con, $sql1);
                         if (mysqli_num_rows($pro_query)) {
                             foreach ($pro_query as $pro_data) {
@@ -209,7 +209,7 @@ if (mysqli_num_rows($query)) {
                                         foreach ($query as $result) {
                                             $_SESSION['id'] =  $result['cat_id'];
                                     ?>
-                                            <option value="<?= $result['cat_id'] ?>"><?= $result['cat_name'] ?></option>
+                                            <option value="<?= $result['cat_id'] ?>,<?=$lan?>"><?= $result['cat_name'] ?></option>
                                     <?php
                                         }
                                     }

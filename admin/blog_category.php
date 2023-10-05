@@ -78,7 +78,6 @@ require('config/dbcon.php');
                                 <tr>
                                     <th>Id</th>
                                     <th>Categories</th>
-                                    <th>Category Language</th>
                                     <th>Status</th>
                                     <th colspan="2" class="text-center">Action</th>
                                 </tr>
@@ -94,7 +93,6 @@ require('config/dbcon.php');
                                         </tr>
                                         <td><?= ++$count ?></td>
                                         <td><?= $row['blog_cat_name'] ?></td>
-                                        <td><?= $row['lang_id'] == 1 ? 'English' : 'Spanish'?></td>
                                         <td>
                                             <?php
                                             if ($row['blog_cat_status'] == "1") {
@@ -124,32 +122,9 @@ require('config/dbcon.php');
             </div>
             <div class="col-md-3">
                 <div class="card p-3">
-                    <div class="mb-3">
-                        <label for="">Select Language</label> <br>
-                        <button class="btn btn-info btn-sm tab-link active-link" onclick="on_tab_link('box1')">english</button>
-                        <button class="btn btn-danger btn-sm tab-link" onclick="on_tab_link('box2')">spanish</button>
-                    </div>
                     <div class="card-body tab_box active-tab" id="box1">
                         <form action="blog_category_code.php" method="post">
                             <input type="hidden" value="1" name="lan">
-                            <label for="">Add Category Name</label>
-
-                            <input class="form-control  m-0" type="text" name="cat_upl" placeholder="enter category">
-
-                            <label for="">Status</label>
-                            <select class="form-select" name="status" class="py-2" name="status">
-                                <option value="1">Active</option>
-                                <option value="0">inactive</option>
-                            </select>
-
-                            <button type="submit" class="btn btn-info my-2 w-100 " name="add">Add</button>
-                        </form>
-                    </div>
-                    <div class="card-body tab_box" id="box2">
-                        <h6>For Spanish Language</h6>
-                        <form action="blog_category_code.php" method="post">
-                        <input type="hidden" value="2" name="lan">
-
                             <label for="">Add Category Name</label>
 
                             <input class="form-control  m-0" type="text" name="cat_upl" placeholder="enter category">
@@ -183,18 +158,18 @@ require('config/dbcon.php');
 </script>
 <?php require('includes/footer.php'); ?>
 <script>
-    let tab_links = document.getElementsByClassName("tab-link");
-    let tab_contents = document.getElementsByClassName("tab_box");
+    // let tab_links = document.getElementsByClassName("tab-link");
+    // let tab_contents = document.getElementsByClassName("tab_box");
 
-    function on_tab_link(tab_name) {
-        for (tab_link of tab_links) {
-            tab_link.classList.remove("active-link");
-        }
-        for (tab_content of tab_contents) {
-            tab_content.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tab_name).classList.add("active-tab");
+    // function on_tab_link(tab_name) {
+    //     for (tab_link of tab_links) {
+    //         tab_link.classList.remove("active-link");
+    //     }
+    //     for (tab_content of tab_contents) {
+    //         tab_content.classList.remove("active-tab");
+    //     }
+    //     event.currentTarget.classList.add("active-link");
+    //     document.getElementById(tab_name).classList.add("active-tab");
 
-    };
+    // };
 </script>

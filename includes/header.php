@@ -69,8 +69,8 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                         <div class="col-md-12 d-flex align-items-center justify-content-between flex-wrap">
                             <div class="address d-flex align-items-center justify-content-between flex-wrap">
                                 <div class="div top_nav_item px-2">
-                                    <p class="m-0 view_display"><a href="tel:+919543725520"> <span class="pe-1"> <i class="fa-solid fa-phone-volume"></i></span>+91 954 372 5520</a></p>
-                                    <p class="m-0 none_display"><a href="tel:+919543725520"> <span class="pe-1"> <i class="fa-solid fa-phone-volume"></i></span></a></p>
+                                    <p class="m-0 view_display"><a href="tel:+19543725520"> <span class="pe-1"> <i class="fa-solid fa-phone-volume"></i></span>+1 (954) 372 5520</a></p>
+                                    <p class="m-0 none_display"><a href="tel:+19543725520"> <span class="pe-1"> <i class="fa-solid fa-phone-volume"></i></span></a></p>
                                 </div>
                                 <div class="div top_nav_item px-2">
                                     <p class="m-0 view_display"> <a href="mailto:info@mincontools.com "> <span class="pe-1"> <i class="fa-regular fa-envelope"></i></span> info@mincontools.com </a></p>
@@ -180,20 +180,20 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                     </div>
                 </nav>
                 <nav class="">
-                    <div class="Sponsors_slider_area_1 owl-carousel owl-theme" id="nav_drop">
-                        <!-- <ul class="drop-Down"> -->
+                    <!-- <div class="Sponsors_slider_area_1 owl-carousel owl-theme" id="nav_drop"> -->
+                        <ul class="drop-Down">
                             <?php
-                            $sql2 = "SELECT * FROM category_tbl WHERE cat_status = 1 AND lang_id = '$lan'";
+                            $sql2 = "SELECT * FROM category_tbl WHERE cat_status = 1 AND lang_id = '$lan' limit 4";
                             $query2 = mysqli_query($con, $sql2);
                             if (mysqli_num_rows($query2)) {
                                 foreach ($query2 as $result1) {
                                     $cat_id1 = $result1['cat_id'];
                             ?>
                                     <li class="drop-list">
-                                        <p class="click-link"><?= $result1['cat_name'] ?></p>
+                                        <p class="click-link"><?= $result1['cat_name'] ?> <i class="fa-solid fa-chevron-down rotate180"></i></p>
                                         <ul class="drop_item">
                                             <?php
-                                            $sql3 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$cat_id1' AND lang_id = '$lan' ";
+                                            $sql3 = "SELECT * FROM lang_products_tbl where product_status = '1' AND product_category = '$cat_id1' AND lang_id = '$lan' ";
                                             $pro_query1 = mysqli_query($con, $sql3);
                                             if (mysqli_num_rows($pro_query1)) {
                                                 foreach ($pro_query1 as $pro_data1) {
@@ -209,8 +209,8 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                                 }
                             }
                             ?>
-                        <!-- </ul> -->
-                    </div>
+                        </ul>
+                    <!-- </div> -->
                 </nav>
             </div>
 

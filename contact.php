@@ -160,7 +160,7 @@ if (isset($_SESSION['min_msg'])) {
                                         foreach ($query as $result) {
                                             $_SESSION['id'] =  $result['cat_id'];
                                     ?>
-                                            <option value="<?= $result['cat_id'] ?>"><?= $result['cat_name'] ?></option>
+                                            <option value="<?= $result['cat_id'] ?>,<?=$lan?>"><?= $result['cat_name'] ?></option>
                                     <?php
                                         }
                                     }

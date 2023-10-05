@@ -10,10 +10,49 @@
 <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
 <script src="tinymce/js/tinymce/tinymce.min.js"></script>
 <script src="tinymce/js/tinymce/my_tiny.js"></script>
+<!-- <script src="./ckeditor5/ckeditor.js"></script> -->
+<!-- <script src="./ckeditor/ckeditor.js"></script> -->
+<!-- <script src="./ckfinder/ckfinder.js"></script> -->
+<!-- <script src="./ckfinder/config.js"></script> -->
+<script>
+    // ClassicEditor
+	// 	.create( document.querySelector( '.textarea' ), {
+	// 		toolbar: [ 'heading', '|', 'bold', 'italic', 'link','imageUpload' , 'mediaEmbed','|', 'undo', 'redo' ],
+    //         ckfinder: {
+    //             uploadUrl: '/ckfinder/core/connector/connector.php?command=QuickUpload&type=Files&responseType=json'
+    //         },
+    //         // toolbar: [  'heading', '|', 'bold', 'italic', '|', 'imageUpload','undo', 'redo' ]
+
+    // })
+	// 	.then( editor => {
+	// 		window.editor = editor;
+	// 	} )
+	// 	.catch( err => {
+	// 		console.error( err.stack );
+	// 	} );
+    // CKEDITOR.replace( 'des_msg', {
+    // extraPlugins: 'easyimage',
+    // cloudServices_tokenUrl: 'https://example.com/cs-token-endpoint',
+    // cloudServices_uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/'
+// } );
+
+
+</script>
 <!-- <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script> -->
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+<script>
+       function changeLang(){
+        var languageSelect = $('.lanChange').val();
+        // var url_product_id = $('#url_product_id').val();
+        // var url_blog_id = $('#url_blog_id').val();
+        // var url_cat_id = $('#url_cat_id').val();
+       var newURL = window.location.pathname + '?lang=' + languageSelect ;
+              // alert(newURL);
+        window.location.href = newURL;
+    }
+</script>
 
 </body>
 

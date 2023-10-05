@@ -87,7 +87,7 @@ if (isset($_SESSION['min_msg'])) {
                 <tbody>
                     <?php
                     $sql = "SELECT * FROM contact_tbl
-                     LEFT JOIN products_tbl ON contact_tbl.contact_product = products_tbl.product_id    
+                     LEFT JOIN lang_products_tbl ON contact_tbl.contact_product = lang_products_tbl.product_id    
                      LEFT JOIN category_tbl ON contact_tbl.contact_product_category = category_tbl.cat_id ORDER BY contact_tbl.created_at DESC";
                     $query = mysqli_query($con, $sql);
                     $count = 1;

@@ -78,7 +78,7 @@ require('./config/dbcon.php');
 
 // Start the session if it's not already started
 
-if (isset($_POST['p_id'])) {
+if (isset($_POST['p_id'])) { 
     ob_start();
     
     system('ipconfig/all'); 
@@ -99,7 +99,7 @@ if (isset($_POST['p_id'])) {
     $lan = $_POST['lan_id'];
     $address = $mac ;
 
-    $sql1 = "SELECT * FROM tem_tbl_for_cart WHERE cart_product_name = '$p_name'";
+    $sql1 = "SELECT * FROM tem_tbl_for_cart WHERE cart_product_name = '$p_name' And lang_id = '$lan'";
     $query1 = mysqli_query($con, $sql1);
 
     if (mysqli_num_rows($query1) == 0) {

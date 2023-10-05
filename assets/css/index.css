@@ -61,34 +61,37 @@
 /* ----home-------start----------- */
 
 
-.nav-product{
+.nav-product {
     position: relative;
     border-bottom: 1.5PX solid #EBAB56;
     border-top: 1.5PX solid #000000;
     /* padding:0 2rem; */
 }
-.nav-product .box{
-  display: flex;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #282713;
-  border-left:1.5px solid #000000 ;
-}
-.nav-product:first-child{
-  border-left: 1.5px solid transparent ;
+
+.nav-product .box {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #282713;
+    border-left: 1.5px solid #000000;
 }
 
-.nav-product .box:hover{
-  background-color: #EBAB56;
-  font-weight: 600;
+.nav-product:first-child {
+    border-left: 1.5px solid transparent;
 }
-.nav-product .box a{
+
+.nav-product .box:hover {
+    background-color: #EBAB56;
+    font-weight: 600;
+}
+
+.nav-product .box a {
     text-decoration: none;
     color: #000000;
-  margin: 0;
-  padding: 1.2rem 1REM;
+    margin: 0;
+    padding: 1.2rem 1REM;
 }
 
 .active-product {
@@ -97,18 +100,45 @@
     background-color: #EBAB56;
 
 }
-.fix-nav{
-position: fixed;
-top: 80px;
-z-index: 999;
-background: #fff;
+
+.fix-nav {
+    position: fixed;
+    top: 80px;
+    z-index: 999;
+    background: #fff;
 }
 
-@media (max-width:998px){
-    .fix-nav{
+.Sponsors_slider_area_2 .owl-nav {
+    display: block !important;
+    position: relative;
+}
+
+.Sponsors_slider_area_2 .owl-nav {
+    position: absolute;
+    top: 4%;
+    width: 100%;
+}
+
+.Sponsors_slider_area_2 .owl-nav .owl-prev {
+    position: absolute;
+    left: 0;
+}
+
+.Sponsors_slider_area_2 .owl-nav .owl-next {
+    position: absolute;
+    right: 0rem;
+}
+
+@media (max-width:998px) {
+    .Sponsors_slider_area_2 .owl-nav {
+        width: 100%;
+    }
+
+    .fix-nav {
         top: 54px;
     }
 }
+
 /* ------------------------------------------------------------------------ */
 
 .home_top {
@@ -191,6 +221,7 @@ background: #fff;
         font-size: 0.8rem;
         margin-bottom: 0.9rem;
     }
+
     .home_top .text .main_box a {
         padding: 0.4rem 0.7rem;
         font-size: 0.9rem;
@@ -222,7 +253,7 @@ background: #fff;
 
 .home_product {
     position: relative;
-    padding-top: 70px ;
+    padding-top: 70px;
 }
 
 .home_product .head {
@@ -359,10 +390,12 @@ background: #fff;
     border: 1.4px solid #282713;
     background-color: #F9F9F9;
 }
-.mincon_contact .form-group .input-box::placeholder{
+
+.mincon_contact .form-group .input-box::placeholder {
     color: #7E7E7E;
 }
-.mincon_contact .form-group select{
+
+.mincon_contact .form-group select {
     color: #7E7E7E;
 }
 

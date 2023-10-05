@@ -42,7 +42,7 @@ require('includes/header.php');
                                 }
                                 ?>
                             </h3> <?php
-                                    $select = "SELECT * FROM blog_category_tbl WHERE lang_id = '$lan'";
+                                    $select = "SELECT * FROM blog_category_tbl";
                                     $query = mysqli_query($con, $select);
                                     $rows = mysqli_num_rows($query);
                                     while ($result = mysqli_fetch_assoc($query)) {
@@ -84,7 +84,7 @@ require('includes/header.php');
 
                             <ul>
                                 <?php
-                                $select = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id Where blog_lang_id='$lan' AND  lang_id='$lan' ORDER BY blog_tbl.created_at DESC LIMIT 4 ";
+                                $select = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id  ORDER BY blog_tbl.created_at DESC LIMIT 4 ";
                                 $query = mysqli_query($con, $select);
                                 $rows = mysqli_num_rows($query);
                                 while ($result = mysqli_fetch_assoc($query)) {
@@ -125,7 +125,7 @@ require('includes/header.php');
                             if (empty($id)) {
                                 header('location:blog.php');
                             }
-                            $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE blog_cat_id='$cat_id' AND blog_id = '$blog_id' AND blog_lang_id= '$lang_id' AND lang_id = '$lang_id' ORDER BY blog_tbl.created_at DESC ";
+                            $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE blog_cat_id='$cat_id' AND blog_id = '$blog_id'ORDER BY blog_tbl.created_at DESC ";
                             $query_run = mysqli_query($con, $query);
                             $num = mysqli_num_rows($query_run) > 0;
 

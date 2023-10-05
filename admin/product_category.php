@@ -23,7 +23,8 @@ if (isset($_SESSION['min_msg'])) {
                     </div>
                     <form action="product_category_code.php" method="POST">
                         <div class="modal-body">
-                            <input type="hidden" name="delete_cat_id" class="delete_cat_id">
+                            <input type="text" name="delete_cat_id" class="delete_cat_id">
+                            <input type="text" name="delete_lang_id" class="delete_lang_id">
                             <p>Are you sure , you want to delete this data ?</p>
                         </div>
                         <div class="modal-footer">
@@ -38,6 +39,17 @@ if (isset($_SESSION['min_msg'])) {
             <div class="bg-light text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h4 class="mb-0">Category</h4>
+                    <div>
+                        <label for="">Choose Language</label>
+                        <select name="lan" class="form-select w-100 lanChange" id="lanChange" onchange="changeLang()">
+                            <option value="1" <?php if ($lan == 1) {
+                                                    echo "selected";
+                                                } ?>>English</option>
+                            <option value="2" <?php if ($lan == 2) {
+                                                    echo "selected";
+                                                } ?>>Spanish</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -45,41 +57,58 @@ if (isset($_SESSION['min_msg'])) {
                             <tr class="text-dark">
                                 <th scope="col">S No</th>
                                 <th scope="col">Category</th>
-                                <th scope="col">Language</th>
+                                <!-- <th scope="col">Category ID</th> -->
+                                <!-- <th scope="col">Language</th> -->
                                 <th scope="col">Status</th>
                                 <th scope="col" colspan="3" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT * FROM  category_tbl ORDER BY created_at DESC";
+                            $category_name_lang = ($lan == 1) ? 'category_name_lang_1' : 'category_name_lang_2';
+                            // if ($lan == 1) {
+                            //     $category_name_lang = 1;
+                            // } else  {
+                            //     $category_name_lang = 2;
+                            // } 
+                            // echo $category_name_lang;
+                            
+
+                        //  $selectedColumns = ($lan == 1)
+                        //  ? 'cat_id, category_name_lang_1 AS category_name, category_description_lang_1 AS category_description'
+                        //  : 'cat_id, category_name_lang_2 AS category_name, category_description_lang_2 AS category_description';
+                     
+                     $sql = "SELECT * FROM product_category_tbl  ORDER BY created_at DESC";
+                    //  echo $sql;
+                    //  die();
                             $query = mysqli_query($con, $sql);
                             $count = 1;
                             if (mysqli_num_rows($query)) {
                                 foreach ($query as $data) {
-
                             ?>
                                     <tr>
                                         <td><?= $count++ ?></td>
-
-                                        <td><?= $data['cat_name'] ?></td>
-                                        <td><?= $data['lang_id'] == '1'? 'English' : 'Spanish'?></td>
-                                        <!-- <td><?php if($data['lang_id'] == 1){echo "English";}else{echo "Spanish";}?></td> -->
-
-                                        <td><?php if ($data['cat_status'] == 1) {
+                                        <td><?php
+                                            $category_name = $data['category_name_lang_1'];
+                                            if ($data['category_name_lang_2'] != "") {
+                                                $category_name .= " (" . $data['category_name_lang_2'] . ")";
+                                            }
+                                            ?>
+                                            <?= $category_name ?></td>
+                                        <td><?php if ($data['status'] == 1) {
                                                 echo "Active";
                                             } else {
                                                 echo "Inactive";
                                             }
                                             ?></td>
                                         <td>
-                                            <button type='button' value=<?php echo $data['cat_id']; ?> class='btn btn-square btn-outline-danger delete_cat btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
+                                            <button type='button' value='<?= $data['cat_id'] ?>,<?=$lan?>' class='btn btn-square btn-outline-danger delete_cat btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
                                         </td>
                                         <td>
-                                            <a href="./product_category_edit.php?id=<?= $data['cat_id'] ?>" class='btn btn-square btn-outline-primary  btn-sm my-1'><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <a href="./product_category_edit.php?id=<?= $data['cat_id'] ?>&lang_id=<?=$lan?>" class='btn btn-square btn-outline-primary  btn-sm my-1'><i class="fa-regular fa-pen-to-square"></i></a>
                                         </td>
                                         <td>
-                                            <a href="./product_category_detail.php?id=<?= $data['cat_id'] ?>" class='btn btn-square btn-outline-dark  btn-sm my-1'><i class="fa-solid fa-eye"></i></a>
+                                            <a href="./product_category_detail.php?id=<?= $data['cat_id'] ?>&lang_id=<?=$lan?>" class='btn btn-square btn-outline-dark  btn-sm my-1'><i class="fa-solid fa-eye"></i></a>
                                         </td>
                                     </tr>
                             <?php
@@ -93,28 +122,50 @@ if (isset($_SESSION['min_msg'])) {
         </div>
         <div class="col-md-4">
             <div class="bg-light  rounded p-4">
-                <div class="mb-3">
-                    <button class="btn btn-info btn-sm tab-link active-link" onclick="on_tab_link('box1')">english</button>
-                    <button class="btn btn-danger btn-sm tab-link" onclick="on_tab_link('box2')">spanish</button>
-                </div>
                 <div class="tab_box active-tab" id="box1">
                     <h4>ADD Category</h4>
                     <form action="product_category_code.php" method="post">
-                    <input type="hidden" value="1" name="lan"> 
-                        <input type="text" name="name" class="my-2 form-control" placeholder="Category Name" required>
-                        <textarea name="des" id="" class="form-control my-3" cols="30" rows="5" placeholder="Category Description" required></textarea>
-                        <select name="status" id="" class="form-select my-2" required>
-                            <option value="">Select Status</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
+                        
+                        <label for="">Choose Language</label>
+                        <select name="lan" id="lan" class="form-select w-50 mb-3">
+                            <?php
+                            $sql = "SELECT * FROM language_tbl";
+                            $query = mysqli_query($con, $sql);
+                            if (mysqli_num_rows($query)) {
+                                foreach ($query as $result) {
+                            ?>
+                                    <option value="<?= $result['lan_id'] ?>"><?= $result['lang_name'] ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
                         </select>
-                        <button type="submit" name="cat_add" class="btn btn-info my-2">Add</button>
-                    </form>
-                </div>
-                <div class="tab_box" id="box2">
-                    <h4>ADD Category <span style="font-size: 0.9rem;">In Spanish</span></h4>
-                    <form action="product_category_code.php" method="post">
-                        <input type="hidden" value="2" name="lan"> 
+                        <div class="form-group my-1">
+                            <label for="" class="text-dark">Select Category </label>
+                            <span class="m-0" style="color: Green; font-size:0.7rem"><b style="font-weight:600">NOTE:</b>Choose When you want to ADD Existing category in other language</span> <br>
+                            <b class="m-0" style="color: red; font-size:0.7rem"><span style="font-weight:600">NOTE:</span> When you adding new category Do not select this </b>
+                            <select name="category_num" id="" class="form-select">
+                                <option value="">Select Category</option>
+                                <?php
+                                $sql2 = "SELECT * FROM product_category_tbl";
+                                $query2 = mysqli_query($con, $sql2);
+
+                                if (mysqli_num_rows($query2)) {
+                                    foreach ($query2 as $row) {
+                                        $category_name_lang = $row['category_name_lang_1'];
+                                        if ($row['category_name_lang_2'] != "") {
+                                            $category_name_lang .= " (" . $row['category_name_lang_2'] . ")";
+                                        }
+                                ?>
+                                        <option value="<?= $row['cat_id'] ?>">
+                                            <?= $category_name_lang ?>
+                                        </option>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
                         <input type="text" name="name" class="my-2 form-control" placeholder="Category Name" required>
                         <textarea name="des" id="" class="form-control my-3" cols="30" rows="5" placeholder="Category Description" required></textarea>
                         <select name="status" id="" class="form-select my-2" required>
@@ -139,9 +190,13 @@ if (isset($_SESSION['min_msg'])) {
     $(document).ready(function() {
         $('.delete_cat').click(function(e) {
             e.preventDefault();
-            var user_id = $(this).val();
-            // console.log(user_id);
-            $('.delete_cat_id').val(user_id);
+            var values = $(this).val().split(',');
+            var cart_id = values[0];
+            var lang_id = values[1];
+            // console.log(cart_id);
+            // console.log(lang_id);
+            $('.delete_cat_id').val(cart_id);
+            $('.delete_lang_id').val(lang_id);
             $('#delete_cat_modal').modal('show');
         });
     });

@@ -137,12 +137,13 @@ $(".Sponsors_slider_area_1").owlCarousel({
 $(".Sponsors_slider_area_2").owlCarousel({
   autoplay: false,
   autoplayHoverPause: false,
-  items: 5,
+  items: 4,
   loop: false,
   mouseDrag: true,
-
+  nav: true ,
+ 
   navText: [
-    '<i class="fa fa-arrow-left"></i>',
+    '<i class="fa fa-arrow-left text-dark" ></i>',
     '<i class="fa fa-arrow-right"></i>',
   ],
   margin: 0,
@@ -159,7 +160,7 @@ $(".Sponsors_slider_area_2").owlCarousel({
     },
 
     1000: {
-      items: 5,
+      items: 4,
     },
   },
 });

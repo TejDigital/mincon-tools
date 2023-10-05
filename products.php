@@ -47,7 +47,7 @@ if (mysqli_num_rows($query)) {
                 <div class="boxes">
                     <div class="row form-click">
                         <?php
-                        $sql1 = "SELECT * FROM products_tbl where product_status = '1' AND product_category = '$id' AND lang_id = '$lan' ";
+                        $sql1 = "SELECT * FROM lang_products_tbl where product_status = '1' AND product_category = '$id' AND lang_id = '$lan' ";
                         $pro_query = mysqli_query($con, $sql1);
                         if (mysqli_num_rows($pro_query)) {
                             foreach ($pro_query as $pro_data) {

@@ -11,100 +11,6 @@ if (isset($_SESSION['min_msg'])) {
 }
 ?>
 <div class="container-fluid pt-4 px-4">
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ADD Specification Of Product </h5>
-                    <button type="button" class="close btn  btn-sm-square btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label for="">Select Language</label> <br>
-                                        <button class="btn btn-info btn-sm tab-link1 active-link1" onclick="on_tab_link('box1')">english</button>
-                                        <button class="btn btn-danger btn-sm tab-link" onclick="on_tab_link('box2')">spanish</button>
-                                    </div>
-                                    <div class = "tab_box active-tab" id="box1">
-                                        <form action="product_specs_code.php" method="POST" enctype="multipart/form-data">
-                                            <input type="hidden" name="lan" value="1">
-                                            <div class="form-group">
-                                                <label for="">Choose Product</label>
-                                                <select name="p_name" id="" class="form-select">
-                                                    <?php
-                                                    $sql = "SELECT * FROM products_tbl WHERE lang_id = 1";
-                                                    $query = mysqli_query($con, $sql);
-                                                    if (mysqli_num_rows($query)) {
-                                                        foreach ($query as $result) {
-                                                    ?>
-                                                            <option value="<?= $result['product_name'] ?>"><?= $result['product_name'] ?></option>
-                                                    <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Add Specification Name</label>
-                                                <input type="text" name="spec_name" class="form-control">
-                                            </div>
-                                            <div class="form-group my-2">
-                                                <label for="">Add Specification Value</label>
-                                                <input type="text" name="spec_value" class="form-control">
-                                            </div>
-                                            <div class="form-group my-2">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" name="add-specs" class="btn btn-primary">ADD</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class = "tab_box " id="box2">
-                                        <form action="product_specs_code.php" method="POST" enctype="multipart/form-data">
-                                            <input type="hidden" name="lan" value="2">
-                                            <div class="form-group">
-                                                <h6>For spanish</h6>
-                                                <label for="">Choose Product</label>
-                                                <select name="p_name" id="" class="form-select">
-                                                    <?php
-                                                    $sql = "SELECT * FROM products_tbl WHERE lang_id = '2'";
-                                                    $query = mysqli_query($con, $sql);
-                                                    if (mysqli_num_rows($query)) {
-                                                        foreach ($query as $result) {
-                                                    ?>
-                                                            <option value="<?= $result['product_name'] ?>"><?= $result['product_name'] ?></option>
-                                                    <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Add Specification Name</label>
-                                                <input type="text" name="spec_name" class="form-control">
-                                            </div>
-                                            <div class="form-group my-2">
-                                                <label for="">Add Specification Value</label>
-                                                <input type="text" name="spec_value" class="form-control">
-                                            </div>
-                                            <div class="form-group my-2">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" name="add-specs-modal" class="btn btn-primary">ADD</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="delete_spec_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -128,13 +34,23 @@ if (isset($_SESSION['min_msg'])) {
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="bg-light text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h4 class="mb-0">Product Specifications</h4>
-                    <div>
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Add Product Specification </a>
+                    <div class="d-flex align-items-center   justify-content-end">
                         <a href="./products.php" class="btn btn-danger">Back</a>
+                        <div class="ms-3">
+                        <label for="">Choose Language</label>
+                        <select name="lan" class="form-select w-100 lanChange" id="lanChange" onchange="changeLang()">
+                            <option value="1" <?php if ($lan == 1) {
+                                                    echo "selected";
+                                                } ?>>English</option>
+                            <option value="2" <?php if ($lan == 2) {
+                                                    echo "selected";
+                                                } ?>>Spanish</option>
+                        </select>
+                        </div>
                     </div>
                     <!-- <a href="">Show All</a> -->
                 </div>
@@ -143,7 +59,6 @@ if (isset($_SESSION['min_msg'])) {
                         <thead>
                             <tr class="text-dark">
                                 <th scope="col">S No</th>
-                                <th scope="col">Product Language</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Product Spec Name</th>
                                 <th scope="col">Product Spec Value</th>
@@ -152,7 +67,13 @@ if (isset($_SESSION['min_msg'])) {
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT * FROM product_specification ";
+                              $spec_name_lang = ($lan == 1) ? 'product_name_lang_1' : 'product_name_lang_2';
+                              if ($lan == 1) {
+                                  $spec_name_lang = 1;
+                              } else  {
+                                  $spec_name_lang = 2;
+                              } 
+                            $sql = "SELECT * FROM product_specification WHERE $spec_name_lang = '$lan'";
                             $query = mysqli_query($con, $sql);
                             $count = 1;
                             if (mysqli_num_rows($query)) {
@@ -161,9 +82,20 @@ if (isset($_SESSION['min_msg'])) {
                             ?>
                                     <tr>
                                         <td><?= $count++ ?></td>
-                                        <td><?= $data['lang_id']==1?'English':'Spanish' ?></td>
-                                        <td><?= $data['product_name'] ?></td>
-                                        <td><?= $data['s_name'] ?></td>
+                                        <td><?php
+                                            $product_name = $data['product_name_lang_1'];
+                                            if ($data['product_name_lang_2'] != "") {
+                                                $product_name .= " (" . $data['product_name_lang_2'] . ")";
+                                            }
+                                            ?>
+                                            <?= $product_name ?></td>
+                                        <td><?php
+                                            $spec_name = $data['spec_name_lang_1'];
+                                            if ($data['spec_name_lang_2'] != "") {
+                                                $spec_name .= " (" . $data['spec_name_lang_2'] . ")";
+                                            }
+                                            ?>
+                                            <?= $spec_name ?></td>
                                         <td><?= $data['s_value'] ?></td>
                                         <td>
                                             <button type='button' value=<?php echo $data['s_id']; ?> class='btn btn-square btn-outline-danger delete_spec btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
@@ -179,6 +111,75 @@ if (isset($_SESSION['min_msg'])) {
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" bg-light rounded p-3" >
+                <h4>ADD Specification</h4>
+                <form action="product_specs_code.php" method="POST" enctype="multipart/form-data">
+                    <label for="">Select Language</label>
+                    <select name="lan" id="lan" class="form-select w-50 mb-3 ">
+                        <?php
+                        $sql = "SELECT * FROM language_tbl";
+                        $query = mysqli_query($con, $sql);
+                        if (mysqli_num_rows($query)) {
+                            foreach ($query as $result) {
+                                $lan_id =  $result['lan_id'];
+                        ?>
+                                <option <?php if ($lan == $lan_id) {
+                                            echo "selected";
+                                        } ?> value="<?= $result['lan_id'] ?>"><?= $result['lang_name'] ?></option>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                    <div class="form-group my-1">
+                            <label for="" class="text-dark">Select Product </label>
+                            <span class="m-0" style="color: Green; font-size:0.7rem"><b style="font-weight:600">NOTE:</b>Choose When you want to ADD Existing category in other language</span> <br>
+                            <b class="m-0" style="color: red; font-size:0.7rem"><span style="font-weight:600">NOTE:</span> When you adding new category Do not select this </b>
+                            <select name="product_num" id="" class="form-select">
+                                <option value="">Select Product</option>
+                                <?php
+                                $sql2 = "SELECT * FROM product_specification";
+                                $query2 = mysqli_query($con, $sql2);
+
+                                if (mysqli_num_rows($query2)) {
+                                    foreach ($query2 as $row) {
+                                        $product_name_lang = $row['product_name_lang_1'];
+                                        if ($row['product_name_lang_2'] != "") {
+                                            $product_name_lang .= " (" . $row['product_name_lang_2'] . ")";
+                                        }
+                                ?>
+                                        <option value="<?= $row['s_id'] ?>">
+                                            <?= $product_name_lang ?>
+                                        </option>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    <div class="form-group">
+                        <label for="">Add Specification Name</label>
+                        <input type="text" name="spec_name" class="form-control">
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="">Add Specification Value</label>
+                        <input type="text" name="spec_value" class="form-control">
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="">Status</label>
+                        <select name="status" id="" class="form-select my-2" required>
+                            <option value="">Select Status</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-group my-2">
+                        <button type="submit" name="add-specs" class="btn btn-primary">ADD</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
