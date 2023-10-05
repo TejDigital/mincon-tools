@@ -43,14 +43,14 @@ if (isset($_POST['add-product'])) {
     $category = $_POST['product_category'];
     $des = $_POST['product_description'];
     $des =  str_replace("'", "\'", "$des");
-    $product_spec_names = $_POST['spec_name'];
-    $product_spec_values = $_POST['spec_value'];
     $img = $_FILES['img']['name'];
     $img1 = $_FILES['img1']['name'];
     $img2 = $_FILES['img2']['name'];
     $img3 = $_FILES['img3']['name'];
     $img4 = $_FILES['img4']['name'];
-
+    
+    $product_spec_names = $_POST['spec_name'];
+    $product_spec_values = $_POST['spec_value'];
 
     for ($i = 0; $i < count($product_spec_names); $i++) {
         $product_spec_name = mysqli_real_escape_string($con, $product_spec_names[$i]);
@@ -178,20 +178,23 @@ if (isset($_POST['update-product'])) {
         $_SESSION['min_msg'] = "Product updated Added";
     }
 
-        // $s_id = $_POST['s_id'];
-    $product_spec_names = $_POST['spec_name'];
 
+
+    $product_spec_names = $_POST['spec_name'];
     $product_spec_values = $_POST['spec_value'];
+
+    $sql4 = "DELETE FROM product_specification where product_id = '$id' AND lang_id = '$lang_id'";
+    $query4 = mysqli_query($con,$sql4);
+
     for ($i = 0; $i < count($product_spec_names); $i++) {
         $product_spec_name = mysqli_real_escape_string($con, $product_spec_names[$i]);
         $product_spec_value = mysqli_real_escape_string($con, $product_spec_values[$i]);
-        
-        $sql = "UPDATE product_specification SET spec_name='$product_spec_name' , s_value ='$product_spec_value' WHERE product_id ='$id' AND lang_id ='$lang_id' AND s_id ='$s_id'";
+        $sql = "INSERT INTO product_specification (product_id,lang_id,spec_name, s_value) VALUES ('$id','$lang_id','$product_spec_name', '$product_spec_value')";
         $query = mysqli_query($con, $sql);
         if($query){
-            $_SESSION['min_msg'] = "Product specification updated";
+            $_SESSION['min_msg'] = "Product specification Added";
         }else{
-            $_SESSION['min_msg'] = "Product specification update failed";
+            $_SESSION['min_msg'] = "Product specification Adding failed";
             header('location:products.php');
         }
     }
@@ -316,3 +319,5 @@ if (isset($_POST['update-product'])) {
         }
     }
 };
+
+

@@ -133,17 +133,13 @@ if (isset($_GET['id']) && isset($_GET['lang_id'])) {
                             <?php
                             foreach ($query2 as $data2) {
                             ?>
-                                <div class="specification d-flex">
-                                    <div>
-                                        <input type="hidden" value="<?=$data2['s_id']?>" name="s_id">
-                                        <label for="">Name</label>
-                                        <input type="text" name="spec_name[]" class="form-control " value="<?= $data2['spec_name'] ?>" placeholder="Product Name" required>
-                                    </div>
-                                    <div>
-                                        <label for="">Value</label>
-                                        <input type="text" name="spec_value[]" class="form-control " value="<?= $data2['s_value'] ?>" placeholder="Product Value" required>
-                                    </div>
-                                </div>
+                                 <div id="specification-container">
+                                            <div class="specification d-flex">
+                                                <input type="text" name="spec_name[]" class="form-control" value="<?=$data2['spec_name']?>" placeholder="Product Name" >
+                                                <input type="text" name="spec_value[]" class="form-control" value="<?=$data2['s_value']?>" placeholder="Product Value" >
+                                                <button type="button" class="add-spec btn btn-sm btn-success mx-3">+</button>
+                                            </div>
+                                        </div>
                             <?php
                             }
                             ?>
@@ -161,3 +157,33 @@ if (isset($_GET['id']) && isset($_GET['lang_id'])) {
 
 <?php require('./includes/footer.php') ?>
 <?php require('./includes/script.php') ?>
+<script>
+        // JavaScript to add/remove specification fields
+        document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById("specification-container");
+
+        container.addEventListener("click", function(e) {
+            if (e.target.classList.contains("add-spec")) {
+                addSpecificationField(container);
+            } else if (e.target.classList.contains("remove-spec")) {
+                removeSpecificationField(e.target.parentElement);
+            }
+        });
+
+        function addSpecificationField(container) {
+            const newSpecField = document.createElement("div");
+            newSpecField.className = "specification  d-flex my-2";
+            newSpecField.innerHTML = `
+                    <input type="text" name="spec_name[]"  class="form-control" placeholder="Product Name" required>
+                    <input type="text" name="spec_value[]"  class="form-control" placeholder="Product Value" required>
+                    <button type="button" class="remove-spec btn-danger btn-sm ms-3"><i class="fa-solid fa-trash"></i></button>
+
+                `;
+            container.appendChild(newSpecField);
+        }
+
+        function removeSpecificationField(field) {
+            container.removeChild(field);
+        }
+    });
+</script>
