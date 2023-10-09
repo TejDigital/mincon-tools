@@ -24,7 +24,7 @@ $(function () {
   });
 });
 $(function () {
-  var navbar = $(".nav-product");
+  var navbar = $(".Sponsors_slider_area_2");
   $(window).scroll(function () {
     if ($(window).scrollTop() <= 300) {
       navbar.removeClass("fix-nav");
@@ -107,7 +107,7 @@ function validateNumber(elem, alertId) {
 $(".Sponsors_slider_area_1").owlCarousel({
   autoplay: false,
   autoplayHoverPause: false,
-  items: 5,
+  items: 4,
   loop: false,
   mouseDrag: true,
 
@@ -115,7 +115,7 @@ $(".Sponsors_slider_area_1").owlCarousel({
     '<i class="fa fa-arrow-left"></i>',
     '<i class="fa fa-arrow-right"></i>',
   ],
-  margin: 20,
+  margin: 10,
   dots: false,
   responsive: {
     320: {
@@ -129,7 +129,7 @@ $(".Sponsors_slider_area_1").owlCarousel({
     },
 
     1000: {
-      items: 5,
+      items: 4,
     },
   },
 });

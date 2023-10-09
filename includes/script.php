@@ -17,7 +17,6 @@
 
 
 <script>
-  
     //   Swal.fire({
     //      position: 'top',
     //      icon: '',
@@ -38,8 +37,6 @@
     //                  no-repeat`,
     //      timer: 2500
     //   });
-
-   
 </script>
 <!-- <script src="js/fancybox.min.js"></script> -->
 
@@ -52,7 +49,7 @@
             var categoryId = values[0];
             var lang_id = values[1];
 
-            // console.log(category_id)
+            // console.log(categoryId)
             // console.log(lang_id)
 
             // Clear the product dropdown
@@ -69,6 +66,7 @@
                     },
                     success: function(response) {
                         // Populate the product dropdown with the received data
+                        // console.log(response);
                         $('#product').append(response);
                     }
                 });
@@ -77,13 +75,12 @@
     });
 </script>
 <script>
-  const change = src => {
-	document.getElementById('main').src = src
-}
-
+    const change = src => {
+        document.getElementById('main').src = src
+    }
 </script>
 <script>
-        $(function() {
+    $(function() {
         $('.popup').magnificPopup({
             // disableOn: 700,
             type: 'iframe',
@@ -95,32 +92,50 @@
     });
 </script>
 <script>
-//  function fetchData() {
-//             $.ajax({
-//                 type: "GET",
-//                 url: "./admin/cart_count.php",
-//                 dataType: "json",
-//                 success: function (response) {
-//                     $("#count_item").text(response.count);
-//                 },
-//                 error: function () {
-//                     console.error("Error fetching data");
-//                 }
-//             });
-//         }
+    //  function fetchData() {
+    //             $.ajax({
+    //                 type: "GET",
+    //                 url: "./admin/cart_count.php",
+    //                 dataType: "json",
+    //                 success: function (response) {
+    //                     $("#count_item").text(response.count);
+    //                 },
+    //                 error: function () {
+    //                     console.error("Error fetching data");
+    //                 }
+    //             });
+    //         }
 </script>
 
 <script>
-    function changeLanguage(){
-        var languageSelect = $('#languageSelect').val();
+    function changeLanguage(element) {
+        var languageSelect = $(element).data('value');
         var url_product_id = $('#url_product_id').val();
         var url_blog_id = $('#url_blog_id').val();
         var url_cat_id = $('#url_cat_id').val();
-       var newURL = window.location.pathname + '?lang=' + languageSelect +'&product_id='+ url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id;
-        // alert(newURL);
+
+
+    // // Get the current scroll position
+    // var scrollPosition = $(window).scrollTop();
+
+    
+    var newURL = window.location.pathname + '?lang=' + languageSelect + '&product_id=' + url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id;
+        // alert(languageSelect);
+        
+        // // Update the URL without reloading the page (HTML5 History API)
+        // window.history.pushState({
+        //     scrollPosition: scrollPosition
+        // }, '', newURL);
+
+        // // Scroll back to the previous position after updating the URL
+        // $(window).scrollTop(scrollPosition);
+
         window.location.href = newURL;
+
+
     }
 </script>
+
 </body>
 
 </html>

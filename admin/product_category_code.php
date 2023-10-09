@@ -6,44 +6,33 @@ require('./config/dbcon.php');
 
 if (isset($_POST['cat_add'])) {
 
-    $name = $_POST['name'];
-    $lan = $_POST['lan'];
-    $category_number = $_POST['category_num'];
     $status = $_POST['status'];
-    $des = $_POST['des'];
-    $des = str_replace("'", "\'", "$des");
+    $en_name = $_POST['en_name'];
+    // $en_status = $_POST['en_status'];
+    $en_des = $_POST['en_des'];
+    $en_des = str_replace("'", "\'", "$en_des");
 
-    $check_field = "category_name_lang_1";
-    $check_description = "category_description_lang_1";
-    if ($lan == 2) {
-        $check_field = "category_name_lang_2";
-        $check_description = "category_description_lang_2";
-    }
-    if (empty($category_number)) {
+    $span_name = $_POST['span_name'];
+    // $span_status = $_POST['span_status'];
+    $span_des = $_POST['span_des'];
+    $span_des = str_replace("'", "\'", "$span_des");
 
-        $check_sql = "SELECT * FROM product_category_tbl WHERE  $check_field='$name'";
-        $check_query = mysqli_query($con, $check_sql);
-        $row1 = mysqli_num_rows($check_query);
-
-        if ($row1 > 0) {
-            $_SESSION['min_msg'] = "Category Already in Table";
-            header('location:./product_category.php');
-        } else {
-            $insert_sql = "INSERT INTO product_category_tbl ($check_field,status,$check_description)VALUES('$name','$status','$des')";
+  
+            $insert_sql = "INSERT INTO product_category_tbl (category_name_lang_1,category_name_lang_2,category_description_lang_1,category_description_lang_2,status)VALUES('$en_name','$span_name','$en_des','$span_des','$status')";
             $insert_query = mysqli_query($con, $insert_sql);
             if ($insert_query) {
-                $category_number = mysqli_insert_id($con); // Get last inserted id  and put in category_number 
                 $_SESSION['min_msg'] = "Category Added in Table";
                 header('location:./product_category.php');
+            }else{
+                $_SESSION['min_msg'] = "failed : Try again";
+                header('location:./product_category.php');
             }
-        }
-    } else {
-        $sql3 = "UPDATE product_category_tbl SET $check_field ='$name' ,$check_description ='$des' WHERE cat_id = '$category_number'";
-        $query3 = mysqli_query($con, $sql3);
-        $_SESSION['min_msg'] = "Category updated Added";
-        header('location:./product_category.php');
-    }
+        
+    
 }
+
+
+
 
 
 // -----------------delete------------------------
@@ -73,6 +62,8 @@ if (isset($_POST['cat_upd'])) {
     $lan= $_POST['lang_id'];
     $status = $_POST['status'];
     $des = $_POST['des'];
+    $des = str_replace("'", "\'", "$des");
+
 
     $check_field = "category_name_lang_1";
     $check_description = "category_description_lang_1";

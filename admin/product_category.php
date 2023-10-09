@@ -35,21 +35,26 @@ if (isset($_SESSION['min_msg'])) {
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+
+        <div class="col-md-12 mt-4">
             <div class="bg-light text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h4 class="mb-0">Category</h4>
-                    <div>
-                        <label for="">Choose Language</label>
-                        <select name="lan" class="form-select w-100 lanChange" id="lanChange" onchange="changeLang()">
-                            <option value="1" <?php if ($lan == 1) {
-                                                    echo "selected";
-                                                } ?>>English</option>
-                            <option value="2" <?php if ($lan == 2) {
-                                                    echo "selected";
-                                                } ?>>Spanish</option>
-                        </select>
+                    <div class="d-flex align-items-end justify-content-between">
+                        <a href="./add_product_category.php" class="btn btn-primary">ADD</a>
+                        <div class="ms-3">
+                            <label for="">Choose Language</label>
+                            <select name="lan" class="form-select w-100 lanChange"  onchange="changeLang()">
+                                <option value="1" <?php if ($lan == 1) {
+                                                        echo "selected";
+                                                    } ?>>English</option>
+                                <option value="2" <?php if ($lan == 2) {
+                                                        echo "selected";
+                                                    } ?>>Spanish</option>
+                            </select>
+                        </div>
                     </div>
+
                 </div>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -57,30 +62,13 @@ if (isset($_SESSION['min_msg'])) {
                             <tr class="text-dark">
                                 <th scope="col">S No</th>
                                 <th scope="col">Category</th>
-                                <!-- <th scope="col">Category ID</th> -->
-                                <!-- <th scope="col">Language</th> -->
                                 <th scope="col">Status</th>
                                 <th scope="col" colspan="3" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $category_name_lang = ($lan == 1) ? 'category_name_lang_1' : 'category_name_lang_2';
-                            // if ($lan == 1) {
-                            //     $category_name_lang = 1;
-                            // } else  {
-                            //     $category_name_lang = 2;
-                            // } 
-                            // echo $category_name_lang;
-                            
-
-                        //  $selectedColumns = ($lan == 1)
-                        //  ? 'cat_id, category_name_lang_1 AS category_name, category_description_lang_1 AS category_description'
-                        //  : 'cat_id, category_name_lang_2 AS category_name, category_description_lang_2 AS category_description';
-                     
-                     $sql = "SELECT * FROM product_category_tbl  ORDER BY created_at DESC";
-                    //  echo $sql;
-                    //  die();
+                            $sql = "SELECT * FROM product_category_tbl  ORDER BY created_at DESC";
                             $query = mysqli_query($con, $sql);
                             $count = 1;
                             if (mysqli_num_rows($query)) {
@@ -89,26 +77,27 @@ if (isset($_SESSION['min_msg'])) {
                                     <tr>
                                         <td><?= $count++ ?></td>
                                         <td><?php
-                                            $category_name = $data['category_name_lang_1'];
-                                            if ($data['category_name_lang_2'] != "") {
-                                                $category_name .= " (" . $data['category_name_lang_2'] . ")";
+                                            if ($lan == "1") {
+                                                echo  $data['category_name_lang_1'];
+                                            } else {
+                                                echo  $data['category_name_lang_2'];
                                             }
                                             ?>
-                                            <?= $category_name ?></td>
                                         <td><?php if ($data['status'] == 1) {
                                                 echo "Active";
                                             } else {
                                                 echo "Inactive";
                                             }
-                                            ?></td>
-                                        <td>
-                                            <button type='button' value='<?= $data['cat_id'] ?>,<?=$lan?>' class='btn btn-square btn-outline-danger delete_cat btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
+                                            ?>
                                         </td>
                                         <td>
-                                            <a href="./product_category_edit.php?id=<?= $data['cat_id'] ?>&lang_id=<?=$lan?>" class='btn btn-square btn-outline-primary  btn-sm my-1'><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <button type='button' value='<?= $data['cat_id'] ?>,<?= $lan ?>' class='btn btn-square btn-outline-danger delete_cat btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
                                         </td>
                                         <td>
-                                            <a href="./product_category_detail.php?id=<?= $data['cat_id'] ?>&lang_id=<?=$lan?>" class='btn btn-square btn-outline-dark  btn-sm my-1'><i class="fa-solid fa-eye"></i></a>
+                                            <a href="./product_category_edit.php?id=<?= $data['cat_id'] ?>&lang_id=<?= $lan ?>" class='btn btn-square btn-outline-primary  btn-sm my-1'><i class="fa-regular fa-pen-to-square"></i></a>
+                                        </td>
+                                        <td>
+                                            <a href="./product_category_detail.php?id=<?= $data['cat_id'] ?>&lang_id=<?= $lan ?>" class='btn btn-square btn-outline-dark  btn-sm my-1'><i class="fa-solid fa-eye"></i></a>
                                         </td>
                                     </tr>
                             <?php
@@ -120,13 +109,13 @@ if (isset($_SESSION['min_msg'])) {
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <div class="bg-light  rounded p-4">
-                <div class="tab_box active-tab" id="box1">
+                <div class="">
                     <h4>ADD Category</h4>
                     <form action="product_category_code.php" method="post">
-                        
-                        <label for="">Choose Language</label>
+
+                      <label for="">Choose Language</label>
                         <select name="lan" id="lan" class="form-select w-50 mb-3">
                             <?php
                             $sql = "SELECT * FROM language_tbl";
@@ -173,11 +162,13 @@ if (isset($_SESSION['min_msg'])) {
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
                         </select>
+
                         <button type="submit" name="cat_add" class="btn btn-info my-2">Add</button>
                     </form>
                 </div>
             </div>
-        </div>
+        </div> -->
+
     </div>
 
 </div>

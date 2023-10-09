@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2023 at 02:13 PM
+-- Generation Time: Oct 09, 2023 at 06:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,7 +40,8 @@ CREATE TABLE `blog_category_tbl` (
 --
 
 INSERT INTO `blog_category_tbl` (`blog_cat_id`, `lang_id`, `blog_cat_name`, `blog_cat_status`, `created_at`) VALUES
-(3, 1, 'hammer', 1, '2023-10-05 11:49:55');
+(3, 1, 'hammer', 1, '2023-10-05 11:49:55'),
+(4, 1, 'Dril ', 1, '2023-10-07 06:06:29');
 
 -- --------------------------------------------------------
 
@@ -49,7 +50,6 @@ INSERT INTO `blog_category_tbl` (`blog_cat_id`, `lang_id`, `blog_cat_name`, `blo
 --
 
 CREATE TABLE `blog_tbl` (
-  `s_no` int(11) NOT NULL,
   `blog_id` int(11) NOT NULL,
   `blog_lang_id` tinyint(4) NOT NULL,
   `A_name` varchar(100) NOT NULL,
@@ -67,8 +67,10 @@ CREATE TABLE `blog_tbl` (
 -- Dumping data for table `blog_tbl`
 --
 
-INSERT INTO `blog_tbl` (`s_no`, `blog_id`, `blog_lang_id`, `A_name`, `category`, `image`, `title`, `b_des_mini`, `b_des_full`, `date`, `blog_status`, `created_at`) VALUES
-(1, 0, 0, 'mincon', '3', '1696506663.png', 'col-mine', 'In your specific code, it seems like you\'re trying to use count() on a variable that contains a string instead of an array. You should check the code around line 186 in your product_code.php file and make sure that you are passing the correct type of variable to count(). If you need more specific as', '<p>In your specific code, it seems like you\'re trying to use <code>count()</code> on a variable that contains a string instead of an array. You should check the code around line 186 in your <code>product_code.php</code> file and make sure that you are passing the correct type of variable to <code>count()</code>. If you need more specific assistance, please provide the relevant code around line 186, and I can help you identify the issue.In your specific code, it seems like you\'re trying to use <code>count()</code> on a variable that contains a string instead of an array. You should check the code around line 186 in your <code>product_code.php</code> file and make sure that you are passing the correct type of variable to <code>count()</code>. If you need more specific assistance, please provide the relevant code around line 186, and I can help you identify the issue.In your specific code, it seems like you\'re trying to use <code>count()</code> on a variable that contains a string instead of an array. You should check the code around line 186 in your <code>product_code.php</code> file and make sure that you are passing the correct type of variable to <code>count()</code>. If you need more specific assistance, please provide the relevant code around line 186, and I can help you identify the issue.</p>', '2023-10-06', 1, '2023-10-05 11:51:03');
+INSERT INTO `blog_tbl` (`blog_id`, `blog_lang_id`, `A_name`, `category`, `image`, `title`, `b_des_mini`, `b_des_full`, `date`, `blog_status`, `created_at`) VALUES
+(1, 0, 'mincon', '3', '1696506663.png', 'col-mine', 'In your specific code, it seems like you\'re trying to use count() on a variable that contains a string instead of an array. You should check the code around line 186 in your product_code.php file and make sure that you are passing the correct type of variable to count(). If you need more specific as', '<p>In your specific code, it seems like you\'re trying to use <code>count()</code> on a variable that contains a string instead of an array. You should check the code around line 186 in your <code>product_code.php</code> file and make sure that you are passing the correct type of variable to <code>count()</code>. If you need more specific assistance, please provide the relevant code around line 186, and I can help you identify the issue.In your specific code, it seems like you\'re trying to use <code>count()</code> on a variable that contains a string instead of an array. You should check the code around line 186 in your <code>product_code.php</code> file and make sure that you are passing the correct type of variable to <code>count()</code>. If you need more specific assistance, please provide the relevant code around line 186, and I can help you identify the issue.In your specific code, it seems like you\'re trying to use <code>count()</code> on a variable that contains a string instead of an array. You should check the code around line 186 in your <code>product_code.php</code> file and make sure that you are passing the correct type of variable to <code>count()</code>. If you need more specific assistance, please provide the relevant code around line 186, and I can help you identify the issue.</p>', '2023-10-06', 1, '2023-10-05 11:51:03'),
+(2, 0, 'mincon', '3', '1696586051.png', 'col-mine--22', 'Google Search is a search engine provided and operated by Google. Handling more than 3.5 billion searches per day, it has a 92% share of the global search engine market. It is the most-visited website in the world. Additionally, it is the most searched and used search engine in the entire world. Wik', '<p>Google Search is a search engine provided and operated by Google. Handling more than 3.5 billion searches per day, it has a 92% share of the global search engine market. It is the most-visited website in the world. Additionally, it is the most searched and used search engine in the entire world.&nbsp;<a class=\"ruhjFe NJLBac fl\" href=\"https://en.wikipedia.org/wiki/Google_Search\" target=\"_blank\" rel=\"noopener\" data-ved=\"2ahUKEwi9_cOWj-GBAxXHwzgGHdHABXcQmhN6BAgqEAU\">Wikipedia</a>Google Search is a search engine provided and operated by Google. Handling more than 3.5 billion searches per day, it has a 92% share of the global search engine market. It is the most-visited website in the world. Additionally, it is the most searched and used search engine in the entire world.&nbsp;<a class=\"ruhjFe NJLBac fl\" href=\"https://en.wikipedia.org/wiki/Google_Search\" target=\"_blank\" rel=\"noopener\" data-ved=\"2ahUKEwi9_cOWj-GBAxXHwzgGHdHABXcQmhN6BAgqEAU\">Wikipedia</a>Google Search is a search engine provided and operated by Google. Handling more than 3.5 billion searches per day, it has a 92% share of the global search engine market. It is the most-visited website in the world. Additionally, it is the most searched and used search engine in the entire world.&nbsp;<a class=\"ruhjFe NJLBac fl\" href=\"https://en.wikipedia.org/wiki/Google_Search\" target=\"_blank\" rel=\"noopener\" data-ved=\"2ahUKEwi9_cOWj-GBAxXHwzgGHdHABXcQmhN6BAgqEAU\">Wikipedia</a>Google Search is a search engine provided and operated by Google. Handling more than 3.5 billion searches per day, it has a 92% share of the global search engine market. It is the most-visited website in the world. Additionally, it is the most searched and used search engine in the entire world.&nbsp;<a class=\"ruhjFe NJLBac fl\" href=\"https://en.wikipedia.org/wiki/Google_Search\" target=\"_blank\" rel=\"noopener\" data-ved=\"2ahUKEwi9_cOWj-GBAxXHwzgGHdHABXcQmhN6BAgqEAU\">Wikipedia</a>Google Search is a search engine provided and operated by Google. Handling more than 3.5 billion searches per day, it has a 92% share of the global search engine market. It is the most-visited website in the world. Additionally, it is the most searched and used search engine in the entire world.&nbsp;<a class=\"ruhjFe NJLBac fl\" href=\"https://en.wikipedia.org/wiki/Google_Search\" target=\"_blank\" rel=\"noopener\" data-ved=\"2ahUKEwi9_cOWj-GBAxXHwzgGHdHABXcQmhN6BAgqEAU\">Wikipedia</a>Google Search is a search engine provided and operated by Google. Handling more than 3.5 billion searches per day, it has a 92% share of the global search engine market. It is the most-visited website in the world. Additionally, it is the most searched and used search engine in the entire world.&nbsp;<a class=\"ruhjFe NJLBac fl\" href=\"https://en.wikipedia.org/wiki/Google_Search\" target=\"_blank\" rel=\"noopener\" data-ved=\"2ahUKEwi9_cOWj-GBAxXHwzgGHdHABXcQmhN6BAgqEAU\">Wikipedia</a></p>', '2023-10-06', 1, '2023-10-06 09:54:11'),
+(3, 0, 'mincon', '4', '1696658839.png', 'drill col-mine', 'ed by Craterus, one of Alexander\'s leading generals. Boukephala seems to have had a more distinguished legacy than Nikaia: it was mentioned by Roman authors and appears on later manuscripts. The cities\' precise locations are unknown, but it is considered likely that Boukephala was located in the vic', '<p style=\"text-align: justify;\">ed by&nbsp;<a title=\"Craterus\" href=\"https://en.wikipedia.org/wiki/Craterus\">Craterus</a>, one of&nbsp;<a title=\"Diadochi\" href=\"https://en.wikipedia.org/wiki/Diadochi\">Alexander\'s leading generals</a>. Boukephala seems to have had a more distinguished legacy than Nikaia: it was mentioned by&nbsp;<a title=\"Latin literature\" href=\"https://en.wikipedia.org/wiki/Latin_literature\">Roman authors</a>&nbsp;and appears on later manuscripts. The cities\' precise locations are unknown, but it is considered likely that Boukephala was located in the vicinity of modern&nbsp;<a title=\"Jalalpur Sharif\" href=\"https://en.wikipedia.org/wiki/Jalalpur_Sharif\">Jalalpur</a>, Pakistan, and that Nikaia was across the river near present-day&nbsp;<a title=\"Mong, Punjab\" href=\"https://en.wikipedia.org/wiki/Mong,_Punjab\">Mong</a>.ed by&nbsp;<a title=\"Craterus\" href=\"https://en.wikipedia.org/wiki/Craterus\">Craterus</a>, one of&nbsp;<a title=\"Diadochi\" href=\"https://en.wikipedia.org/wiki/Diadochi\">Alexander\'s leading generals</a>. Boukephala seems to have had a more distinguished legacy than Nikaia: it was mentioned by&nbsp;<a title=\"Latin literature\" href=\"https://en.wikipedia.org/wiki/Latin_literature\">Roman authors</a>&nbsp;and appears on later manuscripts. The cities\' precise locations are unknown, but it is considered likely that Boukephala was located in the vicinity of modern&nbsp;<a title=\"Jalalpur Sharif\" href=\"https://en.wikipedia.org/wiki/Jalalpur_Sharif\">Jalalpur</a>, Pakistan, and that Nikaia was across the river near present-day&nbsp;<a title=\"Mong, Punjab\" href=\"https://en.wikipedia.org/wiki/Mong,_Punjab\">Mong</a>.ed by&nbsp;<a title=\"Craterus\" href=\"https://en.wikipedia.org/wiki/Craterus\">Craterus</a>, one of&nbsp;<a title=\"Diadochi\" href=\"https://en.wikipedia.org/wiki/Diadochi\">Alexander\'s leading generals</a>. Boukephala seems to have had a more distinguished legacy than Nikaia: it was mentioned by&nbsp;<a title=\"Latin literature\" href=\"https://en.wikipedia.org/wiki/Latin_literature\">Roman authors</a>&nbsp;and appears on later manuscripts. The cities\' precise locations are unknown, but it is considered likely that Boukephala was located in the vicinity of modern&nbsp;<a title=\"Jalalpur Sharif\" href=\"https://en.wikipedia.org/wiki/Jalalpur_Sharif\">Jalalpur</a>, Pakistan, and that Nikaia was across the river near present-day&nbsp;<a title=\"Mong, Punjab\" href=\"https://en.wikipedia.org/wiki/Mong,_Punjab\">Mong</a>.ed by&nbsp;<a title=\"Craterus\" href=\"https://en.wikipedia.org/wiki/Craterus\">Craterus</a>, one of&nbsp;<a title=\"Diadochi\" href=\"https://en.wikipedia.org/wiki/Diadochi\">Alexander\'s leading generals</a>. Boukephala seems to have had a more distinguished legacy than Nikaia: it was mentioned by&nbsp;<a title=\"Latin literature\" href=\"https://en.wikipedia.org/wiki/Latin_literature\">Roman authors</a>&nbsp;and appears on later manuscripts. The cities\' precise locations are unknown, but it is considered likely that Boukephala was located in the vicinity of modern&nbsp;<a title=\"Jalalpur Sharif\" href=\"https://en.wikipedia.org/wiki/Jalalpur_Sharif\">Jalalpur</a>, Pakistan, and that Nikaia was across the river near present-day&nbsp;<a title=\"Mong, Punjab\" href=\"https://en.wikipedia.org/wiki/Mong,_Punjab\">Mong</a>.ed by&nbsp;<a title=\"Craterus\" href=\"https://en.wikipedia.org/wiki/Craterus\">Craterus</a>, one of&nbsp;<a title=\"Diadochi\" href=\"https://en.wikipedia.org/wiki/Diadochi\">Alexander\'s leading generals</a>. Boukephala seems to have had a more distinguished legacy than Nikaia: it was mentioned by&nbsp;<a title=\"Latin literature\" href=\"https://en.wikipedia.org/wiki/Latin_literature\">Roman authors</a>&nbsp;and appears on later manuscripts. The cities\' precise locations are unknown, but it is considered likely that Boukephala was located in the vicinity of modern&nbsp;<a title=\"Jalalpur Sharif\" href=\"https://en.wikipedia.org/wiki/Jalalpur_Sharif\">Jalalpur</a>, Pakistan, and that Nikaia was across the river near present-day&nbsp;<a title=\"Mong, Punjab\" href=\"https://en.wikipedia.org/wiki/Mong,_Punjab\">Mong</a>.</p>', '2023-10-07', 1, '2023-10-07 06:07:19');
 
 -- --------------------------------------------------------
 
@@ -103,37 +105,10 @@ INSERT INTO `cart_tbl` (`cart_id`, `lang_id`, `p_name`, `p_img`, `p_cat_name`, `
 (4, 2, 'Product_2_spanish', 'mincon_product_img_1.png', 'category_2_span', 'Rohan', '1234567890', 'tejpratapsahu00@gmail.com', 'tcs', 'india', '2023-10-04 06:56:27', 0, '2023-10-04 06:56:27'),
 (5, 2, 'Product_1_spanish', 'mincon_product_img_1.png', 'category_1_span', 'ABC Kumar', '0987654321', 'tejpratapsahu00@gmail.com', 'App', 'india', '2023-10-04 06:58:32', 0, '2023-10-04 06:58:32'),
 (6, 2, 'Product_2_spanish', 'mincon_product_img_1.png', 'category_2_span', 'ABC Kumar', '0987654321', 'tejpratapsahu00@gmail.com', 'App', 'india', '2023-10-04 06:58:32', 0, '2023-10-04 06:58:32'),
-(7, 2, 'Product_3_spanish', 'mincon_product_img_1.png', 'category_3_span', 'ABC Kumar', '0987654321', 'tejpratapsahu00@gmail.com', 'App', 'india', '2023-10-04 06:58:32', 0, '2023-10-04 06:58:32');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `category_tbl`
---
-
-CREATE TABLE `category_tbl` (
-  `s_no` int(11) NOT NULL,
-  `cat_id` int(11) NOT NULL,
-  `lang_id` tinyint(4) NOT NULL,
-  `cat_name` varchar(50) NOT NULL,
-  `cat_description` text NOT NULL,
-  `cat_status` tinyint(4) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `category_tbl`
---
-
-INSERT INTO `category_tbl` (`s_no`, `cat_id`, `lang_id`, `cat_name`, `cat_description`, `cat_status`, `created_at`) VALUES
-(1, 1, 1, 'category_1', 'our customers and sharing the resulting savings with them. We recognize the significance of equipping professionals with the right tools, enabling them to carry out their tasks safely and efficiently. Our team of experts dedicates themselves to crafting and producing innovative mining tools that embody reliability and cost-effectiveness.', 1, '2023-10-04 05:50:52'),
-(2, 1, 2, 'category_1_span', ' Reconocemos la importancia de equipar a los profesionales con las herramientas adecuadas, que les permitan realizar sus tareas de forma segura y eficiente. Nuestro equipo de expertos se dedica a diseñar y producir herramientas de minería innovadoras que incorporan confiabilidad y rentabilidad.', 1, '2023-10-04 05:51:25'),
-(3, 2, 1, 'category_2', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:01:56'),
-(4, 2, 2, 'category_2_span', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:02:26'),
-(5, 3, 1, 'category_3', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:02:45'),
-(6, 3, 2, 'category_3_span', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:03:05'),
-(7, 4, 1, 'category_4', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:03:56'),
-(8, 4, 2, 'category_4_span', ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 1, '2023-10-04 06:04:21');
+(7, 2, 'Product_3_spanish', 'mincon_product_img_1.png', 'category_3_span', 'ABC Kumar', '0987654321', 'tejpratapsahu00@gmail.com', 'App', 'india', '2023-10-04 06:58:32', 0, '2023-10-04 06:58:32'),
+(8, 2, 'product_1_span', 'mincon_product_img_1.png', 'category_1_span', 'ABC Kumar', '1234567890', 'tejpratapsahu00@gmail.com', 'IBM', 'india', '2023-10-09 11:18:54', 0, '2023-10-09 11:18:54'),
+(9, 2, 'product_2_span', 'mincon_product_img_1.png', 'category_2_span', 'ABC Kumar', '1234567890', 'tejpratapsahu00@gmail.com', 'IBM', 'india', '2023-10-09 11:18:54', 0, '2023-10-09 11:18:54'),
+(10, 2, 'product_3_span', 'mincon_product_img_1.png', 'category_3_span', 'ABC Kumar', '1234567890', 'tejpratapsahu00@gmail.com', 'IBM', 'india', '2023-10-09 11:18:54', 0, '2023-10-09 11:18:54');
 
 -- --------------------------------------------------------
 
@@ -223,30 +198,25 @@ CREATE TABLE `lang_blog_tbl` (
 --
 
 CREATE TABLE `lang_products_tbl` (
-  `s_no` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `lang_id` tinyint(4) NOT NULL,
-  `product_name` varchar(50) NOT NULL,
+  `product_name_lang_1` varchar(100) NOT NULL,
+  `product_name_lang_2` varchar(100) NOT NULL,
   `product_image` varchar(100) NOT NULL,
   `product_image1` varchar(50) NOT NULL,
   `product_image2` varchar(50) NOT NULL,
   `product_image3` varchar(50) NOT NULL,
   `product_image4` varchar(50) NOT NULL,
   `product_image5` varchar(50) NOT NULL,
-  `product_video_url` varchar(100) NOT NULL,
-  `en_weight` varchar(50) NOT NULL,
-  `en_length` varchar(50) NOT NULL,
-  `en_air_consumption` varchar(50) NOT NULL,
-  `en_strokes_x_mins` varchar(50) NOT NULL,
-  `en_rod_size` varchar(50) NOT NULL,
-  `spn_weight` varchar(50) NOT NULL,
-  `spn_length` varchar(50) NOT NULL,
-  `spn_air_consumption` varchar(50) NOT NULL,
-  `spn_strokes_x_mins` varchar(50) NOT NULL,
-  `spn_rod_size` varchar(50) NOT NULL,
-  `product_status` tinyint(4) NOT NULL,
-  `product_category` tinyint(4) NOT NULL,
-  `product_description` text NOT NULL,
+  `product_video_url_lang_1` varchar(100) NOT NULL,
+  `product_video_url_lang_2` varchar(100) NOT NULL,
+  `product_status_lang_1` tinyint(4) NOT NULL,
+  `product_status_lang_2` tinyint(4) NOT NULL,
+  `product_category_lang_1` tinyint(4) NOT NULL,
+  `product_category_lang_2` tinyint(4) NOT NULL,
+  `product_description_lang_1` text NOT NULL,
+  `product_description_lang_2` text NOT NULL,
+  `product_manual_lang_1` varchar(200) NOT NULL,
+  `product_manual_lang_2` varchar(200) NOT NULL,
   `product_created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -254,19 +224,11 @@ CREATE TABLE `lang_products_tbl` (
 -- Dumping data for table `lang_products_tbl`
 --
 
-INSERT INTO `lang_products_tbl` (`s_no`, `product_id`, `lang_id`, `product_name`, `product_image`, `product_image1`, `product_image2`, `product_image3`, `product_image4`, `product_image5`, `product_video_url`, `en_weight`, `en_length`, `en_air_consumption`, `en_strokes_x_mins`, `en_rod_size`, `spn_weight`, `spn_length`, `spn_air_consumption`, `spn_strokes_x_mins`, `spn_rod_size`, `product_status`, `product_category`, `product_description`, `product_created_at`) VALUES
-(1, 1, 1, 'Product_1', 'mincon_product_img_1.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=lp6OMS-6sd0', '', '', '', '', '', '', '', '', '', '', 1, 1, 'our customers and sharing the resulting savings with them. We recognize the significance of equipping professionals with the right tools, enabling them to carry out their tasks safely and efficiently. Our team of experts dedicates themselves to crafting and producing innovative mining tools that embody reliability and cost-effectiveness.', '2023-10-04 05:58:14'),
-(2, 1, 2, 'Product_1_spanish', 'mincon_product_img_1.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 1, ' Reconocemos la importancia de equipar a los profesionales con las herramientas adecuadas, que les permitan realizar sus tareas de forma segura y eficiente. Nuestro equipo de expertos se dedica a diseñar y producir herramientas de minería innovadoras que incorporan confiabilidad y rentabilidad.', '2023-10-04 05:58:47'),
-(3, 2, 1, 'Product_2', 'mincon_product_img_1.png', 'mincon_about_bg2.png', '', '', '', '', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', '', '', '', '', '', '', '', '', '', '', 1, 2, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:06:06'),
-(4, 2, 2, 'Product_2_spanish', 'mincon_product_img_1.png', 'mincon_contact_bg1.png', '', '', '', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 2, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:06:39'),
-(5, 3, 1, 'Product_3', 'mincon_product_img_1.png', '', '', '', 'mincon_contact_bg2.png', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 3, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:08:32'),
-(6, 3, 2, 'Product_3_spanish', 'mincon_product_img_1.png', '', '', 'mincon_about_bg3.png', '', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 3, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:09:05'),
-(7, 4, 1, 'Product_4_en', 'mincon_product_img_1.png', 'mincon_about_bg2.png', '', '', 'mincon_contact_bg2.png', '', 'https://www.youtube.com/watch?v=ax1h-YOyPJc', '', '', '', '', '', '', '', '', '', '', 1, 4, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:10:30'),
-(8, 4, 2, 'Product_4_spanish', 'mincon_product_img_1.png', '', '', '', 'mincon_about_bg2.png', '', 'https://www.youtube.com/watch?v=ax1h-YOyPJc', '', '', '', '', '', '', '', '', '', '', 1, 4, ', as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2023-10-04 06:10:55'),
-(11, 5, 2, 'Product_5_spanish', 'mincon_product_img_1.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=ax1h-YOyPJc', '', '', '', '', '', '', '', '', '', '', 1, 1, 'and sharing the resulting savings with them. We recognize the significance of equipping professionals with the right tools, enabling them to carry out their tasks safely and efficiently. Our team of experts dedicates themselves to crafting and producing innovative mining tools that embody reliability and cost-effectiveness.', '2023-10-04 11:43:43'),
-(12, 5, 1, 'Product_5', 'mincon_product_img_1.png', '', '', '', '', '', 'https://www.youtube.com/watch?v=7Xy32lLmqIc', '', '', '', '', '', '', '', '', '', '', 1, 1, 'and sharing the resulting savings with them. We recognize the significance of equipping professionals with the right tools, enabling them to carry out their tasks safely and efficiently. Our team of experts dedicates themselves to crafting and producing innovative mining tools that embody reliability and cost-effectiveness.', '2023-10-04 11:44:27'),
-(14, 7, 1, 'Product_6', 'mincon_product_img_1.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 3, ' Meet is a video communication service developed by Google. It is one of two apps that constitute the replacement for Google Hangouts, the other being Google Chat. It replaced the consumer-facing Google Duo in late 2022, with the Duo mobile app being renamed Meet and the original Meet app ', '2023-10-05 09:13:06'),
-(15, 7, 2, 'Product_6_spanish', 'mincon_product_img_1.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 3, ' Meet is a video communication service developed by Google. It is one of two apps that constitute the replacement for Google Hangouts, the other being Google Chat. It replaced the consumer-facing Google Duo in late 2022, with the Duo mobile app being renamed Meet and the original Meet app ', '2023-10-05 09:14:21');
+INSERT INTO `lang_products_tbl` (`product_id`, `product_name_lang_1`, `product_name_lang_2`, `product_image`, `product_image1`, `product_image2`, `product_image3`, `product_image4`, `product_image5`, `product_video_url_lang_1`, `product_video_url_lang_2`, `product_status_lang_1`, `product_status_lang_2`, `product_category_lang_1`, `product_category_lang_2`, `product_description_lang_1`, `product_description_lang_2`, `product_manual_lang_1`, `product_manual_lang_2`, `product_created_at`) VALUES
+(1, 'product_1', 'product_1_span', 'mincon_product_img_1.png', 'mincon_about_bg3.png', '', '', '', '', 'https://www.youtube.com/watch?v=S_ixruxej9c', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', 1, 1, 1, 1, 'When a white college student named Jim Bullock and a Black college student named Joe Purdy tried to attend Memphis’s Second Presbyterian Church on Palm Sunday in 1964, it was the church’s commitment to segregation that inspired church leaders to physically block their way. Bullock and Purdy’s commitment to justice inspired them to kneel on…', 'Cuando un estudiante universitario blanco llamado Jim Bullock y un estudiante universitario negro llamado Joe Purdy intentaron asistir a la Segunda Iglesia Presbiteriana de Memphis el Domingo de Ramos de 1964, fue el compromiso de la iglesia con la segregación lo que inspiró a los líderes de la iglesia a bloquear físicamente su camino. El compromiso de Bullock y Purdy con la justicia los inspiró a arrodillarse...', 'mincon_about_bg2.png', 'mincon_about_bg3.png', '2023-10-07 18:56:00'),
+(2, 'product_2', 'product_2_span', 'mincon_product_img_1.png', '', '', '', 'mincon_contact_bg2.png', '', 'https://www.youtube.com/watch?v=S_ixruxej9c', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', 1, 1, 2, 2, ' Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, \"multi-author blogs\" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other \"microblogging\" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.', ' Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, \"multi-author blogs\" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other \"microblogging\" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.', 'phone.svg', 'right-tic.svg', '2023-10-09 04:40:44'),
+(3, 'product_3', 'product_3_span', 'mincon_product_img_1.png', '', 'mincon_about_bg3.png', '', 'mincon_contact_bg2.png', '', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', 1, 1, 3, 3, ' Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, \"multi-author blogs\" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other \"microblogging\" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.', ' Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, \"multi-author blogs\" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other \"microblogging\" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.', 'mincon_hero_bg1.png', '', '2023-10-09 04:48:02'),
+(7, 'product_new', 'product_new_span', 'mincon_product_img_1.png', '', '', '', 'mincon_contact_bg1.png', '', 'https://www.youtube.com/watch?v=S_ixruxej9c', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', 1, 1, 4, 4, 'with HTML or computer programming. Previously, knowledge of such technologies as HTML and File Transfer Protocol had been required to publish content on the Web, and early Web users therefore tended to be hackers and computer enthusiasts. As of the 2010s, the majority are interactive Web 2.0 websites, allowing visitors to leave online comments, and it is this interactivity that distinguishes them from other static websites.[2] In that sense, blogging can be seen as a form of social networking service. Indeed', 'con HTML o programación informática. Anteriormente, se requería conocimiento de tecnologías como HTML y el Protocolo de transferencia de archivos para publicar contenido en la Web y, por lo tanto, los primeros usuarios de la Web tendían a ser piratas informáticos y entusiastas de la informática. A partir de la década de 2010, la mayoría son sitios web interactivos Web 2.0, que permiten a los visitantes dejar comentarios en línea, y es esta interactividad la que los distingue de otros sitios web estáticos. En ese sentido, los blogs pueden verse como una forma de servicio de red social. En efecto', 'mincon_home_bg1.png', 'mincon_hero_bg2.png', '2023-10-09 14:30:57');
 
 -- --------------------------------------------------------
 
@@ -289,11 +251,11 @@ CREATE TABLE `product_category_tbl` (
 --
 
 INSERT INTO `product_category_tbl` (`cat_id`, `category_name_lang_1`, `category_name_lang_2`, `category_description_lang_1`, `category_description_lang_2`, `status`, `created_at`) VALUES
-(1, 'category_1_en', 'category_1_span', 'emnkdf k f fm fmd fkd fk dfk sdfc ds md d fm,d fm,sd fm,ds m,fsd m sdm msd f,msdm fm,sm fsm,d fm,sd ,ms fm,s fm,d ,mf m,sd ,s f,fsm, loremnkdf k f fm fmd fkd fk dfk sdfc ds md d fm,d fm,sd fm,ds m,fsd m sdm msd f,msdm fm,sm fsm,d fm,sd ,ms fm,s fm,d ,mf m,sd ,s f,fsm, loremnkdf k f fm fmd fkd fk dfk sdfc ds md d fm,d fm,sd fm,ds m,fsd m sdm msd f,msdm fm,sm fsm,d fm,sd ,ms fm,s fm,d ,mf m,sd ,s f,fsm, loremnkdf k f fm fmd fkd fk dfk sdfc ds md d fm,d fm,sd fm,ds m,fsd m sdm msd f,msdm fm,sm fsm,d fm,sd ,ms fm,s fm,d ,mf m,sd ,s f,fsm, loremnkdf k f fm fmd fkd fk dfk sdfc ds md d fm,d fm,sd fm,ds m,fsd m sdm msd f,msdm fm,sm fsm,d fm,sd ,ms fm,s fm,d ,mf m,sd ,s f,fsm, loremnkd', '', 1, '2023-10-04 09:17:11'),
-(2, 'category_2', 'category_2_span', '', '', 1, '2023-10-04 09:17:11'),
-(3, 'category_3', 'category_3_span', '', '', 1, '2023-10-04 09:17:11'),
-(4, 'category_4_span', 'category_4_span', '', '', 1, '2023-10-04 09:17:11'),
-(6, 'category 5', 'category 5_span', 'pposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, s', 'pposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, s', 1, '2023-10-04 12:28:34');
+(1, 'category_1', 'category_1_span', 'Do you read every post on a blog? If you\'re like me, you visit sites for a specific reason — be it the New York Times crossword puzzle or the latest gear roundup from Outside. You know what you\'re looking for when you click. That frame of mind is why blog categories help readers navigate your site.', '¿Lees todas las publicaciones de un blog? Si eres como yo, visitas sitios por una razón específica, ya sea el crucigrama del New York Times o el último resumen de artículos de Outside. Sabes lo que estás buscando cuando haces clic. Ese estado de ánimo es el motivo por el que las categorías de blogs ayudan a los lectores a navegar por su sitio.', 1, '2023-10-07 18:54:31'),
+(2, 'category_2', 'category_2_span', 'Do you read every post on a blog? If you\'re like me, you visit sites for a specific reason — be it the New York Times crossword puzzle or the latest gear roundup from Outside. You know what you\'re looking for when you click. That frame of mind is why blog categories help readers navigate your site.', 'Lees todas las publicaciones de un blog? Si eres como yo, visitas sitios por una razón específica, ya sea el crucigrama del New York Times o el último resumen de artículos de Outside. Sabes lo que estás buscando cuando haces clic. Ese estado de ánimo es el motivo por el que las categorías de blogs ayudan a los lectores a navegar por su sitio.', 1, '2023-10-07 18:56:49'),
+(3, 'category_3', 'category_3_span', 'Do you read every post on a blog? If you\'re like me, you visit sites for a specific reason — be it the New York Times crossword puzzle or the latest gear roundup from Outside. You know what you\'re looking for when you click. That frame of mind is why blog categories help readers navigate your site.', '¿Lees todas las publicaciones de un blog? Si eres como yo, visitas sitios por una razón específica, ya sea el crucigrama del New York Times o el último resumen de artículos de Outside. Sabes lo que estás buscando cuando haces clic. Ese estado de ánimo es el motivo por el que las categorías de blogs ayudan a los lectores a navegar por su sitio.', 1, '2023-10-07 18:57:22'),
+(4, 'category_4', 'category_4_span', 'Do you read every post on a blog? If you\'re like me, you visit sites for a specific reason — be it the New York Times crossword puzzle or the latest gear roundup from Outside. You know what you\'re looking for when you click. That frame of mind is why blog categories help readers navigate your site.', '¿Lees todas las publicaciones de un blog? Si eres como yo, visitas sitios por una razón específica, ya sea el crucigrama del New York Times o el último resumen de artículos de Outside. Sabes lo que estás buscando cuando haces clic. Ese estado de ánimo es el motivo por el que las categorías de blogs ayudan a los lectores a navegar por su sitio.', 1, '2023-10-07 18:57:44'),
+(5, 'category_5', 'category_5_span', 'Do you read every post on a blog? If you\'re like me, you visit sites for a specific reason — be it the New York Times crossword puzzle or the latest gear roundup from Outside. You know what you\'re looking for when you click. That frame of mind is why blog categories help readers navigate your site.', '¿Lees todas las publicaciones de un blog? Si eres como yo, visitas sitios por una razón específica, ya sea el crucigrama del New York Times o el último resumen de artículos de Outside. Sabes lo que estás buscando cuando haces clic. Ese estado de ánimo es el motivo por el que las categorías de blogs ayudan a los lectores a navegar por su sitio.', 1, '2023-10-07 18:58:04');
 
 -- --------------------------------------------------------
 
@@ -303,23 +265,14 @@ INSERT INTO `product_category_tbl` (`cat_id`, `category_name_lang_1`, `category_
 
 CREATE TABLE `product_specification` (
   `s_id` int(11) NOT NULL,
-  `lang_id` tinyint(4) NOT NULL,
+  `specific_id` tinyint(4) NOT NULL,
   `product_id` int(15) NOT NULL,
-  `spec_name` varchar(100) NOT NULL,
-  `s_value` varchar(50) NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `spec_lang_1` varchar(100) NOT NULL,
+  `spec_lang_2` varchar(100) NOT NULL,
+  `spec_value_lang_1` varchar(60) NOT NULL,
+  `spec_value_lang_2` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `product_specification`
---
-
-INSERT INTO `product_specification` (`s_id`, `lang_id`, `product_id`, `spec_name`, `s_value`, `status`, `created_at`) VALUES
-(1, 1, 7, 'weight', '100kg', 0, '2023-10-05 09:13:06'),
-(2, 1, 7, 'lenght', '100mm', 0, '2023-10-05 09:13:06'),
-(3, 2, 7, 'weight', '20kg', 0, '2023-10-05 09:14:21'),
-(4, 2, 7, 'length', '90mm', 0, '2023-10-05 09:14:21');
 
 -- --------------------------------------------------------
 
@@ -344,7 +297,43 @@ INSERT INTO `product_tbl` (`product_id`, `product_name_lang_1`, `product_name_la
 (3, 'Product_3', 'Product_3_spanish', 1),
 (4, 'Product_4_en', 'Product_4_spanish', 1),
 (5, 'Product_5', 'Product_5_spanish', 0),
-(7, 'Product_6_spanish', 'Product_6_spanish', 1);
+(7, 'Product_6_spanish', 'Product_6_spanish', 1),
+(8, 'Product_7', 'Product_7_span', 1),
+(9, 'Product_8', 'Product_8_span', 1),
+(10, 'Product_9_spanish', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `specification_tbl`
+--
+
+CREATE TABLE `specification_tbl` (
+  `spec_id` int(11) NOT NULL,
+  `spec_name_lang_1` varchar(200) NOT NULL,
+  `spec_name_lang_2` varchar(200) NOT NULL,
+  `spec_status` tinyint(4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `specification_tbl`
+--
+
+INSERT INTO `specification_tbl` (`spec_id`, `spec_name_lang_1`, `spec_name_lang_2`, `spec_status`, `created_at`) VALUES
+(1, 'weight', 'weighto', 1, '2023-10-07 12:18:12'),
+(4, 'length', 'lengtho', 1, '2023-10-07 12:49:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `spec_tbl`
+--
+
+CREATE TABLE `spec_tbl` (
+  `spec_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -558,19 +547,13 @@ ALTER TABLE `blog_category_tbl`
 -- Indexes for table `blog_tbl`
 --
 ALTER TABLE `blog_tbl`
-  ADD PRIMARY KEY (`s_no`);
+  ADD PRIMARY KEY (`blog_id`);
 
 --
 -- Indexes for table `cart_tbl`
 --
 ALTER TABLE `cart_tbl`
   ADD PRIMARY KEY (`cart_id`);
-
---
--- Indexes for table `category_tbl`
---
-ALTER TABLE `category_tbl`
-  ADD PRIMARY KEY (`s_no`);
 
 --
 -- Indexes for table `contact_tbl`
@@ -600,7 +583,7 @@ ALTER TABLE `lang_blog_tbl`
 -- Indexes for table `lang_products_tbl`
 --
 ALTER TABLE `lang_products_tbl`
-  ADD PRIMARY KEY (`s_no`);
+  ADD PRIMARY KEY (`product_id`);
 
 --
 -- Indexes for table `product_category_tbl`
@@ -619,6 +602,18 @@ ALTER TABLE `product_specification`
 --
 ALTER TABLE `product_tbl`
   ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `specification_tbl`
+--
+ALTER TABLE `specification_tbl`
+  ADD PRIMARY KEY (`spec_id`);
+
+--
+-- Indexes for table `spec_tbl`
+--
+ALTER TABLE `spec_tbl`
+  ADD PRIMARY KEY (`spec_id`);
 
 --
 -- Indexes for table `tem_tbl_for_cart`
@@ -646,25 +641,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `blog_category_tbl`
 --
 ALTER TABLE `blog_category_tbl`
-  MODIFY `blog_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `blog_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `blog_tbl`
 --
 ALTER TABLE `blog_tbl`
-  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cart_tbl`
 --
 ALTER TABLE `cart_tbl`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `category_tbl`
---
-ALTER TABLE `category_tbl`
-  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `contact_tbl`
@@ -694,31 +683,43 @@ ALTER TABLE `lang_blog_tbl`
 -- AUTO_INCREMENT for table `lang_products_tbl`
 --
 ALTER TABLE `lang_products_tbl`
-  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `product_category_tbl`
 --
 ALTER TABLE `product_category_tbl`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_specification`
 --
 ALTER TABLE `product_specification`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product_tbl`
 --
 ALTER TABLE `product_tbl`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `specification_tbl`
+--
+ALTER TABLE `specification_tbl`
+  MODIFY `spec_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `spec_tbl`
+--
+ALTER TABLE `spec_tbl`
+  MODIFY `spec_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tem_tbl_for_cart`
 --
 ALTER TABLE `tem_tbl_for_cart`
-  MODIFY `cart_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cart_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `ui_table`

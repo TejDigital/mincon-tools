@@ -23,7 +23,7 @@
                         ?>:
                  </h2>
                  <?php
-                    $sql2 = "SELECT * FROM category_tbl WHERE cat_status = 1 AND lang_id ='$lan'";
+                    $sql2 = "SELECT * FROM product_category_tbl WHERE status = 1 ";
                     $query2 = mysqli_query($con, $sql2);
                     if (mysqli_num_rows($query2)) {
                         foreach ($query2 as $result1) {
@@ -32,16 +32,23 @@
                          <div class="col-md-3">
                              <ul>
                                  <li>
-                                     <h4 class="m-0 p-0"><?= $result1['cat_name'] ?></h4>
+                                     <h4 class="m-0 p-0"><?= $lan == 1 ?  $result1['category_name_lang_1'] : $result1['category_name_lang_2'] ?></h4>
                                  </li>
                                  <?php
-                                    $sql3 = "SELECT * FROM lang_products_tbl where product_status = '1' AND product_category = '$cat_id1' AND lang_id = '$lan'";
+                                     if ($lan == 1) {
+                                        $product_status = 'product_status_lang_1';
+                                        $product_category = 'product_category_lang_1';
+                                    } else {
+                                        $product_status = 'product_status_lang_2';
+                                        $product_category = 'product_category_lang_2';
+                                    }   
+                                    $sql3 = "SELECT * FROM lang_products_tbl where $product_status = '1'  and $product_category ='$cat_id1'";
                                     $pro_query1 = mysqli_query($con, $sql3);
                                     if (mysqli_num_rows($pro_query1)) {
                                         foreach ($pro_query1 as $pro_data1) {
                                     ?>
                                          <li> <a href="./cart_detail.php?product_id=<?= $pro_data1['product_id'] ?>&lang=<?= $lan ?>">
-                                                 <?= $pro_data1['product_name'] ?> </a></li>
+                                                 <?= $lan == 1 ?  $pro_data1['product_name_lang_1']  : $pro_data1['product_name_lang_2']?> </a></li>
                                  <?php
                                         }
                                     }

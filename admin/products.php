@@ -41,21 +41,19 @@ if (isset($_SESSION['min_msg'])) {
                 <div class="d-flex align-items-start justify-content-between mb-4 mx-auto">
                     <p></p>
                     <div class="d-flex align-items-center justify-content-even  w-25">
-                        <!-- <a href="./product_specs.php" class="btn btn-primary mx-3">Add_Specification </a> -->
                         <a href="./add_product.php" class="btn btn-info my-2">Add</a>
                         <div class="w-75 ms-auto">
-                        <label for="">Choose Language</label>
-                        <select name="lan" class="form-select lanChange"  onchange="changeLang()">
-                            <option value="1" <?php if ($lan == 1) {
-                                                    echo "selected";
-                                                } ?>>English</option>
-                            <option value="2" <?php if ($lan == 2) {
-                                                    echo "selected";
-                                                } ?>>Spanish</option>
-                        </select>
+                            <label for="">Choose Language</label>
+                            <select name="lan" class="form-select lanChange" onchange="changeLang()">
+                                <option value="1" <?php if ($lan == 1) {
+                                                        echo "selected";
+                                                    } ?>>English</option>
+                                <option value="2" <?php if ($lan == 2) {
+                                                        echo "selected";
+                                                    } ?>>Spanish</option>
+                            </select>
                         </div>
                     </div>
-                    <!-- <a href="">Show All</a> -->
                 </div>
                 <div class="table-responsive">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -63,65 +61,74 @@ if (isset($_SESSION['min_msg'])) {
                             <tr class="text-dark">
                                 <th scope="col">S No</th>
                                 <th scope="col">Product Category</th>
-                                <!-- <th scope="col">Product ID</th> -->
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Status</th>
-                                <!-- <th scope="col">Product Language</th> -->
                                 <th scope="col" colspan="3" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT * FROM product_tbl INNER JOIN lang_products_tbl ON product_tbl.product_id = lang_products_tbl.product_id Where lang_products_tbl.lang_id = '$lan' ORDER BY product_created_at DESC";
-                            // $sql = "SELECT * FROM lang_products_tbl LEFT JOIN category_tbl ON lang_products_tbl.product_category = category_tbl.cat_id ORDER BY product_created_at DESC";
+                            $sql = "SELECT * FROM lang_products_tbl  ORDER BY product_created_at DESC";
                             $query = mysqli_query($con, $sql);
                             $count = 1;
                             if (mysqli_num_rows($query)) {
                                 foreach ($query as $data) {
-                                    $lang_id =  $data['lang_id'];
+                                    if ($lan == 1) {
+                                        $cat_id =  $data['product_category_lang_1'];
+                                    } else {
+                                        $cat_id = $data['product_category_lang_2'];
+                                    }
                             ?>
                                     <tr>
                                         <td><?= $count++ ?></td>
-
                                         <td><?php
-                                            $sql2 = "SELECT * FROM category_tbl WHERE lang_id = '$lang_id'";
+                                            $sql2 = "SELECT * FROM product_category_tbl where cat_id = '$cat_id'";
                                             $query2 = mysqli_query($con, $sql2);
                                             if (mysqli_num_rows($query2) > 0) {
                                                 foreach ($query2 as $row) {
-                                                    if ($data['product_category'] == $row['cat_id']) {
-                                                        echo $row['cat_name'];
+                                                    if ($lan == '1') {
+                                                        echo $row['category_name_lang_1'];
+                                                    } elseif ($lan == '2') {
+                                                        echo $row['category_name_lang_2'];
                                                     }
-                                                    // echo $row['cat_id'];
                                                 }
-                                                $row = mysqli_fetch_assoc($query2);
                                             }
                                             ?>
                                         </td>
-                                        <!-- <td><?= $data['product_id'] ?></td> -->
                                         <td> <?php
-                                                $product_name_lang = $data['product_name_lang_1'];
-                                                if ($data['product_name_lang_2'] != "") {
-                                                    $product_name_lang .= " (" . $data['product_name_lang_2'] . ")";
+                                                if ($lan == "1") {
+                                                    echo $data['product_name_lang_1'];
+                                                } elseif ($lan == "2") {
+                                                    echo $data['product_name_lang_2'];
                                                 }
                                                 ?>
-                                            <?= $product_name_lang ?>
                                         </td>
 
-                                        <td><?php if ($data['product_status'] == 1) {
+                                        <td><?php
+                                        if($lan == 1){
+                                            if ($data['product_status_lang_1'] == 1) {
                                                 echo "Active";
                                             } else {
                                                 echo "Inactive";
                                             }
-                                            ?></td>
-                                        <!-- <td><?= $data['lang_id'] == 1 ? 'English ' : 'Spanish'  ?></td> -->
-                                        <td>
-                                            <button type='button' value='<?= $data['product_id'] ?>,<?= $data['lang_id'] ?>' class='btn btn-square btn-outline-danger delete_pro btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
+                                        }else{
+                                            if ($data['product_status_lang_2'] == 1) {
+                                                echo "Active";
+                                            } else {
+                                                echo "Inactive";
+                                            }
+                                        }
+                                            
+                                            ?>
                                         </td>
                                         <td>
-                                            <a href="./product_edit.php?id=<?= $data['product_id'] ?>&lang_id=<?= $data['lang_id'] ?>" class='btn btn-square btn-outline-primary  btn-sm my-1'><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <button type='button' value='<?= $data['product_id'] ?>' class='btn btn-square btn-outline-danger delete_pro btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
                                         </td>
                                         <td>
-                                            <a href="./product_detail.php?id=<?= $data['product_id'] ?>&lang_id=<?= $data['lang_id'] ?>" class='btn btn-square btn-outline-dark  btn-sm my-1'><i class="fa-solid fa-eye"></i></a>
+                                            <a href="./product_edit.php?id=<?= $data['product_id'] ?>&lang_id=<?= $lan ?>" class='btn btn-square btn-outline-primary  btn-sm my-1'><i class="fa-regular fa-pen-to-square"></i></a>
+                                        </td>
+                                        <td>
+                                            <a href="./product_detail.php?id=<?= $data['product_id'] ?>&lang_id=<?=$lan?>" class='btn btn-square btn-outline-dark  btn-sm my-1'><i class="fa-solid fa-eye"></i></a>
                                         </td>
                                     </tr>
                             <?php

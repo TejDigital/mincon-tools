@@ -49,18 +49,16 @@ require('includes/header.php');
                                     ?>
                                 <ul>
                                     <li class="d-flex align-items-center justify-content-between">
-                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>">
+                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>">
                                             <?= $result['blog_cat_name'] ?>
                                         </a>
                                         <?php
                                         $id = $result['blog_cat_id'];
-                                        $sql1 = "SELECT * FROM blog_tbl where category='$id' AND blog_lang_id = '$lan'";
+                                        $sql1 = "SELECT * FROM blog_tbl where category='$id'";
                                         $query1 = mysqli_query($con, $sql1);
                                         $rows = mysqli_num_rows($query1);
                                         if ($rows) {
-
                                         ?>
-
                                             <span class="badge text-danger rounded-pill"><?= $rows ?></span>
                                         <?php
                                         }
@@ -90,7 +88,7 @@ require('includes/header.php');
                                 while ($result = mysqli_fetch_assoc($query)) {
                                 ?>
                                     <li class="as_product p-0">
-                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>">
+                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>">
                                             <div class="as_productimg">
                                                 <!-- <img src="admin/blog_des_files/<?= $result['image'] ?>" alt=""> -->
                                             </div>
@@ -98,7 +96,7 @@ require('includes/header.php');
                                             <div class="as_product_detail p-0">
                                                 <span style="font-size: 0.8rem;"><i class="fa-solid fa-calendar-days"></i> <?= $result['date'] ?></span>
                                                 <br>
-                                                <span><a href="blog-detail.php?blog_id=<?= $result['blog_id'] ?>&lang=<?= $lan ?>" style="font-size: 0.9rem; font-weight:600;"><?= strip_tags(substr($result['title'], 0, 30)) ?>...</a></span>
+                                                <span><a href="blog-detail.php?blog_id=<?= $result['blog_id'] ?>" style="font-size: 0.9rem; font-weight:600;"><?= strip_tags(substr($result['title'], 0, 30)) ?>...</a></span>
                                             </div>
                                         </a>
                                     </li>
@@ -118,14 +116,12 @@ require('includes/header.php');
                     ?>
                     <form action="" method="get">
                         <?php
-                        if (isset($_GET['blog_cat_id']) && isset($_GET['blog_id'])) {
+                        if (isset($_GET['blog_cat_id'])) {
                             $cat_id = $_GET['blog_cat_id'];
-                            $blog_id = $_GET['blog_id'];
-                            $lang_id = $_GET['lang'];
                             if (empty($id)) {
                                 header('location:blog.php');
                             }
-                            $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE blog_cat_id='$cat_id' AND blog_id = '$blog_id'ORDER BY blog_tbl.created_at DESC ";
+                            $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE blog_cat_id='$cat_id' ORDER BY blog_tbl.created_at DESC ";
                             $query_run = mysqli_query($con, $query);
                             $num = mysqli_num_rows($query_run) > 0;
 
@@ -150,7 +146,7 @@ require('includes/header.php');
                                                     <p class="as_font14 as_margin0" style="font-size: 0.9rem; font-weight:500;"><?php echo strip_tags(substr($des['b_des_mini'], 0, 300)) ?>...</p>
 
                                                     <div class=" btn1">
-                                                        <a href="blog-detail.php?blog_id=<?php echo  $des['blog_id'] ?>&lang=<?= $lan ?>" class="as_btn mt-2">Read More</a>
+                                                        <a href="blog-detail.php?blog_id=<?php echo  $des['blog_id'] ?>" class="as_btn mt-2">Read More</a>
                                                     </div>
                                                 </div>
                                             </div>

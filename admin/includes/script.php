@@ -45,11 +45,7 @@
 <script>
        function changeLang(){
         var languageSelect = $('.lanChange').val();
-        // var url_product_id = $('#url_product_id').val();
-        // var url_blog_id = $('#url_blog_id').val();
-        // var url_cat_id = $('#url_cat_id').val();
        var newURL = window.location.pathname + '?lang=' + languageSelect ;
-              // alert(newURL);
         window.location.href = newURL;
     }
 </script>

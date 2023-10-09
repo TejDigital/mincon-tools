@@ -1,4 +1,23 @@
-.product_line{
-    border-bottom:40px solid #EBAB56 ;
+.product_line {
+    border-bottom: 40px solid #EBAB56;
     margin: 1rem 0;
+}
+
+.product_line .boxes  {
+    text-align: center;
+}
+.product_line .boxes .box-content .col-md-3{
+    display: none;
+}
+
+#load-more {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 13px 30px;
+    border: 1px solid #000;
+    color: #000;
+    font-size: 16px;
+    background-color: #EBAB56;
+    cursor: pointer;
+    margin-bottom: 1rem;
 }

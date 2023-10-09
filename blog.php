@@ -37,34 +37,33 @@
                                 }
                                 ?>
                             </h3>
-                            <?php
-                            $select = "SELECT * FROM blog_category_tbl LEFT JOIN blog_tbl ON  blog_category_tbl.blog_cat_id  = blog_tbl.category ";
-                            $query = mysqli_query($con, $select);
-                            if(mysqli_num_rows($query)){
-                            // $rows = mysqli_num_rows($query);
-                            while ($result = mysqli_fetch_assoc($query)) {
-                            ?>
-                                <ul>
-                                    <li class="d-flex align-items-center justify-content-between"><a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>&blog_id=<?=$result['blog_id']?>">
-                                            <?= $result['blog_cat_name'] ?>
-                                        </a>
-                                        <?php
-                                        $id = $result['blog_cat_id'];
-                                        $sql1 = "SELECT * FROM blog_tbl where category='$id'";
-                                        $query1 = mysqli_query($con, $sql1);
-                                        $rows = mysqli_num_rows($query1);
-                                        if ($rows) {
-                                        ?>
-                                            <span class="badge text-danger rounded-pill"><?= $rows ?></span>
-                                        <?php
-                                        }
-                                        ?>
-                                    </li>
-                                </ul>
-                            <?php
-                            }
-                            }
-                            ?>
+                            <ul>
+                                <?php
+                                $select = "SELECT * FROM blog_category_tbl ";
+                                $query = mysqli_query($con, $select);
+                                if (mysqli_num_rows($query) > 0) {
+                                    while ($result = mysqli_fetch_assoc($query)) {
+                                ?>
+                                        <li class="d-flex align-items-center justify-content-between"><a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>">
+                                                <?= $result['blog_cat_name'] ?>
+                                            </a>
+                                            <?php
+                                            $id = $result['blog_cat_id'];
+                                            $sql1 = "SELECT * FROM blog_tbl where category='$id'";
+                                            $query1 = mysqli_query($con, $sql1);
+                                            $rows = mysqli_num_rows($query1);
+                                            if ($rows) {
+                                            ?>
+                                                <span class="badge text-danger rounded-pill"><?= $rows ?></span>
+                                            <?php
+                                            }
+                                            ?>
+                                        </li>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </ul>
                         </div>
 
 
@@ -140,13 +139,13 @@
                                         <div class="as_blog_detail">
                                             <ul>
                                                 <li><a href="javascript:;" style="pointer-events:none;"><i class="fa-solid fa-user"></i>By -<?= $des['A_name'] ?></a></li>
-                                                <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id']?>&lang=<?=$lan?>"><?= $des['blog_cat_name'] ?></a></li>
+                                                <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id'] ?>"><?= $des['blog_cat_name'] ?></a></li>
                                             </ul>
                                             <h4 class="as_subheading"><span> <?php echo $des['title'] ?></span></h4>
                                             <p class="as_font14 as_margin0" style="font-size: 0.9rem; font-weight:500;"><?php echo strip_tags(substr($des['b_des_mini'], 0, 300)) ?>...</p>
 
                                             <div class=" btn1">
-                                                <a href="blog-detail.php?blog_id=<?= $des['blog_id'] ?>&lang=<?= $lan ?>" class="as_btn mt-2">Read More</a>
+                                                <a href="blog-detail.php?blog_id=<?= $des['blog_id'] ?>" class="as_btn mt-2">Read More</a>
                                             </div>
                                         </div>
                                     </div>

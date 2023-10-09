@@ -45,10 +45,9 @@ require('config/dbcon.php');
                             unset($_SESSION['min_msg']);
                         }
 
-                        if (isset($_GET['blog_id']) && isset($_GET['lang'])) {
+                        if (isset($_GET['blog_id'])) {
                             $id = $_GET['blog_id'];
-                            $lan = $_GET['lang'];
-                            $query = "SELECT * FROM blog_tbl WHERE blog_id ='$id' AND blog_lang_id = '$lan' LIMIT 1";
+                            $query = "SELECT * FROM blog_tbl WHERE blog_id ='$id' LIMIT 1";
                             $run_sql = mysqli_query($con,$query);
                             $data1 = mysqli_fetch_assoc($run_sql);
                         }
@@ -80,15 +79,18 @@ require('config/dbcon.php');
 
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="">Blog Language</label>
-                                    <h6><?=$lan == 1 ? 'English' : 'Spanish'?></h6>
+                                    <!-- <label for="">Blog Language</label>
+                                    <h6><?=$lan == 1 ? 'English' : 'Spanish'?></h6> -->
 
                                     <label for="">Date</label>
                                     <h6><?php echo $data1['date'] ?></h6>
 
+                                    <label for="">Author</label>
+                                    <h6><?php echo $data1['A_name'] ?></h6>
+
                                     <label for="">Category</label>
                                     <?php
-                                    $sql1 = "SELECT * FROM blog_category_tbl Where lang_id = '$lan'";
+                                    $sql1 = "SELECT * FROM blog_category_tbl ";
                                             $query2 = mysqli_query($con, $sql1);
                                             if (mysqli_num_rows($query2)) {
                                                 while( $result = mysqli_fetch_assoc($query2)){

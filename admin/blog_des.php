@@ -86,8 +86,8 @@ require('config/dbcon.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT * FROM blog_tbl  ORDER BY created_at DESC ";
-                                    // $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id ORDER BY blog_tbl.created_at DESC ";
+                                    // $query = "SELECT * FROM blog_tbl  ORDER BY created_at DESC ";
+                                    $query = "SELECT * FROM blog_tbl INNER JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id ORDER BY blog_tbl.created_at DESC ";
                                     $db_query_connect = mysqli_query($con, $query);
                                     $count = 1;
                                     if (mysqli_num_rows($db_query_connect) > 0) {
@@ -95,7 +95,7 @@ require('config/dbcon.php');
                                     ?>
                                         </tr>
                                             <td><?= $count ++?></td>
-                                            <td><?php
+                                            <!-- <td><?php
                                                 $sql = "SELECT * FROM blog_category_tbl";
                                                 $query2 = mysqli_query($con,$sql);
                                                 $data = mysqli_fetch_assoc($query2);
@@ -104,7 +104,12 @@ require('config/dbcon.php');
                                                     echo $data['blog_cat_name'];
                                                 }
                                              ?>
-                                             </td>
+                                             </td> -->
+                                             <td><?php
+                                             if($filds['blog_cat_id']==$filds['category']){
+                                                echo $filds['blog_cat_name'];
+                                             }
+                                             ?></td>
                                             <td><?= $filds['A_name']?></td>
                                             <td><?= $filds['title'] ?></td>
                                             <td>

@@ -90,6 +90,11 @@
     font-weight: 700;
     line-height: 24px;
 }
+.cart_details1_1 .text_head h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 24px;
+}
 
 .cart_details1_1 .des p:nth-child(1) {
     font-size: 0.9rem;
@@ -217,4 +222,7 @@
     font-weight: 600;
     background: #EBAB56;
     padding: 0.3rem 0.2rem;
+}
+.flex_column{
+    flex-direction: column;
 }

@@ -21,9 +21,8 @@
                     <?php
                     if (isset($_GET['blog_id'])) {
                         $blog_id = $_GET['blog_id'];
-                        $lang_id = $_GET['lang'];
 
-                        $sql = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id ";
+                        $sql = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id  WHERE blog_id = '$blog_id'";
                         $query = mysqli_query($con, $sql);
                         $des = mysqli_fetch_assoc($query);
                     }
@@ -38,7 +37,7 @@
                             <ul>
                                 <li><a href="javascript:;" style="pointer-events: none;"><i class="fa-solid fa-user"></i>By -<?= $des['A_name'] ?>
                                     </a></li>
-                                <li><a href="category_blog.php?blog_cat_id<?= $des['blog_cat_id']?>&lang=<?=$lan?>"><?= $des['blog_cat_name'] ?></a></li>
+                                <li><a href="category_blog.php?blog_cat_id<?= $des['blog_cat_id'] ?>&lang=<?= $lan ?>"><?= $des['blog_cat_name'] ?></a></li>
 
                                 <li><a href="#" class="whatsapp_btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
                                 <li><a href="#" class="facebook_btn" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
@@ -76,14 +75,17 @@
                                     echo $content_array['blog_category_name'];
                                 }
                                 ?>
-                            </h3> <?php
-                                    $select = "SELECT * FROM blog_category_tbl";
-                                    $query = mysqli_query($con, $select);
-                                    $rows = mysqli_num_rows($query);
-                                    while ($result = mysqli_fetch_assoc($query)) {
-                                    ?>
-                                <ul>
-                                    <li class="d-flex align-items-center justify-content-between"><a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lang_id ?>">
+                            </h3>
+
+                            <ul>
+                                <?php
+                                $select = "SELECT * FROM blog_category_tbl";
+                                $query = mysqli_query($con, $select);
+                                $rows = mysqli_num_rows($query);
+                                while ($result = mysqli_fetch_assoc($query)) {
+                                ?>
+                                    <li class="d-flex align-items-center justify-content-between">
+                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>">
                                             <?= $result['blog_cat_name'] ?>
                                         </a>
                                         <?php
@@ -98,13 +100,12 @@
                                         }
                                         ?>
                                     </li>
-                                </ul>
-                            <?php
-                                    }
-                            ?>
+                                <?php
+                                }
+                                ?>
+                            </ul>
+
                         </div>
-
-
                         <div class="as_widget as_product_widget as_post_widget">
                             <h3 class="as_widget_title" id="blog_recent_post">
                                 <?php
@@ -129,7 +130,7 @@
                                             <div class="as_product_detail p-0">
                                                 <span style="font-size: 0.8rem;"><i class="fa-solid fa-calendar-days"></i> <?= $result['date'] ?></span>
                                                 <br>
-                                                <span><a href="blog-detail.php?blog_id=<?= $result['blog_id'] ?> &lang=<?=$lan?>" style="font-size: 0.9rem; font-weight:600;"><?= strip_tags(substr($result['title'], 0, 30)) ?> ...</a></span>
+                                                <span><a href="blog-detail.php?blog_id=<?= $result['blog_id'] ?> &lang=<?= $lan ?>" style="font-size: 0.9rem; font-weight:600;"><?= strip_tags(substr($result['title'], 0, 30)) ?> ...</a></span>
                                             </div>
                                         </a>
                                     </li>

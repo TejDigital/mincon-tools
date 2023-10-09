@@ -23,13 +23,13 @@
 }
 
 .top_hero .top_hero_text h1 {
-    font-size: 3.5vw;
+    font-size: 3.3vw;
     font-weight: 700;
     /* line-height: 58px; */
 }
 
 .top_hero .top_hero_text p {
-    font-size: 1.7vw;
+    font-size: 1.5vw;
     font-weight: 500;
     /* line-height: 28px; */
 }
@@ -82,6 +82,11 @@
     border-left: 1.5px solid transparent;
 }
 
+.nav-product .box {
+    background-color: #fff;
+    font-weight: 600;
+    border: 1.5px solid #000;
+}
 .nav-product .box:hover {
     background-color: #EBAB56;
     font-weight: 600;
@@ -108,6 +113,9 @@
     background: #fff;
 }
 
+/* .Sponsors_slider_area_2 {
+    position: fixed;
+} */
 .Sponsors_slider_area_2 .owl-nav {
     display: block !important;
     position: relative;
@@ -312,8 +320,9 @@
 }
 
 .home_product .boxes .box .text p {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     line-height: 24px;
+    width: 45%;
     margin: 0;
     font-weight: 600;
 }
@@ -322,8 +331,9 @@
     text-decoration: none;
     color: #282713;
     border: 0;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 600;
+    width: 45%;
     background: #EBAB56;
     padding: 0.3rem 0.2rem;
 }
@@ -366,7 +376,7 @@
 }
 
 .mincon_contact .head h1 {
-    font-size: 2.3rem;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 40px;
     margin: 0;

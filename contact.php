@@ -43,7 +43,7 @@ if (isset($_SESSION['min_msg'])) {
                         }
                         ?>
                     </h3>
-                    <p><a href="#!">954-372-5520</a></p>
+                    <p><a href="tel:+19543725520">+1(954)-372-5520</a></p>
                 </div>
             </div>
             <div class="col-md-3">

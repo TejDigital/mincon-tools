@@ -3,17 +3,14 @@
 $lan = 1;
 if (isset($_GET['lang'])) {
     $lan = $_GET['lang'];
-    
 }
 $url_product_id = "";
 if (isset($_GET['product_id'])) {
     $url_product_id = $_GET['product_id'];
-    
 }
 $url_blog_id = "";
 if (isset($_GET['blog_id'])) {
     $url_blog_id = $_GET['blog_id'];
-    
 }
 
 $url_cat_id = "";
@@ -114,58 +111,60 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                         <ul class="navbar-nav ms-auto px-5">
                             <li class="nav-item">
                                 <a class="nav-link" href="./index.php?lang=<?= $lan ?>" id="header_link_home">
-                                <?php
-                                  if (isset($content_array['header_link_home'])) {
-                                    echo $content_array['header_link_home'] ;
-                                }
-                                ?>
-                            </a>
+                                    <?php
+                                    if (isset($content_array['header_link_home'])) {
+                                        echo $content_array['header_link_home'];
+                                    }
+                                    ?>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="./about.php?lang=<?= $lan ?>" id="">
-                                <?php
-                                  if (isset($content_array['header_link_about'])) {
-                                    echo $content_array['header_link_about'] ;
-                                }
-                                ?>
-                            </a>
+                                    <?php
+                                    if (isset($content_array['header_link_about'])) {
+                                        echo $content_array['header_link_about'];
+                                    }
+                                    ?>
+                                </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="./products.php?lang=<?= $lan ?>" id="header_link_product">
-                                      <?php
-                                  if (isset($content_array['header_link_product'])) {
-                                    echo $content_array['header_link_product'] ;
-                                }
-                                ?></a>
+                                    <?php
+                                    if (isset($content_array['header_link_product'])) {
+                                        echo $content_array['header_link_product'];
+                                    }
+                                    ?></a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="./blog.php?lang=<?= $lan ?>" id="header_link_blog">      <?php
-                                  if (isset($content_array['header_link_blog'])) {
-                                    echo $content_array['header_link_blog'] ;
-                                }
-                                ?></a>
+                                <a class="nav-link" href="./blog.php?lang=<?= $lan ?>" id="header_link_blog"> <?php
+                                                                                                                if (isset($content_array['header_link_blog'])) {
+                                                                                                                    echo $content_array['header_link_blog'];
+                                                                                                                }
+                                                                                                                ?></a>
 
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="./contact.php?lang=<?= $lan ?>" id="header_link_contact"> <?php
-                                  if (isset($content_array['header_link_contact'])) {
-                                    echo $content_array['header_link_contact'] ;
-                                }
-                                ?> </a>
+                                                                                                                    if (isset($content_array['header_link_contact'])) {
+                                                                                                                        echo $content_array['header_link_contact'];
+                                                                                                                    }
+                                                                                                                    ?> </a>
                             </li>
-                            <input type="hidden" value="<?=$url_product_id?>" id="url_product_id"> 
-                            <input type="hidden" value="<?=$url_blog_id?>" id="url_blog_id"> 
-                            <input type="hidden" value="<?=$url_cat_id?>" id="url_cat_id"> 
-                            <li class="nav-item">
-                                <div class="dropdown-area">
+                            <input type="hidden" value="<?= $url_product_id ?>" id="url_product_id">
+                            <input type="hidden" value="<?= $url_blog_id ?>" id="url_blog_id">
+                            <input type="hidden" value="<?= $url_cat_id ?>" id="url_cat_id">
+                            <li class="nav-item lang_switch">
+                                <!-- <div class="dropdown-area">
                                     <p class="p-0 m-0" id="header_link_language"> <?php
-                                  if (isset($content_array['header_link_language'])) {
-                                    echo $content_array['header_link_language'] ;
-                                }
-                                ?></p>
-                                    <select name="" id="languageSelect" onchange="changeLanguage()">
+                                                                                    if (isset($content_array['header_link_language'])) {
+                                                                                        echo $content_array['header_link_language'];
+                                                                                    }
+                                                                                    ?></p>
+
+
+                                    <select id="languageSelect" onchange="changeLanguage()">
 
                                         <option value="1" <?php if ($lan == 1) {
                                                                 echo "selected";
@@ -174,31 +173,49 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                                                                 echo "selected";
                                                             } ?>>Spanish</option>
                                     </select>
+                                </div> -->
+                                <div class="lang">
+                                    <img src="./assets/images/usa_flag.png" alt="" class="lang_1 languageSelect" data-value = "1" onclick="changeLanguage(this)">
+                                    <img src="./assets/images/spain_flag.png" alt="" class="lang_2 languageSelect" data-value = "2" onclick="changeLanguage(this)">
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
-                <nav class="">
-                    <!-- <div class="Sponsors_slider_area_1 owl-carousel owl-theme" id="nav_drop"> -->
-                        <ul class="drop-Down">
+                    <nav class="">
+                        <ul class="drop-Down"> 
+                        <div class="Sponsors_slider_area_1 owl-carousel owl-theme" id="nav_drop">
                             <?php
-                            $sql2 = "SELECT * FROM category_tbl WHERE cat_status = 1 AND lang_id = '$lan' limit 4";
+                            $sql2 = "SELECT * FROM product_category_tbl WHERE status = 1  limit 4";
                             $query2 = mysqli_query($con, $sql2);
                             if (mysqli_num_rows($query2)) {
                                 foreach ($query2 as $result1) {
-                                    $cat_id1 = $result1['cat_id'];
                             ?>
                                     <li class="drop-list">
-                                        <p class="click-link"><?= $result1['cat_name'] ?> <i class="fa-solid fa-chevron-down rotate180"></i></p>
+                                        <p class="click-link"><?= $lan == 1 ? $result1['category_name_lang_1'] : $result1['category_name_lang_2'] ?> <i class="fa-solid fa-chevron-down rotate180"></i></p>
                                         <ul class="drop_item">
                                             <?php
-                                            $sql3 = "SELECT * FROM lang_products_tbl where product_status = '1' AND product_category = '$cat_id1' AND lang_id = '$lan' ";
+
+                                            if ($lan == 1) {
+                                                $product_status = 'product_status_lang_1';
+                                                $product_category = 'product_category_lang_1';
+                                            } else {
+                                                $product_status = 'product_status_lang_2';
+                                                $product_category = 'product_category_lang_2';
+                                            }      
+                                            $cat_id = $result1['cat_id'];
+                                            
+                                            $sql3 = "SELECT * FROM lang_products_tbl WHERE $product_status = 1 AND  $product_category = '$cat_id'";
+                                             
                                             $pro_query1 = mysqli_query($con, $sql3);
                                             if (mysqli_num_rows($pro_query1)) {
                                                 foreach ($pro_query1 as $pro_data1) {
                                             ?>
-                                                    <li> <a href="./cart_detail.php?product_id=<?= $pro_data1['product_id'] ?>&lang=<?= $lan ?>"><?= $pro_data1['product_name'] ?></a></li>
+                                                    <li> 
+                                                        <a href="./cart_detail.php?product_id=<?= $pro_data1['product_id'] ?>&lang=<?= $lan ?>">
+                                                            <?= $lan == 1 ? $pro_data1['product_name_lang_1'] : $pro_data1['product_name_lang_2']  ?>
+                                                        </a>
+                                                    </li>
                                             <?php
                                                 }
                                             }
@@ -209,9 +226,9 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                                 }
                             }
                             ?>
-                        </ul>
-                    <!-- </div> -->
-                </nav>
+                        </div>
+                    </ul>
+                    </nav>
             </div>
 
         </div>

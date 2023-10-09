@@ -11,9 +11,10 @@ if (isset($_SESSION['min_msg'])) {
 }
 ?>
 <?php
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && isset($_GET['lang_id'])) {
     $id = $_GET['id'];
-    $sql1 = "SELECT * FROM product_specification WHERE s_id = '$id'";
+    $lang_id = $_GET['lang_id'];
+        $sql1 = "SELECT * FROM specification_tbl WHERE spec_id = '$id'";
     $query1 = mysqli_query($con, $sql1);
     $data = mysqli_fetch_assoc($query1);
 }
@@ -23,46 +24,36 @@ if (isset($_GET['id'])) {
         <div class="col-md-12">
             <div class="bg-light  rounded p-4">
                 <form action="product_specs_code.php" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="hidden" value="<?=$data['s_id']?>" name="id">
-                                            <label for="">Choose Product <span style="color: red; font-weight:700">Current Product : <?= $data['product_name'] ?></span></label>
-                                            <select name="p_name" id="" class="form-select" required>
-                                                <option value="">Select Product</option>
-                                                <?php
-                                                $sql = "SELECT * FROM products_tbl";
-                                                $query = mysqli_query($con, $sql);
-                                                if (mysqli_num_rows($query)) {
-                                                    foreach ($query as $result) {
-                                                ?>
-                                                        <option value="<?= $result['product_name'] ?>"><?= $result['product_name'] ?></option>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Add Specification Name</label>
-                                            <input type="text" name="spec_name" class="form-control" value="<?= $data['s_name'] ?>">
-                                        </div>
-                                        <div class="form-group my-2">
-                                            <label for="">Add Specification Value</label>
-                                            <input type="text" name="spec_value" class="form-control" value="<?= $data['s_value'] ?>">
-                                        </div>
-                                        <div class="form-group my-2">
-                                            
-                                            <button type="submit" name="upd-specs" class="btn btn-primary">ADD</button>
-                                        </div>
-                                    </div>
-                                </div>
+                    <input type="hidden" name="id" value="<?=$id?>">
+                    <input type="hidden" name="lang_id" value="<?=$lang_id?>">
+                    <div class="row mt-4">
+                        <h5>Update Specification</h5>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Add Specification Name</label>
+                                <input type="text" name="spec_name" value="<?=$lang_id == 1 ? $data['spec_name_lang_1']  : $data['spec_name_lang_2'] ?>" class="form-control">
                             </div>
-                            <div class="modal-footer">
+
+                            <div class="form-group my-2">
+                                <label for="">Status</label>
+                                <select name="status" id="" class="form-select my-2" required>
+                                    <option value="1" <?php
+                                    if($data['spec_status'] == 1){
+                                        echo "Selected";
+                                    }
+                                    ?>>Active</option>
+                                    <option value="0" 
+                                    <?php
+                                    if($data['spec_status'] == 0){
+                                        echo "Selected";
+                                    }
+                                    ?>
+                                    >Inactive</option>
+                                </select>
                             </div>
+                        </div>
+                        <div class="form-group my-2">
+                            <button type="submit" name="upd-specs" class="btn btn-primary">ADD</button>
                         </div>
                     </div>
                 </form>
