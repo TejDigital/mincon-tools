@@ -153,14 +153,14 @@ if (isset($_SESSION['min_msg'])) {
                                                                                                 }
                                                                                                 ?></option>
                                     <?php
-                                    $sql = "SELECT * FROM category_tbl WHERE cat_status = 1 AND lang_id = '$lan'";
+                                    $sql = "SELECT * FROM product_category_tbl WHERE status = 1 ";
                                     $query = mysqli_query($con, $sql);
 
                                     if (mysqli_num_rows($query)) {
                                         foreach ($query as $result) {
                                             $_SESSION['id'] =  $result['cat_id'];
                                     ?>
-                                            <option value="<?= $result['cat_id'] ?>,<?=$lan?>"><?= $result['cat_name'] ?></option>
+                                            <option value="<?= $result['cat_id'] ?>,<?= $lan ?>"><?= $lan == 1 ?  $result['category_name_lang_1'] : $result['category_name_lang_2']  ?></option>
                                     <?php
                                         }
                                     }
@@ -182,11 +182,11 @@ if (isset($_SESSION['min_msg'])) {
                     </div>
                     <div class="form-group">
                         <button class="sub-btn" id="contact_submit_button_name" name="submit">
-                        <?php
-                                                                                            if (isset($content_array['contact_submit_button_name'])) {
-                                                                                                echo $content_array['contact_submit_button_name'];
-                                                                                            }
-                                                                                            ?>
+                            <?php
+                            if (isset($content_array['contact_submit_button_name'])) {
+                                echo $content_array['contact_submit_button_name'];
+                            }
+                            ?>
                         </button>
                     </div>
                 </form>
@@ -361,7 +361,7 @@ if (isset($_SESSION['min_msg'])) {
                             echo $content_array['about_sky_content_heading'];
                         }
                         ?>
-                    </h2> 
+                    </h2>
                     <img src="./assets/images/logo_1.svg" alt="">
                 </div>
             </div>

@@ -16,7 +16,12 @@ if (isset($_GET['product_id']) && isset($_GET['lang'])) {
 }
 ?>
 <?php
-$sql3 = "SELECT * FROM product_category_tbl WHERE cat_id = '$product_id'";
+ if ($lan == 1) {
+    $product_category = $data['product_category_lang_1'];
+} else {
+    $product_category = $data['product_category_lang_2'];
+}
+$sql3 = "SELECT * FROM product_category_tbl WHERE cat_id = '$product_category'";
 $query3 = mysqli_query($con, $sql3);
 $data2 = mysqli_fetch_assoc($query3);
 ?>
@@ -68,16 +73,7 @@ $data2 = mysqli_fetch_assoc($query3);
                         <?php
                         }
                         ?>
-                        <?php
-                        if ($data['product_image5'] != "") {
-                        ?>
-                            <div class="sm_img">
 
-                                <img src="./assets/images/<?= $data['product_image5'] ?>" onclick="change(this.src)" alt="">
-                            </div>
-                        <?php
-                        }
-                        ?>
 
                         <?php
                         if ($lang_id == 1) {
@@ -133,12 +129,12 @@ $data2 = mysqli_fetch_assoc($query3);
             <div class="col-md-6">
                 <div class="text_head">
                     <?php
-                    if ($lang_id == 1) {
-                        $category_name = 'category_name_lang_1';
+                    if ($lan == 1) {
+                        $product_category = $data['product_category_lang_1'];
                     } else {
-                        $category_name = 'category_name_lang_2';
+                        $product_category = $data['product_category_lang_2'];
                     }
-                    $sql3 = "SELECT * FROM product_category_tbl where cat_id = '$product_id'";
+                    $sql3 = "SELECT * FROM product_category_tbl where cat_id = '$product_category'";
                     $query3 = mysqli_query($con, $sql3);
                     if (mysqli_num_rows($query3)) {
                         foreach ($query3 as $row) {
@@ -181,42 +177,88 @@ $data2 = mysqli_fetch_assoc($query3);
                         </div>
                     </div>
                     <table class="table table-bordered ">
-                        <!-- <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Value</th>
-                            </tr>
-                        </thead> -->
                         <tbody>
-                            <!-- <tr>
-                                <td>Weight</td>
-                                <td>60Kg</td>
-                            </tr> -->
                             <?php
                             $p_id = $data['product_id'];
-                            $sql4 = "SELECT * FROM product_specification  WHERE product_id = '$p_id'";
+                            $sql4 = "SELECT * FROM product_specification INNER JOIN specification_tbl ON product_specification.specific_id = specification_tbl.spec_id WHERE product_id = '$p_id'";
                             $query4 = mysqli_query($con, $sql4);
-                            if (mysqli_num_rows($query4)) {
+                            if (mysqli_num_rows($query4) > 0) {
                                 foreach ($query4 as $specs) {
+
                             ?>
                                     <tr>
-                                        <td>
+                                        <?php
+                                        if ($lan == 1) {
+                                            if (!empty($specs['spec_value_lang_1'])) {
+                                        ?>
+                                                <td>
+                                                    <?php
+                                                    if ($specs['spec_id'] == $specs['specific_id'] && $lan == 1) {
+                                                        echo $specs['spec_name_lang_1'];
+                                                    } else {
+                                                        echo $specs['spec_name_lang_2'];
+                                                    }
+                                                    ?>
+                                                </td>
                                             <?php
-                                           
-                                                echo  $specs['product_spec_name'];
-                                            
+                                            }
+                                        } else {
+                                            if (!empty($specs['spec_value_lang_2'])) {
                                             ?>
-                                        </td>
-                                        <td>
-                                            <?php
-                                            
-                                                echo $specs['product_spec_value'];
-                                            
-                                            ?>
-                                        </td>
+                                                <td>
+                                                    <?php
+                                                    if ($specs['spec_id'] == $specs['specific_id'] && $lan == 1) {
+                                                        echo $specs['spec_name_lang_1'];
+                                                    } else {
+                                                        echo $specs['spec_name_lang_2'];
+                                                    }
+                                                    ?>
+                                                </td>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
 
+
+
+
+
+
+
+<?php
+                                        if ($lan == 1) {
+                                            if (!empty($specs['spec_value_lang_1'])) {
+                                        ?>
+                                                <td>
+                                                    <?php
+                                                    if ($specs['spec_id'] == $specs['specific_id'] && $lan == 1) {
+                                                        echo $specs['spec_value_lang_1'];
+                                                    } else {
+                                                        echo $specs['spec_value_lang_2'];
+                                                    }
+                                                    ?>
+                                                </td>
+                                            <?php
+                                            }
+                                        } else {
+                                            if (!empty($specs['spec_value_lang_2'])) {
+                                            ?>
+                                                <td>
+                                                    <?php
+                                                    if ($specs['spec_id'] == $specs['specific_id'] && $lan == 1) {
+                                                        echo $specs['spec_value_lang_1'];
+                                                    } else {
+                                                        echo $specs['spec_value_lang_2'];
+                                                    }
+                                                    ?>
+                                                </td>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
                                     </tr>
                             <?php
+
                                 }
                             }
                             ?>
@@ -238,7 +280,12 @@ $data2 = mysqli_fetch_assoc($query3);
         </h1>
         <div class="row">
             <?php
-            $sql = "SELECT * FROM lang_products_tbl  ORDER BY product_created_at DESC limit 4";
+            if ($lan == 1) {
+                $product_status = 'product_status_lang_1';
+            } else {
+                $product_status = 'product_status_lang_2';
+            }
+            $sql = "SELECT * FROM lang_products_tbl WHERE $product_status = 1  ORDER BY product_created_at DESC limit 4";
             $query = mysqli_query($con, $sql);
             if (mysqli_num_rows($query)) {
                 foreach ($query as $result) {
@@ -254,15 +301,22 @@ $data2 = mysqli_fetch_assoc($query3);
                                 <div class="head">
                                     <p><?= $lan == 1 ? $result['product_name_lang_1']  : $result['product_name_lang_2'] ?></p>
                                     <?php
-                                    $sql3 = "SELECT * FROM product_category_tbl ";
+                                    if ($lan == 1) {
+                                        $product_category = $result['product_category_lang_1'];
+                                    } else {
+                                        $product_category = $result['product_category_lang_2'];
+                                    }
+                                    $sql3 = "SELECT * FROM product_category_tbl WHERE cat_id = '$product_category'";
                                     $query3 = mysqli_query($con, $sql3);
                                     if (mysqli_num_rows($query3)) {
                                         foreach ($query3 as $row) {
 
                                     ?>
                                             <p><?php
-                                                if ($result['product_category_lang_1'] == $cat_id) {
-                                                    echo $row['cat_name'];
+                                                if ($lan == 1) {
+                                                    echo $row['category_name_lang_1'];
+                                                } else {
+                                                    echo $row['category_name_lang_2'];
                                                 }
                                                 ?></p>
                                     <?php

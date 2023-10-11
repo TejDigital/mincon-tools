@@ -23,7 +23,6 @@ if (isset($_SESSION['min_msg'])) {
                 <form action="product_specs_code.php" method="POST">
                     <div class="modal-body">
                         <input type="text" name="delete_spec_id" class="delete_spec_id">
-                        <input type="text" name="delete_lang_id" class="delete_lang_id">
                         <p>Are you sure , you want to delete this data ?</p>
                     </div>
                     <div class="modal-footer">
@@ -79,7 +78,7 @@ if (isset($_SESSION['min_msg'])) {
                     <h4 class="mb-0">Product Specifications</h4>
                     <div class="d-flex align-items-center   justify-content-end">
                         <!-- <a href="./products.php" class="btn btn-danger">Back</a> -->
-                        <div class="ms-3">
+                        <!-- <div class="ms-3">
                             <label for="">Choose Language</label>
                             <select name="lan" class="form-select w-100 lanChange" id="lanChange" onchange="changeLang()">
                                 <option value="1" <?php if ($lan == 1) {
@@ -89,7 +88,7 @@ if (isset($_SESSION['min_msg'])) {
                                                         echo "selected";
                                                     } ?>>Spanish</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- <a href="">Show All</a> -->
                 </div>
@@ -103,7 +102,7 @@ if (isset($_SESSION['min_msg'])) {
                                 <th scope="col" colspan="2" class="text-center">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="specification_tbl">
                             <?php
                             $sql = "SELECT * FROM specification_tbl ";
                             $query = mysqli_query($con, $sql);
@@ -115,11 +114,11 @@ if (isset($_SESSION['min_msg'])) {
                                     <tr>
                                         <td><?= $count++ ?></td>
                                         <td><?php
-                                            if ($lan == "1") {
+                                            // if ($lan == "1") {
                                                 echo $data['spec_name_lang_1'];
-                                            } else {
-                                                echo $data['spec_name_lang_2'];
-                                            }
+                                            // } else {
+                                            //     echo $data['spec_name_lang_2'];
+                                            // }
                                             ?>
                                         </td>
                                         <td><?php if($data['spec_status'] == 1){
@@ -131,10 +130,10 @@ if (isset($_SESSION['min_msg'])) {
                                         }
                                             ?>
                                         <td>
-                                            <button type='button' value='<?php echo $data['spec_id']?>,<?=$lan?>' class='btn btn-square btn-outline-danger delete_spec btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
+                                            <button type='button' value='<?php echo $data['spec_id']?>' class='btn btn-square btn-outline-danger delete_spec btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
                                         </td>
                                         <td>
-                                            <a href="./product_spec_edit.php?id=<?= $data['spec_id']?>&lang_id= <?=$lan?>" class='btn btn-square btn-outline-primary  btn-sm my-1'><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <a href="./product_spec_edit.php?id=<?= $data['spec_id']?>" class='btn btn-square btn-outline-primary  btn-sm my-1'><i class="fa-regular fa-pen-to-square"></i></a>
                                         </td>
                                     </tr>
                             <?php
@@ -224,11 +223,8 @@ if (isset($_SESSION['min_msg'])) {
     $(document).ready(function() {
         $('.delete_spec').click(function(e) {
             e.preventDefault();
-            var values = $(this).val().split(',');
-            var cart_id = values[0];
-            var lang_id = values[1];
+            var cart_id = $(this).val();
             $('.delete_spec_id').val(cart_id);
-            $('.delete_lang_id').val(lang_id);
             $('#delete_spec_modal').modal('show');
         });
     });

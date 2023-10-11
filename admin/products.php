@@ -40,9 +40,10 @@ if (isset($_SESSION['min_msg'])) {
                 <h4 class="mb-0">Product</h4>
                 <div class="d-flex align-items-start justify-content-between mb-4 mx-auto">
                     <p></p>
-                    <div class="d-flex align-items-center justify-content-even  w-25">
-                        <a href="./add_product.php" class="btn btn-info my-2">Add</a>
-                        <div class="w-75 ms-auto">
+                    <!-- <div class="d-flex align-items-end justify-content-even  w-25"> -->
+                    <div class="">
+                        <a href="./add_product.php" class="btn btn-info">Add</a>
+                        <!-- <div class="w-75 ms-auto">
                             <label for="">Choose Language</label>
                             <select name="lan" class="form-select lanChange" onchange="changeLang()">
                                 <option value="1" <?php if ($lan == 1) {
@@ -52,7 +53,7 @@ if (isset($_SESSION['min_msg'])) {
                                                         echo "selected";
                                                     } ?>>Spanish</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -73,11 +74,12 @@ if (isset($_SESSION['min_msg'])) {
                             $count = 1;
                             if (mysqli_num_rows($query)) {
                                 foreach ($query as $data) {
-                                    if ($lan == 1) {
-                                        $cat_id =  $data['product_category_lang_1'];
-                                    } else {
-                                        $cat_id = $data['product_category_lang_2'];
-                                    }
+                                    $cat_id =  $data['product_category_lang_1'];
+                                    // if ($lan == 1) {
+                                    //     $cat_id =  $data['product_category_lang_1'];
+                                    // } else {
+                                    //     $cat_id = $data['product_category_lang_2'];
+                                    // }
                             ?>
                                     <tr>
                                         <td><?= $count++ ?></td>
@@ -86,38 +88,40 @@ if (isset($_SESSION['min_msg'])) {
                                             $query2 = mysqli_query($con, $sql2);
                                             if (mysqli_num_rows($query2) > 0) {
                                                 foreach ($query2 as $row) {
-                                                    if ($lan == '1') {
-                                                        echo $row['category_name_lang_1'];
-                                                    } elseif ($lan == '2') {
-                                                        echo $row['category_name_lang_2'];
-                                                    }
+                                                    // if ($lan == '1') {
+                                                    //     echo $row['category_name_lang_1'];
+                                                    // } elseif ($lan == '2') {
+                                                    //     echo $row['category_name_lang_2'];
+                                                    // }
+                                                    echo $row['category_name_lang_1'];
                                                 }
                                             }
                                             ?>
                                         </td>
                                         <td> <?php
-                                                if ($lan == "1") {
-                                                    echo $data['product_name_lang_1'];
-                                                } elseif ($lan == "2") {
-                                                    echo $data['product_name_lang_2'];
-                                                }
+                                                // if ($lan == "1") {
+                                                //     echo $data['product_name_lang_1'];
+                                                // } elseif ($lan == "2") {
+                                                //     echo $data['product_name_lang_2'];
+                                                // }
+                                                echo $data['product_name_lang_1'];
                                                 ?>
                                         </td>
 
                                         <td><?php
-                                        if($lan == 1){
+                                        // if($lan == 1){
                                             if ($data['product_status_lang_1'] == 1) {
                                                 echo "Active";
                                             } else {
                                                 echo "Inactive";
                                             }
-                                        }else{
-                                            if ($data['product_status_lang_2'] == 1) {
-                                                echo "Active";
-                                            } else {
-                                                echo "Inactive";
-                                            }
-                                        }
+                                        // }else{
+                                        //     if ($data['product_status_lang_2'] == 1) {
+                                        //         echo "Active";
+                                        //     } else {
+                                        //         echo "Inactive";
+                                        //     }
+                                        // }
                                             
                                             ?>
                                         </td>

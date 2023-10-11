@@ -39,10 +39,11 @@ if (isset($_SESSION['min_msg'])) {
         <div class="col-md-12 mt-4">
             <div class="bg-light text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h4 class="mb-0">Category</h4>
-                    <div class="d-flex align-items-end justify-content-between">
+                    <h4 class="mb-0">Product Category</h4>
+                    <!-- <div class="d-flex align-items-end justify-content-between"> -->
+                    <div class="">
                         <a href="./add_product_category.php" class="btn btn-primary">ADD</a>
-                        <div class="ms-3">
+                        <!-- <div class="ms-3">
                             <label for="">Choose Language</label>
                             <select name="lan" class="form-select w-100 lanChange"  onchange="changeLang()">
                                 <option value="1" <?php if ($lan == 1) {
@@ -52,7 +53,7 @@ if (isset($_SESSION['min_msg'])) {
                                                         echo "selected";
                                                     } ?>>Spanish</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>

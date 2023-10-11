@@ -63,11 +63,7 @@ if (isset($_SESSION['min_msg'])) {
                             </div>
                             <div class="form-group my-1">
                             <label for="">Add Product Specification</label>
-<!-- 
-                                <div class="specification d-flex my-3">
-                                    <input type="text" name="spec_name[]" value="Weight" class="form-control" placeholder="Product specification" disabled>
-                                    <input type="number" name="spec_value[]" class="form-control" placeholder="ADD Weight Value in KG" >
-                                </div> -->
+
                                 <?php
                                     $sql3 = "SELECT * FROM  specification_tbl WHERE  spec_status = 1";
                                     $query3 = mysqli_query($con,$sql3);
@@ -75,9 +71,9 @@ if (isset($_SESSION['min_msg'])) {
                                         foreach($query3 as $data3){
                                             ?>
                                             <div class="specification d-flex">
-                                            <input type="text" value="<?=$data3['spec_id']?>" name="spec_id[]">
+                                                <input type="hidden" value="<?=$data3['spec_id']?>" name="spec_id[]">
                                         <input type="text" name="spec_name[]" class="form-control " value="<?=$data3['spec_name_lang_1']?>" placeholder="Specification Name" readonly>
-                                        <input type="text" name="spec_value[]" class="form-control " placeholder="Specification Value" >
+                                        <input type="text" name="spec_value_lang_1[]" class="form-control " placeholder="Specification Value" >
                                         </div>
                                             <?php
                                         }
@@ -139,9 +135,9 @@ if (isset($_SESSION['min_msg'])) {
                                         foreach($query3 as $data3){
                                             ?>
                                             <div class="specification d-flex">
-                                                <input type="text" value="<?=$data3['spec_id']?>" name="spec_id[]">
-                                        <input type="text" name="spec_name" class="form-control " value="<?=$data3['spec_name_lang_2']?>" placeholder="Specification Name" readonly>
-                                        <input type="text" name="spec_value[]" class="form-control " placeholder="Specification Value" >
+                                            <!-- <input type="hidden" value="<?=$data3['spec_id']?>" name="spec_id[]"> -->
+                                        <input type="hidden" name="spec_name[]" class="form-control " value="<?=$data3['spec_name_lang_2']?>" placeholder="Specification Name" readonly>
+                                        <input type="text" name="spec_value_lang_2[]" class="form-control " placeholder="Specification Value" >
                                         </div>
                                             <?php
                                         }

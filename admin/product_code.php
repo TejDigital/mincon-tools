@@ -42,10 +42,7 @@ if (isset($_POST['add-product'])) {
     // $en_spec_values =  $_POST['en_spec_value'];
     // $span_spec_names =  $_POST['span_spec_name'];
     // $span_spec_values =  $_POST['span_spec_value'];
-   
-    $spec_names =  $_POST['spec_name'];
-    $spec_values =  $_POST['spec_value'];
-    $spec_ids =$_POST['spec_id'];
+
 
     $en_product_manual = $_FILES['en_product_manual']['name'];
     $span_product_manual = $_FILES['span_product_manual']['name'];
@@ -56,26 +53,24 @@ if (isset($_POST['add-product'])) {
     $img3 = $_FILES['img3']['name'];
     $img4 = $_FILES['img4']['name'];
 
-    // $product_spec_names = $_POST['spec_name'];
-    // $product_spec_values = $_POST['spec_value'];
+    // $spec_names =  $_POST['spec_name'];
+    $spec_values_lang_1 =  $_POST['spec_value_lang_1'];
+    $spec_values_lang_2 =  $_POST['spec_value_lang_2'];
+    $spec_ids = $_POST['spec_id'];
 
-    // for ($i = 0; $i < count($product_spec_names); $i++) {
-    //     $product_spec_name = mysqli_real_escape_string($con, $product_spec_names[$i]);
-    //     $product_spec_value = mysqli_real_escape_string($con, $product_spec_values[$i]);
-    //     $sql = "INSERT INTO product_specification (product_id,lang_id,spec_name, s_value,status) VALUES ('$product_number','$lan','$product_spec_name', '$product_spec_value','$status')";
-    //     $query = mysqli_query($con, $sql);
-    //     if($query){
-    //         $_SESSION['min_msg'] = "Product specification Added";
-    //     }else{
-    //         $_SESSION['min_msg'] = "Product specification Adding failed";
-    //         header('location:products.php');
-    //     }
-    // }
+    // echo "<pre>";
+    // print_r($spec_ids);
+    // echo "<pre>";
+    // print_r($spec_values_lang_1);
+    // echo "<pre>";
+    // print_r($spec_values_lang_2);
+    // echo "<pre>";
+    // die();
 
 
-    //  echo $img;
-    //  echo $en_product_manual;
-    //      die();
+
+
+
 
     if (
         $_FILES['img']["size"] > 700000 ||
@@ -83,8 +78,8 @@ if (isset($_POST['add-product'])) {
         $_FILES['img2']["size"] > 700000 ||
         $_FILES['img3']["size"] > 700000 ||
         $_FILES['img4']["size"] > 700000 ||
-        $_FILES['span_product_manual']["size"] > 1000000 ||
-        $_FILES['en_product_manual']["size"] > 1000000
+        $_FILES['span_product_manual']["size"] > 700000 ||
+        $_FILES['en_product_manual']["size"] > 700000
     ) {
         $_SESSION['min_msg'] = " image size is to Big";
         header('location:products.php');
@@ -130,15 +125,15 @@ if (isset($_POST['add-product'])) {
         if ($connect_db) {
             $product_id = mysqli_insert_id($con);
 
-            if (!empty($spec_names) && !empty($spec_values)) {
+            if (!empty($spec_values_lang_1) && !empty($spec_values_lang_2)) {
+                for ($i = 0; $i < count($spec_values_lang_1); $i++) {
+                    // $spec_name = mysqli_real_escape_string($con, $spec_names[$i]);
+                    $spec_value_lang_1 = mysqli_real_escape_string($con, $spec_values_lang_1[$i]);
+                    $spec_value_lang_2 = mysqli_real_escape_string($con, $spec_values_lang_2[$i]);
+                    $spec_id = (int) $spec_ids[$i]; // Assuming specific_id is an integer
 
-                for ($i = 0; $i < count($spec_names); $i++) {
-                    $spec_name = mysqli_real_escape_string($con, $spec_names[$i]);
-                    $spec_value = mysqli_real_escape_string($con, $spec_values[$i]);
-                    $spec_id = mysqli_real_escape_string($con, $spec_ids[$i]);
-              
-                    $specification_sql = "INSERT INTO product_specification (product_id,specific_id,product_spec_name,product_spec_value)VALUES('$product_id','$spec_id','$spec_name','$spec_value')";
-                    
+                    $specification_sql = "INSERT INTO product_specification(product_id,specific_id,spec_value_lang_1,spec_value_lang_2)VALUES('$product_id','$spec_id','$spec_value_lang_1','$spec_value_lang_2')";
+
                     $specification_query = mysqli_query($con, $specification_sql);
                     if ($specification_query) {
                         $_SESSION['min_msg'] = "Product specification Added";
@@ -200,79 +195,74 @@ if (isset($_POST['delete_pro'])) {
 
 if (isset($_POST['update-product'])) {
 
-
-    $lan = $_POST['lang_id'];
     $id = $_POST['id'];
 
-    $status =  $_POST['status'];
-    $name = $_POST['name'];
-    $video_url = $_POST['video_url'];
-    $category = $_POST['product_category'];
-    $des = $_POST['product_description'];
-    $des =  str_replace("'", "\'", "$des");
 
-    $spec_names =  $_POST['spec_name'];
-    $spec_values =  $_POST['spec_value'];
-    $s_ids =  $_POST['s_id'];
-
-   
+    $en_status =  $_POST['en_status'];
+    $en_name = $_POST['en_name'];
+    $en_video_url = $_POST['en_video_url'];
+    $en_category = $_POST['en_product_category'];
+    $en_des = $_POST['en_product_description'];
+    $en_des =  str_replace("'", "\'", "$en_des");
 
 
+    $span_status =  $_POST['span_status'];
+    $span_name = $_POST['span_name'];
+    $span_video_url = $_POST['span_video_url'];
+    $span_category = $_POST['span_product_category'];
+    $span_des = $_POST['span_product_description'];
+    $span_des =  str_replace("'", "\'", "$span_des");
 
-
-
-
-
-    $product_manual = $_POST['product_manual'];
+    $en_product_manual = $_POST['en_product_manual'];
+    $span_product_manual = $_POST['span_product_manual'];
     $img_main  = $_POST['img_main'];
     $img1 = $_POST['img1'];
     $img2 = $_POST['img2'];
     $img3 = $_POST['img3'];
     $img4 = $_POST['img4'];
 
-    $new_product_manual = $_FILES['new_product_manual']['name'];
+    $en_new_product_manual = $_FILES['new_en_product_manual']['name'];
+    $span_new_product_manual = $_FILES['new_span_product_manual']['name'];
     $new_img_main  = $_FILES['new_img_main']['name'];
     $new_img1 = $_FILES['new_img1']['name'];
     $new_img2 = $_FILES['new_img2']['name'];
     $new_img3 = $_FILES['new_img3']['name'];
     $new_img4 = $_FILES['new_img4']['name'];
 
-    if ($lan == 1) {
-        $product_name = 'product_name_lang_1';
-        $product_video = 'product_video_url_lang_1';
-        $product_status = 'product_status_lang_1';
-        $product_category = 'product_category_lang_1';
-        $product_description = 'product_description_lang_1';
-        $product_manual = 'product_manual_lang_1';
-    } else {
-        $product_name = 'product_name_lang_2';
-        $product_video = 'product_video_url_lang_2';
-        $product_status = 'product_status_lang_2';
-        $product_category = 'product_category_lang_2';
-        $product_description = 'product_description_lang_2';
-        $product_manual = 'product_manual_lang_2';
-    }
+    $spec_values_lang_1 =  $_POST['spec_value_lang_1'];
+    $spec_values_lang_2 =  $_POST['spec_value_lang_2'];
+    $spec_ids = $_POST['spec_id'];
 
-    if ($lan == 1) {
-        $product_spec_name = 'product_spec_name_lang_1';
-        $product_spec_value = 'product_spec_value_lang_1';
-    } else {
-        $product_spec_name = 'product_spec_name_lang_2';
-        $product_spec_value = 'product_spec_value_lang_2';
-    }
-    for ($i = 0; $i < count($spec_names); $i++) {
-        $spec_name = mysqli_real_escape_string($con, $spec_names[$i]);
-        $s_id = mysqli_real_escape_string($con, $s_ids[$i]);
-        $spec_value = mysqli_real_escape_string($con, $spec_values[$i]);
-        $specification_sql = "UPDATE product_specification SET $product_spec_name ='$spec_name' ,$product_spec_value = '$spec_value' WHERE product_id = '$id' AND s_id = '$s_id'";
-        $specification_query = mysqli_query($con, $specification_sql);
+    for ($i = 0; $i < count($spec_values_lang_1); $i++) {
+        $spec_value_lang_1 = mysqli_real_escape_string($con, $spec_values_lang_1[$i]);
+        $spec_value_lang_2 = mysqli_real_escape_string($con, $spec_values_lang_2[$i]);
+        $spec_id = (int) $spec_ids[$i];
 
-    
-        if ($specification_query) {
-            $_SESSION['min_msg'] = "Product specification Added";
+        $spec_check_sql = "SELECT * FROM product_specification WHERE product_id = '$id' and specific_id = '$spec_id' ";
+        // echo $spec_check_sql;
+        // die();
+        $spec_check_query = mysqli_query($con, $spec_check_sql);
+
+        if (mysqli_num_rows($spec_check_query) > 0) {
+            $specification_sql = "UPDATE product_specification SET spec_value_lang_1 = '$spec_value_lang_1',spec_value_lang_2 ='$spec_value_lang_2' WHERE product_id = '$id' AND specific_id = '$spec_id'";
+
+            $specification_query = mysqli_query($con, $specification_sql);
+            if ($specification_query) {
+                $_SESSION['min_msg'] = "Product specification Added";
+            } else {
+                $_SESSION['min_msg'] = "Product specification updating failed";
+                header('location:products.php');
+            }
         } else {
-            $_SESSION['min_msg'] = "Product specification Adding failed";
-            header('location:products.php');
+            $specification_sql1 = "INSERT INTO product_specification(product_id,specific_id,spec_value_lang_1,spec_value_lang_2)VALUES('$id','$spec_id','$spec_value_lang_1','$spec_value_lang_2')";
+
+            $specification_query1 = mysqli_query($con, $specification_sql1);
+            if ($specification_query1) {
+                $_SESSION['min_msg'] = "Product specification Added";
+            } else {
+                $_SESSION['min_msg'] = "Product specification updating failed";
+                header('location:products.php');
+            }
         }
     }
 
@@ -282,7 +272,8 @@ if (isset($_POST['update-product'])) {
         $new_img2 != '' ||
         $new_img3 != '' ||
         $new_img4 != '' ||
-        $new_product_manual != ''
+        $en_new_product_manual != '' ||
+        $span_new_product_manual != ''
     ) {
         $valid = 1;
         if (
@@ -291,7 +282,8 @@ if (isset($_POST['update-product'])) {
             $_FILES['new_img2']["size"] > 700000 ||
             $_FILES['new_img3']["size"] > 700000 ||
             $_FILES['new_img4']["size"] > 700000 ||
-            $_FILES['new_product_manual']["size"] > 1000000
+            $_FILES['en_new_product_manual']["size"] > 1000000 ||
+            $_FILES['span_new_product_manual']["size"] > 1000000
         ) {
             $_SESSION['min_msg'] = " image size is to Big";
             header('location:product_edit.php');
@@ -303,7 +295,7 @@ if (isset($_POST['update-product'])) {
             $data = false;
             $upload_folder = 'products_images/';
 
-            if (!empty($new_img_main) || !empty($new_img1) || !empty($new_img2)  || !empty($new_img3) || !empty($new_img4) ||  !empty($new_product_manual)) {
+            if (!empty($new_img_main) || !empty($new_img1) || !empty($new_img2)  || !empty($new_img3) || !empty($new_img4) ||  !empty($en_new_product_manual) || !empty($span_new_product_manual)) {
                 if (!empty($new_img_main)) {
                     $updated_img_main = $new_img_main;
                     move_uploaded_file($_FILES['new_img_main']['tmp_name'], $upload_folder . $new_img_main);
@@ -339,12 +331,19 @@ if (isset($_POST['update-product'])) {
                 } else {
                     $updated_img4 = $img4;
                 }
-                if (!empty($new_product_manual)) {
-                    $updated_product_manual = $new_product_manual;
-                    move_uploaded_file($_FILES['new_product_manual']['tmp_name'], $upload_folder . $new_product_manual);
-                    unlink('products_images/' . $product_manual);
+                if (!empty($en_new_product_manual)) {
+                    $updated_en_product_manual = $en_new_product_manual;
+                    move_uploaded_file($_FILES['en_new_product_manual']['tmp_name'], $upload_folder . $en_new_product_manual);
+                    unlink('products_images/' . $en_product_manual);
                 } else {
-                    $updated_product_manual = $product_manual;
+                    $updated_en_product_manual = $en_product_manual;
+                }
+                if (!empty($span_new_product_manual)) {
+                    $updated_span_product_manual = $span_new_product_manual;
+                    move_uploaded_file($_FILES['span_new_product_manual']['tmp_name'], $upload_folder . $span_new_product_manual);
+                    unlink('products_images/' . $span_product_manual);
+                } else {
+                    $updated_span_product_manual = $span_product_manual;
                 }
                 $data = true;
             } else {
@@ -352,13 +351,9 @@ if (isset($_POST['update-product'])) {
                 header('location:product_edit.php');
             }
             if ($data == true) {
-                $sql = "UPDATE lang_products_tbl SET $product_name='$name',product_image='$updated_img_main',product_image1='$updated_img1',product_image2='$updated_img2',product_image3='$updated_img3',product_image4='$updated_img4',
-                $product_video='$video_url',$product_status='$status',$product_category='$category',$product_description='$des',$product_manual='$updated_product_manual' WHERE product_id = '$id'";
+                $sql = "UPDATE lang_products_tbl SET product_name_lang_1='$en_name',product_name_lang_2='$span_name',product_image='$updated_img_main',product_image1='$updated_img1',product_image2='$updated_img2',product_image3='$updated_img3',product_image4='$updated_img4',product_video_url_lang_1='$en_video_url',product_video_url_lang_2='$span_video_url',product_status_lang_1='$en_status',product_status_lang_2='$span_status',product_category_lang_1='$en_category',product_category_lang_2='$span_category',product_description_lang_1='$en_des',product_description_lang_2='$span_des',product_manual_lang_1='$updated_en_product_manual',product_manual_lang_2='$updated_span_product_manual' WHERE product_id = '$id'";
 
                 $connect_db = mysqli_query($con, $sql);
-
-
-              
 
                 if ($connect_db) {
                     $_SESSION['min_msg'] = "products Updated";
@@ -374,7 +369,7 @@ if (isset($_POST['update-product'])) {
             }
         }
     } else {
-        $sql2 = "UPDATE lang_products_tbl SET $product_name='$name',$product_video='$video_url',$product_status='$status',$product_category='$category',$product_description='$des' WHERE product_id = '$id'";
+        $sql2 =  "UPDATE lang_products_tbl SET product_name_lang_1='$en_name',product_name_lang_2='$span_name',product_video_url_lang_1='$en_video_url',product_video_url_lang_2='$span_video_url',product_status_lang_1='$en_status',product_status_lang_2='$span_status',product_category_lang_1='$en_category',product_category_lang_2='$span_category',product_description_lang_1='$en_des',product_description_lang_2='$span_des' WHERE product_id = '$id'";
 
         $connect_db2 = mysqli_query($con, $sql2);
 

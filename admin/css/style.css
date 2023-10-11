@@ -328,3 +328,11 @@
 .active-tab{
     display: block;
 }
+
+
+.specification_tbl :first-child :nth-child(4){
+    display: none;
+}
+.specification_tbl :first-child :nth-child(5){
+    display: none;
+}

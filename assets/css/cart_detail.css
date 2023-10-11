@@ -22,6 +22,9 @@
     .cart_details1_1 .image_gallery .side_img .sm_img {
         
     }
+    .flex_column{
+        flex-direction: column;
+    }
 }
 
 .cart_details1_1 .image_gallery .side_img .sm_img {
@@ -222,7 +225,4 @@
     font-weight: 600;
     background: #EBAB56;
     padding: 0.3rem 0.2rem;
-}
-.flex_column{
-    flex-direction: column;
 }

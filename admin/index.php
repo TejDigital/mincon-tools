@@ -5,31 +5,31 @@
 <?php require('./includes/sidebar.php') ?>
 <!-- Recent Sales Start -->
 <?php
-    if (isset($_SESSION['alert_msg'])) {
-    ?>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Hey!</strong> <?php echo $_SESSION['alert_msg'] ?>
-            <button type="button" class="btn close" data-bs-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php
-        unset($_SESSION['alert_msg']);
-    }
-    ?>
-    <?php
-    if (isset($_SESSION['auth_msg'])) {
-    ?>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Hey!</strong> <?php echo $_SESSION['auth_msg'] ?>
-            <button type="button" class="btn close" data-bs-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php
-        unset($_SESSION['auth_msg']);
-    }
-    ?>
+if (isset($_SESSION['alert_msg'])) {
+?>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Hey!</strong> <?php echo $_SESSION['alert_msg'] ?>
+        <button type="button" class="btn close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+    unset($_SESSION['alert_msg']);
+}
+?>
+<?php
+if (isset($_SESSION['auth_msg'])) {
+?>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Hey!</strong> <?php echo $_SESSION['auth_msg'] ?>
+        <button type="button" class="btn close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+    unset($_SESSION['auth_msg']);
+}
+?>
 <?php
 if (isset($_SESSION['cons_msg'])) {
     echo "<script>alert('" . $_SESSION['cons_msg'] . "')</script>";
@@ -88,7 +88,7 @@ if (isset($_SESSION['min_msg'])) {
                     <?php
                     $sql = "SELECT * FROM contact_tbl
                      LEFT JOIN lang_products_tbl ON contact_tbl.contact_product = lang_products_tbl.product_id    
-                     LEFT JOIN category_tbl ON contact_tbl.contact_product_category = category_tbl.cat_id ORDER BY contact_tbl.created_at DESC";
+                     LEFT JOIN product_category_tbl ON contact_tbl.contact_product_category = product_category_tbl.cat_id ORDER BY contact_tbl.created_at DESC";
                     $query = mysqli_query($con, $sql);
                     $count = 1;
                     if (mysqli_num_rows($query)) {
@@ -103,26 +103,31 @@ if (isset($_SESSION['min_msg'])) {
                                 <td><?= $data['company_name'] ?></td>
                                 <td><?= $data['country'] ?></td>
                                 <td>
-                                    <?php
-                                    if ($data['contact_product_category'] == $data['cat_id']) {
-                                        echo $data['cat_name'];
-                                    }
+                                    <?=
+                                    // if ($data['contact_product_category'] == $data['cat_id'] && $lan == 1) {
+                                    //     echo $data['category_name_lang_1'];
+                                    // } else {
+                                    //     echo $data['category_name_lang_2'];
+                                    // }
+                                    $lan == 1 ? $data['category_name_lang_1'] : $data['category_name_lang_2']  
+
                                     ?>
                                 </td>
                                 <td>
-                                    <?php
-                                    if ($data['contact_product'] == $data['product_id']) {
-                                        echo $data['product_name'];
-                                    }else{
-                                        echo "not match";
-                                    }
+                                    <?=
+                                    // if ($data['contact_product'] == $data['product_id'] && $lan == 1) {
+                                    //     echo $data['product_name_lang_1'];
+                                    // } else {
+                                    //     echo $data['product_name_lang_2'];
+                                    // }
+                                    $lan == 1 ? $data['product_name_lang_1'] : $data['product_name_lang_2']  
                                     ?>
                                 </td>
                                 <td>
-                                <button type='button' value=<?php echo $data['id']; ?> class='btn btn-square btn-outline-danger delete_con btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
+                                    <button type='button' value=<?php echo $data['id']; ?> class='btn btn-square btn-outline-danger delete_con btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
 
                                 </td>
-                              
+
                             </tr>
                     <?php
                         }
