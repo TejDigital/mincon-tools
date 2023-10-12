@@ -73,7 +73,7 @@ if (isset($_SESSION['min_msg'])) {
                                             <div class="specification d-flex">
                                                 <input type="hidden" value="<?=$data3['spec_id']?>" name="spec_id[]">
                                         <input type="text" name="spec_name[]" class="form-control " value="<?=$data3['spec_name_lang_1']?>" placeholder="Specification Name" readonly>
-                                        <input type="text" name="spec_value_lang_1[]" class="form-control " placeholder="Specification Value" >
+                                        <input type="text" name="spec_value_lang_1[]" class="form-control " placeholder="Specification Value" <?=$data3['spec_required'] ==1 ? "required" : "";?>>
                                         </div>
                                             <?php
                                         }
@@ -137,7 +137,7 @@ if (isset($_SESSION['min_msg'])) {
                                             <div class="specification d-flex">
                                             <!-- <input type="hidden" value="<?=$data3['spec_id']?>" name="spec_id[]"> -->
                                         <input type="hidden" name="spec_name[]" class="form-control " value="<?=$data3['spec_name_lang_2']?>" placeholder="Specification Name" readonly>
-                                        <input type="text" name="spec_value_lang_2[]" class="form-control " placeholder="Specification Value" >
+                                        <input type="text" name="spec_value_lang_2[]" class="form-control " placeholder="Specification Value" <?=$data3['spec_required'] ==1 ? "required" : "";?> >
                                         </div>
                                             <?php
                                         }

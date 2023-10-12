@@ -57,6 +57,8 @@
 
 .cart_details1_1 .image_gallery .main_img .img img {
     height: 100%;
+    max-height: 320px;
+    max-width: 290px;
     width: 100%;
 }
 
@@ -226,3 +228,10 @@
     background: #EBAB56;
     padding: 0.3rem 0.2rem;
 }
+
+/* .spec_table :first-child {
+    background-color: purple;
+} */
+/* .spec_table :first-child :nth-child(2){
+    background-color: rebeccapurple;
+} */

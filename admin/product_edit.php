@@ -73,14 +73,14 @@ if (isset($_GET['id'])) {
                                 </select>
                             </div>
                             <div class="form-group my-1">
-                                <label for="" class="text-dark">Product Video Url </label> <span style="font-size:0.7rem; color:red">Current Video Name : <b><?= $data['product_video_url_lang_1'] ?></b></span>
-                                <input type="hidden" name="en_video_url" value="<?= $data['product_video_url_lang_1'] ?>" class="form-control" placeholder="Add Url ">
-                                <input type="url" name="new_en_video_url" class="form-control" placeholder="Add Url ">
+                                <label for="" class="text-dark">Product Video Url </label>
+                                <input type="url" name="en_video_url" value="<?= $data['product_video_url_lang_1'] ?>" class="form-control" placeholder="Add Url ">
                             </div>
                             <div class="form-group my-1">
                                 <label for="" class="text-dark">Product Manual</label> <br>
                                 <p class="m-0" style="font-size:0.7rem; color:red">Current manual : <b><?= $data['product_manual_lang_1'] ?></b></p>
-                                <input type="file" name="en_product_manual" class="form-control" placeholder="Add Product Manual">
+                                <input type="hidden" name="en_product_manual" value="<?= $data['product_manual_lang_1'] ?>" >
+                                <input type="file" name="new_en_product_manual" class="form-control" placeholder="Add Product Manual">
                             </div>
                             <div class="form-group my-1">
                                 <label for="" class="text-dark">Product Description</label>
@@ -108,7 +108,7 @@ if (isset($_GET['id'])) {
                                         <div class="specification d-flex">
                                             <input type="hidden" value="<?= $data3['spec_id'] ?>" name="spec_id[]">
                                             <input type="text" name="spec_name[]" class="form-control " value="<?= $data3['spec_name_lang_1'] ?>" placeholder="Specification Name" readonly>
-                                            <input type="text" name="spec_value_lang_1[]" value="<?= $spec_value_lang_1 ?>" class="form-control " placeholder="Add Value">
+                                            <input type="text" name="spec_value_lang_1[]" value="<?= $spec_value_lang_1 ?>" class="form-control " placeholder="Add Value" <?=$data3['spec_required'] ==1 ? "required" : "";?> >
                                         </div>
                                 <?php
                                     }
@@ -154,9 +154,8 @@ if (isset($_GET['id'])) {
                                 </select>
                             </div>
                             <div class="form-group my-1">
-                                <label for="" class="text-dark">Product Video Url </label> <span style="font-size:0.7rem; color:red">Current Video Name : <b><?= $data['product_video_url_lang_2'] ?></b></span>
-
-                                <input type="url" name="span_video_url" class="form-control" placeholder="Add Url ">
+                                <label for="" class="text-dark">Product Video Url </label> 
+                                <input type="url" name="span_video_url" value="<?= $data['product_video_url_lang_2'] ?>" class="form-control" placeholder="Add Url ">
                             </div>
                             <div class="form-group my-1">
                                 <label for="" class="text-dark">Product Manual</label> <br>
@@ -189,7 +188,7 @@ if (isset($_GET['id'])) {
                                 ?>
                                         <div class="specification d-flex">
                                             <input type="hidden" value="<?= $data3['spec_id'] ?>" name="spec_id[]">
-                                            <input type="text" name="spec_value_lang_2[]" value="<?= $spec_value_lang_2 ?>" class="form-control " placeholder="Add Value">
+                                            <input type="text" name="spec_value_lang_2[]" value="<?= $spec_value_lang_2 ?>" class="form-control " placeholder="Add Value" <?=$data3['spec_required'] ==1 ? "required" : "";?> >
                                         </div>
                                 <?php
                                     }

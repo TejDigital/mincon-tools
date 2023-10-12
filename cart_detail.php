@@ -16,7 +16,7 @@ if (isset($_GET['product_id']) && isset($_GET['lang'])) {
 }
 ?>
 <?php
- if ($lan == 1) {
+if ($lan == 1) {
     $product_category = $data['product_category_lang_1'];
 } else {
     $product_category = $data['product_category_lang_2'];
@@ -172,12 +172,12 @@ $data2 = mysqli_fetch_assoc($query3);
                             ?>
                         </p>
                         <div class="btn1">
-                            <button class="tab-link active-link" onclick="on_tab_link('box1')">MG</button>
-                            <button class="tab-link " onclick="on_tab_link('box2')">KG</button>
+                            <button class="tab-link active-link" onclick="on_tab_link('kg')">KG</button>
+                            <button class="tab-link " onclick="on_tab_link('lba')">LBA</button>
                         </div>
                     </div>
                     <table class="table table-bordered ">
-                        <tbody>
+                        <tbody class="spec_table">
                             <?php
                             $p_id = $data['product_id'];
                             $sql4 = "SELECT * FROM product_specification INNER JOIN specification_tbl ON product_specification.specific_id = specification_tbl.spec_id WHERE product_id = '$p_id'";
@@ -186,7 +186,7 @@ $data2 = mysqli_fetch_assoc($query3);
                                 foreach ($query4 as $specs) {
 
                             ?>
-                                    <tr>
+                                    <tr class="spec_row">
                                         <?php
                                         if ($lan == 1) {
                                             if (!empty($specs['spec_value_lang_1'])) {
@@ -219,13 +219,7 @@ $data2 = mysqli_fetch_assoc($query3);
                                         }
                                         ?>
 
-
-
-
-
-
-
-<?php
+                                        <?php
                                         if ($lan == 1) {
                                             if (!empty($specs['spec_value_lang_1'])) {
                                         ?>
@@ -345,25 +339,29 @@ $data2 = mysqli_fetch_assoc($query3);
 <?php require('./includes/footer.php'); ?>
 <?php require('./includes/script.php'); ?>
 <script>
-    let tab_links = document.getElementsByClassName("tab-link");
-    let tab_contents = document.getElementsByClassName("table_box");
+      let tab_links = document.getElementsByClassName("tab-link");
+      let weight_value = document.querySelector('.spec_table :first-child :nth-child(2)');  
+      let currentValue = weight_value.innerText;
+        let numericPart = parseFloat(currentValue.match(/\d+/)[0]);
+      function on_tab_link(unit) {
+      
 
-    function on_tab_link(tab_name) {
         for (tab_link of tab_links) {
             tab_link.classList.remove("active-link");
             tab_link.style.background = "";
         }
-        for (tab_content of tab_contents) {
-            tab_content.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tab_name).classList.add("active-tab");
 
+        event.currentTarget.classList.add("active-link");
         event.currentTarget.style.background = "#EBAB56";
 
-    };
+        if (unit === 'lba') {
+            let lba = numericPart * 2.20462;
+            weight_value.innerText = lba.toFixed(2) + "lba";
+        } else {
+            weight_value.innerText = numericPart + "kg";
+        }
+    }
 </script>
-<!-- </section> -->
 
 <section id="product-details-container">
 </section>

@@ -57,128 +57,258 @@ if (isset($_GET['id']) && isset($_GET['lang_id'])) {
                 <h3 class="float-start">Product Details</h3>
                 <a href="./products.php" class="btn btn-danger float-end">Back</a>
                 <div class="row mt-5">
-                    <div class="col-md-3">
-                        <label for="" class="label">Product Name</label>
-                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $lang_id == 1 ? $data['product_name_lang_1'] : $data['product_name_lang_2'] ?></p>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="" class="label">Product Category</label>
-                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?=$category_name
-                                                                                        ?></p>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label for="" class="label">Product language</label>
-                        <p class="text-dark" style="font-size: 1rem; font-weight:700;">
-                            <?= $lang_id == 1 ? 'English' : 'Spanish' ?></p>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="" class="label">Product status</label>
-                        <p class="text-dark" style="font-size: 1rem; font-weight:700;">
-                            <?php
-                            if ($product_status == 1) {
-                                echo "Active";
-                            } else {
-                                echo "Inactive";
-                            } ?></p>
-                    </div>
-                    <?php
-                    if ($product_manual != "") {
-                    ?>
-                        <div class="col-md-3">
-                            <label for="">Product Manual</label><br>
-                            <a href="./products_images/<?= $product_manual ?>" target="_blank">Click To View</a>
-                        </div>
-                    <?php
-                    }
-                    ?>
-
-
-                    <div class="col-md-12 mt-4">
-                        <label for="" class="label">Product Description</label>
-                        <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $product_description ?></p>
-                    </div>
-
-                    <div class="col-md-12 my-4">
-                        <label for="" class="label">Product Specification</label>
-                        <?php
-                            $sql3 = "SELECT * FROM product_specification INNER JOIN specification_tbl ON product_specification.specific_id = specification_tbl.spec_id WHERE product_id = '$id'";
-                            $query3 = mysqli_query($con, $sql3);
-                            if (mysqli_num_rows($query3) > 0) {
-                                foreach ($query3 as $data3) {
-                            ?>
-                                    <div class="specification d-flex">
-                                        <input type="text" name="spec_name[]" class="form-control " value="<?= $lang_id == 1 ? $data3['spec_name_lang_1'] :  $data3['spec_name_lang_2'] ?>" placeholder="Specification Name" readonly>
-                                        <input type=" text" name="spec_value[]" class="form-control " value="<?= $lang_id == 1 ? $data3['spec_value_lang_1'] : $data3['spec_value_lang_2'] ?>" placeholder="Specification Value" readonly>
+                    <div class="col-md-6">
+                        <div class="modal-body">
+                            <h5>For English Language</h5>
+                            <div class="col-md-12">
+                                <div class="form-group my-1">
+                                    <div class="form-group my-1">
+                                        <label for="" class="text-dark">Product Name</label>
+                                        <input type="text" name="en_name" class="form-control" value="<?= $data['product_name_lang_1'] ?>" placeholder="product name" disabled>
                                     </div>
+                                    <label for="" class="text-dark">Select Category</label>
+                                    <select name="en_product_category" class="form-control" disabled>
+                                        <?php
+                                        $sql1 = "SELECT * FROM product_category_tbl where  status = '1'";
+                                        $query1 = mysqli_query($con, $sql1);
+                                        if (mysqli_num_rows($query1) > 0) {
+                                            foreach ($query1 as $data1) {
+                                        ?>
+                                                <option <?php
+                                                        if ($data1['cat_id'] == $data['product_category_lang_1']) {
+                                                            echo "selected";
+                                                        }
+                                                        ?> value="<?= $data1['cat_id'] ?>"><?= $data1['category_name_lang_1'] ?></option>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="" class="text-dark">Product Status</label>
+                                    <select name="en_status" class="form-control" id="" disabled> 
+                                        <option <?= $data['product_status_lang_1'] == 1 ? "selected" : "" ?> value="1">Active</option>
+                                        <option <?= $data['product_status_lang_1'] == 0 ? "selected" : "" ?> value="0">Inactive</option>
+                                    </select>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="" class="text-dark">Product Video Url </label>
+                                    <input type="url" name="en_video_url" value="<?= $data['product_video_url_lang_1'] ?>" class="form-control" placeholder="Add Url " disabled>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="" class="text-dark">Product Manual</label> <br>
+                                    <a href="./products_images/<?=$data['product_manual_lang_1']?>" target="_blank">Click to View</a>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="" class="text-dark">Product Description</label>
+                                    <textarea name="en_product_description" cols="30" rows="7" class="form-control" disabled><?= $data['product_description_lang_1'] ?></textarea>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="">Add Product Specification</label>
+
+                                    <table class="table table-bordered ">
+                                        <tbody class="spec_table">
+                                            <?php
+                                            $p_id = $data['product_id'];
+                                            $sql4 = "SELECT * FROM product_specification INNER JOIN specification_tbl ON product_specification.specific_id = specification_tbl.spec_id WHERE product_id = '$p_id'";
+                                            $query4 = mysqli_query($con, $sql4);
+                                            if (mysqli_num_rows($query4) > 0) {
+                                                foreach ($query4 as $specs) {
+                                            ?>
+                                                    <tr class="spec_row">
+                                                        <?php
+                                                        if (!empty($specs['spec_value_lang_1'])) {
+                                                        ?>
+                                                            <td>
+                                                                <?php
+                                                                if ($specs['spec_id'] == $specs['specific_id']) {
+                                                                    echo $specs['spec_name_lang_1'];
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                        if (!empty($specs['spec_value_lang_1'])) {
+                                                        ?>
+                                                            <td>
+                                                                <?php
+                                                                if ($specs['spec_id'] == $specs['specific_id']) {
+                                                                    echo $specs['spec_value_lang_1'];
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </tr>
+                                            <?php
+
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="modal-body">
+                            <h5>For Spanish Language</h5>
+                            <div class="col-md-12">
+                                <div class="form-group my-1">
+                                    <div class="form-group my-1">
+                                        <label for="" class="text-dark">Product Name</label>
+                                        <input type="text" name="span_name" class="form-control" value="<?= $data['product_name_lang_2'] ?>" placeholder="product name" disabled>
+                                    </div>
+                                    <label for="" class="text-dark">Select Category</label>
+                                    <select name="span_product_category" class="form-control" disabled>
+                                        <?php
+                                        $sql1 = "SELECT * FROM product_category_tbl where status = 1";
+                                        $query1 = mysqli_query($con, $sql1);
+                                        if (mysqli_num_rows($query1) > 0) {
+                                            foreach ($query1 as $data1) {
+                                        ?>
+                                                <option <?php
+                                                        if ($data1['cat_id'] == $data['product_category_lang_2']) {
+                                                            echo "selected";
+                                                        }
+                                                        ?> value="<?= $data1['cat_id'] ?>"><?= $data1['category_name_lang_2'] ?></option>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="" class="text-dark">Product Status</label>
+                                    <select name="span_status" class="form-control" id="" disabled>
+                                        <option <?= $data['product_status_lang_2'] == 1 ? "selected" : "" ?> value="1">Active</option>
+                                        <option <?= $data['product_status_lang_2'] == 0 ? "selected" : "" ?> value="0">Inactive</option>
+                                    </select>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="" class="text-dark">Product Video Url </label>
+                                    <input type="url" name="span_video_url" value="<?= $data['product_video_url_lang_2'] ?>" class="form-control" placeholder="Add Url" disabled>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="" class="text-dark">Product Manual</label> <br>
+                                    <a href="./products_images/<?= $data['product_manual_lang_2'] ?>" target="_blank"> Click to view</a>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="" class="text-dark">Product Description</label>
+                                    <textarea name="span_product_description" cols="30" rows="7" class="form-control" disabled><?= $data['product_description_lang_2'] ?></textarea>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="">Add Product Specification</label>
+                                    <table class="table table-bordered ">
+                                        <tbody class="spec_table">
+                                            <?php
+                                            $p_id = $data['product_id'];
+                                            $sql4 = "SELECT * FROM product_specification INNER JOIN specification_tbl ON product_specification.specific_id = specification_tbl.spec_id WHERE product_id = '$p_id'";
+                                            $query4 = mysqli_query($con, $sql4);
+                                            if (mysqli_num_rows($query4) > 0) {
+                                                foreach ($query4 as $specs) {
+                                            ?>
+                                                    <tr class="spec_row">
+                                                        <?php
+                                                        if (!empty($specs['spec_value_lang_2'])) {
+                                                        ?>
+                                                            <td>
+                                                                <?php
+                                                                if ($specs['spec_id'] == $specs['specific_id']) {
+                                                                    echo $specs['spec_name_lang_2'];
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                        <?php
+
+                                                        }
+                                                        ?>
+
+                                                        <?php
+                                                        if (!empty($specs['spec_value_lang_2'])) {
+                                                        ?>
+                                                            <td>
+                                                                <?php
+                                                                if ($specs['spec_id'] == $specs['specific_id']) {
+                                                                    echo $specs['spec_value_lang_2'];
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </tr>
+                                            <?php
+
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
                             <?php
-                                }
+                            if ($img_main != "") {
+                            ?>
+                                <div class="col-md-4 mb-4">
+                                    <p for="" class="label">Product Main Image</p>
+                                    <img src="./products_images/<?= $img_main ?>" width="200px" height="230px" alt="">
+                                </div>
+                            <?php
                             }
                             ?>
-                        <!-- <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?php ?></p> -->
+                            <?php
+                            if ($img1 != "") {
+                            ?>
+                                <div class="col-md-4 mb-4">
+                                    <p for="" class="label">Product Image1</p>
+                                    <img src="./products_images/<?= $img1 ?>" width="200px" height="230px" alt="">
+                                </div>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($img2 != "") {
+                            ?>
+                                <div class="col-md-4 mb-4">
+                                    <p for="" class="label">Product Image2</p>
+                                    <img src="./products_images/<?= $img2 ?>" width="200px" height="230px" alt="">
+                                </div>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($img3 != "") {
+                            ?>
+                                <div class="col-md-4 mb-4">
+                                    <p for="" class="label">Product Image3</p>
+                                    <img src="./products_images/<?= $img3 ?>" width="200px" height="230px" alt="">
+                                </div>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($img4 != "") {
+                            ?>
+                                <div class="col-md-4 mb-4">
+                                    <p for="" class="label">Product Image4</p>
+                                    <img src="./products_images/<?= $img4 ?>" width="200px" height="230px" alt="">
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
                     </div>
-
-
-                    <?php
-                    if ($product_video != "") {
-                    ?>
-                        <div class="col-md-4 mb-4">
-                            <label for="">Video Url</label>
-                            <p class="text-dark" style="font-size: 1rem; font-weight:700;"><?= $product_video ?></p>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if ($img_main != "") {
-                    ?>
-                        <div class="col-md-4 mb-4">
-                            <p for="" class="label">Product Main Image</p>
-                            <img src="./products_images/<?= $img_main ?>" width="200px" alt="">
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if ($img1 != "") {
-                    ?>
-                        <div class="col-md-4 mb-4">
-                            <p for="" class="label">Product Image1</p>
-                            <img src="./products_images/<?= $img1 ?>" width="200px" alt="">
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if ($img2 != "") {
-                    ?>
-                        <div class="col-md-4 mb-4">
-                            <p for="" class="label">Product Image2</p>
-                            <img src="./products_images/<?= $img2 ?>" width="200px" alt="">
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if ($img3 != "") {
-                    ?>
-                        <div class="col-md-4 mb-4">
-                            <p for="" class="label">Product Image3</p>
-                            <img src="./products_images/<?= $img3 ?>" width="200px" alt="">
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if ($img4 != "") {
-                    ?>
-                        <div class="col-md-4 mb-4">
-                            <p for="" class="label">Product Image4</p>
-                            <img src="./products_images/<?= $img4 ?>" width="200px" alt="">
-                        </div>
-                    <?php
-                    }
-                    ?>
                 </div>
             </div>
         </div>

@@ -546,7 +546,7 @@ outline:  1px solid #EBAB56;
 .drop-list .drop_item {
 	position: absolute;
 	padding: 0;
-	top: 30px;
+	top: 20px;
 	right: -20px;
 	z-index: 100;
 	display: none;
