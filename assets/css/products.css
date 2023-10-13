@@ -7,10 +7,10 @@
     text-align: center;
 }
 .product_line .boxes .box-content .col-md-3{
-    display: none;
+    display: none; 
 }
 
-#load-more {
+.load-more {
     margin-top: 20px;
     display: inline-block;
     padding: 13px 30px;

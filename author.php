@@ -50,7 +50,7 @@ require('includes/header.php');
                                 <ul>
                                     <li class="d-flex align-items-center justify-content-between">
                                         <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?=$lan?>">
-                                            <?= $lan == 1 ?  $result['blog_cat_name_lang_1'] : $result['blog_cat_name_lang_2'] ?>
+                                            <?= $lan == 1 ?  $result['blog_cat_name_lang_1'] : $result['blog_cat_name_lang_2']?>
                                         </a>
                                         <?php
                                         $id = $result['blog_cat_id'];
@@ -96,7 +96,7 @@ require('includes/header.php');
                                             <div class="as_product_detail p-0">
                                                 <span style="font-size: 0.8rem;"><i class="fa-solid fa-calendar-days"></i> <?= $result['date'] ?></span>
                                                 <br>
-                                                <span><a href="blog-detail.php?blog_id=<?= $result['blog_id'] ?>&lang=<?=$lan?>" style="font-size: 0.9rem; font-weight:600;"><?= strip_tags(substr($result['title'], 0, 30)) ?></a></span>
+                                                <span><a href="blog-detail.php?blog_id=<?= $result['blog_id'] ?>&lang=<?=$lan?>" style="font-size: 0.9rem; font-weight:600;"><?= strip_tags(substr($result['title'], 0, 30)) ?>...</a></span>
                                             </div>
                                         </a>
                                     </li>
@@ -116,13 +116,13 @@ require('includes/header.php');
                     ?>
                     <form action="" method="get">
                         <?php
-                        if (isset($_GET['blog_cat_id']) && isset($_GET['lang'])) {
-                            $cat_id = $_GET['blog_cat_id'];
+                        if (isset($_GET['auth'])&& isset($_GET['lang'])) {
+                            $auth = $_GET['auth'];
                             $lan = $_GET['lang'];
                             if (empty($id)) {
                                 header('location:blog.php');
                             }
-                            $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE blog_cat_id='$cat_id' ORDER BY blog_tbl.created_at DESC ";
+                            $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE A_name='$auth' ORDER BY blog_tbl.created_at DESC ";
                             $query_run = mysqli_query($con, $query);
                             $num = mysqli_num_rows($query_run) > 0;
 
@@ -142,7 +142,7 @@ require('includes/header.php');
                                                     <ul>
                                                     <li><a href="./author.php?auth=<?=$des['A_name']?>&lang=<?=$lan?>"  style="text-transform:capitalize"><i class="fa-solid fa-user"></i> By - <?= $des['A_name'] ?></a></li>
 
-                                                        <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id'] ?>&lang=<?= $lan ?>"><?=$lan == 1 ?  $des['blog_cat_name_lang_1'] : $des['blog_cat_name_lang_2'] ?></a></li>
+                                                        <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id'] ?>&lang=<?= $lan ?>"><?= $lan == 1 ?  $des['blog_cat_name_lang_1'] : $des['blog_cat_name_lang_2'] ?></a></li>
                                                     </ul>
                                                     <h4 class="as_subheading"><span> <?php echo $des['title'] ?></span></h4>
                                                     <p class="as_font14 as_margin0" style="font-size: 0.9rem; font-weight:500;"><?php echo strip_tags(substr($des['b_des_mini'], 0, 300)) ?>...</p>
@@ -157,31 +157,11 @@ require('includes/header.php');
                         <?php
                                 }
                             } else {
-                                echo "<div class='container'>
-                                <div class='row'>
-                                    <p>No Blog Founded</p>
-                                    <h5>Suggestions:</h5>
-                                    <ul class='ms-5'>
-                                        <li>Try different Category</li>
-                                        <li>Visit Our Blog Page</li>
-                                    </ul>
-                                </div>
-                            </div>";
+                                echo "no Discription";
                             }
                         }
                         ?>
                     </form>
-
-                    <!-- 
-                        <div class="as_pagination as_padderTop50">
-                        <ul class="text-right">
-                            <li class="as_prev"><span>prev</span></li>
-                            <li class="as_active"><a href="javascript:;">1</a></li>
-                            <li><a href="javascript:;">2</a></li>
-                            <li><a href="javascript:;">3</a></li>
-                            <li class="as_next"><a href="javascript:;">next</a></li>
-                        </ul>
-                    </div> -->
                 </div>
             </div>
         </div>

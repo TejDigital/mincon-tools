@@ -37,6 +37,7 @@ $query = mysqli_query($con, $sql);
 if (mysqli_num_rows($query)) {
     foreach ($query as $result) {
         $cat_id = $result['cat_id'];
+        $productCount = 0;
 ?>
         <section class="home_product product_line" id="<?= $lan == 1 ?  $result['category_name_lang_1'] :  $result['category_name_lang_2'] ?>">
             <div class="container">
@@ -45,7 +46,7 @@ if (mysqli_num_rows($query)) {
                     <p><?= $lan  == 1 ? $result['category_description_lang_1'] : $result['category_description_lang_2']   ?></p>
                 </div>
                 <div class="boxes">
-                    <div class="row form-click box-content">
+                    <div class="row form-click  box-content">
                         <?php
                        if ($lan == 1) {
                         $product_status = 'product_status_lang_1';
@@ -59,7 +60,7 @@ if (mysqli_num_rows($query)) {
                         if (mysqli_num_rows($pro_query)) {
                             foreach ($pro_query as $pro_data) {
                         ?>
-                                <div class="col-md-3 p-3 ">
+                                <div class="col-md-3 p-3">
                                     <form class="form_ID">
                                         <input type="hidden" value="<?= $pro_data['product_id'] ?>" class="product_id" name="p_id">
                                         <input type="hidden" value="<?= $lan == 1 ?  $pro_data['product_name_lang_1'] : $pro_data['product_name_lang_2']  ?>" class="product_name" name="p_name">
@@ -86,13 +87,14 @@ if (mysqli_num_rows($query)) {
                                     </form>
                                 </div>
                         <?php
+                         $productCount++;
                             }
                         }
                         ?>
                     </div>
-                    <div id="load-more" class="text-center">
-                        load More
-                    </div>
+                    <?php
+                            echo '<div class="text-center load-more" data-product-count="' . $productCount . '">Load More</div>';
+                    ?>
                 </div>
 
             </div>
@@ -126,9 +128,10 @@ if (mysqli_num_rows($query)) {
 </section>
 <?php require('./includes/footer.php') ?>
 <?php require('./includes/script.php') ?>
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
-        let loadMoreBtn = document.querySelector('#load-more');
+        let loadMoreBtn = document.querySelectorAll('.load-more');
+        console.log(loadMoreBtn);
         let currentItem = 8; // Start with 8 to show the first 8 items
 
         let boxes = [...document.querySelectorAll('.product_line .boxes .box-content .col-md-3')];
@@ -166,4 +169,52 @@ if (mysqli_num_rows($query)) {
             toggleLoadMoreButton();
         };
     });
+</script> -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let loadMoreBtn = document.querySelectorAll('.load-more');
+        let currentItem = 8; // Start with 8 to show the first 8 items
+
+        let boxes = document.querySelectorAll('.product_line .boxes .box-content .col-md-3');
+
+        // Function to toggle the visibility of the "Load More" button
+        function toggleLoadMoreButton() {
+            if (currentItem >= boxes.length) {
+                for (let btn of loadMoreBtn) {
+                    btn.style.display = 'none'; // Hide all "Load More" buttons if no more items to load
+                }
+            } else {
+                for (let btn of loadMoreBtn) {
+                    btn.style.display = 'inline-block'; // Show all "Load More" buttons if there are more items
+                }
+            }
+        }
+
+        // Hide all product boxes initially
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].style.display = 'none';
+        }
+
+        // Show the first 8 items
+        for (let i = 0; i < 8; i++) {
+            if (i < boxes.length) {
+                boxes[i].style.display = 'inline-block';
+            }
+        }
+
+        toggleLoadMoreButton();
+
+        for (let btn of loadMoreBtn) {
+            btn.onclick = () => {
+                for (let i = currentItem; i < currentItem + 4; i++) {
+                    if (i < boxes.length) {
+                        boxes[i].style.display = 'inline-block';
+                    }
+                }
+                currentItem += 4;
+                toggleLoadMoreButton();
+            };
+        }
+    });
 </script>
+

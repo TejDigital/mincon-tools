@@ -501,6 +501,7 @@ outline:  1px solid #EBAB56;
 
 .drop-list .click-link {
 	cursor: pointer;
+	font-weight: 600;
 	margin: 0;
 }
 
@@ -512,10 +513,7 @@ outline:  1px solid #EBAB56;
 	transform: rotate(180deg);
 	transition: 0.5 all;
 }
-/* .rotate180 {
-	transform: rotate(180deg);
-	transition: 0.5 all;
-} */
+
 
 .drop-list .drop_item {
 	border-radius: 4px;

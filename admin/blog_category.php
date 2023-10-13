@@ -41,8 +41,8 @@ require('config/dbcon.php');
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <!-- <span aria-hidden="true">&times;</span> -->
                     </button>
                 </div>
                 <form action="blog_category_code.php" method="POST">
@@ -52,7 +52,7 @@ require('config/dbcon.php');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="delete_cat" class="btn btn-danger">Yes,Delete.!</button>
+                        <button type="submit" name="delete_cat" class="btn btn-danger">Delete</button>
                     </div>
                 </form>
             </div>
@@ -61,7 +61,7 @@ require('config/dbcon.php');
 
     <div class="container mt-3">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="card">
                     <?php
                     if (isset($_SESSION['min_msg'])) {
@@ -92,7 +92,7 @@ require('config/dbcon.php');
                                 ?>
                                         </tr>
                                         <td><?= ++$count ?></td>
-                                        <td><?= $row['blog_cat_name'] ?></td>
+                                        <td><?= $row['blog_cat_name_lang_1'] ?></td>
                                         <td>
                                             <?php
                                             if ($row['blog_cat_status'] == "1") {
@@ -120,20 +120,28 @@ require('config/dbcon.php');
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card p-3">
-                    <div class="card-body tab_box active-tab" id="box1">
+                    <label for="">Add Category Name</label>
+                    <div class="card-body">
                         <form action="blog_category_code.php" method="post">
-                            <input type="hidden" value="1" name="lan">
-                            <label for="">Add Category Name</label>
-
-                            <input class="form-control  m-0" type="text" name="cat_upl" placeholder="enter category">
-
-                            <label for="">Status</label>
-                            <select class="form-select" name="status" class="py-2" name="status">
-                                <option value="1">Active</option>
-                                <option value="0">inactive</option>
-                            </select>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="" class="text-dark">For English</label>
+                                    <input class="form-control  m-0" type="text" name="en_cat_name" placeholder="Type Category" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="text-dark">For Spanish</label>
+                                    <input class="form-control  m-0" type="text" name="span_cat_name" placeholder="Type Category" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="">Status</label>
+                                    <select class="form-select" name="status" class="py-2" name="status">
+                                        <option value="1">Active</option>
+                                        <option value="0">inactive</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             <button type="submit" class="btn btn-info my-2 w-100 " name="add">Add</button>
                         </form>

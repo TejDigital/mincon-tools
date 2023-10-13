@@ -7,22 +7,6 @@ require('config/dbcon.php');
 ?>
 
 <div class="content-wrapper m-3 bg-light  rounded p-4">
-    <label for="">Select Language</label>
-    <select name="lan" id="lan" class="form-select w-25 mb-3 lanChange" onchange="changeLang()">
-        <?php
-        $sql = "SELECT * FROM language_tbl";
-        $query = mysqli_query($con, $sql);
-        if (mysqli_num_rows($query)) {
-            foreach ($query as $result) {
-                $lan_id =  $result['lan_id'];
-        ?>
-                <option <?php if ($lan == $lan_id) {
-                            echo "selected";
-                        } ?> value="<?= $result['lan_id'] ?>"><?= $result['lang_name'] ?></option>
-        <?php
-            }
-        }
-        ?>
     </select>
     <div class="card p-2 tab_box active-tab">
         <form action="blog_des_code.php" method="POST" enctype="multipart/form-data">
@@ -50,7 +34,7 @@ require('config/dbcon.php');
                         $query = mysqli_query($con, $sql);
                         while ($row = mysqli_fetch_assoc($query)) {
                         ?>
-                            <option value="<?= $row['blog_cat_id'] ?>"><?= $row['blog_cat_name'] ?></option>
+                            <option value="<?= $row['blog_cat_id'] ?>"><?= $row['blog_cat_name_lang_1'] ?></option>
                         <?php
                         } ?>
                     </select>

@@ -37,8 +37,8 @@ require('config/dbcon.php');
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Delete BLOG</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <!-- <span aria-hidden="true">&times;</span> -->
                     </button>
                 </div>
                 <form action="blog_des_code.php" method="POST">
@@ -48,7 +48,7 @@ require('config/dbcon.php');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="delete_des" class="btn btn-danger">Yes,Delete.!</button>
+                        <button type="submit" name="delete_des" class="btn btn-danger">Delete</button>
                     </div>
                 </form>
             </div>
@@ -107,7 +107,7 @@ require('config/dbcon.php');
                                              </td> -->
                                              <td><?php
                                              if($filds['blog_cat_id']==$filds['category']){
-                                                echo $filds['blog_cat_name'];
+                                                echo $filds['blog_cat_name_lang_1'];
                                              }
                                              ?></td>
                                             <td><?= $filds['A_name']?></td>

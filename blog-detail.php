@@ -19,8 +19,9 @@
                     }
                     ?>
                     <?php
-                    if (isset($_GET['blog_id'])) {
+                    if (isset($_GET['blog_id']) && isset($_GET['lang'])) {
                         $blog_id = $_GET['blog_id'];
+                        $lan = $_GET['lang'];
 
                         $sql = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id  WHERE blog_id = '$blog_id'";
                         $query = mysqli_query($con, $sql);
@@ -35,9 +36,9 @@
                         </div>
                         <div class="as_blog_detail">
                             <ul>
-                                <li><a href="javascript:;" style="pointer-events: none;"><i class="fa-solid fa-user"></i>By -<?= $des['A_name'] ?>
-                                    </a></li>
-                                <li><a href="category_blog.php?blog_cat_id<?= $des['blog_cat_id'] ?>&lang=<?= $lan ?>"><?= $des['blog_cat_name'] ?></a></li>
+                            <li><a href="./author.php?auth=<?=$des['A_name']?>&lang=<?=$lan?>"  style="text-transform:capitalize"><i class="fa-solid fa-user"></i> By - <?= $des['A_name'] ?></a></li>
+
+                                <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id'] ?>&lang=<?= $lan ?>"><?= $lan == 1 ? $des['blog_cat_name_lang_1'] : $des['blog_cat_name_lang_2'] ?></a></li>
 
                                 <li><a href="#" class="whatsapp_btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
                                 <li><a href="#" class="facebook_btn" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
@@ -85,8 +86,8 @@
                                 while ($result = mysqli_fetch_assoc($query)) {
                                 ?>
                                     <li class="d-flex align-items-center justify-content-between">
-                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>">
-                                            <?= $result['blog_cat_name'] ?>
+                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>">
+                                            <?= $lan == 1 ?  $result['blog_cat_name_lang_1'] : $result['blog_cat_name_lang_2'] ?>
                                         </a>
                                         <?php
                                         $id = $result['blog_cat_id'];
@@ -122,7 +123,7 @@
                                 while ($result = mysqli_fetch_assoc($query)) {
                                 ?>
                                     <li class="as_product">
-                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $id ?>">
+                                        <a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>&lang=<?= $lan ?>">
                                             <div class="as_productimg">
                                                 <!-- <img src="admin/blog_des_files/<?= $result['image'] ?>" alt=""> -->
                                             </div>
@@ -130,7 +131,7 @@
                                             <div class="as_product_detail p-0">
                                                 <span style="font-size: 0.8rem;"><i class="fa-solid fa-calendar-days"></i> <?= $result['date'] ?></span>
                                                 <br>
-                                                <span><a href="blog-detail.php?blog_id=<?= $result['blog_id'] ?> &lang=<?= $lan ?>" style="font-size: 0.9rem; font-weight:600;"><?= strip_tags(substr($result['title'], 0, 30)) ?> ...</a></span>
+                                                <span><a href="blog-detail.php?blog_id=<?= $result['blog_id'] ?> &lang=<?= $lan ?>" style="font-size: 0.9rem; font-weight:600;"><?= strip_tags(substr($result['title'], 0, 30)) ?></a></span>
                                             </div>
                                         </a>
                                     </li>

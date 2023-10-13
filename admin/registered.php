@@ -68,7 +68,7 @@ require('config/dbcon.php');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="deleteuser" class="btn btn-danger">Yes,Delete.!</button>
+                        <button type="submit" name="deleteuser" class="btn btn-danger">Delete</button>
                     </div>
                 </form>
             </div>
@@ -103,7 +103,7 @@ require('config/dbcon.php');
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title float-start ">Registered User</h3>
-                    <a href="#" class="btn btn-primary btn-sm float-end " data-bs-toggle="modal" data-bs-target="#exampleModal">Add User</a>
+                    <!-- <a href="#" class="btn btn-primary btn-sm float-end " data-bs-toggle="modal" data-bs-target="#exampleModal">Add User</a> -->
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

@@ -35,7 +35,7 @@ $(function () {
 });
 //-------------location--------------------
 function myloc() {
-  location.href = "https://goo.gl/maps/EDR6HWEbjRcqb64o7";
+  location.href = "https://maps.app.goo.gl/3zK8N3DF46Lowy4o6";
 }
 //   --------------------------------------------current-page---------------
 

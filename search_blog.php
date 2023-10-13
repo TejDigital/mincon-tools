@@ -42,18 +42,15 @@ if (empty($keybord)) {
                                 <ul>
                                     <li class="d-flex align-items-center justify-content-between">
                                         <a href="category_blog.php?cat_id=<?= $result['blog_cat_id'] ?>">
-                                            <?= $result['blog_cat_name'] ?>
+                                            <?= $lan == 1 ?  $result['blog_cat_name_lang_1'] :  $result['blog_cat_name_lang_2'] ?>
                                         </a>
-                                        
                                         <?php
                                         $id = $result['blog_cat_id'];
                                         $sql1 = "SELECT * FROM blog_tbl where category='$id'";
                                         $query1 = mysqli_query($con, $sql1);
                                         $rows = mysqli_num_rows($query1);
                                         if ($rows) {
-
                                         ?>
-
                                             <span class="badge text-danger rounded-pill"><?= $rows ?></span>
                                         <?php
                                         }
@@ -64,11 +61,8 @@ if (empty($keybord)) {
                             }
                             ?>
                         </div>
-
-
                         <div class="as_widget as_product_widget as_post_widget">
                             <h3 class="as_widget_title">Recent Posts</h3>
-
                             <ul>
                                 <?php
                                 $select = "SELECT * FROM blog_tbl ORDER BY blog_tbl.created_at DESC LIMIT 4 ";
@@ -83,7 +77,7 @@ if (empty($keybord)) {
                                             </span>
                                             <span class="as_product_detail">
                                                 <span><i class="fa-solid fa-calendar-days"></i> <?= $result['date'] ?></span>
-                                                <a style="font-size:1 rem;" href="blog_view.php?id=<?= $result['blog_id'] ?>" style="font-size: 0.7rem;"><?= $result['title'] ?></a>
+                                                <a style="font-size:1 rem;" href="blog_view.php?id=<?= $result['blog_id'] ?>&lang=<?=$lan?>" style="font-size: 0.7rem;"><?= $result['title'] ?></a>
                                             </span>
                                         </a>
                                     </li>
@@ -112,28 +106,41 @@ if (empty($keybord)) {
                     $limit = 3;
                     $offset = ($page - 1) * $limit;
 
-                    $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE title like '%$keybord%' or b_des_full like '%$keybord%'  ORDER BY blog_tbl.created_at DESC  limit $offset ,$limit";
+                    if($lan == 1){
+                        $category = 'blog_cat_name_lang_1';
+                    }else{
+                        $category = 'blog_cat_name_lang_2';
+                    }
+
+                    $query = "SELECT * FROM blog_tbl LEFT JOIN blog_category_tbl ON blog_tbl.category = blog_category_tbl.blog_cat_id WHERE  title like '%$keybord%' or b_des_full like '%$keybord%' or b_des_mini like '%$keybord%' or $category like '%$keybord%'  ORDER BY blog_tbl.created_at DESC  limit $offset ,$limit";
                     $query_run = mysqli_query($con, $query);
                     $num = mysqli_num_rows($query_run) > 0;
 
                     if ($num) {
                         while ($des = mysqli_fetch_assoc($query_run)) {
                     ?>
-                            <div class="as_blog_box">
-                                <div class="as_blog_img">
-                                    <img src="admin/blog_des_files/<?php echo $des['image'] ?>" class="img-responsive">
-                                    <span class="as_btn"><?php echo $des['date'] ?></span>
-                                </div>
-                                <div class="as_blog_detail">
-                                    <ul>
-                                        <li><a href="#" style="pointer-events:none;"><i class="fa-solid fa-user"></i>By -<?= $des['A_name'] ?></a></li>
-                                        <li><a href="category_blog.php?cat_id=<?= $des['blog_cat_id'] ?>"><?= $des['blog_cat_name'] ?></a></li>
-                                    </ul>
-                                    <h4 class="as_subheading"><span> <?php echo $des['title'] ?></span></h4>
-                                    <p class="as_font14 as_margin0"><?php echo strip_tags(substr($des['b_des_mini'], 0, 300)) ?>...</p>
+                           
+                            <div class="as_blog_box pt-5">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="as_blog_img">
+                                            <img src="admin/blog_des_files/<?php echo $des['image'] ?>" class="img-responsive">
+                                            <span class="as_btn "><?php echo $des['date'] ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="as_blog_detail">
+                                            <ul>
+                                                <li><a href="./author.php?auth=<?=$des['A_name']?>&lang=<?=$lan?>"  style="text-transform:capitalize"><i class="fa-solid fa-user"></i> By - <?= $des['A_name'] ?></a></li>
+                                                <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id'] ?>"><?=$lan == 1 ?  $des['blog_cat_name_lang_1'] : $des['blog_cat_name_lang_2'] ?></a></li>
+                                            </ul>
+                                            <h4 class="as_subheading"><span> <?php echo $des['title'] ?></span></h4>
+                                            <p class="as_font14 as_margin0" style="font-size: 0.9rem; font-weight:500;"><?php echo strip_tags(substr($des['b_des_mini'], 0, 300)) ?>...</p>
 
-                                    <div class=" btn1">
-                                        <a href="blog-detail.php?id=<?php echo  $des['blog_id'] ?>" class="as_btn mt-2">Read More</a>
+                                            <div class=" btn1">
+                                                <a href="blog-detail.php?blog_id=<?= $des['blog_id'] ?>&lang=<?=$lan?>" class="as_btn mt-2">Read More</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

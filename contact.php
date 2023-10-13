@@ -58,7 +58,7 @@ if (isset($_SESSION['min_msg'])) {
                         }
                         ?>
                     </h3>
-                    <p><a href="#!">mincontools@gmail.com</a></p>
+                    <p><a href="info@mincontools.com">info@mincontools.com</a></p>
                 </div>
             </div>
             <div class="col-md-3">
@@ -73,7 +73,7 @@ if (isset($_SESSION['min_msg'])) {
                         }
                         ?>
                     </h3>
-                    <p><a href="#!">2234 N Federal Hwy Boca Raton, FL 33431</a></p>
+                    <p><a href="#!" onclick="myloc()">2234 N Federal Hwy Boca Raton, FL 33431</a></p>
                 </div>
             </div>
             <div class="col-md-3">

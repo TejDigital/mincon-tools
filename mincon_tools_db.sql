@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2023 at 08:10 AM
+-- Generation Time: Oct 13, 2023 at 01:14 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,7 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `blog_category_tbl` (
   `blog_cat_id` int(11) NOT NULL,
   `lang_id` tinyint(4) NOT NULL,
-  `blog_cat_name` varchar(100) NOT NULL,
+  `blog_cat_name_lang_1` varchar(100) NOT NULL,
+  `blog_cat_name_lang_2` varchar(100) NOT NULL,
   `blog_cat_status` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -39,9 +40,10 @@ CREATE TABLE `blog_category_tbl` (
 -- Dumping data for table `blog_category_tbl`
 --
 
-INSERT INTO `blog_category_tbl` (`blog_cat_id`, `lang_id`, `blog_cat_name`, `blog_cat_status`, `created_at`) VALUES
-(3, 1, 'hammer', 1, '2023-10-05 11:49:55'),
-(4, 1, 'Dril ', 1, '2023-10-07 06:06:29');
+INSERT INTO `blog_category_tbl` (`blog_cat_id`, `lang_id`, `blog_cat_name_lang_1`, `blog_cat_name_lang_2`, `blog_cat_status`, `created_at`) VALUES
+(3, 1, 'Hammer', 'Hammer_span', 1, '2023-10-05 11:49:55'),
+(4, 1, 'Drill', 'Drill_span', 1, '2023-10-07 06:06:29'),
+(5, 0, 'Grinding', 'Grinding_span', 1, '2023-10-13 07:00:43');
 
 -- --------------------------------------------------------
 
@@ -139,7 +141,8 @@ CREATE TABLE `contact_tbl` (
 --
 
 INSERT INTO `contact_tbl` (`id`, `name`, `email`, `mobile`, `company_name`, `country`, `contact_product_category`, `contact_product`, `created_at`) VALUES
-(1, 'Rohan', 'tejpratapsahu00@gmail.com', '1234567890', 'IBM', 'india', '1,1', '1', '2023-10-11 05:01:28');
+(1, 'Rohan', 'tejpratapsahu00@gmail.com', '1234567890', 'IBM', 'india', '1,1', '1', '2023-10-11 05:01:28'),
+(2, 'Rohan', 'tejpratapsahu00@gmail.com', '1234567890', 'IBM', 'india', '5,1', '', '2023-10-13 11:02:37');
 
 -- --------------------------------------------------------
 
@@ -228,9 +231,9 @@ CREATE TABLE `lang_products_tbl` (
 INSERT INTO `lang_products_tbl` (`product_id`, `product_name_lang_1`, `product_name_lang_2`, `product_image`, `product_image1`, `product_image2`, `product_image3`, `product_image4`, `product_video_url_lang_1`, `product_video_url_lang_2`, `product_status_lang_1`, `product_status_lang_2`, `product_category_lang_1`, `product_category_lang_2`, `product_description_lang_1`, `product_description_lang_2`, `product_manual_lang_1`, `product_manual_lang_2`, `product_created_at`) VALUES
 (1, 'product_1', 'product_1_span', 'mincon_product_img_1.png', 'mincon_about_bg3.png', '', '', '', 'https://www.youtube.com/watch?v=S_ixruxej9c', '', 1, 1, 1, 1, 'When a white college student named Jim Bullock and a Black college student named Joe Purdy tried to attend Memphis’s Second Presbyterian Church on Palm Sunday in 1964, it was the church’s commitment to segregation that inspired church leaders to physically block their way. Bullock and Purdy’s commitment to justice inspired them to kneel on…', 'Cuando un estudiante universitario blanco llamado Jim Bullock y un estudiante universitario negro llamado Joe Purdy intentaron asistir a la Segunda Iglesia Presbiteriana de Memphis el Domingo de Ramos de 1964, fue el compromiso de la iglesia con la segregación lo que inspiró a los líderes de la iglesia a bloquear físicamente su camino. El compromiso de Bullock y Purdy con la justicia los inspiró a arrodillarse...', 'mincon_about_bg2.png', 'mincon_about_bg3.png', '2023-10-07 18:56:00'),
 (2, 'product_2', 'product_2_span', 'mincon_product_img_1.png', '', '', '', 'mincon_contact_bg2.png', 'https://www.youtube.com/watch?v=S_ixruxej9c', '', 1, 1, 2, 2, ' Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, \"multi-author blogs\" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other \"microblogging\" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.', ' Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, \"multi-author blogs\" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other \"microblogging\" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.', 'phone.svg', 'right-tic.svg', '2023-10-09 04:40:44'),
-(3, 'product_3', 'product_3_span', 'mincon_product_img_1.png', '', 'mincon_about_bg3.png', '', 'mincon_contact_bg2.png', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', 1, 1, 3, 3, ' Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, \"multi-author blogs\" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other \"microblogging\" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.', ' Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, \"multi-author blogs\" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other \"microblogging\" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.', 'mincon_hero_bg1.png', '', '2023-10-09 04:48:02'),
-(7, 'product_new', 'product_new_span', 'mincon_product_img_1.png', '', '', '', 'mincon_contact_bg1.png', 'https://www.youtube.com/watch?v=S_ixruxej9c', '', 1, 1, 4, 4, 'with HTML or computer programming. Previously, knowledge of such technologies as HTML and File Transfer Protocol had been required to publish content on the Web, and early Web users therefore tended to be hackers and computer enthusiasts. As of the 2010s, the majority are interactive Web 2.0 websites, allowing visitors to leave online comments, and it is this interactivity that distinguishes them from other static websites.[2] In that sense, blogging can be seen as a form of social networking service. Indeed', 'con HTML o programación informática. Anteriormente, se requería conocimiento de tecnologías como HTML y el Protocolo de transferencia de archivos para publicar contenido en la Web y, por lo tanto, los primeros usuarios de la Web tendían a ser piratas informáticos y entusiastas de la informática. A partir de la década de 2010, la mayoría son sitios web interactivos Web 2.0, que permiten a los visitantes dejar comentarios en línea, y es esta interactividad la que los distingue de otros sitios web estáticos. En ese sentido, los blogs pueden verse como una forma de servicio de red social. En efecto', 'mincon_home_bg1.png', 'mincon_hero_bg2.png', '2023-10-09 14:30:57'),
-(16, 'product 7', 'product 7 span', 'mincon_product_img_1.png', '', 'mincon_about_bg2.png', 'mincon_about_bg3.png', 'mincon_contact_bg1.png', 'https://www.youtube.com/watch?v=S_ixruxej9c', '', 1, 1, 1, 1, 'It’s easy. Requesting a copy of your data from Linkedin only takes three minutes of your time. It doesn’t matter where you live in the world and what privacy regulations apply to you. Linkedin will give you your data no matter where you live, and they’ll even give you more than raw (and boring) data: <hl>Linkedin will also tell you specifically what the algorithm thinks of you<hl>. Kudos to them.', 'Es fácil. Solicitar una copia de tus datos a Linkedin sólo te llevará tres minutos de tu tiempo. No importa en qué parte del mundo viva ni qué normas de privacidad se aplican en su caso. Linkedin te dará tus datos sin importar dónde vivas, e incluso te dará más que datos brutos (y aburridos): <hl>Linkedin también te dirá específicamente qué piensa el algoritmo de ti<hl>. Felicitaciones a ellos.', 'mincon_product_img_1.png', 'mincon_home_bg1.png', '2023-10-11 09:49:35');
+(3, 'product_3', 'product_3_span', 'mincon_product_img_1.png', '', 'mincon_about_bg3.png', '', 'mincon_contact_bg2.png', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', '', 1, 1, 3, 3, ' Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, \"multi-author blogs\" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other \"microblogging\" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.', ' Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, \"multi-author blogs\" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other \"microblogging\" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.', 'mincon_hero_bg1.png', '', '2023-10-09 04:48:02'),
+(7, 'product_new', 'product_new_span', 'mincon_product_img_1.png', '', '', '', 'mincon_contact_bg1.png', 'https://www.youtube.com/watch?v=S_ixruxej9c', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', 1, 1, 4, 4, 'with HTML or computer programming. Previously, knowledge of such technologies as HTML and File Transfer Protocol had been required to publish content on the Web, and early Web users therefore tended to be hackers and computer enthusiasts. As of the 2010s, the majority are interactive Web 2.0 websites, allowing visitors to leave online comments, and it is this interactivity that distinguishes them from other static websites.[2] In that sense, blogging can be seen as a form of social networking service. Indeed', 'con HTML o programación informática. Anteriormente, se requería conocimiento de tecnologías como HTML y el Protocolo de transferencia de archivos para publicar contenido en la Web y, por lo tanto, los primeros usuarios de la Web tendían a ser piratas informáticos y entusiastas de la informática. A partir de la década de 2010, la mayoría son sitios web interactivos Web 2.0, que permiten a los visitantes dejar comentarios en línea, y es esta interactividad la que los distingue de otros sitios web estáticos. En ese sentido, los blogs pueden verse como una forma de servicio de red social. En efecto', 'mincon_home_bg1.png', 'mincon_hero_bg2.png', '2023-10-09 14:30:57'),
+(16, 'product 7', 'product 7 span', 'mincon_product_img_1.png', '', 'mincon_about_bg2.png', 'mincon_about_bg3.png', 'mincon_contact_bg1.png', 'https://www.youtube.com/watch?v=S_ixruxej9c', 'https://www.youtube.com/watch?v=ax1h-YOyPJc&t=1s', 1, 1, 1, 1, 'It’s easy. Requesting a copy of your data from Linkedin only takes three minutes of your time. It doesn’t matter where you live in the world and what privacy regulations apply to you. Linkedin will give you your data no matter where you live, and they’ll even give you more than raw (and boring) data: <hl>Linkedin will also tell you specifically what the algorithm thinks of you<hl>. Kudos to them.', 'Es fácil. Solicitar una copia de tus datos a Linkedin sólo te llevará tres minutos de tu tiempo. No importa en qué parte del mundo viva ni qué normas de privacidad se aplican en su caso. Linkedin te dará tus datos sin importar dónde vivas, e incluso te dará más que datos brutos (y aburridos): <hl>Linkedin también te dirá específicamente qué piensa el algoritmo de ti<hl>. Felicitaciones a ellos.', 'mincon_product_img_1.png', 'mincon_home_bg1.png', '2023-10-11 09:49:35');
 
 -- --------------------------------------------------------
 
@@ -294,11 +297,15 @@ INSERT INTO `product_specification` (`s_id`, `specific_id`, `product_id`, `spec_
 (20, 2, 7, '5440mm', '800mm', '2023-10-11 15:20:58'),
 (21, 5, 7, '87m', '890m', '2023-10-11 15:20:58'),
 (22, 1, 1, '50kg', '60kg', '2023-10-11 15:31:37'),
-(23, 2, 1, '500mm', '', '2023-10-11 15:31:37'),
+(23, 2, 1, '230mm', '', '2023-10-11 15:31:37'),
 (24, 5, 1, '', '25m', '2023-10-11 15:31:37'),
 (25, 1, 2, '50kg', '90kg', '2023-10-12 05:05:25'),
 (26, 2, 2, '500mm', '', '2023-10-12 05:05:25'),
-(27, 5, 2, '', '60m', '2023-10-12 05:05:25');
+(27, 5, 2, '', '60m', '2023-10-12 05:05:25'),
+(28, 1, 3, '65kg', '70kg', '2023-10-12 06:10:58'),
+(29, 2, 3, '', '', '2023-10-12 06:10:58'),
+(30, 5, 3, '', '', '2023-10-12 06:10:58'),
+(31, 5, 16, '', '', '2023-10-12 06:11:35');
 
 -- --------------------------------------------------------
 
@@ -348,7 +355,7 @@ CREATE TABLE `specification_tbl` (
 --
 
 INSERT INTO `specification_tbl` (`spec_id`, `spec_name_lang_1`, `spec_name_lang_2`, `spec_required`, `spec_status`, `created_at`) VALUES
-(1, 'weight', 'Peso', '1', 1, '2023-10-07 12:18:12'),
+(1, 'Weight', 'Peso', '1', 1, '2023-10-07 12:18:12'),
 (2, 'length', 'longitud', '', 1, '2023-10-07 12:49:44'),
 (5, 'Height', 'Altura', '', 1, '2023-10-11 10:02:17');
 
@@ -677,7 +684,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `blog_category_tbl`
 --
 ALTER TABLE `blog_category_tbl`
-  MODIFY `blog_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `blog_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `blog_tbl`
@@ -695,7 +702,7 @@ ALTER TABLE `cart_tbl`
 -- AUTO_INCREMENT for table `contact_tbl`
 --
 ALTER TABLE `contact_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `enquire_tbl`
@@ -731,7 +738,7 @@ ALTER TABLE `product_category_tbl`
 -- AUTO_INCREMENT for table `product_specification`
 --
 ALTER TABLE `product_specification`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `product_tbl`
@@ -767,7 +774,7 @@ ALTER TABLE `ui_table`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

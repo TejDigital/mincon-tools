@@ -113,13 +113,15 @@
         var url_product_id = $('#url_product_id').val();
         var url_blog_id = $('#url_blog_id').val();
         var url_cat_id = $('#url_cat_id').val();
+        var url_auth = $('#auth').val();
+        var keybord = $('#keybord').val();
 
 
     // // Get the current scroll position
     // var scrollPosition = $(window).scrollTop();
 
     
-    var newURL = window.location.pathname + '?lang=' + languageSelect + '&product_id=' + url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id;
+    var newURL = window.location.pathname + '?lang=' + languageSelect + '&product_id=' + url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id +'&auth=' + url_auth + '&keybord' + keybord;
         // alert(languageSelect);
         
         // // Update the URL without reloading the page (HTML5 History API)

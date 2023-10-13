@@ -86,7 +86,7 @@ require('config/dbcon.php');
                                                                                                     echo "Selected";
                                                                                                 }
                                                                                                 ?>>
-                                                        <?= $result['blog_cat_name'] ?></option>
+                                                        <?= $result['blog_cat_name_lang_1'] ?></option>
                                             <?php
                                                 }
                                             }

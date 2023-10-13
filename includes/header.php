@@ -8,6 +8,14 @@ $url_product_id = "";
 if (isset($_GET['product_id'])) {
     $url_product_id = $_GET['product_id'];
 }
+$keybord = "";
+if (isset($_GET['keybord'])) {
+    $keybord = $_GET['keybord'];
+}
+$url_auth = "";
+if (isset($_GET['auth'])) {
+    $url_auth = $_GET['auth'];
+}
 $url_blog_id = "";
 if (isset($_GET['blog_id'])) {
     $url_blog_id = $_GET['blog_id'];
@@ -155,6 +163,8 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                             <input type="hidden" value="<?= $url_product_id ?>" id="url_product_id">
                             <input type="hidden" value="<?= $url_blog_id ?>" id="url_blog_id">
                             <input type="hidden" value="<?= $url_cat_id ?>" id="url_cat_id">
+                            <input type="hidden" value="<?= $url_auth ?>" id="auth">
+                            <input type="hidden" value="<?= $keybord ?>" id="keybord">
                             <li class="nav-item lang_switch">
                                 <!-- <div class="dropdown-area">
                                     <p class="p-0 m-0" id="header_link_language"> <?php
@@ -234,7 +244,7 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
         </div>
     </header>
     <section class="sticky-icon">
-        <a href="#!"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://wa.me/19543725520" aria-label="Chat on WhatsApp" ><i class="fa-brands fa-whatsapp"></i></a>
         <img src="./assets/images/cart.svg" alt="" onclick="getDATA();" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <span class="count"><b class="count_item" id="count_item">0</b></span>
     </section>

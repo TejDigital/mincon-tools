@@ -17,19 +17,19 @@ if (isset($_SESSION['min_msg'])) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
-                        <button type="button" class="btn close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <!-- <span aria-hidden="true">&times;</span> -->
                         </button>
                     </div>
                     <form action="product_category_code.php" method="POST">
                         <div class="modal-body">
-                            <input type="text" name="delete_cat_id" class="delete_cat_id">
-                            <input type="text" name="delete_lang_id" class="delete_lang_id">
+                            <input type="hidden" name="delete_cat_id" class="delete_cat_id">
+                            <input type="hidden" name="delete_lang_id" class="delete_lang_id">
                             <p>Are you sure , you want to delete this data ?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="delete_cat" class="btn btn-danger">Yes,Delete.!</button>
+                            <button type="submit" name="delete_cat" class="btn btn-danger">Delete</button>
                         </div>
                     </form>
                 </div>
@@ -61,7 +61,7 @@ if (isset($_SESSION['min_msg'])) {
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
                         <thead>
                             <tr class="text-dark">
-                                <th scope="col">S No</th>
+                                <th scope="col">S. No.</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Status</th>
                                 <th scope="col" colspan="3" class="text-center">Action</th>

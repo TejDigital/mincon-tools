@@ -9,8 +9,8 @@ if (isset($_SESSION['alert_msg'])) {
 ?>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>Hey!</strong> <?php echo $_SESSION['alert_msg'] ?>
-        <button type="button" class="btn close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <!-- <span aria-hidden="true">&times;</span> -->
         </button>
     </div>
 <?php
@@ -22,8 +22,8 @@ if (isset($_SESSION['auth_msg'])) {
 ?>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>Hey!</strong> <?php echo $_SESSION['auth_msg'] ?>
-        <button type="button" class="btn close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <!-- <span aria-hidden="true">&times;</span> -->
         </button>
     </div>
 <?php
@@ -52,8 +52,8 @@ if (isset($_SESSION['min_msg'])) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Delete Message</h5>
-                        <button type="button" class="btn close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <!-- <span aria-hidden="true">&times;</span> -->
                         </button>
                     </div>
                     <form action="connect.php" method="POST">
@@ -63,7 +63,7 @@ if (isset($_SESSION['min_msg'])) {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="delete_con" class="btn btn-danger">Yes,Delete.!</button>
+                            <button type="submit" name="delete_con" class="btn btn-danger">Delete</button>
                         </div>
                     </form>
                 </div>
@@ -73,7 +73,7 @@ if (isset($_SESSION['min_msg'])) {
             <table class="table text-start align-middle table-bordered table-hover mb-0">
                 <thead>
                     <tr class="text-dark">
-                        <th>S No.</th>
+                        <th>S.No.</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile</th>
@@ -94,6 +94,12 @@ if (isset($_SESSION['min_msg'])) {
                     if (mysqli_num_rows($query)) {
                         foreach ($query as $data) {
 
+                            if($lan == 1){
+                                $product_name = $data['product_name_lang_1'];
+                            }else{
+                                $product_name = $data['product_name_lang_2'];
+                            }
+
                     ?>
                             <tr>
                                 <td><?= $count++ ?></td>
@@ -104,30 +110,21 @@ if (isset($_SESSION['min_msg'])) {
                                 <td><?= $data['country'] ?></td>
                                 <td>
                                     <?=
-                                    // if ($data['contact_product_category'] == $data['cat_id'] && $lan == 1) {
-                                    //     echo $data['category_name_lang_1'];
-                                    // } else {
-                                    //     echo $data['category_name_lang_2'];
-                                    // }
                                     $lan == 1 ? $data['category_name_lang_1'] : $data['category_name_lang_2']  
-
                                     ?>
                                 </td>
                                 <td>
-                                    <?=
-                                    // if ($data['contact_product'] == $data['product_id'] && $lan == 1) {
-                                    //     echo $data['product_name_lang_1'];
-                                    // } else {
-                                    //     echo $data['product_name_lang_2'];
-                                    // }
-                                    $lan == 1 ? $data['product_name_lang_1'] : $data['product_name_lang_2']  
+                                    <?php 
+                                     if($product_name){
+                                       echo $product_name;
+                                     }else{
+                                       echo "Product Not Found";
+                                     }
                                     ?>
                                 </td>
                                 <td>
                                     <button type='button' value=<?php echo $data['id']; ?> class='btn btn-square btn-outline-danger delete_con btn-sm my-1'><i class="fa-solid fa-trash"></i></button>
-
                                 </td>
-
                             </tr>
                     <?php
                         }

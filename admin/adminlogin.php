@@ -17,8 +17,8 @@ if (isset($_SESSION['auth']) == 1) {
             ?>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <strong>Hey!</strong> <?php echo $_SESSION['alert_msg'] ?>
-                    <button type="button" class="close btn" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <!-- <span aria-hidden="true">&times;</span>s -->
                     </button>
                 </div>
             <?php
@@ -30,8 +30,8 @@ if (isset($_SESSION['auth']) == 1) {
             ?>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <strong>Hey!</strong> <?php echo $_SESSION['auth_msg'] ?>
-                    <button type="button" class="close " data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close">
+                        <!-- <span aria-hidden="true">&times;</span> -->
                     </button>
                 </div>
             <?php
@@ -59,8 +59,7 @@ if (isset($_SESSION['auth']) == 1) {
                         <form action="code.php" method="POST">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <!-- <label for="">Email</label> -->
-                                    <!-- <span class="email-error" style="margin-left: 10px;"></span> -->
+                                    <h6>Enter Your Registered Email</h6>
                                     <input type="email" name="email" class="form-control" placeholder="Enter Your Email">
                                 </div>
                             </div>
@@ -93,7 +92,7 @@ if (isset($_SESSION['auth']) == 1) {
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
-                                    <label for="floatingInput">Email address</label>
+                                    <label for="floatingInput">Email Address</label>
                                 </div>
                                 <div class="form-floating mb-4">
                                     <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">

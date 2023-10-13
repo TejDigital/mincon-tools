@@ -15,8 +15,9 @@
                     <div class="as_shop_sidebar">
                         <div class="as_widget as_search_widget">
                             <?php
-                            if (isset($_GET['keybord'])) {
+                            if (isset($_GET['keybord'])&& isset($_GET['lang'])) {
                                 $keybord = $_GET['keybord'];
+                                $lan = $_GET['lang'];
                             } else {
                                 $keybord = "";
                             }
@@ -45,7 +46,7 @@
                                     while ($result = mysqli_fetch_assoc($query)) {
                                 ?>
                                         <li class="d-flex align-items-center justify-content-between"><a href="category_blog.php?blog_cat_id=<?= $result['blog_cat_id'] ?>">
-                                                <?= $result['blog_cat_name'] ?>
+                                                <?=$lan == 1 ?  $result['blog_cat_name_lang_1'] : $result['blog_cat_name_lang_2'] ?>
                                             </a>
                                             <?php
                                             $id = $result['blog_cat_id'];
@@ -91,7 +92,7 @@
                                             <div class="as_product_detail p-0">
                                                 <span style="font-size: 0.8rem;"><i class="fa-solid fa-calendar-days"></i> <?= $result['date'] ?></span>
                                                 <br>
-                                                <span><a href="blog-detail.php?blog_id=<?= $result['blog_id'] ?>&lang=<?= $lan ?>" style="font-size: 0.9rem; font-weight:600;"><?= strip_tags(substr($result['title'], 0, 30)) ?> ...</a></span>
+                                                <span><a href="blog-detail.php?blog_id=<?= $result['blog_id'] ?>&lang=<?= $lan ?>" style="font-size: 0.9rem; font-weight:600;"><?= strip_tags(substr($result['title'], 0, 30)) ?></a></span>
                                             </div>
                                         </a>
                                     </li>
@@ -138,14 +139,14 @@
                                     <div class="col-md-8">
                                         <div class="as_blog_detail">
                                             <ul>
-                                                <li><a href="javascript:;" style="pointer-events:none;"><i class="fa-solid fa-user"></i>By -<?= $des['A_name'] ?></a></li>
-                                                <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id'] ?>"><?= $des['blog_cat_name'] ?></a></li>
+                                                <li><a href="./author.php?auth=<?=$des['A_name']?>"  style="text-transform:capitalize"><i class="fa-solid fa-user"></i> By - <?= $des['A_name'] ?></a></li>
+                                                <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id'] ?>"><?=$lan == 1 ?  $des['blog_cat_name_lang_1'] : $des['blog_cat_name_lang_2'] ?></a></li>
                                             </ul>
                                             <h4 class="as_subheading"><span> <?php echo $des['title'] ?></span></h4>
                                             <p class="as_font14 as_margin0" style="font-size: 0.9rem; font-weight:500;"><?php echo strip_tags(substr($des['b_des_mini'], 0, 300)) ?>...</p>
 
                                             <div class=" btn1">
-                                                <a href="blog-detail.php?blog_id=<?= $des['blog_id'] ?>" class="as_btn mt-2">Read More</a>
+                                                <a href="blog-detail.php?blog_id=<?= $des['blog_id'] ?>&lang=<?=$lan?>" class="as_btn mt-2">Read More</a>
                                             </div>
                                         </div>
                                     </div>

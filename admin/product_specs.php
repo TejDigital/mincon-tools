@@ -36,7 +36,7 @@ if (isset($_SESSION['min_msg'])) {
     <div class="row">
         <div class="col-md-12 mb-3">
             <div class=" bg-light rounded p-3">
-                <h4>ADD Specification</h4>
+                <h4>Add Specification</h4>
                 <form action="product_specs_code.php" method="POST" enctype="multipart/form-data">
 
                     <div class="row mt-4">

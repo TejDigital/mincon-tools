@@ -34,7 +34,7 @@
             <a href="./enquire.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Enquire Table</a>
             
 
-            <h6 class="ms-3 my-2">BLog</h6>
+            <h6 class="ms-3 my-2">Blog</h6>
             <a href="./blog_des.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Blog</a>
             <a href="./blog_category.php" class="nav-link my-link "><i class="fa fa-laptop me-2"></i>Blog Category</a>
 
