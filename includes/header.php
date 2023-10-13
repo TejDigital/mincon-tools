@@ -12,6 +12,12 @@ $keybord = "";
 if (isset($_GET['keybord'])) {
     $keybord = $_GET['keybord'];
 }
+
+$product_search = "";
+if (isset($_GET['product_search'])) {
+    $product_search = $_GET['product_search'];
+}
+
 $url_auth = "";
 if (isset($_GET['auth'])) {
     $url_auth = $_GET['auth'];
@@ -62,6 +68,8 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
     <link rel="stylesheet" href="./assets/css/blog_detail.css">
     <link rel="stylesheet" href="./assets/css/cart.css">
     <link rel="stylesheet" href="./assets/css/cart_detail.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <!-- <link rel="stylesheet" href="./css/fancybox.min.css"> -->
 </head>
 
@@ -165,6 +173,7 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                             <input type="hidden" value="<?= $url_cat_id ?>" id="url_cat_id">
                             <input type="hidden" value="<?= $url_auth ?>" id="auth">
                             <input type="hidden" value="<?= $keybord ?>" id="keybord">
+                            <input type="hidden" value="<?= $product_search ?>" id="product_search">
                             <li class="nav-item lang_switch">
                                 <!-- <div class="dropdown-area">
                                     <p class="p-0 m-0" id="header_link_language"> <?php
@@ -185,15 +194,27 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                                     </select>
                                 </div> -->
                                 <div class="lang">
-                                    <img src="./assets/images/usa_flag.png" alt="" class="lang_1 languageSelect" data-value = "1" onclick="changeLanguage(this)">
-                                    <img src="./assets/images/spain_flag.png" alt="" class="lang_2 languageSelect" data-value = "2" onclick="changeLanguage(this)">
+                                    <img src="./assets/images/usa_flag.png" alt="" class="lang_1 languageSelect" data-value="1" onclick="changeLanguage(this)">
+                                    <img src="./assets/images/spain_flag.png" alt="" class="lang_2 languageSelect" data-value="2" onclick="changeLanguage(this)">
                                 </div>
                             </li>
                         </ul>
+                        <?php
+                        if (isset($_GET['product_search']) && isset($_GET['lang'])) {
+                            $product_search = $_GET['product_search'];
+                            $lan = $_GET['lang'];
+                        } else {
+                            $product_search = "";
+                        }
+                        ?>
+                        <form action="product_search.php" method="get" class="d-flex">
+                            <input type="text" class="form-control w-75" name="product_search" class="form-control" maxlength="60" value="<?= $product_search ?>" autocomplete="off" placeholder="Search Product">
+                            <Button class="ms-2 btn btn-warning">Search</Button>
+                        </form>
                     </div>
                 </nav>
-                    <nav class="">
-                        <ul class="drop-Down"> 
+                <nav class="">
+                    <ul class="drop-Down">
                         <div class="Sponsors_slider_area_1 owl-carousel owl-theme" id="nav_drop">
                             <?php
                             $sql2 = "SELECT * FROM product_category_tbl WHERE status = 1  limit 4";
@@ -212,16 +233,16 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                                             } else {
                                                 $product_status = 'product_status_lang_2';
                                                 $product_category = 'product_category_lang_2';
-                                            }      
+                                            }
                                             $cat_id = $result1['cat_id'];
-                                            
+
                                             $sql3 = "SELECT * FROM lang_products_tbl WHERE $product_status = 1 AND  $product_category = '$cat_id'";
-                                             
+
                                             $pro_query1 = mysqli_query($con, $sql3);
                                             if (mysqli_num_rows($pro_query1)) {
                                                 foreach ($pro_query1 as $pro_data1) {
                                             ?>
-                                                    <li> 
+                                                    <li>
                                                         <a href="./cart_detail.php?product_id=<?= $pro_data1['product_id'] ?>&lang=<?= $lan ?>">
                                                             <?= $lan == 1 ? $pro_data1['product_name_lang_1'] : $pro_data1['product_name_lang_2']  ?>
                                                         </a>
@@ -238,13 +259,13 @@ while ($content = mysqli_fetch_assoc($ul_query)) {
                             ?>
                         </div>
                     </ul>
-                    </nav>
+                </nav>
             </div>
 
         </div>
     </header>
     <section class="sticky-icon">
-        <a href="https://wa.me/19543725520" aria-label="Chat on WhatsApp" ><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://wa.me/19543725520" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         <img src="./assets/images/cart.svg" alt="" onclick="getDATA();" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <span class="count"><b class="count_item" id="count_item">0</b></span>
     </section>

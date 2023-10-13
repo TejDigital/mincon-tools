@@ -14,7 +14,7 @@
 <script src="./assets/js/ajax.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
     //   Swal.fire({
@@ -56,10 +56,9 @@
             $('#product').html('<option value="">Select Product</option>');
 
             if (categoryId !== "" && lang_id !== "") {
-                // Make an AJAX request to fetch products based on the selected category
                 $.ajax({
-                    type: 'POST', // You can change this to 'GET' if your server-side script supports it
-                    url: './admin/product_code_ajax.php', // Replace with the actual URL of your PHP script
+                    type: 'POST', 
+                    url: './admin/product_code_ajax.php', 
                     data: {
                         category_id: categoryId,
                         lang_id: lang_id
@@ -121,7 +120,7 @@
     // var scrollPosition = $(window).scrollTop();
 
     
-    var newURL = window.location.pathname + '?lang=' + languageSelect + '&product_id=' + url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id +'&auth=' + url_auth + '&keybord' + keybord;
+    var newURL = window.location.pathname + '?lang=' + languageSelect + '&product_id=' + url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id +'&auth=' + url_auth + '&keybord=' + keybord;
         // alert(languageSelect);
         
         // // Update the URL without reloading the page (HTML5 History API)

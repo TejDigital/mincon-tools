@@ -49,3 +49,13 @@ width: 100%;
 .contact_2 .form-group .sub-btn{
     padding: 0.7rem 1.5rem;
 }
+
+
+
+
+
+.input-box .select2 .select2-container .select2-container--default .select2-selection--single {
+    height: 53px !important;
+    display: flex !important;
+    align-items: center !important;
+}

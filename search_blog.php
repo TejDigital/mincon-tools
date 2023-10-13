@@ -1,17 +1,22 @@
-<?php 
+<?php
 session_start();
 require('includes/header.php');
 ?>
 <?php require('./admin/config/dbcon.php');
 
 $keybord = $_GET['keybord'];
+$lan = $lan;
 if (empty($keybord)) {
     header("location:blog.php");
 }
 ?>
 
 <div class="as_main_wrapper as_blog_page">
-    <h1 class="my-1" style="font-size:1.5rem">Search result for: <span class="text-primary"><?= $keybord ?></span> </h1>
+    <h1 class="my-1" style="font-size:1.5rem" id="blog_search_title"> <?php
+                                                                        if (isset($content_array['blog_search_title'])) {
+                                                                            echo $content_array['blog_search_title'];
+                                                                        }
+                                                                        ?>: <span class="text-primary"><?= $keybord ?></span> </h1>
     <hr>
     <section class="as_blog_wrapper ">
         <div class="container">
@@ -32,7 +37,13 @@ if (empty($keybord)) {
                             </form>
                         </div>
                         <div class="as_category_widget">
-                            <h3 class="as_widget_title" style="color: #EBAB56;">Categories</h3>
+                            <h3 class="as_widget_title" style="color: #EBAB56;" id="blog_category_name">
+                                <?php
+                                if (isset($content_array['blog_category_name'])) {
+                                    echo $content_array['blog_category_name'];
+                                }
+                                ?>
+                            </h3>
                             <?php
                             $select = "SELECT * FROM blog_category_tbl";
                             $query = mysqli_query($con, $select);
@@ -62,7 +73,13 @@ if (empty($keybord)) {
                             ?>
                         </div>
                         <div class="as_widget as_product_widget as_post_widget">
-                            <h3 class="as_widget_title">Recent Posts</h3>
+                            <h3 class="as_widget_title" id="blog_recent_post">
+                                <?php
+                                if (isset($content_array['blog_recent_post'])) {
+                                    echo $content_array['blog_recent_post'];
+                                }
+                                ?>
+                            </h3>
                             <ul>
                                 <?php
                                 $select = "SELECT * FROM blog_tbl ORDER BY blog_tbl.created_at DESC LIMIT 4 ";
@@ -77,7 +94,7 @@ if (empty($keybord)) {
                                             </span>
                                             <span class="as_product_detail">
                                                 <span><i class="fa-solid fa-calendar-days"></i> <?= $result['date'] ?></span>
-                                                <a style="font-size:1 rem;" href="blog_view.php?id=<?= $result['blog_id'] ?>&lang=<?=$lan?>" style="font-size: 0.7rem;"><?= $result['title'] ?></a>
+                                                <a style="font-size:1 rem;" href="blog_view.php?id=<?= $result['blog_id'] ?>&lang=<?= $lan ?>" style="font-size: 0.7rem;"><?= $result['title'] ?></a>
                                             </span>
                                         </a>
                                     </li>
@@ -106,9 +123,9 @@ if (empty($keybord)) {
                     $limit = 3;
                     $offset = ($page - 1) * $limit;
 
-                    if($lan == 1){
+                    if ($lan == 1) {
                         $category = 'blog_cat_name_lang_1';
-                    }else{
+                    } else {
                         $category = 'blog_cat_name_lang_2';
                     }
 
@@ -119,7 +136,7 @@ if (empty($keybord)) {
                     if ($num) {
                         while ($des = mysqli_fetch_assoc($query_run)) {
                     ?>
-                           
+
                             <div class="as_blog_box pt-5">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -131,14 +148,14 @@ if (empty($keybord)) {
                                     <div class="col-md-8">
                                         <div class="as_blog_detail">
                                             <ul>
-                                                <li><a href="./author.php?auth=<?=$des['A_name']?>&lang=<?=$lan?>"  style="text-transform:capitalize"><i class="fa-solid fa-user"></i> By - <?= $des['A_name'] ?></a></li>
-                                                <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id'] ?>"><?=$lan == 1 ?  $des['blog_cat_name_lang_1'] : $des['blog_cat_name_lang_2'] ?></a></li>
+                                                <li><a href="./author.php?auth=<?= $des['A_name'] ?>&lang=<?= $lan ?>" style="text-transform:capitalize"><i class="fa-solid fa-user"></i> By - <?= $des['A_name'] ?></a></li>
+                                                <li><a href="category_blog.php?blog_cat_id=<?= $des['blog_cat_id'] ?>"><?= $lan == 1 ?  $des['blog_cat_name_lang_1'] : $des['blog_cat_name_lang_2'] ?></a></li>
                                             </ul>
                                             <h4 class="as_subheading"><span> <?php echo $des['title'] ?></span></h4>
                                             <p class="as_font14 as_margin0" style="font-size: 0.9rem; font-weight:500;"><?php echo strip_tags(substr($des['b_des_mini'], 0, 300)) ?>...</p>
 
                                             <div class=" btn1">
-                                                <a href="blog-detail.php?blog_id=<?= $des['blog_id'] ?>&lang=<?=$lan?>" class="as_btn mt-2">Read More</a>
+                                                <a href="blog-detail.php?blog_id=<?= $des['blog_id'] ?>&lang=<?= $lan ?>" class="as_btn mt-2">Read More</a>
                                             </div>
                                         </div>
                                     </div>

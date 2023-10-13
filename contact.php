@@ -144,7 +144,7 @@ if (isset($_SESSION['min_msg'])) {
                                                                                                                                 ?>">
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <select name="product_category" id="product_category" class="input-box">
                                     <option value="" id="contact_input_category_placeholder"><?php
@@ -167,15 +167,37 @@ if (isset($_SESSION['min_msg'])) {
                                     ?>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <select name="product" id="product" class="input-box">
+                            <select name="product" id="product" class="input-box select_product">
                                     <option value="" id="contact_input_product_placeholder"><?php
                                                                                             if (isset($content_array['contact_input_product_placeholder'])) {
                                                                                                 echo $content_array['contact_input_product_placeholder'];
                                                                                             }
                                                                                             ?></option>
+                                    <?php
+                                    if ($lan == 1) {
+                                        $product_status = 'product_status_lang_1';
+                                    } else {
+                                        $product_status = 'product_status_lang_2';
+                                    }
+                                    $sql = "SELECT * FROM lang_products_tbl WHERE $product_status = 1 ";
+                                    $query = mysqli_query($con, $sql);
+
+                                    if (mysqli_num_rows($query)) {
+                                        foreach ($query as $result) {
+                                            if ($lan == 1) {
+                                                $product_name = $result['product_name_lang_1'];
+                                            } else {
+                                                $product_name = $result['product_name_lang_2'];
+                                            }
+                                    ?>
+                                            <option value="<?= $product_name ?>"><?= $product_name ?></option>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -377,3 +399,9 @@ if (isset($_SESSION['min_msg'])) {
 </section>
 <?php require('./includes/footer.php') ?>
 <?php require('./includes/script.php') ?>
+<script>
+    // In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('.select_product').select2();
+});
+</script>

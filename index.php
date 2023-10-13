@@ -190,10 +190,10 @@ if (mysqli_num_rows($query)) {
                     <div class="form-group">
                         <span id="msg_alert1" style="color:red;"></span>
                         <input type="tel" maxlength="10" class="input-box" id="contact_input_phone_placeholder" onkeyup="validateNumber(this,'msg_alert1')" name="mobile" placeholder="<?php
-                                                                                                                                                                                            if (isset($content_array['contact_input_phone_placeholder'])) {
-                                                                                                                                                                                                echo $content_array['contact_input_phone_placeholder'];
-                                                                                                                                                                                            }
-                                                                                                                                                                                            ?>">
+                                                                                                                                                                                        if (isset($content_array['contact_input_phone_placeholder'])) {
+                                                                                                                                                                                            echo $content_array['contact_input_phone_placeholder'];
+                                                                                                                                                                                        }
+                                                                                                                                                                                        ?>">
                     </div>
                     <div class="form-group">
                         <input type="text" class="input-box" name="company" id="contact_input_company_placeholder" placeholder="<?php
@@ -213,7 +213,8 @@ if (mysqli_num_rows($query)) {
                                                 if (isset($content_array['contact_input_country_placeholder'])) {
                                                     echo $content_array['contact_input_country_placeholder'];
                                                 }
-                                                ?></option>
+                                                ?>
+                            </option>
                             <option value="Afghanistan">Afghanistan</option>
                             <option value="Albania">Albania</option>
                             <option value="Algeria">Algeria</option>
@@ -459,15 +460,16 @@ if (mysqli_num_rows($query)) {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <select name="product_category" id="product_category" class="input-box">
-                                    <option value="" id="contact_input_category_placeholder"><?php
-                                                                                                if (isset($content_array['contact_input_category_placeholder'])) {
-                                                                                                    echo $content_array['contact_input_category_placeholder'];
-                                                                                                }
-                                                                                                ?></option>
+                                    <option value="" id="contact_input_category_placeholder">
+                                        <?php
+                                        if (isset($content_array['contact_input_category_placeholder'])) {
+                                            echo $content_array['contact_input_category_placeholder'];
+                                        }
+                                        ?>
+                                    </option>
                                     <?php
                                     $sql = "SELECT * FROM product_category_tbl WHERE status = 1 ";
                                     $query = mysqli_query($con, $sql);
-
                                     if (mysqli_num_rows($query)) {
                                         foreach ($query as $result) {
                                             $_SESSION['id'] =  $result['cat_id'];
@@ -477,17 +479,42 @@ if (mysqli_num_rows($query)) {
                                         }
                                     }
                                     ?>
+                                    <option value="1">All</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <select name="product" id="product" class="input-box">
-                                    <option value="" id="contact_input_product_placeholder"><?php
-                                                                                            if (isset($content_array['contact_input_product_placeholder'])) {
-                                                                                                echo $content_array['contact_input_product_placeholder'];
-                                                                                            }
-                                                                                            ?></option>
+                                <select name="product" id="product" class="input-box select_product">
+                                    <option value="" id="contact_input_product_placeholder">
+                                        <?php
+                                        if (isset($content_array['contact_input_product_placeholder'])) {
+                                            echo $content_array['contact_input_product_placeholder'];
+                                        }
+                                        ?>
+                                    </option>
+                                    <?php
+                                    if ($lan == 1) {
+                                        $product_status = 'product_status_lang_1';
+                                    } else {
+                                        $product_status = 'product_status_lang_2';
+                                    }
+                                    $sql = "SELECT * FROM lang_products_tbl WHERE $product_status = 1 ";
+                                    $query = mysqli_query($con, $sql);
+
+                                    if (mysqli_num_rows($query)) {
+                                        foreach ($query as $result) {
+                                            if ($lan == 1) {
+                                                $product_name = $result['product_name_lang_1'];
+                                            } else {
+                                                $product_name = $result['product_name_lang_2'];
+                                            }
+                                    ?>
+                                            <option value="<?= $product_name ?>"><?= $product_name ?></option>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -545,5 +572,11 @@ if (mysqli_num_rows($query)) {
 
     navbarLinks.forEach((link) => {
         link.addEventListener("click", scrollToSection);
+    });
+</script>
+<script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+        $('.select_product').select2();
     });
 </script>
