@@ -42,36 +42,79 @@
 
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script>
+    // $(document).ready(function() {
+    //     $('#product_category').on('change', function(e) {
+    //         e.preventDefault();
+    //         var values = $(this).val().split(',');
+    //         var categoryId = values[0];
+    //         var lang_id = values[1];
+    //         $('#product').html('<option value="">Select Product</option>');
+
+    //         if (categoryId !== "" || lang_id !== "") {
+    //             $.ajax({
+    //                 type: 'POST',
+    //                 url: './admin/product_code_ajax.php',
+    //                 data: {
+    //                     category_id: categoryId,
+    //                     lang_id: lang_id
+    //                 },
+    //                 success: function(response) {
+    //                     $('#product').append(response);
+    //                 }
+    //             });
+    //         } else {
+    //             console.log(lang_id)
+    //             $.ajax({
+    //                 type: 'POST',
+    //                 url: './admin/product_code_ajax.php',
+    //                 data: {
+    //                     lang_id: lang_id
+    //                 },
+    //                 success: function(response) {
+    //                     $('#product').html(response);
+    //                 }
+    //             });
+    //         }
+    //     });
+    // });
     $(document).ready(function() {
-        $('#product_category').on('change', function(e) {
-            e.preventDefault();
-            var values = $(this).val().split(',');
-            var categoryId = values[0];
-            var lang_id = values[1];
+    $('#product_category').on('change', function(e) {
+        e.preventDefault();
+        var values = $(this).val().split(',');
+        var categoryId = values[0];
+        var lang_id = values[1];
+        console.log(categoryId);
+        console.log(lang_id);
+        $('#product').html('<option value="">Select Product</option>');
 
-            // console.log(categoryId)
-            // console.log(lang_id)
-
-            // Clear the product dropdown
-            $('#product').html('<option value="">Select Product</option>');
-
-            if (categoryId !== "" && lang_id !== "") {
-                $.ajax({
-                    type: 'POST', 
-                    url: './admin/product_code_ajax.php', 
-                    data: {
-                        category_id: categoryId,
-                        lang_id: lang_id
-                    },
-                    success: function(response) {
-                        // Populate the product dropdown with the received data
-                        // console.log(response);
-                        $('#product').append(response);
-                    }
-                });
-            }
-        });
+        if (categoryId != "all" && lang_id != "") {
+            $.ajax({
+                type: 'POST',
+                url: './admin/product_code_ajax.php',
+                data: {
+                    category_id: categoryId,
+                    lang_id: lang_id
+                },
+                success: function(response) {
+                    $('#product').append(response);
+                }
+            });
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: './admin/product_code_ajax.php',
+                data: {
+                    category_id: categoryId,
+                    lang_id: lang_id
+                },
+                success: function(response) {
+                    $('#product').html(response);
+                }
+            });
+        }
     });
+});
+
 </script>
 <script>
     const change = src => {
@@ -116,13 +159,13 @@
         var keybord = $('#keybord').val();
 
 
-    // // Get the current scroll position
-    // var scrollPosition = $(window).scrollTop();
+        // // Get the current scroll position
+        // var scrollPosition = $(window).scrollTop();
 
-    
-    var newURL = window.location.pathname + '?lang=' + languageSelect + '&product_id=' + url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id +'&auth=' + url_auth + '&keybord=' + keybord;
+
+        var newURL = window.location.pathname + '?lang=' + languageSelect + '&product_id=' + url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id + '&auth=' + url_auth + '&keybord=' + keybord;
         // alert(languageSelect);
-        
+
         // // Update the URL without reloading the page (HTML5 History API)
         // window.history.pushState({
         //     scrollPosition: scrollPosition

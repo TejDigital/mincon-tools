@@ -144,7 +144,7 @@ if (isset($_SESSION['min_msg'])) {
                                                                                                                                 ?>">
                     </div>
                     <div class="row">
-                        <!-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <select name="product_category" id="product_category" class="input-box">
                                     <option value="" id="contact_input_category_placeholder"><?php
@@ -167,7 +167,7 @@ if (isset($_SESSION['min_msg'])) {
                                     ?>
                                 </select>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                             <select name="product" id="product" class="input-box select_product">
