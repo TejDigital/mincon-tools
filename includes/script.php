@@ -157,13 +157,14 @@
         var url_cat_id = $('#url_cat_id').val();
         var url_auth = $('#auth').val();
         var keybord = $('#keybord').val();
+        var product_search = $('#product_search').val();
 
 
         // // Get the current scroll position
         // var scrollPosition = $(window).scrollTop();
 
 
-        var newURL = window.location.pathname + '?lang=' + languageSelect + '&product_id=' + url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id + '&auth=' + url_auth + '&keybord=' + keybord;
+        var newURL = window.location.pathname + '?lang=' + languageSelect + '&product_id=' + url_product_id + '&blog_id=' + url_blog_id + '&blog_cat_id=' + url_cat_id + '&auth=' + url_auth + '&keybord=' + keybord + '&product_search='+ product_search;
         // alert(languageSelect);
 
         // // Update the URL without reloading the page (HTML5 History API)
