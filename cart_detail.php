@@ -38,7 +38,7 @@ $data2 = mysqli_fetch_assoc($query3);
                         ?>
                             <div class="sm_img">
 
-                                <img src="./assets/images/<?= $data['product_image1'] ?>" onclick="change(this.src)" alt="">
+                                <img src="./admin/products_images/<?= $data['product_image1'] ?>" onclick="change(this.src)" alt="">
                             </div>
                         <?php
                         }
@@ -48,7 +48,7 @@ $data2 = mysqli_fetch_assoc($query3);
                         ?>
                             <div class="sm_img">
 
-                                <img src="./assets/images/<?= $data['product_image2'] ?>" onclick="change(this.src)" alt="">
+                                <img src="./admin/products_images/<?= $data['product_image2'] ?>" onclick="change(this.src)" alt="">
                             </div>
                         <?php
                         }
@@ -58,7 +58,7 @@ $data2 = mysqli_fetch_assoc($query3);
                         ?>
                             <div class="sm_img">
 
-                                <img src="./assets/images/<?= $data['product_image3'] ?>" onclick="change(this.src)" alt="">
+                                <img src="./admin/products_images/<?= $data['product_image3'] ?>" onclick="change(this.src)" alt="">
                             </div>
                         <?php
                         }
@@ -68,7 +68,7 @@ $data2 = mysqli_fetch_assoc($query3);
                         ?>
                             <div class="sm_img">
 
-                                <img src="./assets/images/<?= $data['product_image4'] ?>" onclick="change(this.src)" alt="">
+                                <img src="./admin/products_images/<?= $data['product_image4'] ?>" onclick="change(this.src)" alt="">
                             </div>
                         <?php
                         }

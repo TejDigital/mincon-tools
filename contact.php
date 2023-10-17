@@ -165,6 +165,7 @@ if (isset($_SESSION['min_msg'])) {
                                         }
                                     }
                                     ?>
+                                        <option value="all,<?=$lan?>">All</option>
                                 </select>
                             </div>
                         </div>
@@ -176,28 +177,6 @@ if (isset($_SESSION['min_msg'])) {
                                                                                                 echo $content_array['contact_input_product_placeholder'];
                                                                                             }
                                                                                             ?></option>
-                                    <?php
-                                    if ($lan == 1) {
-                                        $product_status = 'product_status_lang_1';
-                                    } else {
-                                        $product_status = 'product_status_lang_2';
-                                    }
-                                    $sql = "SELECT * FROM lang_products_tbl WHERE $product_status = 1 ";
-                                    $query = mysqli_query($con, $sql);
-
-                                    if (mysqli_num_rows($query)) {
-                                        foreach ($query as $result) {
-                                            if ($lan == 1) {
-                                                $product_name = $result['product_name_lang_1'];
-                                            } else {
-                                                $product_name = $result['product_name_lang_2'];
-                                            }
-                                    ?>
-                                            <option value="<?= $product_name ?>"><?= $product_name ?></option>
-                                    <?php
-                                        }
-                                    }
-                                    ?>
                                 </select>
                             </div>
                         </div>
